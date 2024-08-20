@@ -109,6 +109,10 @@ Material:
     - _RequireSplitLighting: 1
     - _Roughness_Contrast: 3.5
     - _Roughness_Value: 0.345
+    - _SSS_Contrast: -6.5
+    - _SSS_Edge_1: 0
+    - _SSS_Edge_2: 1
+    - _SSS_Subtract: 0
     - _SrcBlend: 1
     - _StencilRef: 4
     - _StencilRefDepth: 8
@@ -138,6 +142,7 @@ Material:
     - _DiffusionProfileAsset: {r: -102976420, g: 1.8931543e-26, b: 9.167071e-13, a: -15600.572}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Min_Max_SSS_Remap: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4729598524127380163
 MonoBehaviour:
