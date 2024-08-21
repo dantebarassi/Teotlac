@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour
     private void Start()
     {
         UIManager.instance.HideUI(true);
-        UIManager.instance.Fade(false);
+        UIManager.instance.BlackScreenFade(false);
 
         StartCoroutine(FirstSection());
     }

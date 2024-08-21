@@ -9,12 +9,14 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     [SerializeField] Slider _hpBar, _staminaBar, _bossHpBar;
     [SerializeField] Button _joystick;
-    [SerializeField] Image _paused, _black;
+    [SerializeField] Image _paused, _black, _noStamina;
     [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive;
     [SerializeField] Image[] _specials = new Image[2];
     [SerializeField] Image[] _specialsCooldowns = new Image[2];
     [SerializeField] GameObject _crosshair, _options, mainMenu;
     [SerializeField] TextMeshProUGUI _bossName, _tutorialText;
+
+    bool _showingNoStamina = false;
 
     public GameObject textoFinal;
 
@@ -129,44 +131,46 @@ public class UIManager : MonoBehaviour
         _tutorialText.text = newText;
     }
 
-    public void Fade(bool into)
+    public void BlackScreenFade(bool into)
     {
-        if (into)
-        {
-            StartCoroutine(FadeToBlack());
-        }
-        else
-        {
-            StartCoroutine(FadeFromBlack());
-        }
+        StartCoroutine(FadeImage(_black, 1, into));
     }
 
-    IEnumerator FadeToBlack()
+    IEnumerator FadeImage(Image image, float time, bool unfade = false, float alphaValue = 1)
     {
         float timer = 0;
+        var startingColor = image.color;
 
-        while (timer < 1)
+        while (timer < time)
         {
             timer += Time.deltaTime;
 
-            _black.color = Color.black - new Color(0, 0, 0, Mathf.Lerp(1, 0, timer));
+            image.color = unfade ? startingColor + new Color(0, 0, 0, Mathf.Lerp(0, alphaValue, timer / time)) : startingColor - new Color(0, 0, 0, Mathf.Lerp(0, alphaValue, timer / time));
 
             yield return null;
         }
     }
 
-    IEnumerator FadeFromBlack()
+    public void NotEnoughStamina()
     {
-        float timer = 0;
+        if (_showingNoStamina == true) return;
 
-        while (timer < 1)
-        {
-            timer += Time.deltaTime;
+        StartCoroutine(ToggleNoStamina(0.1f, 0.2f, 0.3f));
+    }
 
-            _black.color = Color.black - new Color(0, 0, 0, Mathf.Lerp(0, 1, timer));
+    IEnumerator ToggleNoStamina(float inDuration, float wait, float outDuration)
+    {
+        _showingNoStamina = true;
 
-            yield return null;
-        }
+        StartCoroutine(FadeImage(_noStamina, inDuration, true, 0.6f));
+
+        yield return new WaitForSeconds(wait);
+
+        StartCoroutine(FadeImage(_noStamina, outDuration, false, 0.6f));
+
+        yield return new WaitForSeconds(outDuration);
+
+        _showingNoStamina = false;
     }
 
     public void StartPlaceholderDemoEnd()
@@ -176,7 +180,7 @@ public class UIManager : MonoBehaviour
 
     IEnumerator PlaceholderDemoEnd()
     {
-        StartCoroutine(FadeToBlack());
+        StartCoroutine(FadeImage(_black, 1, true));
 
         yield return new WaitForSeconds(2);
 

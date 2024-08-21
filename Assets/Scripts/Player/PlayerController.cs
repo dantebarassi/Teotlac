@@ -535,6 +535,7 @@ public class PlayerController : Entity
         }
         else
         {
+            UIManager.instance.NotEnoughStamina();
             return false;
         }
     }
