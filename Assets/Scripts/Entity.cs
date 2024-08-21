@@ -23,7 +23,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
         _rb.AddForce(dir * strength);
     }
 
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount, bool bypassCooldown = false)
     {
         _hp -= amount;
 

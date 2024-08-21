@@ -9,7 +9,7 @@ public class ObsidianTrap : MonoBehaviour, IDamageable
     [SerializeField] float _shardDuration, _lowSpawnAngle, _highSpawnAngle;
     [HideInInspector] public float shardSpeed, shardDamage;
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool bypassCooldown = false)
     {
         Debug.Log("hit");
         Die();

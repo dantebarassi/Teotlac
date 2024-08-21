@@ -1145,7 +1145,7 @@ public class Itztlacoliuhqui : Boss
         _takingAction = false;
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, bool bypassCooldown = false)
     {
         StartCoroutine(oneShotTiroPiedras());
         base.TakeDamage(amount);

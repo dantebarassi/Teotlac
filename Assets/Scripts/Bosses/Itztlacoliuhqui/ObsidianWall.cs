@@ -70,7 +70,7 @@ public class ObsidianWall : MonoBehaviour, IDamageable
         _broken = true;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool bypassCooldown = false)
     {
         if (_broken)
         {

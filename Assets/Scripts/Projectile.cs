@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour, IDamageable
         Die();
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, bool bypassCooldown = false)
     {
         Die();
     }

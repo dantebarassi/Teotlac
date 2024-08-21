@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     [SerializeField] Slider _hpBar, _staminaBar, _bossHpBar;
     [SerializeField] Button _joystick;
-    [SerializeField] Image _paused, _black, _noStamina;
+    [SerializeField] Image _paused, _black, _noStamina, _tookDamage;
     [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive;
     [SerializeField] Image[] _specials = new Image[2];
     [SerializeField] Image[] _specialsCooldowns = new Image[2];
@@ -155,22 +155,27 @@ public class UIManager : MonoBehaviour
     {
         if (_showingNoStamina == true) return;
 
-        StartCoroutine(ToggleNoStamina(0.1f, 0.2f, 0.3f));
+        StartCoroutine(FadeToggleImage(_noStamina, 0.1f, 0.2f, 0.3f, 0.6f, true));
     }
 
-    IEnumerator ToggleNoStamina(float inDuration, float wait, float outDuration)
+    public void TookDamage()
     {
-        _showingNoStamina = true;
+        StartCoroutine(FadeToggleImage(_tookDamage, 0.1f, 0.2f, 0.3f, 0.2f));
+    }
 
-        StartCoroutine(FadeImage(_noStamina, inDuration, true, 0.6f));
+    IEnumerator FadeToggleImage(Image image, float inDuration, float wait, float outDuration, float alphaValue = 1, bool isStamina = false)
+    {
+        if(isStamina) _showingNoStamina = true;
+
+        StartCoroutine(FadeImage(image, inDuration, true, alphaValue));
 
         yield return new WaitForSeconds(wait);
 
-        StartCoroutine(FadeImage(_noStamina, outDuration, false, 0.6f));
+        StartCoroutine(FadeImage(image, outDuration, false, alphaValue));
 
         yield return new WaitForSeconds(outDuration);
 
-        _showingNoStamina = false;
+        if (isStamina) _showingNoStamina = false;
     }
 
     public void StartPlaceholderDemoEnd()

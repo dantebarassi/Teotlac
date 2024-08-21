@@ -447,7 +447,7 @@ public class ObsidianGod : Boss
         return Vector3.Distance(transform.position, _player.transform.position);
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, bool bypassCooldown = false)
     {
         if (_invulnerable) return;
         else if (_lastStand) Die();

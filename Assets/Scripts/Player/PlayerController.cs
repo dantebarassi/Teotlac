@@ -540,7 +540,7 @@ public class PlayerController : Entity
         }
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, bool bypassCooldown = false)
     {
         //_inputs.PrimaryAttack = false;
         if (_aiming) _stopChannels = true;
@@ -548,8 +548,8 @@ public class PlayerController : Entity
         if (_damageCurrentCooldown > 0) return;
         ChangeAudio(damage);
         _cameraController.CameraShake(1, 0.5f);
-
-        _damageCurrentCooldown = _damageCooldown;
+        UIManager.instance.TookDamage();
+        if (!bypassCooldown) _damageCurrentCooldown = _damageCooldown;
 
         //anim.SetBool("IsHit", true);
         //anim.SetBool("IsHit", false);
