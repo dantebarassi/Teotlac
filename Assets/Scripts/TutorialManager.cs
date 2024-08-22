@@ -28,22 +28,23 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(_firstWait);
 
+        _player.Inputs.inputUpdate = _player.Inputs.Unpaused;
         UIManager.instance.HideUI(false);
-        _player.Inputs.inputUpdate = _player.Inputs.NoAttackInputs;
-
-        UIManager.instance.ChangeText(true, _movement);
-
-        yield return new WaitForSeconds(_firstSectionDelays);
-
-        UIManager.instance.ChangeText(true, _jump);
-
-        yield return new WaitForSeconds(_firstSectionDelays);
-
-        UIManager.instance.ChangeText(true, _step);
-
-        yield return new WaitForSeconds(_firstSectionDelays);
-
-        UIManager.instance.ChangeText(false);
+        //_player.Inputs.inputUpdate = _player.Inputs.NoAttackInputs;
+        //
+        //UIManager.instance.ChangeText(true, _movement);
+        //
+        //yield return new WaitForSeconds(_firstSectionDelays);
+        //
+        //UIManager.instance.ChangeText(true, _jump);
+        //
+        //yield return new WaitForSeconds(_firstSectionDelays);
+        //
+        //UIManager.instance.ChangeText(true, _step);
+        //
+        //yield return new WaitForSeconds(_firstSectionDelays);
+        //
+        //UIManager.instance.ChangeText(false);
     }
 
     IEnumerator PreFight()
@@ -125,23 +126,23 @@ public class TutorialManager : MonoBehaviour
                 case 0:
                     _colliders[_colliderCounter].enabled = false;
                     _colliderCounter++;
-                    _enemy.gameObject.SetActive(true);
-                    StartCoroutine(PreFight());
+                    //_enemy.gameObject.SetActive(true);
+                    //StartCoroutine(PreFight());
                     break;
                 case 1:
                     _colliders[_colliderCounter].enabled = false;
                     _colliderCounter++;
-                    _player.Inputs.inputUpdate = _player.Inputs.NoJump;
+                    //_player.Inputs.inputUpdate = _player.Inputs.NoJump;
                     break;
                 case 2:
                     _colliders[_colliderCounter].enabled = false;
                     _colliderCounter++;
-                    StartCoroutine(Specials());
+                    //StartCoroutine(Specials());
                     break;
                 case 3:
                     _colliders[_colliderCounter].enabled = false;
                     _colliderCounter++;
-                    StartCoroutine(PostFight());
+                    //StartCoroutine(PostFight());
                     break;
                 case 4:
                     _colliders[_colliderCounter].enabled = false;
