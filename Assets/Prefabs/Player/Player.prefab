@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583349683352319244}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.9933276, z: 0, w: -0.1153271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 65.694, z: 1169.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,7 +45,7 @@ Transform:
   - {fileID: 6303323015222549325}
   - {fileID: 7300464674317621018}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -193.245, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1931507830230479260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,8 +80,7 @@ MonoBehaviour:
   _sunBaseCost: 10
   _sunHoldCost: 2
   _obsidianCost: 25
-  _sunMagic: {fileID: 1097402135425091426, guid: 9be6616c1c304bb41a01789ea4efb0f6,
-    type: 3}
+  _sunMagic: {fileID: 0}
   _sunSpawnPoint: {fileID: 1764712642191180951}
   _sunBaseDamage: 2
   _sunDamageGrowRate: 2
@@ -113,7 +112,7 @@ MonoBehaviour:
   currentBoss: {fileID: 0}
   _cameraController: {fileID: 23388462036422085}
   camaraFinal: {fileID: 0}
-  renderer: {fileID: 2815965633497613620}
+  renderer: {fileID: 0}
   _VignetteAmountClamps: {fileID: 2100000, guid: 0429e343dcc84a6408db5483bb9d1931,
     type: 2}
   dustPlayer: {fileID: 0}
@@ -352,8 +351,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2754890316402762798}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.040627573, y: 0.061899982, z: 0.0025217764, w: -0.9972519}
-  m_LocalPosition: {x: 1.1886325, y: 0.53099823, z: -1.2164351}
+  m_LocalRotation: {x: -0.040624164, y: -0.062006976, z: -0.0025259394, w: 0.99724543}
+  m_LocalPosition: {x: 1.1895511, y: 0.53099823, z: -1.2166748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5421,10 +5420,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5715638465658313392}
-  - component: {fileID: 4118026451012640460}
-  - component: {fileID: 2815965633497613620}
+  - component: {fileID: 6265408426315168837}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: InteractableDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5439,62 +5437,33 @@ Transform:
   m_GameObject: {fileID: 7977188762476219812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.076, y: 0, z: 0.546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5614645620149502427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4118026451012640460
-MeshFilter:
+--- !u!65 &6265408426315168837
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7977188762476219812}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2815965633497613620
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7977188762476219812}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8034814923308976561
 GameObject:
   m_ObjectHideFlags: 0

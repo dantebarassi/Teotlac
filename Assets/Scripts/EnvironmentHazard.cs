@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class EnvironmentHazard : MonoBehaviour
 {
-    [SerializeField] float _damage, _damageInterval;
+    [SerializeField] float _damage, _damageInterval, _despawnTime;
 
     bool canDamage = true;
+
+    private void Start()
+    {
+        if (_despawnTime > 0) StartCoroutine(Despawn());
+    }
 
     private void OnTriggerStay(Collider other)
     {
         if (!canDamage) return;
 
-        if (other.TryGetComponent(out IDamageable damageable))
+        if (other.TryGetComponent(out Entity entity))
         {
-            damageable.TakeDamage(_damage, true);
+            entity.TakeDamage(_damage, true);
             StartCoroutine(DamageCooldown());
         }
     }
@@ -26,5 +31,12 @@ public class EnvironmentHazard : MonoBehaviour
         yield return new WaitForSeconds(_damageInterval);
 
         canDamage = true;
+    }
+
+    IEnumerator Despawn()
+    {
+        yield return new WaitForSeconds(_despawnTime);
+
+        Destroy(gameObject);
     }
 }

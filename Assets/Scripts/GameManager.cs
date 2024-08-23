@@ -5,10 +5,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public bool joystick=false;
+    public bool joystick=false, playerInPalace;
     [SerializeField] private Material _vignettePostProcess;
     [SerializeField] private string _vignetteAmountName = "";
     public float aaaaa;
+    public Vector3 playerWorldPos;
+
     void Awake()
     {
         if (instance == null)

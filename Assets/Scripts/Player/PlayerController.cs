@@ -26,7 +26,7 @@ public class PlayerController : Entity
     [SerializeField] float _stepCost, _sunBaseCost, _sunHoldCost, _obsidianCost;
 
     [Header("Sun Magic")]
-    [SerializeField] SunMagic _sunMagic;
+    [SerializeField] SunBasic _sunMagic;
     [SerializeField] Transform _sunSpawnPoint;
     [SerializeField] float _sunBaseDamage, _sunDamageGrowRate, _sunSpeed, _sunMaxChargeTime, _sunCastDelay, _sunShootDelay, _sunRecovery, _sunCooldown, _sunAbsorbTime, _sunMeleeDuration,_sunHitboxX, _sunHitboxY, _sunHitboxZ, _sunRange;
     Vector3 _sunHitbox;
@@ -241,9 +241,9 @@ public class PlayerController : Entity
 
     void ActivateAimedSunMagic()
     {
-        if (!_aiming && _movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
+        if (!_aiming && _movement.IsGrounded() && _sunCurrentCooldown <= 0/* && CheckAndReduceStamina(_sunBaseCost)*/)
         {
-            StartCoroutine(AimedSunMagic());
+            StartCoroutine(NewAimedSunMagic());
         }
         else
         {
@@ -252,7 +252,7 @@ public class PlayerController : Entity
         }
     }
 
-    IEnumerator AimedSunMagic()
+    /*IEnumerator AimedSunMagic()
     {
         _rb.angularVelocity = Vector3.zero;
         _inputs.ToggleAim(true);
@@ -370,6 +370,84 @@ public class PlayerController : Entity
         _stopChannels = false;
         _aiming = false;
         //_sunCurrentCooldown = _sunCooldown;
+    }*/
+
+    IEnumerator NewAimedSunMagic()
+    {
+        _rb.angularVelocity = Vector3.zero;
+        _inputs.ToggleAim(true);
+        _aiming = true;
+        _inputs.inputUpdate = _inputs.Aiming;
+        anim.SetTrigger("chargeSun");
+        anim.SetBool("isChargingSun", true);
+
+        yield return new WaitForSeconds(_sunCastDelay);
+
+        _movement.Cast(true);
+        ChangeAudio(chargingSun);
+
+        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+        sun.SetupStats(_sunBaseDamage, 0, 10);
+
+        while (!_stopChannels && _inputs.SecondaryAttack)
+        {
+            _rb.angularVelocity = Vector3.zero;
+
+            if (sun != null)
+            {
+                sun.transform.position = _sunSpawnPoint.position;
+
+                if (_inputs.launchAttack)
+                {
+                    if (CheckAndReduceStamina(_sunBaseCost))
+                    {
+                        anim.SetTrigger("shootSun");
+
+                        float timer = 0;
+
+                        while (timer < _sunShootDelay)
+                        {
+                            sun.transform.position = _sunSpawnPoint.position;
+                            timer += Time.deltaTime;
+                            yield return null;
+                        }
+
+                        _sunCurrentCooldown = _sunCooldown;
+
+                        sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.35f).normalized, 750);
+                        sun = null;
+                    }
+
+                    _inputs.launchAttack = false;
+                }
+            }
+            else
+            {
+                if (_sunCurrentCooldown <= 0)
+                {
+                    sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                    sun.SetupStats(_sunBaseDamage, 0, 10);
+                }
+            }
+
+            yield return null;
+        }
+
+        if (sun != null)
+        {
+            sun.Die();
+        }
+
+        _movement.Cast(false);
+        _inputs.ToggleAim(false);
+        anim.SetBool("isChargingSun", false);
+
+        yield return new WaitForSeconds(0.25f);
+
+        _inputs.launchAttack = false;
+        _inputs.SecondaryAttack = false;
+        _stopChannels = false;
+        _aiming = false;
     }
 
     void ActivateObsidianMagic()
