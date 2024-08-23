@@ -20,6 +20,7 @@ public class PlayerController : Entity
     [SerializeField] float _maxStamina, _staminaRegenRate, _staminaRegenDelay, _damageCooldown, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _stepCooldown/*(variable del step viejo)_stepStopVelocity*/;
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] Transform _aimTarget;
+    [SerializeField] InteractionManager _interaction;
 
     [Header("Stamina costs")]
     [SerializeField] float _jumpCost;
@@ -614,6 +615,11 @@ public class PlayerController : Entity
             UIManager.instance.NotEnoughStamina();
             return false;
         }
+    }
+
+    public void Interact()
+    {
+        _interaction.StartInteraction();
     }
 
     public override void TakeDamage(float amount, bool bypassCooldown = false)

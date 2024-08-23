@@ -14,7 +14,7 @@ public class Inputs
 
     public bool trigger = false;
 
-    KeyCode _kStep, _kJump, _kPrimaryAttack, _kSecondaryAttack, _kSpecial1, _kSpecial2, _kSun, _kObsidian, _kPause;
+    KeyCode _kStep, _kJump, _kPrimaryAttack, _kSecondaryAttack, _kSpecial1, _kSpecial2, _kSun, _kObsidian, _kPause, _kInteract;
 
     public bool PrimaryAttack
     {
@@ -120,6 +120,7 @@ public class Inputs
             _kSun = KeyCode.Alpha1;
             _kObsidian = KeyCode.Alpha2;
             _kPause = KeyCode.Escape;
+            _kInteract = KeyCode.F;
         }
         
     }
@@ -291,6 +292,11 @@ public class Inputs
         if (Input.GetKeyDown(_kSpecial2))
         {
             _player.UseSpecial(1);
+        }
+
+        if (Input.GetKeyDown(_kInteract))
+        {
+            _player.Interact();
         }
 
         //AimUnaim();
