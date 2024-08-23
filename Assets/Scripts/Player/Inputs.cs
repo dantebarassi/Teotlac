@@ -513,7 +513,6 @@ public class Inputs
         if (Input.GetKeyDown(_kSun))
         {
             _player.ChangeActiveMagic(PlayerController.MagicType.Sun);
-            _player.renderer.material.color = Color.red;
         }
     }
 
@@ -522,7 +521,6 @@ public class Inputs
         if (Input.GetKeyDown(_kObsidian))
         {
             _player.ChangeActiveMagic(PlayerController.MagicType.Obsidian);
-            _player.renderer.material.color = Color.black;
         }
     }
 }

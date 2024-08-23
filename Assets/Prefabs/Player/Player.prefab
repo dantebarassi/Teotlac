@@ -112,7 +112,6 @@ MonoBehaviour:
   currentBoss: {fileID: 0}
   _cameraController: {fileID: 23388462036422085}
   camaraFinal: {fileID: 0}
-  renderer: {fileID: 0}
   _VignetteAmountClamps: {fileID: 2100000, guid: 0429e343dcc84a6408db5483bb9d1931,
     type: 2}
   dustPlayer: {fileID: 0}
@@ -5460,7 +5459,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

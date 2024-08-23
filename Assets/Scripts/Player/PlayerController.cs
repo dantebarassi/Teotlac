@@ -111,7 +111,6 @@ public class PlayerController : Entity
         _specials = GetComponent<SpecialsManager>();
 
         _activeMagic = MagicType.Sun;
-        renderer.material.color = Color.red;
         _sunHitbox = new Vector3(_sunHitboxX, _sunHitboxY, _sunHitboxZ);
         _inputs.inputUpdate = _inputs.Unpaused;
     }
