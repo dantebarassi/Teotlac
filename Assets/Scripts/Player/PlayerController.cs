@@ -49,7 +49,6 @@ public class PlayerController : Entity
 
     public GameObject camaraFinal;
 
-    public Renderer renderer;
     private bool _joystickActive=true, _aiming = false, _stopChannels = false;
 
     [SerializeField] Material _VignetteAmountClamps;
