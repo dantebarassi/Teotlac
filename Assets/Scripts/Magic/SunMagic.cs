@@ -23,8 +23,8 @@ public class SunMagic : PlayerProjectile
     {
         if (_charging)
         {
-            _baseParticle.gameObject.transform.localScale += Vector3.one * Time.deltaTime * _growRate;
-            _fireParticle.gameObject.transform.localScale += Vector3.one * Time.deltaTime * _growRate;
+            //_baseParticle.gameObject.transform.localScale += Vector3.one * Time.deltaTime * _growRate;
+            //_fireParticle.gameObject.transform.localScale += Vector3.one * Time.deltaTime * _growRate;
             _light.range += Time.deltaTime * _lightRangeMultiplier;
             
         }
