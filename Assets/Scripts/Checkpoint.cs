@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour, IInteractable
 {
-    [SerializeField] GameObject _mindPalace;
+    [SerializeField] GameObject _mindPalace, _ocean;
 
     public void Interact(PlayerController player)
     {
@@ -21,7 +21,6 @@ public class Checkpoint : MonoBehaviour, IInteractable
             newPos = _mindPalace.transform.position;
             activatePalace = true;
             GameManager.instance.playerWorldPos = player.transform.position;
-            GameManager.instance.hasCheckpoint = true;
         }
 
         StartCoroutine(TeleportPlayer(player, newPos, activatePalace));
@@ -38,6 +37,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
 
         _mindPalace.SetActive(palaceActive);
         player.transform.position = position;
+        _ocean.SetActive(palaceActive);
         GameManager.instance.sunLight.gameObject.SetActive(palaceActive);
 
         yield return new WaitForSeconds(1);

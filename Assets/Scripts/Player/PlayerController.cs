@@ -413,7 +413,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.35f).normalized, 750);
+                        sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.2f).normalized, 1000);
                         sun = null;
                     }
 
@@ -643,15 +643,7 @@ public class PlayerController : Entity
 
     public override void Die()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        if (GameManager.instance.hasCheckpoint)
-        {
-            transform.position = GameManager.instance.playerWorldPos;
-            _hp = 100;
-            UIManager.instance.UpdateBar(UIManager.Bar.PlayerHp, _hp);
-            GameManager.instance.LoadCheckpoint();
-        }
-        else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Joistick()
