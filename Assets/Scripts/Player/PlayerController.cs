@@ -643,7 +643,15 @@ public class PlayerController : Entity
 
     public override void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (GameManager.instance.hasCheckpoint)
+        {
+            transform.position = GameManager.instance.playerWorldPos;
+            _hp = 100;
+            UIManager.instance.UpdateBar(UIManager.Bar.PlayerHp, _hp);
+            GameManager.instance.LoadCheckpoint();
+        }
+        else SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Joistick()
