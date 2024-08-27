@@ -7,13 +7,15 @@ public class SunBasic : PlayerProjectile
     [SerializeField] Rigidbody _rb;
     [SerializeField] EnvironmentHazard _sunFire;
 
+    bool _shot = false;
+
     protected override void Update()
     {
         if (_deathTimer <= 0)
         {
             Die();
         }
-        else
+        else if (_shot)
         {
             _deathTimer -= Time.deltaTime;
         }
@@ -21,6 +23,7 @@ public class SunBasic : PlayerProjectile
 
     public void Launch(Vector3 dir, float strength)
     {
+        _shot = true;
         _rb.isKinematic = false;
         _rb.AddForce(dir * strength);
     }

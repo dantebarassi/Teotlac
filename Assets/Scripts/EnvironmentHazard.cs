@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnvironmentHazard : MonoBehaviour
 {
@@ -8,9 +9,16 @@ public class EnvironmentHazard : MonoBehaviour
 
     protected bool canDamage = true;
 
+    VisualEffect _vfx = null;
+
     private void Start()
     {
-        if (_despawnTime > 0) StartCoroutine(Despawn());
+        if (_despawnTime > 0)
+        {
+            StartCoroutine(Despawn());
+
+            if (TryGetComponent(out VisualEffect vfx)) _vfx = vfx;
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -36,6 +44,12 @@ public class EnvironmentHazard : MonoBehaviour
     IEnumerator Despawn()
     {
         yield return new WaitForSeconds(_despawnTime);
+
+        GetComponent<Collider>().enabled = false;
+
+        if (_vfx != null) _vfx.Stop();
+
+        yield return new WaitForSeconds(6);
 
         Destroy(gameObject);
     }
