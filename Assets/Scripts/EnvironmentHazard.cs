@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnvironmentHazard : MonoBehaviour
 {
-    [SerializeField] float _damage, _damageInterval, _despawnTime;
+    [SerializeField] protected float _damage, _damageInterval, _despawnTime;
 
-    bool canDamage = true;
+    protected bool canDamage = true;
 
     private void Start()
     {

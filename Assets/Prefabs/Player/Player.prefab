@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1583349683352319244}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 65.694, z: 1169.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -75,7 +75,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _aimTarget: {fileID: 25245285099853770}
-  _interact: {fileID: 5643549951549404971}
+  _interaction: {fileID: 0}
   _jumpCost: 5
   _stepCost: 10
   _sunBaseCost: 10
@@ -161,6 +161,12 @@ MonoBehaviour:
   _supernovaDuration: 1
   _supernovaRecovery: 0.1
   _supernovaCooldown: 5
+  _firewallIcon: {fileID: 0}
+  _firewall: {fileID: 0}
+  _firewallCost: 0
+  _firewallPreparation: 0
+  _firewallRecovery: 0
+  _firewallCooldown: 0
   _obsidianTrapIcon: {fileID: 21300000, guid: b89e5ace49b5b254f8fa9e6b84b3624e, type: 3}
   _obsidianTrap: {fileID: 7569309955222995636, guid: 464c13eebb3e73847a7027226679714a,
     type: 3}
@@ -351,8 +357,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2754890316402762798}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.040624164, y: -0.062006976, z: -0.0025259394, w: 0.99724543}
-  m_LocalPosition: {x: 1.1895511, y: 0.53099823, z: -1.2166748}
+  m_LocalRotation: {x: -0.040623736, y: -0.062006503, z: -0.0025258933, w: 0.9972455}
+  m_LocalPosition: {x: 1.1895511, y: 0.5309993, z: -1.2166748}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

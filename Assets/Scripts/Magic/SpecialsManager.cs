@@ -8,6 +8,7 @@ public class SpecialsManager : MonoBehaviour
     {
         Sunstrike,
         Supernova,
+        Firewall,
         ObsidianTrap,
         RockToss
     }
@@ -27,6 +28,11 @@ public class SpecialsManager : MonoBehaviour
     [SerializeField] Sprite _supernovaIcon;
     [SerializeField] GameObject _supernova;
     [SerializeField] float _supernovaCost, _supernovaRadius, _supernovaDamage, _supernovaPreparation, _supernovaDuration, _supernovaRecovery, _supernovaCooldown;
+
+    [Header("Firewall")]
+    [SerializeField] Sprite _firewallIcon;
+    [SerializeField] GameObject _firewall;
+    [SerializeField] float _firewallCost, _firewallPreparation, _firewallRecovery, _firewallCooldown;
 
     [Header("Obsidian Trap")]
     [SerializeField] Sprite _obsidianTrapIcon;
@@ -52,16 +58,18 @@ public class SpecialsManager : MonoBehaviour
 
         var sunstrike = new SpecialSunstrike(_player, _inputs, _sunstrikeFirstRay, _sunstrikeSecondRay, _audioSpawner, _sunstrikeSound, _sunstrikeCost, _sunstrikeDamage, _sunstrikeRadius, _sunstrikePreparation, _sunstrikeDelay, _sunstrikeLinger, _sunstrikeCooldown);
         var supernova = new SpecialSupernova(_player, _inputs, _supernova, _supernovaCost, _supernovaRadius, _supernovaDamage, _supernovaPreparation, _supernovaDuration, _supernovaRecovery, _supernovaCooldown);
+        var firewall = new SpecialFirewall(_player, _inputs, _firewall, _firewallPreparation, _firewallRecovery, _firewallCooldown);
         var obsTrap = new SpecialObsidianTrap(_player, _inputs, _obsidianTrap, _obsidianTrapCost, _obsidianTrapShardDamage, _obsidianTrapShardSpeed, _obsidianTrapPreparation, _obsidianTrapRecovery, _obsidianTrapCooldown);
         var rockToss = new SpecialRockToss(_player, _inputs, _rock, _rockTossPos, _rockTossCost, _rockTossDamage, _rockTossStrength, _rockTossAngle, _rockTossPreparation, _rockTossRecovery, _rockTossCooldown);
 
         _allSpecials.Add(Specials.Sunstrike, (sunstrike, _sunstrikeIcon));
         _allSpecials.Add(Specials.Supernova, (supernova, _supernovaIcon));
+        _allSpecials.Add(Specials.Firewall, (firewall, _firewallIcon));
         _allSpecials.Add(Specials.ObsidianTrap, (obsTrap, _obsidianTrapIcon));
         _allSpecials.Add(Specials.RockToss, (rockToss, _rockTossIcon));
 
         EquipSpecial(Specials.Sunstrike, 0);
-        EquipSpecial(Specials.Supernova, 1);
+        EquipSpecial(Specials.Firewall, 1);
     }
 
     private void Update()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0006996422, g: 0.000539305, b: 0.00066525635, a: 1}
+  m_IndirectSpecularColor: {r: 0.0007478163, g: 0.0005668939, b: 0.0006731362, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -58795,9 +58795,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
         type: 3}
+      propertyPath: _firewall
+      value: 
+      objectReference: {fileID: 6912633602273986234, guid: 8a8fe6d6142fee547816525272dab653,
+        type: 3}
+    - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
+        type: 3}
       propertyPath: _audioSpawner
       value: 
       objectReference: {fileID: 1673635051823697411, guid: e3b8fcc345fbf0c4faeabffaf67945d1,
+        type: 3}
+    - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
+        type: 3}
+      propertyPath: _firewallCost
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
+        type: 3}
+      propertyPath: _firewallIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: b89e5ace49b5b254f8fa9e6b84b3624e,
         type: 3}
     - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
         type: 3}
@@ -58812,10 +58829,25 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 8a365740150ebde4198b01ec2242ffde, type: 3}
     - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
         type: 3}
+      propertyPath: _firewallCooldown
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
+        type: 3}
+      propertyPath: _firewallRecovery
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
+        type: 3}
       propertyPath: _obsidianTrapIcon
       value: 
       objectReference: {fileID: 21300000, guid: 196ee22266599c04dbd7e99271f25601,
         type: 3}
+    - target: {fileID: 629325897749523065, guid: a316bb953a405e74abd76b64e4af2b03,
+        type: 3}
+      propertyPath: _firewallPreparation
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1024909831324393689, guid: a316bb953a405e74abd76b64e4af2b03,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -60451,6 +60483,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.0039065
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021538443182915233, guid: a316bb953a405e74abd76b64e4af2b03,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.53099823
       objectReference: {fileID: 0}
     - target: {fileID: 6021538443182915233, guid: a316bb953a405e74abd76b64e4af2b03,
         type: 3}
@@ -77825,6 +77862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1680406676}
   - component: {fileID: 1680406675}
+  - component: {fileID: 1680406677}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -77962,6 +78000,36 @@ Transform:
   - {fileID: 1255618426}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1680406677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680406674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 5121
+  m_IgnoreTag: 
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_MinimumDistanceFromTarget: 0.1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1001 &1685133099
 PrefabInstance:
   m_ObjectHideFlags: 0
