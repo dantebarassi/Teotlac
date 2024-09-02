@@ -73,20 +73,22 @@ MonoBehaviour:
   _interaction: {fileID: 5643549951549404971}
   _jumpCost: 5
   _stepCost: 10
-  _sunBaseCost: 20
+  _sunBaseCost: 10
   _sunHoldCost: 2
   _obsidianCost: 25
-  _sunMagic: {fileID: 3687896482788576138, guid: e688500d1cec0ec47a38fb1352b8f00b,
+  _sunMagic: {fileID: 1097402135425091426, guid: 9be6616c1c304bb41a01789ea4efb0f6,
     type: 3}
   _sunSpawnPoint: {fileID: 1764712642191180951}
-  _sunBaseDamage: 10
+  _attacksToFinisher: 3
+  _comboBreakTime: 1.5
+  _sunBaseDamage: 8
   _sunDamageGrowRate: 2
   _sunSpeed: 25
   _sunMaxChargeTime: 2.5
   _sunCastDelay: 0.35
   _sunShootDelay: 0.17
   _sunRecovery: 0.5
-  _sunCooldown: 1
+  _sunCooldown: 0.75
   _sunAbsorbTime: 0.5
   _sunMeleeDuration: 1
   _sunHitboxX: 0.5
@@ -376,7 +378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2754890316402762798}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.038589638, y: 0.15585302, z: 0.00609348, w: -0.98700744}
+  m_LocalRotation: {x: -0.03858921, y: -0.1558513, z: -0.006093344, w: 0.9870077}
   m_LocalPosition: {x: 2.0039065, y: 0.53099823, z: -1.2127843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

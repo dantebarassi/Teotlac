@@ -27,9 +27,10 @@ public class PlayerController : Entity
     [SerializeField] float _stepCost, _sunBaseCost, _sunHoldCost, _obsidianCost;
 
     [Header("Sun Magic")]
-    [SerializeField] SunBasic _sunMagic;
+    [SerializeField] SunMagic _sunMagic;
     [SerializeField] Transform _sunSpawnPoint;
-    [SerializeField] float _sunBaseDamage, _sunDamageGrowRate, _sunSpeed, _sunMaxChargeTime, _sunCastDelay, _sunShootDelay, _sunRecovery, _sunCooldown, _sunAbsorbTime, _sunMeleeDuration,_sunHitboxX, _sunHitboxY, _sunHitboxZ, _sunRange;
+    [SerializeField] int _attacksToFinisher;
+    [SerializeField] float _comboBreakTime, _sunBaseDamage, _sunDamageGrowRate, _sunSpeed, _sunMaxChargeTime, _sunCastDelay, _sunShootDelay, _sunRecovery, _sunCooldown, _sunAbsorbTime, _sunMeleeDuration, _sunHitboxX, _sunHitboxY, _sunHitboxZ, _sunRange;
     Vector3 _sunHitbox;
 
     [Header("Obsidian Magic")]
@@ -50,7 +51,7 @@ public class PlayerController : Entity
 
     public GameObject camaraFinal;
 
-    private bool _joystickActive=true, _aiming = false, _stopChannels = false;
+    private bool _joystickActive = true, _aiming = false, _stopChannels = false;
 
     [SerializeField] Material _VignetteAmountClamps;
 
@@ -94,7 +95,7 @@ public class PlayerController : Entity
     public Animator anim;
 
     AudioSource _myAS;
-    [SerializeField] AudioClip sideStep,jump, damage, chargingSun, Walking;
+    [SerializeField] AudioClip sideStep, jump, damage, chargingSun, Walking;
     [SerializeField] GameObject _stepParticles, _jumpParticles;
 
     public enum MagicType
@@ -242,7 +243,7 @@ public class PlayerController : Entity
     {
         if (!_aiming && _movement.IsGrounded() && _sunCurrentCooldown <= 0/* && CheckAndReduceStamina(_sunBaseCost)*/)
         {
-            StartCoroutine(NewAimedSunMagic());
+            StartCoroutine(BasicCombo());
         }
         else
         {
@@ -413,7 +414,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.2f).normalized, 1000);
+                        //sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.2f).normalized, 1000);
                         sun = null;
                     }
 
@@ -435,6 +436,127 @@ public class PlayerController : Entity
         if (sun != null)
         {
             sun.Die();
+        }
+
+        _movement.Cast(false);
+        _inputs.ToggleAim(false);
+        anim.SetBool("isChargingSun", false);
+
+        yield return new WaitForSeconds(0.25f);
+
+        _inputs.launchAttack = false;
+        _inputs.SecondaryAttack = false;
+        _stopChannels = false;
+        _aiming = false;
+    }
+
+    IEnumerator BasicCombo()
+    {
+        _rb.angularVelocity = Vector3.zero;
+        _inputs.ToggleAim(true);
+        _aiming = true;
+        _inputs.inputUpdate = _inputs.Aiming;
+        anim.SetTrigger("chargeSun");
+        anim.SetBool("isChargingSun", true);
+
+        yield return new WaitForSeconds(_sunCastDelay);
+
+        _movement.Cast(true);
+
+        float halfCD = _sunCooldown * 0.5f, currentComboTime = 0;
+        int comboCount = 0;
+
+        while (!_stopChannels && _inputs.SecondaryAttack)
+        {
+            _rb.angularVelocity = Vector3.zero;
+
+            currentComboTime -= Time.deltaTime;
+
+            if (currentComboTime <= 0) comboCount = 0;
+
+            if (_inputs.launchAttack)
+            {
+                if (_sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
+                {
+                    if (comboCount >= _attacksToFinisher)
+                    {
+                        comboCount = 0;
+
+                        anim.SetTrigger("shootSun");
+
+                        yield return new WaitForSeconds(_sunShootDelay);
+
+                        _sunCurrentCooldown = _sunCooldown;
+
+                        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        sun.transform.localScale *= 4;
+                        sun.SetupStats(_sunBaseDamage * 1.5f);
+
+                        Vector3 dir;
+                        var cameraTransform = _cameraController.AimCamera.transform;
+
+                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit);
+                        if (hit.collider)
+                        {
+                            dir = hit.point - sun.transform.position;
+                        }
+                        else
+                        {
+                            dir = Camera.main.transform.forward;
+                        }
+
+                        sun.transform.forward = dir;
+
+                        sun.Shoot(_sunSpeed * 1.5f);
+                    }
+                    else
+                    {
+                        comboCount++;
+                        currentComboTime = _comboBreakTime;
+
+                        anim.SetTrigger("shootSun");
+
+                        yield return new WaitForSeconds(_sunShootDelay);
+
+                        _sunCurrentCooldown = _sunCooldown;
+
+                        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        sun.SetupStats(_sunBaseDamage);
+                        sun.ChargeFinished();
+
+                        Vector3 dir;
+                        var cameraTransform = _cameraController.AimCamera.transform;
+
+                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit);
+                        if (hit.collider)
+                        {
+                            dir = hit.point - sun.transform.position;
+                        }
+                        else
+                        {
+                            dir = Camera.main.transform.forward;
+                        }
+
+                        sun.transform.forward = dir;
+
+                        sun.Shoot(_sunSpeed);
+                    }
+                }
+                else if (_sunCurrentCooldown > halfCD)
+                {
+                    _inputs.launchAttack = false;
+
+                    yield return null;
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                yield return null;
+            }
         }
 
         _movement.Cast(false);
