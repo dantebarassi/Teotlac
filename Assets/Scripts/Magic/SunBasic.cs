@@ -63,7 +63,7 @@ public class SunBasic : PlayerProjectile
         _sun.gameObject.SetActive(false);
         _nova.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
 
         _nova.Stop();
 
