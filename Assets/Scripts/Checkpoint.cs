@@ -38,7 +38,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
         _mindPalace.SetActive(palaceActive);
         player.transform.position = position;
         _ocean.SetActive(palaceActive);
-        GameManager.instance.sunLight.gameObject.SetActive(palaceActive);
+        //GameManager.instance.sunLight.gameObject.SetActive(palaceActive);
 
         yield return new WaitForSeconds(1);
 
