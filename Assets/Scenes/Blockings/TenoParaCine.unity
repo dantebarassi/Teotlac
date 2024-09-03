@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02070202, g: 0.013668118, b: 0.007853979, a: 1}
+  m_IndirectSpecularColor: {r: 0.020704485, g: 0.01366958, b: 0.00785539, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2363,7 +2363,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -267.67538, y: -267.67538, z: -267.67538}
+    textureOffset: {x: -281.14062, y: -281.14062, z: -281.14062}
     falloffMode: 0
     maskMode: 1
     materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
@@ -32726,6 +32726,100 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c14da1e8410cc341b562d47b91fa399, type: 3}
+--- !u!1001 &713983486
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.7569838
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.7569838
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.756985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.352013
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.80127
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.0331037
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.49179468
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.49179468
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5080728
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5080728
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f143e43391c16df4f87bc9ece2d381eb, type: 2}
+    - target: {fileID: 919132149155446097, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_Name
+      value: Sun God Rock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd3a0b544dd7dd142932ad81e39d945e, type: 3}
+--- !u!4 &713983487 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+    type: 3}
+  m_PrefabInstance: {fileID: 713983486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &716581411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66841,74 +66935,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 578892538}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1390186084
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1390186085}
-  - component: {fileID: 1390186086}
-  m_Layer: 0
-  m_Name: Ground Smoke Prefab Sample(Clone)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1390186085
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390186084}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.86, y: -0.87, z: 3.88}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1595381110}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1390186086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390186084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1fbb15bf92b84f40a1eb030765b5afe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parameters:
-    albedo: {r: 1, g: 1, b: 1, a: 1}
-    meanFreePath: 2
-    blendingMode: 1
-    priority: 0
-    anisotropy: 0
-    volumeMask: {fileID: 11700000, guid: bc05f2e39084d7849a52034d2d41f1ef, type: 3}
-    textureScrollingSpeed: {x: 1, y: 1, z: 1}
-    textureTiling: {x: 2, y: 1, z: 2}
-    positiveFade: {x: 0.032299742, y: 0.25, z: 0.019880716}
-    negativeFade: {x: 0.032299742, y: 0.25, z: 0.019880716}
-    m_EditorUniformFade: 0.5
-    m_EditorPositiveFade: {x: 0.06459948, y: 0.25, z: 0.039761435}
-    m_EditorNegativeFade: {x: 0.06459948, y: 0, z: 0.039761435}
-    m_EditorAdvancedFade: 0
-    size: {x: 15.48, y: 2, z: 25.15}
-    invertFade: 0
-    distanceFadeStart: 10000
-    distanceFadeEnd: 10000
-    textureOffset: {x: -267.67538, y: -267.67538, z: -267.67538}
-    falloffMode: 0
-    maskMode: 1
-    materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
-  m_Version: 2
 --- !u!1001 &1392878441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81681,7 +81707,7 @@ PrefabInstance:
         type: 3}
       propertyPath: instantiatedPrefab
       value: 
-      objectReference: {fileID: 1390186084}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6143614991158330947, guid: eaa68d4938cadde49aca5e94a7312ed5, type: 3}
@@ -81689,11 +81715,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1390186085}
+      addedObject: {fileID: 47510896}
     - targetCorrespondingSourceObject: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 47510896}
+      addedObject: {fileID: 1941405730}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaa68d4938cadde49aca5e94a7312ed5, type: 3}
 --- !u!4 &1595381110 stripped
@@ -100048,6 +100074,74 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!1 &1941405729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941405730}
+  - component: {fileID: 1941405731}
+  m_Layer: 0
+  m_Name: Ground Smoke Prefab Sample(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1941405730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941405729}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9999759, z: -0, w: -0.0069378903}
+  m_LocalPosition: {x: 0.98, y: -0.81, z: 5.75}
+  m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1595381110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1941405731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941405729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fbb15bf92b84f40a1eb030765b5afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameters:
+    albedo: {r: 1, g: 1, b: 1, a: 1}
+    meanFreePath: 2
+    blendingMode: 1
+    priority: 0
+    anisotropy: 0
+    volumeMask: {fileID: 11700000, guid: bc05f2e39084d7849a52034d2d41f1ef, type: 3}
+    textureScrollingSpeed: {x: 1, y: 1, z: 1}
+    textureTiling: {x: 2, y: 1, z: 2}
+    positiveFade: {x: 0.028121484, y: 0.25, z: 0.019615537}
+    negativeFade: {x: 0.028121484, y: 0.25, z: 0.019615537}
+    m_EditorUniformFade: 0.5
+    m_EditorPositiveFade: {x: 0.056242973, y: 0.25, z: 0.039231062}
+    m_EditorNegativeFade: {x: 0.056242973, y: 0, z: 0.039231062}
+    m_EditorAdvancedFade: 0
+    size: {x: 17.78, y: 2, z: 25.49}
+    invertFade: 0
+    distanceFadeStart: 10000
+    distanceFadeEnd: 10000
+    textureOffset: {x: -281.14062, y: -281.14062, z: -281.14062}
+    falloffMode: 0
+    maskMode: 1
+    materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
+  m_Version: 2
 --- !u!1001 &1941747882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109625,6 +109719,7 @@ Transform:
   - {fileID: 1094793907}
   - {fileID: 4688998883932763256}
   - {fileID: 9014408524999758950}
+  - {fileID: 713983487}
   - {fileID: 1595381110}
   - {fileID: 991434895}
   - {fileID: 1090184390}
