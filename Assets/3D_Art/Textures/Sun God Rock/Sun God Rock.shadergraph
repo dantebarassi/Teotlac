@@ -11,6 +11,9 @@
         },
         {
             "m_Id": "764f4d3263c84ebea2444ac0613afc52"
+        },
+        {
+            "m_Id": "3e18efa0ecf945fb8e9d4f4b56d70d40"
         }
     ],
     "m_Keywords": [],
@@ -83,6 +86,9 @@
         },
         {
             "m_Id": "ec4f8b1793da4fa7bcef4b19a0c192a7"
+        },
+        {
+            "m_Id": "be266a06cedc4ea6adc42479396d8b05"
         }
     ],
     "m_GroupDatas": [],
@@ -198,6 +204,20 @@
                     "m_Id": "69ae19fc144348e3ad8ab4761957593f"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "be266a06cedc4ea6adc42479396d8b05"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "1697fcf47cc341bf9f230f6788b102a2"
+                },
+                "m_SlotId": 1
             }
         },
         {
@@ -612,6 +632,9 @@
         },
         {
             "m_Id": "764f4d3263c84ebea2444ac0613afc52"
+        },
+        {
+            "m_Id": "3e18efa0ecf945fb8e9d4f4b56d70d40"
         }
     ]
 }
@@ -628,10 +651,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -767.0,
-            "y": 479.0000305175781,
+            "x": -729.0,
+            "y": 522.0,
             "width": 155.0,
-            "height": 141.99996948242188
+            "height": 142.0
         }
     },
     "m_Slots": [
@@ -699,6 +722,19 @@
         "y": 0.0
     },
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
+    "m_ObjectId": "2b1695fb3f4c40539fa3fbb3fdc5eb9a",
+    "m_Id": 0,
+    "m_DisplayName": "Normal Map",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_BareResource": false
 }
 
 {
@@ -835,6 +871,36 @@
         "x": 0.0,
         "y": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "3e18efa0ecf945fb8e9d4f4b56d70d40",
+    "m_Guid": {
+        "m_GuidSerialized": "fb19d919-651a-4c7e-9541-51dcff297d24"
+    },
+    "m_Name": "Normal Map",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Normal Map",
+    "m_DefaultReferenceName": "_Normal_Map",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"8eb169cd529d49947a8cae04ddb674e4\",\"type\":3}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {
@@ -1668,9 +1734,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -938.9999389648438,
-            "y": 544.0,
-            "width": 171.99993896484376,
+            "x": -958.0,
+            "y": 589.0,
+            "width": 172.0,
             "height": 34.0
         }
     },
@@ -1887,6 +1953,42 @@
         "m_Guid": ""
     },
     "m_DefaultType": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "be266a06cedc4ea6adc42479396d8b05",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -748.0,
+            "y": 463.0,
+            "width": 147.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "2b1695fb3f4c40539fa3fbb3fdc5eb9a"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "3e18efa0ecf945fb8e9d4f4b56d70d40"
+    }
 }
 
 {

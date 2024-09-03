@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.020702643, g: 0.013668775, b: 0.007854675, a: 1}
+  m_IndirectSpecularColor: {r: 0.02070202, g: 0.013668297, b: 0.007853979, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -33025,7 +33025,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bd3a0b544dd7dd142932ad81e39d945e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37900,6 +37900,111 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &865353900
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.7569838
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.7569838
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4.756985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.352013
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.80127
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.0331037
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.49179468
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.49179468
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5080728
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5080728
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 32f409e676dffa54cb809283c33150d6, type: 2}
+    - target: {fileID: -5754084199372789682, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4452748528467680230, guid: 981d1aab3d81b354a94cd4c99cc7c11a,
+        type: 3}
+    - target: {fileID: 919132149155446097, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_Name
+      value: Sun God Rock Optimized
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd3a0b544dd7dd142932ad81e39d945e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd3a0b544dd7dd142932ad81e39d945e, type: 3}
+--- !u!4 &865353901 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd3a0b544dd7dd142932ad81e39d945e,
+    type: 3}
+  m_PrefabInstance: {fileID: 865353900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &868693785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65602,7 +65707,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -46.710922, y: -46.710922, z: -46.710922}
+    textureOffset: {x: -1022.91327, y: -1022.91327, z: -1022.91327}
     falloffMode: 0
     maskMode: 1
     materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
@@ -105044,6 +105149,7 @@ Transform:
   - {fileID: 4688998883932763256}
   - {fileID: 9014408524999758950}
   - {fileID: 713983487}
+  - {fileID: 865353901}
   - {fileID: 1347398373}
   - {fileID: 991434895}
   - {fileID: 1090184390}
