@@ -388,7 +388,7 @@ public class PlayerController : Entity
         ChangeAudio(chargingSun);
 
         var sun = Instantiate(_magicTest, _sunSpawnPoint.position, Quaternion.identity);
-        sun.SetupStats(_sunBaseDamage, 0, 10);
+        sun.SetupStats(_sunBaseDamage, 0, 0.4f);
 
         while (!_stopChannels && _inputs.SecondaryAttack)
         {
@@ -415,7 +415,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.2f).normalized, 1000);
+                        sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.2f).normalized, 400);
                         sun = null;
                     }
 
@@ -427,7 +427,7 @@ public class PlayerController : Entity
                 if (_sunCurrentCooldown <= 0)
                 {
                     sun = Instantiate(_magicTest, _sunSpawnPoint.position, Quaternion.identity);
-                    sun.SetupStats(_sunBaseDamage, 0, 10);
+                    sun.SetupStats(_sunBaseDamage, 0, 0.4f);
                 }
             }
 

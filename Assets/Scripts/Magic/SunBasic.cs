@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class SunBasic : PlayerProjectile
 {
     [SerializeField] Rigidbody _rb;
     [SerializeField] EnvironmentHazard _sunFire;
+    [SerializeField] VisualEffect _sun, _nova;
 
-    bool _shot = false;
+    bool _shot = false, _dead = false;
 
     protected override void Update()
     {
         if (_deathTimer <= 0)
         {
-            Die();
+            StartCoroutine(Death());
         }
-        else if (_shot)
+        else if (_shot && !_dead)
         {
             _deathTimer -= Time.deltaTime;
         }
@@ -30,7 +32,7 @@ public class SunBasic : PlayerProjectile
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6 || other.gameObject.layer == 7) return;
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 7 || _dead || !_shot) return;
 
         if (other.gameObject.layer == 10)
         {
@@ -51,13 +53,22 @@ public class SunBasic : PlayerProjectile
             }
         }
 
-        Die();
+        StartCoroutine(Death());
     }
 
-    public override void Die()
+    public IEnumerator Death()
     {
-        Instantiate(this, transform.position, transform.rotation);
+        _dead = true;
+        _rb.isKinematic = true;
+        _sun.gameObject.SetActive(false);
+        _nova.gameObject.SetActive(true);
 
-        base.Die();
+        yield return new WaitForSeconds(2);
+
+        _nova.Stop();
+
+        yield return new WaitForSeconds(3);
+
+        Die();
     }
 }
