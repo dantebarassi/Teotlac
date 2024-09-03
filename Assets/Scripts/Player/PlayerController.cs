@@ -28,6 +28,7 @@ public class PlayerController : Entity
 
     [Header("Sun Magic")]
     [SerializeField] SunMagic _sunMagic;
+    [SerializeField] SunBasic _magicTest;
     [SerializeField] Transform _sunSpawnPoint;
     [SerializeField] int _attacksToFinisher;
     [SerializeField] float _comboBreakTime, _sunBaseDamage, _sunDamageGrowRate, _sunSpeed, _sunMaxChargeTime, _sunCastDelay, _sunShootDelay, _sunRecovery, _sunCooldown, _sunAbsorbTime, _sunMeleeDuration, _sunHitboxX, _sunHitboxY, _sunHitboxZ, _sunRange;
@@ -386,7 +387,7 @@ public class PlayerController : Entity
         _movement.Cast(true);
         ChangeAudio(chargingSun);
 
-        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+        var sun = Instantiate(_magicTest, _sunSpawnPoint.position, Quaternion.identity);
         sun.SetupStats(_sunBaseDamage, 0, 10);
 
         while (!_stopChannels && _inputs.SecondaryAttack)
@@ -414,7 +415,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        //sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.2f).normalized, 1000);
+                        sun.Launch((_cameraController.AimCamera.transform.forward + Vector3.up * 0.2f).normalized, 1000);
                         sun = null;
                     }
 
@@ -425,7 +426,7 @@ public class PlayerController : Entity
             {
                 if (_sunCurrentCooldown <= 0)
                 {
-                    sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                    sun = Instantiate(_magicTest, _sunSpawnPoint.position, Quaternion.identity);
                     sun.SetupStats(_sunBaseDamage, 0, 10);
                 }
             }
@@ -587,7 +588,7 @@ public class PlayerController : Entity
     {
         if (!_aiming && Grounded && _obsidianCurrentCooldown <= 0)
         {
-            StartCoroutine(AimedObsidianMagic());
+            StartCoroutine(NewAimedSunMagic());
         }
         else
         {

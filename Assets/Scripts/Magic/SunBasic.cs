@@ -53,4 +53,11 @@ public class SunBasic : PlayerProjectile
 
         Die();
     }
+
+    public override void Die()
+    {
+        Instantiate(this, transform.position, transform.rotation);
+
+        base.Die();
+    }
 }
