@@ -38,8 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00074810104, g: 0.00056529586, b: 0.00067041075,
-    a: 1}
+  m_IndirectSpecularColor: {r: 0.0072662146, g: 0.004801083, b: 0.0027608746, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -935,6 +934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2296,6 +2300,74 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46356139}
   m_Mesh: {fileID: -1139815532435380844, guid: c0db320e232791e4a9fc90c80397b304, type: 3}
+--- !u!1 &47510895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 47510896}
+  - component: {fileID: 47510897}
+  m_Layer: 0
+  m_Name: Ground Smoke Prefab Sample(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &47510896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47510895}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9999759, z: -0, w: -0.0069378903}
+  m_LocalPosition: {x: -0.00012036243, y: -0.000006656171, z: 0.000013564268}
+  m_LocalScale: {x: 0.9999999, y: 1.0000001, z: 0.9999999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1595381110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &47510897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47510895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fbb15bf92b84f40a1eb030765b5afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameters:
+    albedo: {r: 1, g: 1, b: 1, a: 1}
+    meanFreePath: 2
+    blendingMode: 1
+    priority: 0
+    anisotropy: 0
+    volumeMask: {fileID: 11700000, guid: bc05f2e39084d7849a52034d2d41f1ef, type: 3}
+    textureScrollingSpeed: {x: 1, y: 1, z: 1}
+    textureTiling: {x: 2, y: 1, z: 2}
+    positiveFade: {x: 0.125, y: 0.25, z: 0.125}
+    negativeFade: {x: 0.125, y: 0.25, z: 0.125}
+    m_EditorUniformFade: 0.5
+    m_EditorPositiveFade: {x: 0.25, y: 0.25, z: 0.25}
+    m_EditorNegativeFade: {x: 0.25, y: 0, z: 0.25}
+    m_EditorAdvancedFade: 0
+    size: {x: 4, y: 2, z: 4}
+    invertFade: 0
+    distanceFadeStart: 10000
+    distanceFadeEnd: 10000
+    textureOffset: {x: -97.022865, y: -97.022865, z: -97.022865}
+    falloffMode: 0
+    maskMode: 1
+    materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
+  m_Version: 2
 --- !u!1001 &47780293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2588,6 +2660,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2839,6 +2916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3346,6 +3428,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3689,6 +3776,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_chica (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4051,6 +4143,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4150,6 +4247,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ff3f432294a0901459bdb602201c0643,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4245,6 +4347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -5014,6 +5121,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5037,6 +5149,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (72)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -5226,6 +5343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -5531,6 +5653,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -6240,6 +6367,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7861,17 +7993,17 @@ PrefabInstance:
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5046.23
+      value: 5038.69
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 69.005005
+      value: 67.19
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1571.45
+      value: 1553.58
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
@@ -7939,17 +8071,17 @@ PrefabInstance:
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5049.79
+      value: 5051.57
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 69.005005
+      value: 67.03
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1553.75
+      value: 1553.43
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
@@ -8088,6 +8220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8451,6 +8588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -8971,6 +9113,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -9892,6 +10039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -9995,6 +10147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10936,7 +11093,7 @@ PrefabInstance:
     - target: {fileID: 3911060529849286554, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
         type: 3}
@@ -11056,6 +11213,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -11395,6 +11557,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -12818,6 +12985,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12989,6 +13161,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -13684,6 +13861,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -14201,6 +14383,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -15280,6 +15467,95 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 20.737, y: -12.539, z: -3.73}
+--- !u!1001 &322851847
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 7275207913611046174, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_Name
+      value: Escudo1 Variant 1 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 24.019283
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 24.019278
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 24.019285
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.19447538
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.31585
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3046684
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.08922695
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5344646
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8168652
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.19778107
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -13.164
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 66.615
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 68.905
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d6213b74cc0613d42a3ccff9dbf315a2, type: 3}
+--- !u!4 &322851848 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8051710050849650596, guid: d6213b74cc0613d42a3ccff9dbf315a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 322851847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &327620105
 GameObject:
   m_ObjectHideFlags: 0
@@ -15450,6 +15726,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15679,6 +15960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -16163,6 +16449,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -16438,6 +16729,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -17348,6 +17644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -18791,6 +19092,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -19061,6 +19367,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -19150,6 +19461,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -19238,6 +19554,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -19758,6 +20079,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409605513}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &411479926
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 5100446259823362772, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_Name
+      value: AztecPlate Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.18908976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1890898
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.18908976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.3375106
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.136469
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.6296332
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.69550276
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7185235
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ba72d64eec53bb4bba596441e492c92, type: 3}
+--- !u!4 &411479927 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+    type: 3}
+  m_PrefabInstance: {fileID: 411479926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &412551711
 GameObject:
   m_ObjectHideFlags: 0
@@ -20198,6 +20608,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21514,6 +21929,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -21968,6 +22388,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -23318,6 +23743,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -24011,6 +24441,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24400,6 +24835,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -24606,7 +25046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &550671911
 Transform:
   m_ObjectHideFlags: 0
@@ -24998,6 +25438,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (61)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -27593,6 +28038,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -27719,7 +28169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &630498880
 Transform:
   m_ObjectHideFlags: 0
@@ -28369,6 +28819,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28657,6 +29112,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -28745,6 +29205,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -28909,6 +29374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_chica (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29472,6 +29942,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30136,6 +30611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -31297,6 +31777,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32092,6 +32577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -32252,17 +32742,17 @@ PrefabInstance:
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5034.48
+      value: 5040.03
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 69.005005
+      value: 67.32
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1560.56
+      value: 1565.42
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
@@ -33471,6 +33961,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -33796,6 +34291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -34803,6 +35303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35070,6 +35575,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (65)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -35444,6 +35954,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -35941,6 +36456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (70)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -36737,6 +37257,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36760,6 +37285,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -36949,6 +37479,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -38216,17 +38751,17 @@ PrefabInstance:
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4972.97
+      value: 5040.2
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 69.005005
+      value: 67.38
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1557.96
+      value: 1545.22
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
@@ -38456,6 +38991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38914,6 +39454,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -39254,6 +39799,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39485,6 +40035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -40406,6 +40961,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41297,6 +41857,205 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08811a4f17ca2f4c903a7a3642074c5, type: 3}
+--- !u!1001 &943044715
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.57310677
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57310677
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.69550276
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7185235
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3911060529849286554, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_Name
+      value: Ground Smoke Prefab Sample(Clone) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3911060529849286554, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.size.x
+      value: 25.061523
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.size.y
+      value: 11.608292
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.size.z
+      value: 34.02295
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.invertFade
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.negativeFade.x
+      value: 0.12449362
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.negativeFade.y
+      value: 0.26877338
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.negativeFade.z
+      value: 0.091702804
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.positiveFade.x
+      value: 0.12449362
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.positiveFade.y
+      value: 0.26877338
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.positiveFade.z
+      value: 0.091702804
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.textureOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.textureOffset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.textureOffset.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorUniformFade
+      value: 3.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorAdvancedFade
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorNegativeFade.x
+      value: 0.30604684
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorNegativeFade.y
+      value: 0.073692
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorNegativeFade.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorPositiveFade.x
+      value: 0.42387873
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorPositiveFade.y
+      value: 0.21196802
+      objectReference: {fileID: 0}
+    - target: {fileID: 9090858341359863645, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+        type: 3}
+      propertyPath: parameters.m_EditorPositiveFade.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a5ae416edb6c7444b53f7044ecbe98f, type: 3}
+--- !u!4 &943044716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 650352167341384932, guid: 5a5ae416edb6c7444b53f7044ecbe98f,
+    type: 3}
+  m_PrefabInstance: {fileID: 943044715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &945008195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41389,6 +42148,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (51)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -41477,6 +42241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -42175,6 +42944,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -42820,6 +43594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -44021,6 +44800,40 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d36d634fd65ce29489a0fcf883d09e45, type: 3}
+--- !u!1 &991434894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+    type: 3}
+  m_PrefabInstance: {fileID: 1806884027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &991434895 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+    type: 3}
+  m_PrefabInstance: {fileID: 1806884027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &991434896
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991434894}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &993295361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44184,6 +44997,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -44759,6 +45577,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -45353,6 +46176,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45722,6 +46550,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -47027,6 +47860,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -47115,6 +47953,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -48173,6 +49016,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -48633,6 +49481,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (62)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -49275,6 +50128,95 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9122214578d743c48ac4efa48ce74da6, type: 3}
+--- !u!1001 &1090184389
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 5100446259823362772, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_Name
+      value: AztecPlate Variant (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.18908976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1890898
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.18908976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2789537
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.136469
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.8732123
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.69550276
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7185235
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8ba72d64eec53bb4bba596441e492c92, type: 3}
+--- !u!4 &1090184390 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5585515173601187950, guid: 8ba72d64eec53bb4bba596441e492c92,
+    type: 3}
+  m_PrefabInstance: {fileID: 1090184389}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1090554655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49287,6 +50229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -49616,6 +50563,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -50457,6 +51409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (63)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -50545,6 +51502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (66)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -50995,6 +51957,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -51023,6 +51990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -51359,6 +52331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -51701,6 +52678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55247,6 +56229,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214710129}
   m_Mesh: {fileID: -5095633430463986769, guid: c0db320e232791e4a9fc90c80397b304, type: 3}
+--- !u!1001 &1216484559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 7271200851872585916, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_Name
+      value: Jarron Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.57310677
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57310677
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.0972981
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.266562
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.9997584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.69550276
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7185235
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 36735f9a0e76dd244ada35df7d12497c, type: 3}
+--- !u!4 &1216484560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8044464721158619654, guid: 36735f9a0e76dd244ada35df7d12497c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1216484559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1220789484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55970,7 +57041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsGlobal: 0
-  priority: 0
+  priority: 1.1
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 28e6ace64d004124d8eadc577b4d07f7, type: 2}
@@ -56870,6 +57941,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56880,6 +57956,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5bb3c9c260a2571448961424481ea06d,
     type: 3}
   m_PrefabInstance: {fileID: 1259663018}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1260854580
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0015611377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0015611381
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0015611377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.16992451
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.445
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.0473213
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.69550276
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7185235
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161514940664680050, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_Name
+      value: AztecJar2 Variant (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f95ad2c164c5a9a409f6fe2c8faefab5, type: 3}
+--- !u!4 &1260854581 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1260854580}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1271025602
 PrefabInstance:
@@ -57076,6 +58241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -57477,6 +58647,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -57518,17 +58693,17 @@ PrefabInstance:
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5114.39
+      value: 5048.77
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 69.005005
+      value: 67.31
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1558.27
+      value: 1545.66
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
@@ -57824,6 +58999,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -57918,6 +59098,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294122515}
   m_Mesh: {fileID: -5095633430463986769, guid: c0db320e232791e4a9fc90c80397b304, type: 3}
+--- !u!1001 &1294189023
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5731068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.57310694
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.57310677
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.30001488
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.101728
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.53760093
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.89272314
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.103772104
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.3722925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.23167893
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.732
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -46.398
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 29.404
+      objectReference: {fileID: 0}
+    - target: {fileID: 7794264778096861120, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_Name
+      value: ArmaAzteca Variant (16)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9122214578d743c48ac4efa48ce74da6, type: 3}
+--- !u!4 &1294189024 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1294189023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1295919022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58290,6 +59559,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62379,6 +63653,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -63669,6 +64948,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -63767,6 +65051,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_chica (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65183,6 +66472,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -65271,6 +66565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -65542,6 +66841,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 578892538}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1390186084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1390186085}
+  - component: {fileID: 1390186086}
+  m_Layer: 0
+  m_Name: Ground Smoke Prefab Sample(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1390186085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390186084}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.86, y: -0.87, z: 3.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1595381110}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1390186086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390186084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fbb15bf92b84f40a1eb030765b5afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameters:
+    albedo: {r: 1, g: 1, b: 1, a: 1}
+    meanFreePath: 2
+    blendingMode: 1
+    priority: 0
+    anisotropy: 0
+    volumeMask: {fileID: 11700000, guid: bc05f2e39084d7849a52034d2d41f1ef, type: 3}
+    textureScrollingSpeed: {x: 1, y: 1, z: 1}
+    textureTiling: {x: 2, y: 1, z: 2}
+    positiveFade: {x: 0.032299742, y: 0.25, z: 0.019880716}
+    negativeFade: {x: 0.032299742, y: 0.25, z: 0.019880716}
+    m_EditorUniformFade: 0.5
+    m_EditorPositiveFade: {x: 0.06459948, y: 0.25, z: 0.039761435}
+    m_EditorNegativeFade: {x: 0.06459948, y: 0, z: 0.039761435}
+    m_EditorAdvancedFade: 0
+    size: {x: 15.48, y: 2, z: 25.15}
+    invertFade: 0
+    distanceFadeStart: 10000
+    distanceFadeEnd: 10000
+    textureOffset: {x: -97.022865, y: -97.022865, z: -97.022865}
+    falloffMode: 0
+    maskMode: 1
+    materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
+  m_Version: 2
 --- !u!1001 &1392878441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66127,6 +67494,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -67357,6 +68729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -67874,6 +69251,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -67902,6 +69284,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -74538,6 +75925,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -74702,6 +76094,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -74800,6 +76197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75536,6 +76938,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_chica (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76222,6 +77629,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -76425,6 +77837,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -76665,6 +78082,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (64)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -77641,6 +79063,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -77897,6 +79324,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -78239,6 +79671,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -80063,6 +81500,208 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7203081347661345777, guid: f9a63e1a4f8c4324d90f9133439de0a5, type: 3}
+--- !u!1001 &1592062834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5731068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5731068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.19315763
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.096352
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1788888
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.82749987
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.56146586
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -23.551
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7794264778096861120, guid: 9122214578d743c48ac4efa48ce74da6,
+        type: 3}
+      propertyPath: m_Name
+      value: ArmaAzteca Variant (13)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9122214578d743c48ac4efa48ce74da6, type: 3}
+--- !u!4 &1592062835 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7449264024417273210, guid: 9122214578d743c48ac4efa48ce74da6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1592062834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1595381109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 9174007361409687040, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_Name
+      value: Volumetric Samples Collection (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.963
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.327
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7233315
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.690501
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687047, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: currentIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174007361409687047, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      propertyPath: instantiatedPrefab
+      value: 
+      objectReference: {fileID: 1390186084}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 6143614991158330947, guid: eaa68d4938cadde49aca5e94a7312ed5, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1390186085}
+    - targetCorrespondingSourceObject: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 47510896}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eaa68d4938cadde49aca5e94a7312ed5, type: 3}
+--- !u!4 &1595381110 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9174007361409687046, guid: eaa68d4938cadde49aca5e94a7312ed5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1595381109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1595411189
 GameObject:
   m_ObjectHideFlags: 0
@@ -80483,6 +82122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (68)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -81912,6 +83556,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1637062721}
   m_Mesh: {fileID: -5095633430463986769, guid: c0db320e232791e4a9fc90c80397b304, type: 3}
+--- !u!1001 &1639089519
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0015611377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0015611381
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.0015611377
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.44950345
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.400097
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.3414925
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.69550276
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7185235
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161514940664680050, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+        type: 3}
+      propertyPath: m_Name
+      value: AztecJar2 Variant (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f95ad2c164c5a9a409f6fe2c8faefab5, type: 3}
+--- !u!4 &1639089520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3642140404620252360, guid: f95ad2c164c5a9a409f6fe2c8faefab5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1639089519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1639231783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82704,6 +84437,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -83504,6 +85242,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (59)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -84127,17 +85870,17 @@ PrefabInstance:
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5115.09
+      value: 5050.4
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 69.005005
+      value: 67.35
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1577.26
+      value: 1565.58
       objectReference: {fileID: 0}
     - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
         type: 3}
@@ -86613,6 +88356,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -87284,6 +89032,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -87679,6 +89432,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -87807,6 +89565,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -88014,6 +89777,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -90441,6 +92209,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -91587,6 +93360,182 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1803410718}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1806884027
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 543450653364615228}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5731069
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.2146895
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 24.44301
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5921552
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7233315
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.690501
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180.795
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8068912879858763429, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: -7492519919557821833, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: -6803127379556684295, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: -5066869930940866747, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: -4929363789341574723, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 438f89e3efa80e042b56dd6fa58f8984, type: 2}
+    - target: {fileID: -4599733991149926983, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: -2197419269586384419, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: -2008147554521794687, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: 508247071932065, guid: 6cb89d41bee8a7d448f5a9e714c0e116, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: 411659796556423749, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: 919132149155446097, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Name
+      value: TemploAhoraSi
+      objectReference: {fileID: 0}
+    - target: {fileID: 2084653436756292502, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: af7e68245982d6a4ca4b59811d96b39d, type: 2}
+    - target: {fileID: 3243301853138452011, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: 3566390031902043909, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30de8da5985368c4db04b211a386dcaf, type: 2}
+    - target: {fileID: 3869432794076260461, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: 4538200324410164707, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: 5901893356585517859, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: af7e68245982d6a4ca4b59811d96b39d, type: 2}
+    - target: {fileID: 6436379363234308429, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    - target: {fileID: 6559030268500519672, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 990e72013993e4b4fb3e7aa77bd9eae1, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6cb89d41bee8a7d448f5a9e714c0e116,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 991434896}
+  m_SourcePrefab: {fileID: 100100000, guid: 6cb89d41bee8a7d448f5a9e714c0e116, type: 3}
 --- !u!1001 &1808166921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91750,6 +93699,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -92037,6 +93991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_chica (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cb022a3cc917b144abfca428c5a7ba48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -92353,6 +94312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: fd5b6b0be03049c0afb166da8338f5c5.fbx (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5bb3c9c260a2571448961424481ea06d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -94149,6 +96113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -94511,6 +96480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPCS (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
@@ -95880,6 +97854,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -96140,6 +98119,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (67)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -96548,6 +98532,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (69)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -97722,6 +99711,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -98167,6 +100161,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -98195,6 +100194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -98592,6 +100596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -99146,6 +101155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Choza_grande (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -99834,6 +101848,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -100133,6 +102152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -100623,6 +102647,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -101139,6 +103168,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Choza_grande (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5799fa8c2e21863419d99b1cfb591e7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -101297,99 +103331,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c14da1e8410cc341b562d47b91fa399, type: 3}
---- !u!1001 &2014475638
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1324479972349650448, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.29998758
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.29998758
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.29998758
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4972.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 69.005005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1570.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9576819
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.0039955857
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.27369222
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.089005195
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 2.354
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -31.694
-      objectReference: {fileID: 0}
-    - target: {fileID: 4821708620379876600, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 9.951
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305793265111283266, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_Name
-      value: Antorcha Variant (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5482643605068448488, guid: ebfee694749965748857ad5176f7a877,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ebfee694749965748857ad5176f7a877, type: 3}
 --- !u!1001 &2018343865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101654,6 +103595,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCS (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 4306318038807364364, guid: c61230a3e34932d4f81d2de0c7011a8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171092161933228409, guid: c61230a3e34932d4f81d2de0c7011a8a,
         type: 3}
       propertyPath: m_Enabled
@@ -101695,7 +103641,7 @@ Transform:
   m_GameObject: {fileID: 2028336297}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 25.708, z: -2.58}
+  m_LocalPosition: {x: -0.527, y: 25.708, z: 0.659}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102345,6 +104291,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -102921,6 +104872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (71)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -104448,6 +106404,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jardines Variant 1 (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -104699,6 +106660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jardines Variant 1 (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240491933539112068, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8012103443862670910, guid: 1b707f13396f28f41a15f9a0dbd1e34b,
         type: 3}
@@ -107571,6 +109537,7 @@ Transform:
   m_Children:
   - {fileID: 3560004077351565057}
   - {fileID: 210442674}
+  - {fileID: 943044716}
   - {fileID: 57747092}
   - {fileID: 68803137}
   - {fileID: 29708165}
@@ -107658,6 +109625,16 @@ Transform:
   - {fileID: 1094793907}
   - {fileID: 4688998883932763256}
   - {fileID: 9014408524999758950}
+  - {fileID: 1595381110}
+  - {fileID: 991434895}
+  - {fileID: 1090184390}
+  - {fileID: 411479927}
+  - {fileID: 1260854581}
+  - {fileID: 1639089520}
+  - {fileID: 1216484560}
+  - {fileID: 1592062835}
+  - {fileID: 322851848}
+  - {fileID: 1294189024}
   - {fileID: 1835250317}
   - {fileID: 1231427001}
   - {fileID: 550671911}
@@ -107786,18 +109763,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4135141138362259429, guid: 90dba306d8eadfc4a82945011bc664ac,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6352808
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135141138362259429, guid: 90dba306d8eadfc4a82945011bc664ac,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9049972
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135141138362259429, guid: 90dba306d8eadfc4a82945011bc664ac,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6352808
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135141138362259429, guid: 90dba306d8eadfc4a82945011bc664ac,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.35
+      value: 0.669
       objectReference: {fileID: 0}
     - target: {fileID: 4135141138362259429, guid: 90dba306d8eadfc4a82945011bc664ac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 26.381
+      value: 25.737
       objectReference: {fileID: 0}
     - target: {fileID: 4135141138362259429, guid: 90dba306d8eadfc4a82945011bc664ac,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.44
+      value: 0.412
       objectReference: {fileID: 0}
     - target: {fileID: 4135141138362259429, guid: 90dba306d8eadfc4a82945011bc664ac,
         type: 3}
@@ -107914,7 +109906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3560004077351565057
 Transform:
   m_ObjectHideFlags: 0
@@ -113016,7 +115008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &7892225635142018899
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -113763,7 +115755,6 @@ SceneRoots:
   - {fileID: 154130421}
   - {fileID: 153160643}
   - {fileID: 1676590949}
-  - {fileID: 2014475638}
   - {fileID: 890334188}
   - {fileID: 1282182563}
   - {fileID: 716581411}
