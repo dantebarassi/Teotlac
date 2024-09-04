@@ -34,7 +34,7 @@ public class Itztlacoliuhqui : Boss
     [SerializeField] Animator _anim;
     [SerializeField] float _aggroRange;
     [SerializeField] Transform _eyePos;
-    [SerializeField] GameObject _edgeBlock;
+    [SerializeField] GameObject _edgeBlock, _preSpikeParticle;
     [SerializeField] Actions[] _creationAttacks, _attacks;
 
     [Header("Walls")]
@@ -86,6 +86,7 @@ public class Itztlacoliuhqui : Boss
 
     [Header("Arena Spikes")]
     [SerializeField] GameObject _arenaSpikePrefab;
+    [SerializeField] ParticleSystem[] _preArenaSpikesParticles;
     [SerializeField] int _attacksToProcArenaSpikes;
     [SerializeField] float _arenaSpikeInterval, _arenaSpikeDamage, _arenaSpikesPreparation, _arenaSpikeLinger, _arenaSpikesRecovery;
 
@@ -831,25 +832,54 @@ public class Itztlacoliuhqui : Boss
 
         List<GameObject> miniWallList = new List<GameObject>();
 
-        Vector3 nextSpawnPos = transform.position - transform.up * _distFromPivotToFloor + dir * _firstWallOffset;
+        Vector3 lastPos, nextSpawnPos = transform.position - transform.up * _distFromPivotToFloor + dir * _firstWallOffset;
         Vector3 movement = dir * _miniWallOffset;
         target = new Vector3(target.x, nextSpawnPos.y, target.z);
+
+        var particles = Instantiate(_preSpikeParticle, nextSpawnPos, transform.rotation);
+        float timer;
 
         do
         {
             var miniWall = Instantiate(_miniWall, nextSpawnPos, Quaternion.Euler(0, Random.Range(0f, 360f), 0));
             miniWall.transform.localScale *= Random.Range(0.9f, 1.2f);
             miniWallList.Add(miniWall);
+            lastPos = nextSpawnPos;
             nextSpawnPos += movement;
 
-            yield return new WaitForSeconds(_miniWallInterval);
+            timer = 0;
+
+            while (timer < _miniWallInterval)
+            {
+                timer += Time.deltaTime;
+
+                particles.transform.position = Vector3.Lerp(lastPos, nextSpawnPos, timer / _miniWallInterval);
+
+                yield return null;
+            }
         }
         while (Vector3.Distance(nextSpawnPos, target) > _wallPrefab.Radius);
+
+        timer = 0;
+        var wait = _miniWallInterval * 2;
+
+        while (timer < wait)
+        {
+            timer += Time.deltaTime;
+
+            particles.transform.position = Vector3.Lerp(nextSpawnPos, target, timer / wait);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         nextSpawnPos = target;
         var wall = Instantiate(_wallPrefab, nextSpawnPos, Quaternion.identity);
         _spawnedWalls.Add(wall);
         wall.boss = this;
+
+        Destroy(particles);
 
         if (Physics.CheckCapsule(nextSpawnPos, nextSpawnPos + Vector3.up * 5, wall.Radius, _playerLayer))
         {
@@ -1000,7 +1030,16 @@ public class Itztlacoliuhqui : Boss
         _anim.SetBool("IsRoaring", true);
         ChangeAudio(TemblorArenaSpiking);
 
-        yield return new WaitForSeconds(_arenaSpikesPreparation);
+        var wait = _arenaSpikesPreparation * 0.5f;
+
+        yield return new WaitForSeconds(wait);
+
+        for (int i = 0; i < _preJumpParticles.Length; i++)
+        {
+            _preArenaSpikesParticles[i].Play();
+        }
+
+        yield return new WaitForSeconds(wait);
 
         var nodeList = _pfManager.allNodes.Where(x => !x.isBlocked).OrderBy(x => Vector3.Distance(x.transform.position, transform.position)).SkipWhile(x => Vector3.Distance(x.transform.position, transform.position) < 3).ToList();
 
@@ -1022,7 +1061,7 @@ public class Itztlacoliuhqui : Boss
                     Vector3 pos = item.transform.position + new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
 
                     var spike = Instantiate(_arenaSpikePrefab, pos, Quaternion.Euler(new Vector3(0, Random.Range(0f, 360f))));
-                   // spike.transform.localScale *= 5;
+                    //spike.transform.localScale *= 5;
                     spawnedSpikes.Add(spike);
 
                     if (!hit && Physics.CheckCapsule(pos, pos + Vector3.up * 5, _pfManager.neighborDistance * 0.45f, _playerLayer))
@@ -1037,6 +1076,11 @@ public class Itztlacoliuhqui : Boss
 
                 yield return new WaitForSeconds(_arenaSpikeInterval);
             }
+        }
+
+        for (int i = 0; i < _preJumpParticles.Length; i++)
+        {
+            _preArenaSpikesParticles[i].Stop();
         }
 
         yield return new WaitForSeconds(_arenaSpikeLinger);

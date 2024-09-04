@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Material _vignettePostProcess;
     [SerializeField] private string _vignetteAmountName = "";
     public float aaaaa;
-    public Vector3 playerWorldPos;
+    public Vector3 playerWorldPos = Vector3.zero;
     public Light sunLight;
+    public bool playIntro;
 
     void Awake()
     {
@@ -23,14 +24,5 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    public void LoadCheckpoint()
-    {
-
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 }

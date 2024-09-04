@@ -126,6 +126,8 @@ public class PlayerController : Entity
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerStamina, _stamina, _maxStamina);
 
         Joistick();
+
+        if (GameManager.instance.playerWorldPos != Vector3.zero) transform.position = GameManager.instance.playerWorldPos;
     }
 
     void Update()

@@ -5,7 +5,8 @@ using UnityEngine.Playables;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] PlayableDirector _timeline;
+    [SerializeField] GameObject _camera;
+    [SerializeField] PlayableDirector _introCinematic, _bossCinematic;
     [SerializeField] PlayerController _player;
     [SerializeField] ObsidianGod _enemy;
     [SerializeField] string _movement, _jump, _step, _sun, _supernova, _sunstrike, _switch;
@@ -16,8 +17,17 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        UIManager.instance.HideUI(true);
         UIManager.instance.BlackScreenFade(false);
+
+        if (!GameManager.instance.playIntro) 
+        {
+            _camera.SetActive(false);
+            return;
+        } 
+
+        _introCinematic.Play();
+
+        UIManager.instance.HideUI(true);
 
         StartCoroutine(FirstSection());
     }
@@ -30,6 +40,8 @@ public class TutorialManager : MonoBehaviour
 
         _player.Inputs.inputUpdate = _player.Inputs.Unpaused;
         UIManager.instance.HideUI(false);
+
+        GameManager.instance.playIntro = false;
         //_player.Inputs.inputUpdate = _player.Inputs.NoAttackInputs;
         //
         //UIManager.instance.ChangeText(true, _movement);
@@ -109,9 +121,9 @@ public class TutorialManager : MonoBehaviour
     {
         UIManager.instance.HideUI(true);
         _player.Inputs.inputUpdate = _player.Inputs.Nothing;
-        _timeline.Play();
+        _bossCinematic.Play();
 
-        yield return new WaitWhile(() => _timeline.state == PlayState.Playing);
+        yield return new WaitWhile(() => _bossCinematic.state == PlayState.Playing);
 
         _player.Inputs.inputUpdate = _player.Inputs.Unpaused;
         UIManager.instance.HideUI(false);
@@ -121,36 +133,8 @@ public class TutorialManager : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
-            switch (_colliderCounter)
-            {
-                case 0:
-                    _colliders[_colliderCounter].enabled = false;
-                    _colliderCounter++;
-                    //_enemy.gameObject.SetActive(true);
-                    //StartCoroutine(PreFight());
-                    break;
-                case 1:
-                    _colliders[_colliderCounter].enabled = false;
-                    _colliderCounter++;
-                    //_player.Inputs.inputUpdate = _player.Inputs.NoJump;
-                    break;
-                case 2:
-                    _colliders[_colliderCounter].enabled = false;
-                    _colliderCounter++;
-                    //StartCoroutine(Specials());
-                    break;
-                case 3:
-                    _colliders[_colliderCounter].enabled = false;
-                    _colliderCounter++;
-                    //StartCoroutine(PostFight());
-                    break;
-                case 4:
-                    _colliders[_colliderCounter].enabled = false;
-                    StartCoroutine(MainFightStart());
-                    break;
-                default:
-                    break;
-            }
+            _colliders[0].enabled = false;
+            StartCoroutine(MainFightStart());
         }
     }
 }

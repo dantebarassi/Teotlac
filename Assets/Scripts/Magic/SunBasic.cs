@@ -8,8 +8,15 @@ public class SunBasic : PlayerProjectile
     [SerializeField] Rigidbody _rb;
     [SerializeField] EnvironmentHazard _sunFire;
     [SerializeField] VisualEffect _sun, _nova;
+    [SerializeField] Light _light;
 
     bool _shot = false, _dead = false;
+    float _timer = 0, _baseTemp;
+
+    private void Start()
+    {
+        _baseTemp = _light.colorTemperature;
+    }
 
     protected override void Update()
     {
@@ -20,6 +27,15 @@ public class SunBasic : PlayerProjectile
         else if (_shot && !_dead)
         {
             _deathTimer -= Time.deltaTime;
+        }
+        else
+        {
+            _timer += Time.deltaTime;
+
+            if (_timer >= 4.4f)
+            {
+                _light.colorTemperature = Mathf.Lerp(_baseTemp, 20000, (_timer - 4.4f) / 2.5f);
+            }
         }
     }
 
