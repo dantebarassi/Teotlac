@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.020726772, g: 0.013686361, b: 0.007868963, a: 1}
+  m_IndirectSpecularColor: {r: 0.00074806495, g: 0.00056527095, b: 0.00067030295,
+    a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -65883,7 +65884,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -28.667683, y: -28.667683, z: -28.667683}
+    textureOffset: {x: 0, y: 0, z: 0}
     falloffMode: 0
     maskMode: 1
     materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
@@ -94854,6 +94855,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3807644506148245186, guid: 7b7224919dda2fe49b48c9eb940d9fca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b3f1c1a72cdd763428c02cd8bfed03ae, type: 2}
+    - target: {fileID: -3807644506148245186, guid: 7b7224919dda2fe49b48c9eb940d9fca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0205c12bb48d5744fb88776ee14b99b8, type: 2}
+    - target: {fileID: -3807644506148245186, guid: 7b7224919dda2fe49b48c9eb940d9fca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46257c7d7838e4f46958908cc0280e6c, type: 2}
+    - target: {fileID: -3807644506148245186, guid: 7b7224919dda2fe49b48c9eb940d9fca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cfd49df6623de047b970ed9c017238e, type: 2}
+    - target: {fileID: -3807644506148245186, guid: 7b7224919dda2fe49b48c9eb940d9fca,
+        type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a1fd6a8fdd941b42a2580bc9e6db99c, type: 2}
     - target: {fileID: 919132149155446097, guid: 7b7224919dda2fe49b48c9eb940d9fca,
         type: 3}
       propertyPath: m_Name
