@@ -187,7 +187,7 @@ public class PlayerController : Entity
     public void ChangeActiveMagic(MagicType type)
     {
         _activeMagic = type;
-        UIManager.instance.UpdateBasicSpell(type);
+        //UIManager.instance.UpdateBasicSpell(type);
         switch (type)
         {
             case MagicType.Sun:
