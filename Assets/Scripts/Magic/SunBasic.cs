@@ -32,9 +32,9 @@ public class SunBasic : PlayerProjectile
         {
             _timer += Time.deltaTime;
 
-            if (_timer >= 4.4f)
+            if (_timer >= 4)
             {
-                _light.colorTemperature = Mathf.Lerp(_baseTemp, 20000, (_timer - 4.4f) / 2.5f);
+                _light.colorTemperature = Mathf.Lerp(_baseTemp, 20000, (_timer - 4) / 2.5f);
             }
         }
     }
@@ -82,8 +82,16 @@ public class SunBasic : PlayerProjectile
         yield return new WaitForSeconds(4);
 
         _nova.Stop();
+        float timer = 0;
+        var baseIntensity = _light.intensity;
+        while (timer < 1.5f)
+        {
+            timer += Time.deltaTime;
+            _light.intensity = Mathf.Lerp(baseIntensity, 0, timer / 1.2f);
+            yield return null;
+        }
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
 
         Die();
     }
