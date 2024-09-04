@@ -48,5 +48,6 @@ public class PlaceholderSceneManager : MonoBehaviour
     public void ChangeScene(string name)
     {
         SceneManager.LoadScene(name);
+        Time.timeScale = 1;
     }
 }
