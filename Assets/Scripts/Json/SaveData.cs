@@ -8,4 +8,5 @@ using UnityEngine;
 public class SaveData
 {
     public int actualBoss = 0;
+    public Vector3 lastCheckPoingPosition;
 }

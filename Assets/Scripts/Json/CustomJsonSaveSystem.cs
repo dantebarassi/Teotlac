@@ -15,7 +15,7 @@ public class CustomJsonSaveSystem : MonoBehaviour
 
         if (!Directory.Exists(customDirectory)) Directory.CreateDirectory(customDirectory);
 
-        path = Application.persistentDataPath + "/Iceberg.Incoming";
+        path = customDirectory + "/SavingData";
 
         //path = customDirectory + "/Iceberg.Incoming";
 

@@ -5,7 +5,12 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject _mindPalace, _ocean;
-
+    public CustomJsonSaveSystem chekJson;
+    public int myBoss;
+    private void Start()
+    {
+        chekJson = GameManager.instance.Json;
+    }
     public void Interact(PlayerController player)
     {
         Vector3 newPos;
@@ -22,6 +27,11 @@ public class Checkpoint : MonoBehaviour, IInteractable
             activatePalace = true;
             GameManager.instance.playerWorldPos = player.transform.position;
         }
+
+        chekJson.LoadGame();
+        if (chekJson.saveData.actualBoss != myBoss) chekJson.saveData.actualBoss = myBoss;
+        if (chekJson.saveData.lastCheckPoingPosition != newPos) chekJson.saveData.lastCheckPoingPosition = newPos;
+        chekJson.SaveGame();
 
         StartCoroutine(TeleportPlayer(player, newPos, activatePalace));
     }
