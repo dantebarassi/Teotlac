@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00074805424, g: 0.0005652805, b: 0.0006703211, a: 1}
+  m_IndirectSpecularColor: {r: 0.00074843003, g: 0.00056557084, b: 0.0006709237, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11783,6 +11783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mindPalace: {fileID: 2028336297}
   _ocean: {fileID: 550671910}
+  chekJson: {fileID: 0}
+  myBoss: 0
 --- !u!65 &222538921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31130,6 +31132,9 @@ MonoBehaviour:
   playerWorldPos: {x: 0, y: 0, z: 0}
   sunLight: {fileID: 553125037}
   playIntro: 1
+  Json: {fileID: 731167613}
+  actualBoss: 0
+  player: {fileID: 1316577003}
 --- !u!4 &667778640
 Transform:
   m_ObjectHideFlags: 0
@@ -33649,6 +33654,53 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22.8, y: 85.02602, z: 1250.9}
   m_LocalScale: {x: 20, y: 45, z: 84.09876}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &731167612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 731167614}
+  - component: {fileID: 731167613}
+  m_Layer: 0
+  m_Name: Json
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &731167613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731167612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f619d959369fd41bcbb0ec26be4e9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveData:
+    actualBoss: 0
+    lastCheckPoingPosition: {x: 0, y: 0, z: 0}
+--- !u!4 &731167614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731167612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111925,3 +111977,4 @@ SceneRoots:
   - {fileID: 1256848811}
   - {fileID: 1762553318}
   - {fileID: 620438821}
+  - {fileID: 731167614}

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject _mindPalace, _ocean;
-    public CustomJsonSaveSystem chekJson;
-    public int myBoss;
+    private CustomJsonSaveSystem chekJson;
+    [SerializeField] int myBoss;
     private void Start()
     {
         chekJson = GameManager.instance.Json;
