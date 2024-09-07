@@ -19,7 +19,7 @@ public class CustomJsonSaveSystem : MonoBehaviour
 
         //path = customDirectory + "/Iceberg.Incoming";
 
-        //Debug.Log(path);
+        Debug.Log(path);
     }
 
     void Update()
@@ -40,10 +40,17 @@ public class CustomJsonSaveSystem : MonoBehaviour
         Debug.Log(json);
     }
 
-    public void LoadGame()
+    public bool LoadGame()
     {
-        string json = File.ReadAllText(path);
-        JsonUtility.FromJsonOverwrite(json, saveData);
+        Debug.Log(path);
+        if (File.Exists(path))
+        {
+            //string json = File.ReadAllText(path);
+            JsonUtility.FromJsonOverwrite(File.ReadAllText(path), saveData);
+            return true;
+        }
+        else return false;
+        
     }
 
     public void ChangeBoss(int boss)

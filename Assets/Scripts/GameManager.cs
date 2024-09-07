@@ -33,12 +33,18 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        if (Json.saveData == null)
+        if (!Json.LoadGame())
+        {
+            Debug.Log("ASDHJIASDHAOSIUD");
             Json.SaveGame();
-
-        Json.LoadGame();
-        actualBoss = Json.saveData.actualBoss;
-        if (Json.saveData.lastCheckPoingPosition != null) player.transform.position = Json.saveData.lastCheckPoingPosition;
+        }
+        else
+        {
+            Debug.Log("saveData no es null. Es:  " + JsonUtility.ToJson(Json.saveData));
+            //Json.LoadGame();
+            actualBoss = Json.saveData.actualBoss;
+            if (Json.saveData.lastCheckPoingPosition != Vector3.zero) player.transform.position = Json.saveData.lastCheckPoingPosition;
+        }
     }
     public void Save()
     {
