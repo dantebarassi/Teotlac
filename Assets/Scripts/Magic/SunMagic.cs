@@ -47,7 +47,7 @@ public class SunMagic : PlayerProjectile
     {
         if (!_shot || _dead) return;
         
-        if (other.gameObject.layer == 6 || other.gameObject.layer == 7)
+        if (other.gameObject.layer == 6 || other.gameObject.layer == 11)
         {
             return;
         }

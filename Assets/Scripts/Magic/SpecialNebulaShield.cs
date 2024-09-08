@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpecialFirewall : SpecialMagic
+public class SpecialNebulaShield : SpecialMagic
 {
-    GameObject _firewall;
+    NebulaShield _nebulaShield;
     float _preparation, _recovery, _cooldown;
-
-    public SpecialFirewall(PlayerController player, Inputs inputs, GameObject firewall, float cost, float preparation, float recovery, float cooldown)
+    
+    public SpecialNebulaShield(PlayerController player, Inputs inputs, NebulaShield nebulaShield, float cost, float preparation, float recovery, float cooldown)
     {
         _player = player;
         _inputs = inputs;
-        _firewall = firewall;
+        _nebulaShield = nebulaShield;
         staminaCost = cost;
         _preparation = preparation;
         _recovery = recovery;
@@ -20,12 +20,12 @@ public class SpecialFirewall : SpecialMagic
 
     public override float Activate()
     {
-        _player.StartCoroutine(Firewalling());
+        _player.StartCoroutine(Shielding());
 
         return _cooldown;
     }
 
-    IEnumerator Firewalling()
+    IEnumerator Shielding()
     {
         var camForward = Camera.main.transform.forward.MakeHorizontal();
 
@@ -35,7 +35,8 @@ public class SpecialFirewall : SpecialMagic
 
         yield return new WaitForSeconds(_preparation);
 
-        Object.Instantiate(_firewall, _player.transform.position + camForward * 1.5f - Vector3.up, _player.transform.rotation);
+        var nebula = Object.Instantiate(_nebulaShield, _player.transform.position + camForward * 1.5f + Vector3.up * 0.5f, Quaternion.Euler(_player.transform.eulerAngles - new Vector3(-90, 0)));
+        nebula.target = _player.currentBoss;
 
         yield return new WaitForSeconds(_recovery);
 

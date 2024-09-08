@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00074843003, g: 0.00056557084, b: 0.0006709237, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11783,7 +11783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mindPalace: {fileID: 2028336297}
   _ocean: {fileID: 550671910}
-  chekJson: {fileID: 0}
   myBoss: 0
 --- !u!65 &222538921
 BoxCollider:
@@ -88816,7 +88815,7 @@ MonoBehaviour:
   - {fileID: 694357043}
   _wallLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
   _wallCloseRange: 12.5
   _wallBreakRange: 6
   _playerCloseRange: 11.5

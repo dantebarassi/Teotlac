@@ -24,14 +24,14 @@ public class Projectile : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3 || other.gameObject.layer == 7 || other.gameObject.layer == 11)
+        if (other.gameObject.layer == 3 || other.gameObject.layer == 11)
         {
             return;
         }
 
-        if (other.TryGetComponent(out PlayerController player))
+        if (other.TryGetComponent(out IDamageable damageable))
         {
-            player.TakeDamage(damage);
+            damageable.TakeDamage(damage);
         }
 
         Die();
