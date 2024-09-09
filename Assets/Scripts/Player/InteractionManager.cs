@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InteractionManager : MonoBehaviour
 {
     [SerializeField] PlayerController _player;
     IInteractable currentInteractable = null;
     bool _canInteract = false;
+    public Image FButton;
 
     public void StartInteraction()
     {
@@ -17,6 +19,7 @@ public class InteractionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        FButton.gameObject.SetActive(true);
         if (other.TryGetComponent(out IInteractable interactable))
         {
             currentInteractable = interactable;
@@ -26,6 +29,7 @@ public class InteractionManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        FButton.gameObject.SetActive(false);
         if (currentInteractable != null)
         {
             if (other.TryGetComponent(out IInteractable interactable))
