@@ -18,8 +18,9 @@ public class Checkpoint : MonoBehaviour, IInteractable
 
         if (GameManager.instance.playerInPalace)
         {
-            newPos = GameManager.instance.playerWorldPos;
+            //newPos = GameManager.instance.playerWorldPos;
             activatePalace = false;
+            newPos = chekJson.JsonExist() ? chekJson.saveData.lastCheckPoingPosition : GameManager.instance.playerWorldPos;
         }
         else
         {
@@ -30,7 +31,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
 
         chekJson.LoadGame();
         if (chekJson.saveData.actualBoss != myBoss) chekJson.saveData.actualBoss = myBoss;
-        if (chekJson.saveData.lastCheckPoingPosition != newPos) chekJson.saveData.lastCheckPoingPosition = newPos;
+        if (chekJson.saveData.lastCheckPoingPosition != newPos) chekJson.saveData.lastCheckPoingPosition = GameManager.instance.playerWorldPos;
         chekJson.SaveGame();
 
         StartCoroutine(TeleportPlayer(player, newPos, activatePalace));

@@ -53,6 +53,15 @@ public class CustomJsonSaveSystem : MonoBehaviour
         
     }
 
+    public bool JsonExist()
+    {
+        if (File.Exists(path))
+        {
+            return true;
+        }
+        else return false;
+    }
+
     public void ChangeBoss(int boss)
     {
         saveData.actualBoss = boss;
