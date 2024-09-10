@@ -52,7 +52,7 @@ public class PlayerController : Entity
 
     public GameObject camaraFinal;
 
-    private bool _joystickActive = true, _aiming = false, _stopChannels = false;
+    private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing;
 
     [SerializeField] Material _VignetteAmountClamps;
 
@@ -208,7 +208,7 @@ public class PlayerController : Entity
         switch (_activeMagic)
         {
             case MagicType.Sun:
-                //ActivateSunMagic();
+                if (!_comboing) ActivateSunMagic();
                 break;
             case MagicType.Obsidian:
                 ActivateObsidianMagic();
@@ -233,7 +233,7 @@ public class PlayerController : Entity
     {
         if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
         {
-            //StartCoroutine(NewSunMagic());
+            StartCoroutine(BasicCombo());
         }
         else
         {
@@ -246,7 +246,7 @@ public class PlayerController : Entity
     {
         if (!_aiming && _movement.IsGrounded() && _sunCurrentCooldown <= 0/* && CheckAndReduceStamina(_sunBaseCost)*/)
         {
-            StartCoroutine(BasicCombo());
+            //StartCoroutine(BasicAimedCombo());
         }
         else
         {
@@ -454,6 +454,148 @@ public class PlayerController : Entity
     }
 
     IEnumerator BasicCombo()
+    {
+        _rb.angularVelocity = Vector3.zero;
+        anim.SetTrigger("chargeSun");
+        anim.SetBool("isChargingSun", true);
+        _comboing = true;
+
+        yield return new WaitForSeconds(_sunCastDelay);
+
+        _movement.Cast(true);
+
+        float halfCD = _sunCooldown * 0.5f, currentComboTime;
+        int comboCount = 1;
+
+        currentComboTime = _comboBreakTime;
+
+        anim.SetTrigger("shootSun");
+
+        yield return new WaitForSeconds(_sunShootDelay);
+
+        _sunCurrentCooldown = _sunCooldown;
+
+        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+        sun.SetupStats(_sunBaseDamage);
+        sun.ChargeFinished();
+
+        Vector3 dir;
+        var cameraTransform = _cameraController.AimCamera.transform;
+
+        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit);
+        if (hit.collider)
+        {
+            dir = hit.point - sun.transform.position;
+        }
+        else
+        {
+            dir = Camera.main.transform.forward;
+        }
+
+        sun.transform.forward = dir;
+
+        sun.Shoot(_sunSpeed);
+
+        while (!_stopChannels && currentComboTime > 0)
+        {
+            _rb.angularVelocity = Vector3.zero;
+
+            currentComboTime -= Time.deltaTime;
+
+            if (_inputs.PrimaryAttack)
+            {
+                if (_sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
+                {
+                    if (comboCount >= _attacksToFinisher)
+                    {
+                        comboCount = 0;
+
+                        anim.SetTrigger("shootSun");
+
+                        yield return new WaitForSeconds(_sunShootDelay);
+
+                        _sunCurrentCooldown = _sunCooldown;
+
+                        sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        sun.transform.localScale *= 4;
+                        sun.SetupStats(_sunBaseDamage * 1.5f);
+
+                        cameraTransform = _cameraController.FreeLookCamera.transform;
+
+                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit);
+                        if (hit.collider)
+                        {
+                            dir = hit.point - sun.transform.position;
+                        }
+                        else
+                        {
+                            dir = Camera.main.transform.forward;
+                        }
+
+                        sun.transform.forward = dir;
+
+                        sun.Shoot(_sunSpeed * 1.5f);
+                    }
+                    else
+                    {
+                        comboCount++;
+                        currentComboTime = _comboBreakTime;
+
+                        anim.SetTrigger("shootSun");
+
+                        yield return new WaitForSeconds(_sunShootDelay);
+
+                        _sunCurrentCooldown = _sunCooldown;
+
+                        sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        sun.SetupStats(_sunBaseDamage);
+                        sun.ChargeFinished();
+
+                        cameraTransform = _cameraController.FreeLookCamera.transform;
+
+                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit);
+                        if (hit.collider)
+                        {
+                            dir = hit.point - sun.transform.position;
+                        }
+                        else
+                        {
+                            dir = Camera.main.transform.forward;
+                        }
+
+                        sun.transform.forward = dir;
+
+                        sun.Shoot(_sunSpeed);
+                    }
+                }
+                else if (_sunCurrentCooldown > halfCD)
+                {
+                    _inputs.PrimaryAttack = false;
+
+                    yield return null;
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+
+        _movement.Cast(false);
+        anim.SetBool("isChargingSun", false);
+
+        yield return new WaitForSeconds(0.25f);
+
+        _inputs.PrimaryAttack = false;
+        _stopChannels = false;
+        _comboing = false;
+    }
+
+    IEnumerator BasicAimedCombo()
     {
         _rb.angularVelocity = Vector3.zero;
         _inputs.ToggleAim(true);
