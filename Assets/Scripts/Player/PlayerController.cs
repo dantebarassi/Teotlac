@@ -29,7 +29,8 @@ public class PlayerController : Entity
     [Header("Sun Magic")]
     [SerializeField] SunMagic _sunMagic;
     [SerializeField] SunBasic _magicTest;
-    [SerializeField] Transform _sunSpawnPoint;
+    [SerializeField] LayerMask _raycastTargets;
+    [SerializeField] Transform[] _sunSpawnPoint;
     [SerializeField] int _attacksToFinisher;
     [SerializeField] float _comboBreakTime, _sunBaseDamage, _sunDamageGrowRate, _sunSpeed, _sunMaxChargeTime, _sunCastDelay, _sunShootDelay, _sunRecovery, _sunCooldown, _sunAbsorbTime, _sunMeleeDuration, _sunHitboxX, _sunHitboxY, _sunHitboxZ, _sunRange;
     Vector3 _sunHitbox;
@@ -389,7 +390,7 @@ public class PlayerController : Entity
         _movement.Cast(true);
         ChangeAudio(chargingSun);
 
-        var sun = Instantiate(_magicTest, _sunSpawnPoint.position, Quaternion.identity);
+        var sun = Instantiate(_magicTest, _sunSpawnPoint[0].position, Quaternion.identity);
         sun.SetupStats(_sunBaseDamage, 0, 0.4f);
 
         while (!_stopChannels && _inputs.SecondaryAttack)
@@ -398,7 +399,7 @@ public class PlayerController : Entity
 
             if (sun != null)
             {
-                sun.transform.position = _sunSpawnPoint.position;
+                sun.transform.position = _sunSpawnPoint[0].position;
 
                 if (_inputs.launchAttack)
                 {
@@ -410,7 +411,7 @@ public class PlayerController : Entity
 
                         while (timer < _sunShootDelay)
                         {
-                            sun.transform.position = _sunSpawnPoint.position;
+                            sun.transform.position = _sunSpawnPoint[0].position;
                             timer += Time.deltaTime;
                             yield return null;
                         }
@@ -428,7 +429,7 @@ public class PlayerController : Entity
             {
                 if (_sunCurrentCooldown <= 0)
                 {
-                    sun = Instantiate(_magicTest, _sunSpawnPoint.position, Quaternion.identity);
+                    sun = Instantiate(_magicTest, _sunSpawnPoint[0].position, Quaternion.identity);
                     sun.SetupStats(_sunBaseDamage, 0, 0.4f);
                 }
             }
@@ -456,7 +457,6 @@ public class PlayerController : Entity
     IEnumerator BasicCombo()
     {
         _rb.angularVelocity = Vector3.zero;
-        anim.SetTrigger("chargeSun");
         anim.SetBool("isChargingSun", true);
         _comboing = true;
 
@@ -469,27 +469,25 @@ public class PlayerController : Entity
 
         currentComboTime = _comboBreakTime;
 
-        anim.SetTrigger("shootSun");
-
         yield return new WaitForSeconds(_sunShootDelay);
 
         _sunCurrentCooldown = _sunCooldown;
 
-        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+        var sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
         sun.SetupStats(_sunBaseDamage);
         sun.ChargeFinished();
 
         Vector3 dir;
-        var cameraTransform = _cameraController.AimCamera.transform;
+        var cameraTransform = Camera.main.transform;
 
-        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit);
+        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, Mathf.Infinity, _raycastTargets);
         if (hit.collider)
         {
             dir = hit.point - sun.transform.position;
         }
         else
         {
-            dir = Camera.main.transform.forward;
+            dir = cameraTransform.forward;
         }
 
         sun.transform.forward = dir;
@@ -510,26 +508,26 @@ public class PlayerController : Entity
                     {
                         comboCount = 0;
 
-                        anim.SetTrigger("shootSun");
+                        anim.SetTrigger("progressCombo");
 
-                        yield return new WaitForSeconds(_sunShootDelay);
+                        yield return new WaitForSeconds(_sunShootDelay * 2);
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
                         sun.transform.localScale *= 4;
                         sun.SetupStats(_sunBaseDamage * 1.5f);
 
-                        cameraTransform = _cameraController.FreeLookCamera.transform;
+                        cameraTransform = Camera.main.transform;
 
-                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit);
+                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity, _raycastTargets);
                         if (hit.collider)
                         {
                             dir = hit.point - sun.transform.position;
                         }
                         else
                         {
-                            dir = Camera.main.transform.forward;
+                            dir = cameraTransform.forward;
                         }
 
                         sun.transform.forward = dir;
@@ -541,26 +539,26 @@ public class PlayerController : Entity
                         comboCount++;
                         currentComboTime = _comboBreakTime;
 
-                        anim.SetTrigger("shootSun");
+                        anim.SetTrigger("progressCombo");
 
                         yield return new WaitForSeconds(_sunShootDelay);
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        sun = Instantiate(_sunMagic, _sunSpawnPoint[comboCount % 2 == 0 ? 1 : 0].position, Quaternion.identity);
                         sun.SetupStats(_sunBaseDamage);
                         sun.ChargeFinished();
 
-                        cameraTransform = _cameraController.FreeLookCamera.transform;
+                        cameraTransform = Camera.main.transform;
 
-                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit);
+                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity, _raycastTargets);
                         if (hit.collider)
                         {
                             dir = hit.point - sun.transform.position;
                         }
                         else
                         {
-                            dir = Camera.main.transform.forward;
+                            dir = cameraTransform.forward;
                         }
 
                         sun.transform.forward = dir;
@@ -633,7 +631,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        var sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
                         sun.transform.localScale *= 4;
                         sun.SetupStats(_sunBaseDamage * 1.5f);
 
@@ -665,7 +663,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
+                        var sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
                         sun.SetupStats(_sunBaseDamage);
                         sun.ChargeFinished();
 
