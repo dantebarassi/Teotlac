@@ -19,9 +19,9 @@ public class InteractionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        FButton.gameObject.SetActive(true);
         if (other.TryGetComponent(out IInteractable interactable))
         {
+            FButton.gameObject.SetActive(true);
             currentInteractable = interactable;
             _canInteract = true;
         }
@@ -29,9 +29,9 @@ public class InteractionManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        FButton.gameObject.SetActive(false);
         if (currentInteractable != null)
         {
+            FButton.gameObject.SetActive(false);
             if (other.TryGetComponent(out IInteractable interactable))
             {
                 if (currentInteractable == interactable)
