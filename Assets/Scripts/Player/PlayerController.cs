@@ -137,6 +137,8 @@ public class PlayerController : Entity
 
         if (_inputs.inputUpdate != null) _inputs.inputUpdate();
 
+        Debug.Log(Grounded);
+
         ManageCooldowns();
 
         StaminaRegeneration();
@@ -460,7 +462,7 @@ public class PlayerController : Entity
         anim.SetBool("isChargingSun", true);
         _comboing = true;
 
-        yield return new WaitForSeconds(_sunCastDelay);
+        //yield return new WaitForSeconds(_sunCastDelay);
 
         _movement.Cast(true);
 

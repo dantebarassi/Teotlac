@@ -274,10 +274,10 @@ public class Inputs
             PrimaryAttack = true;
         }
 
-        if (Input.GetKeyUp(_kPrimaryAttack))
-        {
-            PrimaryAttack = false;
-        }
+        //if (Input.GetKeyUp(_kPrimaryAttack))
+        //{
+        //    PrimaryAttack = false;
+        //}
 
         if (Input.GetKeyDown(_kSecondaryAttack))
         {

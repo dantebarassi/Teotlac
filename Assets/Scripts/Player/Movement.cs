@@ -136,7 +136,7 @@ public class Movement
 
     public bool IsGrounded()
     {
-        return Physics.BoxCast(_playerTransform.position, new Vector3(0.25f, 0.1f, 0.25f), -_playerTransform.up, Quaternion.identity, 1, _groundLayer);
+        return Physics.BoxCast(_playerTransform.position + Vector3.up, new Vector3(0.25f, 0.1f, 0.25f), -_playerTransform.up, Quaternion.identity, 1, _groundLayer);
     }
 
     public float DistanceToFloor()
