@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,15 +11,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider _hpBar, _staminaBar, _bossHpBar;
     [SerializeField] Button _joystick;
     [SerializeField] Image _paused, _black, _noStamina, _tookDamage;
-    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive;
+    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp;
     [SerializeField] Image[] _specials = new Image[2];
     [SerializeField] Image[] _specialsCooldowns = new Image[2];
     [SerializeField] GameObject _crosshair, _options, mainMenu;
     [SerializeField] TextMeshProUGUI _bossName, _tutorialText;
 
     bool _showingNoStamina = false;
-
-    public GameObject textoFinal;
 
     public enum Bar
     {
@@ -163,6 +162,11 @@ public class UIManager : MonoBehaviour
         StartCoroutine(FadeToggleImage(_tookDamage, 0.1f, 0.2f, 0.3f, 0.2f));
     }
 
+    public void LowHp()
+    {
+        _lowHp.SetActive(true);
+    }
+
     IEnumerator FadeToggleImage(Image image, float inDuration, float wait, float outDuration, float alphaValue = 1, bool isStamina = false)
     {
         if(isStamina) _showingNoStamina = true;
@@ -190,6 +194,10 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         ChangeText(true, "Final de la demo, gracias por jugar");
+
+        yield return new WaitForSeconds(4);
+
+        SceneManager.LoadScene(0);
     }
 
     public void Paused()
@@ -207,13 +215,5 @@ public class UIManager : MonoBehaviour
         _options.gameObject.SetActive(true);
         _paused.gameObject.SetActive(false);
         _joystick.gameObject.SetActive(false);
-    }
-
-
-    public void Final()
-    {
-        _hpBar.gameObject.SetActive(false);
-        _staminaBar.gameObject.SetActive(false);
-        textoFinal.SetActive(true);
     }
 }

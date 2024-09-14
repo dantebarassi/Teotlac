@@ -904,6 +904,11 @@ public class PlayerController : Entity
         base.TakeDamage(amount);
         
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerHp, _hp);
+
+        if (_hp <= _maxHp * 0.3f)
+        {
+            UIManager.instance.LowHp();
+        }
     }
 
     public override void Die()
@@ -943,19 +948,6 @@ public class PlayerController : Entity
     {
         anim.SetBool("isRunning", play);
         //ChangeAudio(Walking);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 9)
-        {
-            _rb.velocity = Vector3.zero;
-            _rb.constraints = RigidbodyConstraints.FreezeAll;
-            _inputs.inputUpdate = _inputs.Nothing;
-            camaraFinal.SetActive(true);
-            _cameraController.Final();
-            UIManager.instance.Final();
-        }
     }
     public void ChangeAudio(AudioClip clip)
     {
