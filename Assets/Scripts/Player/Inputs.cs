@@ -10,7 +10,7 @@ public class Inputs
     Movement _movement;
     PlayerController _player;
     CinemachineCameraController _cameraController;
-    bool _jump, _primaryAttack = false, _secondaryAttack = false, _aiming = false;
+    bool _jump, _primaryAttack = false, _secondaryAttack = false, _aiming = false, _staminaUncapped = false;
 
     public bool trigger = false;
 
@@ -304,6 +304,12 @@ public class Inputs
         SelectSun();
 
         SelectObsidian();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _staminaUncapped = !_staminaUncapped;
+            _player.UncapStamina(_staminaUncapped);
+        }
     }
 
     public void Stepping()

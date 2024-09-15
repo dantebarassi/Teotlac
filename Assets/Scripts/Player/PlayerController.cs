@@ -74,7 +74,7 @@ public class PlayerController : Entity
     {
         get
         {
-            return _aiming;
+            return _comboing;
         }
     }
 
@@ -147,6 +147,8 @@ public class PlayerController : Entity
     private void FixedUpdate()
     {
         _inputs.InputsFixedUpdate();
+
+        if (_comboing) _rb.transform.forward = Camera.main.transform.forward.MakeHorizontal();
     }
 
     private void LateUpdate()
@@ -462,8 +464,6 @@ public class PlayerController : Entity
         anim.SetBool("isChargingSun", true);
         _comboing = true;
 
-        //yield return new WaitForSeconds(_sunCastDelay);
-
         _movement.Cast(true);
 
         float halfCD = _sunCooldown * 0.5f, currentComboTime;
@@ -471,30 +471,7 @@ public class PlayerController : Entity
 
         currentComboTime = _comboBreakTime;
 
-        yield return new WaitForSeconds(_sunShootDelay);
-
         _sunCurrentCooldown = _sunCooldown;
-
-        var sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
-        sun.SetupStats(_sunBaseDamage);
-        sun.ChargeFinished();
-
-        Vector3 dir;
-        var cameraTransform = Camera.main.transform;
-
-        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, Mathf.Infinity, _raycastTargets);
-        if (hit.collider)
-        {
-            dir = hit.point - sun.transform.position;
-        }
-        else
-        {
-            dir = cameraTransform.forward;
-        }
-
-        sun.transform.forward = dir;
-
-        sun.Shoot(_sunSpeed);
 
         while (!_stopChannels && currentComboTime > 0)
         {
@@ -509,32 +486,11 @@ public class PlayerController : Entity
                     if (comboCount >= _attacksToFinisher)
                     {
                         comboCount = 0;
+                        currentComboTime = _comboBreakTime * 0.75f;
 
                         anim.SetTrigger("progressCombo");
 
-                        yield return new WaitForSeconds(_sunShootDelay * 2);
-
-                        _sunCurrentCooldown = _sunCooldown;
-
-                        sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
-                        sun.transform.localScale *= 4;
-                        sun.SetupStats(_sunBaseDamage * 1.5f);
-
-                        cameraTransform = Camera.main.transform;
-
-                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity, _raycastTargets);
-                        if (hit.collider)
-                        {
-                            dir = hit.point - sun.transform.position;
-                        }
-                        else
-                        {
-                            dir = cameraTransform.forward;
-                        }
-
-                        sun.transform.forward = dir;
-
-                        sun.Shoot(_sunSpeed * 1.5f);
+                        _sunCurrentCooldown = _sunCooldown * 1.25f;
                     }
                     else
                     {
@@ -543,29 +499,7 @@ public class PlayerController : Entity
 
                         anim.SetTrigger("progressCombo");
 
-                        yield return new WaitForSeconds(_sunShootDelay);
-
                         _sunCurrentCooldown = _sunCooldown;
-
-                        sun = Instantiate(_sunMagic, _sunSpawnPoint[comboCount % 2 == 0 ? 1 : 0].position, Quaternion.identity);
-                        sun.SetupStats(_sunBaseDamage);
-                        sun.ChargeFinished();
-
-                        cameraTransform = Camera.main.transform;
-
-                        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity, _raycastTargets);
-                        if (hit.collider)
-                        {
-                            dir = hit.point - sun.transform.position;
-                        }
-                        else
-                        {
-                            dir = cameraTransform.forward;
-                        }
-
-                        sun.transform.forward = dir;
-
-                        sun.Shoot(_sunSpeed);
                     }
                 }
                 else if (_sunCurrentCooldown > halfCD)
@@ -593,6 +527,55 @@ public class PlayerController : Entity
         _inputs.PrimaryAttack = false;
         _stopChannels = false;
         _comboing = false;
+    }
+
+    public void ThrowFireball(int handIndex)
+    {
+        var sun = Instantiate(_sunMagic, _sunSpawnPoint[handIndex].position, Quaternion.identity);
+        sun.SetupStats(_sunBaseDamage);
+        sun.ChargeFinished();
+
+        Vector3 dir;
+        var cameraTransform = Camera.main.transform;
+
+        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, Mathf.Infinity, _raycastTargets);
+        if (hit.collider)
+        {
+            dir = hit.point - sun.transform.position;
+        }
+        else
+        {
+            dir = cameraTransform.forward;
+        }
+
+        sun.transform.forward = dir;
+
+        sun.Shoot(_sunSpeed);
+    }
+
+    public void ThrowEnhancedFireball(int handIndex)
+    {
+        var sun = Instantiate(_sunMagic, _sunSpawnPoint[handIndex].position, Quaternion.identity);
+        sun.transform.localScale *= 4;
+        sun.SetupStats(_sunBaseDamage * 1.5f);
+        sun.ChargeFinished();
+
+        Vector3 dir;
+        var cameraTransform = Camera.main.transform;
+
+        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, Mathf.Infinity, _raycastTargets);
+        if (hit.collider)
+        {
+            dir = hit.point - sun.transform.position;
+        }
+        else
+        {
+            dir = cameraTransform.forward;
+        }
+
+        sun.transform.forward = dir;
+
+        sun.Shoot(_sunSpeed * 1.5f);
     }
 
     IEnumerator BasicAimedCombo()
@@ -973,5 +956,12 @@ public class PlayerController : Entity
         yield return new WaitForSeconds(duration);
 
         go.SetActive(false);
+    }
+
+    public void UncapStamina(bool uncap)
+    {
+        _maxStamina = uncap ? 10000 : 100;
+        _stamina = _maxStamina;
+        UIManager.instance.UpdateBar(UIManager.Bar.PlayerStamina, _stamina, _maxStamina);
     }
 }
