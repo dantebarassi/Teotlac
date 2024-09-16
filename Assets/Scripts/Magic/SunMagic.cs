@@ -30,7 +30,7 @@ public class SunMagic : PlayerProjectile
         }
         else if (_shot && !_dead)
         {
-            transform.position += transform.forward * _speed * Time.deltaTime;
+            transform.position += -transform.up * _speed * Time.deltaTime;
 
             if (_deathTimer <= 0)
             {
