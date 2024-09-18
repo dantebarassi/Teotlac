@@ -785,7 +785,7 @@ public class Itztlacoliuhqui : Boss
 
             Vector3 basePos = new Vector3(_wallBlockingLOS.transform.position.x, transform.position.y + _breakBaseSpawnOffsetY, _wallBlockingLOS.transform.position.z);
             float xPosVariation = _wallBlockingLOS.Radius;
-            Vector3 baseDir = (_player.transform.position - basePos).normalized;
+            Vector3 baseDir = (_player.transform.position + Vector3.up - basePos).normalized;
 
             for (int i = 0; i < _shardAmount; i++)
             {
@@ -914,7 +914,7 @@ public class Itztlacoliuhqui : Boss
                 ChangeAudio(_gatlingSounds[Random.Range(0, _gatlingSounds.Length)]);
 
                 var pos = _handPos.transform.position;
-                var dir = (_player.transform.position - pos).normalized;
+                var dir = (_player.transform.position + Vector3.up - pos).normalized;
 
                 var shard = Instantiate(_shardPrefab, pos.VectorVariation(1, _gatlingSpawnVariationX, _gatlingSpawnVariationY), Quaternion.identity);
                 shard.transform.forward = dir.VectorVariation(1, _gatlingAimVariationX, _gatlingAimVariationY);
