@@ -29,7 +29,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
             activatePalace = true;
             GameManager.instance.playerWorldPos = player.transform.position;
         }
-        myFireAnim.transform.position = newPos;
+        myFireAnim.transform.position = GameManager.instance.player.transform.position;
         myFireAnim.GetComponent<Animation>().Play();
         chekJson.LoadGame();
         if (chekJson.saveData.actualBoss != myBoss) chekJson.saveData.actualBoss = myBoss;
@@ -47,9 +47,11 @@ public class Checkpoint : MonoBehaviour, IInteractable
         UIManager.instance.BlackScreenFade(true);
 
         yield return new WaitForSeconds(1);
-
+    
         _mindPalace.SetActive(palaceActive);
         player.transform.position = position;
+        myFireAnim.transform.position = GameManager.instance.player.transform.position;
+        myFireAnim.GetComponent<Animation>().Play();
         //_ocean.SetActive(palaceActive);
         //GameManager.instance.sunLight.gameObject.SetActive(palaceActive);
 

@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public CustomJsonSaveSystem Json;
     public int actualBoss;
 
-    [SerializeField] PlayerController player;
+    [SerializeField] public PlayerController player;
 
     void Awake()
     {
