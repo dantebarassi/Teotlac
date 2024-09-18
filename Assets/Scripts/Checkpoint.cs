@@ -29,8 +29,9 @@ public class Checkpoint : MonoBehaviour, IInteractable
             activatePalace = true;
             GameManager.instance.playerWorldPos = player.transform.position;
         }
-        myFireAnim.transform.position = GameManager.instance.player.transform.position;
-        myFireAnim.GetComponent<Animation>().Play();
+        //myFireAnim.transform.position = GameManager.instance.player.transform.position;
+        //myFireAnim.GetComponent<Animation>().Play();
+        player.StartFireAnim();
         chekJson.LoadGame();
         if (chekJson.saveData.actualBoss != myBoss) chekJson.saveData.actualBoss = myBoss;
         if (chekJson.saveData.lastCheckPoingPosition != newPos) chekJson.saveData.lastCheckPoingPosition = GameManager.instance.playerWorldPos;
@@ -50,8 +51,8 @@ public class Checkpoint : MonoBehaviour, IInteractable
     
         _mindPalace.SetActive(palaceActive);
         player.transform.position = position;
-        myFireAnim.transform.position = GameManager.instance.player.transform.position;
-        myFireAnim.GetComponent<Animation>().Play();
+        //myFireAnim.transform.position = GameManager.instance.player.transform.position;
+        //myFireAnim.GetComponent<Animation>().Play();
         //_ocean.SetActive(palaceActive);
         //GameManager.instance.sunLight.gameObject.SetActive(palaceActive);
 

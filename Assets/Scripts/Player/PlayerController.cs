@@ -62,6 +62,8 @@ public class PlayerController : Entity
 
     SpecialsManager _specials;
 
+    [SerializeField] Animation myFireAnim;
+
     public bool StopChannels
     {
         set
@@ -963,5 +965,10 @@ public class PlayerController : Entity
         _maxStamina = uncap ? 10000 : 100;
         _stamina = _maxStamina;
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerStamina, _stamina, _maxStamina);
+    }
+
+    public void StartFireAnim()
+    {
+        myFireAnim.Play();
     }
 }
