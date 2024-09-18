@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
     [SerializeField] GameObject _mindPalace, _ocean;
     private CustomJsonSaveSystem chekJson;
     [SerializeField] int myBoss;
+    [SerializeField] GameObject myFireAnim;
     private void Start()
     {
         chekJson = GameManager.instance.Json;
@@ -15,7 +16,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
     {
         Vector3 newPos;
         bool activatePalace;
-
+        
         if (GameManager.instance.playerInPalace)
         {
             //newPos = GameManager.instance.playerWorldPos;
@@ -28,7 +29,8 @@ public class Checkpoint : MonoBehaviour, IInteractable
             activatePalace = true;
             GameManager.instance.playerWorldPos = player.transform.position;
         }
-
+        myFireAnim.transform.position = newPos;
+        myFireAnim.GetComponent<Animation>().Play();
         chekJson.LoadGame();
         if (chekJson.saveData.actualBoss != myBoss) chekJson.saveData.actualBoss = myBoss;
         if (chekJson.saveData.lastCheckPoingPosition != newPos) chekJson.saveData.lastCheckPoingPosition = GameManager.instance.playerWorldPos;
