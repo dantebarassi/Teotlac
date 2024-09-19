@@ -120,12 +120,12 @@ public class TutorialManager : MonoBehaviour
     IEnumerator MainFightStart()
     {
         UIManager.instance.HideUI(true);
-        _player.Inputs.inputUpdate = _player.Inputs.Nothing;
+        _player.Cutscene(true);
         _bossCinematic.Play();
 
         yield return new WaitWhile(() => _bossCinematic.state == PlayState.Playing);
 
-        _player.Inputs.inputUpdate = _player.Inputs.Unpaused;
+        _player.Cutscene(false);
         UIManager.instance.HideUI(false);
     }
 

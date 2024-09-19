@@ -158,6 +158,20 @@ public class PlayerController : Entity
         _inputs.InputsLateUpdate();
     }
 
+    public void Cutscene(bool starts)
+    {
+        if (starts)
+        {
+            Inputs.inputUpdate = Inputs.Nothing;
+            _rb.isKinematic = true;
+        }
+        else
+        {
+            Inputs.inputUpdate = Inputs.Unpaused;
+            _rb.isKinematic = false;
+        }
+    }
+
     public void Jump()
     {
         if (Grounded && _stepCurrentCooldown <= _stepCooldown * 0.5f && CheckAndReduceStamina(_jumpCost))
@@ -195,19 +209,6 @@ public class PlayerController : Entity
     {
         _activeMagic = type;
         //UIManager.instance.UpdateBasicSpell(type);
-        switch (type)
-        {
-            case MagicType.Sun:
-                _specials.EquipSpecial(SpecialsManager.Specials.Sunstrike, 0);
-                _specials.EquipSpecial(SpecialsManager.Specials.Supernova, 1);
-                break;
-            case MagicType.Obsidian:
-                _specials.EquipSpecial(SpecialsManager.Specials.ObsidianTrap, 0);
-                _specials.EquipSpecial(SpecialsManager.Specials.RockToss, 1);
-                break;
-            default:
-                break;
-        }
     }
 
     public void ActivateMagic()
