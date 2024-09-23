@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CinemachineBrain Blends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: FreeLook Camera
+  - m_From: FreeLook Camera (3)
     m_To: Aim Camera
     m_Blend:
       m_Style: 6
@@ -36,9 +36,9 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: Virtual Camera (3)
-    m_To: FreeLook Camera
+    m_To: FreeLook Camera (3)
     m_Blend:
-      m_Style: 6
+      m_Style: 0
       m_Time: 1
       m_CustomCurve:
         serializedVersion: 2

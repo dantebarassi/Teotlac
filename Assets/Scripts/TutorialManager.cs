@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] GameObject _camera;
-    [SerializeField] PlayableDirector _introCinematic, _bossCinematic;
+    [SerializeField] PlayableDirector _bossCinematic;
     [SerializeField] PlayerController _player;
     [SerializeField] ObsidianGod _enemy;
     [SerializeField] string _movement, _jump, _step, _sun, _supernova, _sunstrike, _switch;
@@ -17,19 +17,19 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        UIManager.instance.BlackScreenFade(false);
-
-        if (GameManager.instance.Json.saveData.lastCheckPoingPosition != Vector3.zero)
-        {
-            _camera.SetActive(false);
-            return;
-        } 
-
-        _introCinematic.Play();
-
-        UIManager.instance.HideUI(true);
-
-        StartCoroutine(FirstSection());
+        //UIManager.instance.BlackScreenFade(false);
+        //
+        //if (GameManager.instance.Json.saveData.lastCheckPoingPosition != Vector3.zero)
+        //{
+        //    _camera.SetActive(false);
+        //    return;
+        //} 
+        //
+        //_introCinematic.Play();
+        //
+        //UIManager.instance.HideUI(true);
+        //
+        //StartCoroutine(FirstSection());
     }
 
     IEnumerator FirstSection()
