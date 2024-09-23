@@ -12,6 +12,7 @@ public class SunMagic : PlayerProjectile
 
     [SerializeField] float _lightRangeMultiplier, _growRate;
 
+    [SerializeField] Rigidbody _rb;
     bool _charging = true, _shot = false, _dead = false;
 
     public void UpdateDamage(float add)
@@ -30,8 +31,6 @@ public class SunMagic : PlayerProjectile
         }
         else if (_shot && !_dead)
         {
-            transform.position += -transform.up * _speed * Time.deltaTime;
-
             if (_deathTimer <= 0)
             {
                 StartCoroutine(Death());
@@ -40,6 +39,14 @@ public class SunMagic : PlayerProjectile
             {
                 _deathTimer -= Time.deltaTime;
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_shot && !_dead)
+        {
+            _rb.MovePosition(transform.position + transform.forward * _speed * Time.fixedDeltaTime);
         }
     }
 

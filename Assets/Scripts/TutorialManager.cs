@@ -19,7 +19,7 @@ public class TutorialManager : MonoBehaviour
     {
         UIManager.instance.BlackScreenFade(false);
 
-        if (!GameManager.instance.playIntro) 
+        if (GameManager.instance.Json.saveData.lastCheckPoingPosition != Vector3.zero)
         {
             _camera.SetActive(false);
             return;

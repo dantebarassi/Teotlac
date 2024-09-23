@@ -522,17 +522,17 @@ public class Inputs
 
     void SelectSun()
     {
-        if (Input.GetKeyDown(_kSun))
-        {
-            _player.ChangeActiveMagic(PlayerController.MagicType.Sun);
-        }
+        //if (Input.GetKeyDown(_kSun))
+        //{
+        //    _player.ChangeActiveMagic(PlayerController.MagicType.Sun);
+        //}
     }
 
     void SelectObsidian()
     {
-        if (Input.GetKeyDown(_kObsidian))
-        {
-            _player.ChangeActiveMagic(PlayerController.MagicType.Obsidian);
-        }
+        //if (Input.GetKeyDown(_kObsidian))
+        //{
+        //    _player.ChangeActiveMagic(PlayerController.MagicType.Obsidian);
+        //}
     }
 }

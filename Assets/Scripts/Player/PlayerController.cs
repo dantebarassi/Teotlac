@@ -551,7 +551,7 @@ public class PlayerController : Entity
             dir = cameraTransform.forward;
         }
 
-        sun.transform.up = -dir;
+        sun.transform.forward = dir;
 
         sun.Shoot(_sunSpeed);
     }
@@ -576,7 +576,7 @@ public class PlayerController : Entity
             dir = cameraTransform.forward;
         }
 
-        sun.transform.up = -dir;
+        sun.transform.forward = dir;
 
         sun.Shoot(_sunSpeed * 1.5f);
     }
