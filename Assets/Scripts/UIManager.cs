@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class UIManager : MonoBehaviour
 {
@@ -202,6 +203,7 @@ public class UIManager : MonoBehaviour
 
         yield return new WaitForSeconds(4);
 
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(0);
     }
 

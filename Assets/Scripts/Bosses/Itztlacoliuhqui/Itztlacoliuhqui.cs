@@ -1185,7 +1185,6 @@ public class Itztlacoliuhqui : Boss
         prenderCaidaPiedras(true);
         _anim.SetBool("IsStomp", false);
         yield return new WaitForSeconds(_leapRecovery);
-
         _takingAction = false;
     }
 
