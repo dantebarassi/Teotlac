@@ -88,15 +88,15 @@ public class CinemachineCameraController : MonoBehaviour
 
     public void FreeLook()
     {
-        _turnPlayer = false;
-
-        _freeLookCamera.enabled = true;
-        _aimCamera.enabled = false;
-
-        if(_mouseX < 0) _freeLookCamera.m_XAxis.Value = _mouseX.Remap(-360, 0, -180, 180);
-        else _freeLookCamera.m_XAxis.Value = _mouseX.Remap(0, 360, -180, 180);
-
-        _freeLookCamera.m_YAxis.Value = Mathf.InverseLerp(_minAimRotation, _maxAimRotation, -_mouseY);
+        //_turnPlayer = false;
+        //
+        //_freeLookCamera.enabled = true;
+        //_aimCamera.enabled = false;
+        //
+        //if(_mouseX < 0) _freeLookCamera.m_XAxis.Value = _mouseX.Remap(-360, 0, -180, 180);
+        //else _freeLookCamera.m_XAxis.Value = _mouseX.Remap(0, 360, -180, 180);
+        //
+        //_freeLookCamera.m_YAxis.Value = Mathf.InverseLerp(_minAimRotation, _maxAimRotation, -_mouseY);
     }
 
     public void Aim()

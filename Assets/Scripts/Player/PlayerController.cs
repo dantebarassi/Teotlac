@@ -139,8 +139,6 @@ public class PlayerController : Entity
 
         if (_inputs.inputUpdate != null) _inputs.inputUpdate();
 
-        Debug.Log(Grounded);
-
         ManageCooldowns();
 
         StaminaRegeneration();
@@ -545,7 +543,7 @@ public class PlayerController : Entity
 
         currentComboTime = _comboBreakTime;
 
-        _sunCurrentCooldown = _sunCooldown;
+        _sunCurrentCooldown = _sunCooldown * 1.5f;
 
         while (!_stopChannels && currentComboTime > 0)
         {
@@ -553,54 +551,46 @@ public class PlayerController : Entity
 
             currentComboTime -= Time.deltaTime;
 
-            if (CheckAndReduceStamina(_sunBaseCost))
+            if (_inputs.SecondaryAttack && comboCount >= _attacksToFinisher)
             {
-                if (_inputs.SecondaryAttack && comboCount >= _attacksToFinisher)
+                if (_sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
                 {
-                    if (_sunCurrentCooldown <= 0)
-                    {
-                        comboCount = 0;
-                        currentComboTime = _comboBreakTime * 0.75f;
+                    comboCount = 0;
+                    currentComboTime = _comboBreakTime * 0.75f;
 
-                        anim.SetTrigger("comboFinisher");
+                    anim.SetTrigger("comboFinisher");
 
-                        _sunCurrentCooldown = _sunCooldown * 1.25f;
-                    }
-                    else if (_sunCurrentCooldown > halfCD)
-                    {
-                        _inputs.PrimaryAttack = false;
-                        _inputs.SecondaryAttack = false;
-
-                        yield return null;
-                    }
-                    else
-                    {
-                        yield return null;
-                    }
+                    _sunCurrentCooldown = _sunCooldown * 1.25f;
                 }
-                else if (_inputs.PrimaryAttack)
+                else if (_sunCurrentCooldown > halfCD)
                 {
-                    if (_sunCurrentCooldown <= 0)
-                    {
-                        comboCount++;
-                        currentComboTime = _comboBreakTime;
+                    _inputs.PrimaryAttack = false;
+                    _inputs.SecondaryAttack = false;
 
-                        anim.SetTrigger("progressCombo");
+                    yield return null;
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            else if (_inputs.PrimaryAttack)
+            {
+                if (_sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
+                {
+                    comboCount++;
+                    currentComboTime = _comboBreakTime;
 
-                        _sunCurrentCooldown = _sunCooldown;
-                    }
-                    else if (_sunCurrentCooldown > halfCD)
-                    {
-                        _inputs.PrimaryAttack = false;
-                        _inputs.SecondaryAttack = false;
+                    anim.SetTrigger("progressCombo");
 
-                        yield return null;
-                    }
-                    else
-                    {
-                        _inputs.SecondaryAttack = false;
-                        yield return null;
-                    }
+                    _sunCurrentCooldown = _sunCooldown;
+                }
+                else if (_sunCurrentCooldown > halfCD)
+                {
+                    _inputs.PrimaryAttack = false;
+                    _inputs.SecondaryAttack = false;
+
+                    yield return null;
                 }
                 else
                 {
@@ -610,6 +600,7 @@ public class PlayerController : Entity
             }
             else
             {
+                _inputs.SecondaryAttack = false;
                 yield return null;
             }
         }
@@ -1060,8 +1051,9 @@ public class PlayerController : Entity
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerStamina, _stamina, _maxStamina);
     }
 
-    public void StartFireAnim()
+    public void TravelToPalace()
     {
         myFireAnim.Play();
+        anim.SetTrigger("pray");
     }
 }

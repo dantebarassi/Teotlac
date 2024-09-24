@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider _hpBar, _staminaBar, _bossHpBar;
     [SerializeField] Button _joystick;
     [SerializeField] Image _paused, _black, _noStamina, _tookDamage;
-    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp;
+    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp, _fButton;
     [SerializeField] Image[] _specials = new Image[2];
     [SerializeField] Image[] _specialsCooldowns = new Image[2];
     [SerializeField] GameObject _crosshair, _options, mainMenu;
@@ -165,6 +165,11 @@ public class UIManager : MonoBehaviour
     public void LowHp()
     {
         _lowHp.SetActive(true);
+    }
+
+    public void ToggleInteractable(bool on)
+    {
+        _fButton.SetActive(on);
     }
 
     IEnumerator FadeToggleImage(Image image, float inDuration, float wait, float outDuration, float alphaValue = 1, bool isStamina = false)
