@@ -241,7 +241,7 @@ public class PlayerController : Entity
     {
         if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
         {
-            StartCoroutine(BasicCombo());
+            StartCoroutine(RootMotionCombo());
         }
         else
         {
@@ -528,6 +528,99 @@ public class PlayerController : Entity
         yield return new WaitForSeconds(0.25f);
 
         _inputs.PrimaryAttack = false;
+        _stopChannels = false;
+        _comboing = false;
+    }
+
+    IEnumerator RootMotionCombo()
+    {
+        _rb.angularVelocity = Vector3.zero;
+        anim.SetBool("isComboing", true);
+        _comboing = true;
+
+        _movement.FixedCast(true);
+
+        float halfCD = _sunCooldown * 0.5f, currentComboTime;
+        int comboCount = 1;
+
+        currentComboTime = _comboBreakTime;
+
+        _sunCurrentCooldown = _sunCooldown;
+
+        while (!_stopChannels && currentComboTime > 0)
+        {
+            _rb.angularVelocity = Vector3.zero;
+
+            currentComboTime -= Time.deltaTime;
+
+            if (CheckAndReduceStamina(_sunBaseCost))
+            {
+                if (_inputs.SecondaryAttack && comboCount >= _attacksToFinisher)
+                {
+                    if (_sunCurrentCooldown <= 0)
+                    {
+                        comboCount = 0;
+                        currentComboTime = _comboBreakTime * 0.75f;
+
+                        anim.SetTrigger("comboFinisher");
+
+                        _sunCurrentCooldown = _sunCooldown * 1.25f;
+                    }
+                    else if (_sunCurrentCooldown > halfCD)
+                    {
+                        _inputs.PrimaryAttack = false;
+                        _inputs.SecondaryAttack = false;
+
+                        yield return null;
+                    }
+                    else
+                    {
+                        yield return null;
+                    }
+                }
+                else if (_inputs.PrimaryAttack)
+                {
+                    if (_sunCurrentCooldown <= 0)
+                    {
+                        comboCount++;
+                        currentComboTime = _comboBreakTime;
+
+                        anim.SetTrigger("progressCombo");
+
+                        _sunCurrentCooldown = _sunCooldown;
+                    }
+                    else if (_sunCurrentCooldown > halfCD)
+                    {
+                        _inputs.PrimaryAttack = false;
+                        _inputs.SecondaryAttack = false;
+
+                        yield return null;
+                    }
+                    else
+                    {
+                        _inputs.SecondaryAttack = false;
+                        yield return null;
+                    }
+                }
+                else
+                {
+                    _inputs.SecondaryAttack = false;
+                    yield return null;
+                }
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+
+        _movement.FixedCast(false);
+        anim.SetBool("isComboing", false);
+
+        yield return new WaitForSeconds(0.25f);
+
+        _inputs.PrimaryAttack = false;
+        _inputs.SecondaryAttack = false;
         _stopChannels = false;
         _comboing = false;
     }
@@ -886,8 +979,7 @@ public class PlayerController : Entity
         UIManager.instance.TookDamage();
         if (!bypassCooldown) _damageCurrentCooldown = _damageCooldown;
 
-        //anim.SetBool("IsHit", true);
-        //anim.SetBool("IsHit", false);
+        anim.SetTrigger("tookDamage");
 
         base.TakeDamage(amount);
         
