@@ -8,12 +8,11 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] PlayerController _player;
     IInteractable currentInteractable = null;
     bool _canInteract = false;
-    public Image FButton;
 
     public void StartInteraction()
     {
         if (!_canInteract) return;
-
+        
         currentInteractable.Interact(_player);
     }
 
@@ -21,7 +20,7 @@ public class InteractionManager : MonoBehaviour
     {
         if (other.TryGetComponent(out IInteractable interactable))
         {
-            FButton.gameObject.SetActive(true);
+            UIManager.instance.ToggleInteractable(true);
             currentInteractable = interactable;
             _canInteract = true;
         }
@@ -31,11 +30,11 @@ public class InteractionManager : MonoBehaviour
     {
         if (currentInteractable != null)
         {
-            FButton.gameObject.SetActive(false);
             if (other.TryGetComponent(out IInteractable interactable))
             {
                 if (currentInteractable == interactable)
                 {
+                    UIManager.instance.ToggleInteractable(false);
                     currentInteractable = null;
                     _canInteract = false;
                 }

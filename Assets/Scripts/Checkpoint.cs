@@ -31,7 +31,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
         }
         //myFireAnim.transform.position = GameManager.instance.player.transform.position;
         //myFireAnim.GetComponent<Animation>().Play();
-        player.StartFireAnim();
+        player.TravelToPalace();
         chekJson.LoadGame();
         if (chekJson.saveData.actualBoss != myBoss) chekJson.saveData.actualBoss = myBoss;
         if (chekJson.saveData.lastCheckPoingPosition != newPos) chekJson.saveData.lastCheckPoingPosition = GameManager.instance.playerWorldPos;
