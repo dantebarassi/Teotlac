@@ -96,16 +96,13 @@ public class Movement
 
     public void Cast(bool starts)
     {
-        if (starts)
-        {
-            _currentSpeed = _speedOnCast;
-            _currentStepStrength = _castStepStrength;
-        }
-        else
-        {
-            _currentSpeed = _currentMoveSpeed;
-            _currentStepStrength = _stepStrength;
-        }
+        _currentSpeed = starts ? _speedOnCast : _currentMoveSpeed;
+        _currentStepStrength = starts ? _castStepStrength : _stepStrength;
+    }
+
+    public void FixedCast(bool starts)
+    {
+        _currentSpeed = starts ? 0 : _currentMoveSpeed;
     }
 
     public void Jump()
