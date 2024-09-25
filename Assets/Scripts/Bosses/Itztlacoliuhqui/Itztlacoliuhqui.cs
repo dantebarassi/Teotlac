@@ -32,7 +32,7 @@ public class Itztlacoliuhqui : Boss
 
     [SerializeField] bool _playOnStart;
     [SerializeField] Animator _anim;
-    [SerializeField] float _aggroRange;
+    [SerializeField] float _aggroRange, _turnRate;
     [SerializeField] Transform _eyePos;
     [SerializeField] GameObject _edgeBlock, _preSpikeParticle;
     [SerializeField] Actions[] _creationAttacks, _attacks;
@@ -115,6 +115,8 @@ public class Itztlacoliuhqui : Boss
     [SerializeField] GameObject tornadoPiedras, caidaPiedras;
 
     [SerializeField] PlayableDirector _outroTimeline;
+
+    Vector3 _lookDir;
 
     public bool LookAtPlayer
     {
@@ -379,6 +381,7 @@ public class Itztlacoliuhqui : Boss
             _anim.SetBool("IsWalking", false);
             _currentSpeed = 0;
             _move = false;
+            _lookDir = Vector3.zero;
         };
 
         spikes.OnEnter += x =>
@@ -386,6 +389,7 @@ public class Itztlacoliuhqui : Boss
             _attackCounter++;
             Debug.Log("Start spikes");
             _takingAction = true;
+            _anim.SetTrigger("stompAgain");
             _anim.SetBool("IsStomp", true);
             StartCoroutine(Spiking());
         };
@@ -612,9 +616,31 @@ public class Itztlacoliuhqui : Boss
         {
             _rb.MovePosition(transform.position + transform.forward * _currentSpeed * Time.fixedDeltaTime);
         }
-        if (LookAtPlayer)
+
+        if (_lookAtPlayer)
         {
-            _rb.MoveRotation(Quaternion.LookRotation((_player.transform.position - transform.position).MakeHorizontal()));
+            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
+        }
+
+        if (_lookDir != Vector3.zero && transform.forward != _lookDir)
+        {
+            var eulerRotation = transform.rotation.eulerAngles;
+
+            var yRotation = Vector3.Angle(transform.right, _lookDir) < Vector3.Angle(-transform.right, _lookDir) ? _turnRate : -_turnRate;
+
+            var angleToDesired = Vector3.Angle(transform.forward, _lookDir);
+
+            yRotation *= Time.fixedDeltaTime;
+            var absYRotation = Mathf.Abs(yRotation);
+
+            if (angleToDesired > absYRotation)
+            {
+                _rb.MoveRotation(Quaternion.Euler(eulerRotation.x, eulerRotation.y + yRotation, eulerRotation.z));
+            }
+            else
+            {
+                transform.forward = _lookDir;
+            }
         }
     }
 
@@ -722,6 +748,7 @@ public class Itztlacoliuhqui : Boss
         Vector3 posTarget = _path[0];
         posTarget.y = transform.position.y;
         Vector3 dir = posTarget - transform.position;
+        _lookDir = dir;
         if (dir.magnitude < 0.1f)
         {
             _rb.MovePosition(posTarget);
@@ -733,9 +760,6 @@ public class Itztlacoliuhqui : Boss
                 _move = false;
             }
         }
-
-        _rb.MoveRotation(Quaternion.LookRotation(dir.MakeHorizontal()));
-        
     }
 
     public void WallDestroyed(ObsidianWall wall)
@@ -816,6 +840,7 @@ public class Itztlacoliuhqui : Boss
         yield return new WaitForSeconds(_shieldRecovery);
 
         LookAtPlayer = false;
+        _lookDir = Vector3.zero;
         _takingAction = false;
     }
 
@@ -825,6 +850,7 @@ public class Itztlacoliuhqui : Boss
         prenderTornado(true);
         yield return new WaitForSeconds(_wallSpikePreparation);
         ChangeAudio(PinchosPiso);
+        _lookDir = Vector3.zero;
         LookAtPlayer = false;
 
         Vector3 target = _player.transform.position;
@@ -948,6 +974,7 @@ public class Itztlacoliuhqui : Boss
         _rb.AddForce(transform.forward * _dashStrength);
 
         LookAtPlayer = false;
+        _lookDir = Vector3.zero;
         FixRotation(true);
 
         float timer = 0;
@@ -976,6 +1003,7 @@ public class Itztlacoliuhqui : Boss
         yield return new WaitForSeconds(_chargePreparation);
         ChangeAudio(RunTowards);
         LookAtPlayer = false;
+        _lookDir = Vector3.zero;
         FixRotation(true);
         _anim.SetBool("IsDashing", true);
 
@@ -1111,6 +1139,7 @@ public class Itztlacoliuhqui : Boss
 
         _anim.SetBool("IsStomp", true);
         LookAtPlayer = false;
+        _lookDir = Vector3.zero;
         FixRotation(true);
         _rb.isKinematic = true;
 
