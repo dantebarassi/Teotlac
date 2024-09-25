@@ -1630,7 +1630,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 3
+        m_Name: RotationVelocity
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -1640,7 +1643,10 @@ VisualEffect:
     m_Uint:
       m_Array: []
     m_Int:
-      m_Array: []
+      m_Array:
+      - m_Value: 10
+        m_Name: Cantidad
+        m_Overridden: 1
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
@@ -1660,7 +1666,7 @@ Transform:
   m_GameObject: {fileID: 556669339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.08, z: 0}
+  m_LocalPosition: {x: -7.25, y: 2.12, z: 1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5622,6 +5628,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2127249321192843298, guid: d905807a924805a43b21cb3b42470385,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.042
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127249321192843298, guid: d905807a924805a43b21cb3b42470385,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633256518378215899, guid: d905807a924805a43b21cb3b42470385,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3853968509282168298, guid: d905807a924805a43b21cb3b42470385,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5672,6 +5693,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4952136224370505784, guid: d905807a924805a43b21cb3b42470385,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 6099800089077584851, guid: c56e14a1f48308e42b3a1754137f669f,
+        type: 3}
     - target: {fileID: 5175557316948000521, guid: d905807a924805a43b21cb3b42470385,
         type: 3}
       propertyPath: m_Name
