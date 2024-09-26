@@ -20,7 +20,7 @@ MonoBehaviour:
     x: 96
     y: -190
     width: 1772
-    height: 2420
+    height: 2387
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4178,8 +4178,7 @@ MonoBehaviour:
   m_UIPosition: {x: 1440, y: 1974}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
-  m_InputSlots:
-  - {fileID: 8926484042661614795}
+  m_InputSlots: []
   m_OutputSlots: []
   m_Label: 
   m_Data: {fileID: 8926484042661614714}
@@ -4199,7 +4198,7 @@ MonoBehaviour:
   sortingPriority: 0
   m_SubOutputs:
   - {fileID: 8926484042661614719}
-  colorMapping: 1
+  colorMapping: 0
   uvMode: 0
   flipbookLayout: 0
   useSoftParticle: 0
@@ -5025,40 +5024,6 @@ MonoBehaviour:
     name: mainTexture
     m_serializedType:
       m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-  m_Direction: 0
-  m_LinkedSlots: []
---- !u!114 &8926484042661614795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f778ff57c4e8145b9681fe3268d8e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UIIgnoredErrors: []
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 8926484042661614795}
-  m_MasterData:
-    m_Owner: {fileID: 8926484042661614717}
-    m_Value:
-      m_Type:
-        m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.0,"g":0.0,"b":0.0,"a":1.0},"time":0.0},{"color":{"r":0.75,"g":0.15000000596046449,"b":0.0,"a":1.0},"time":0.3000076413154602},{"color":{"r":1.25,"g":0.5600000023841858,"b":0.11999999731779099,"a":1.0},"time":0.5000076293945313},{"color":{"r":3.5,"g":2.0,"b":0.5,"a":1.0},"time":0.7000076174736023},{"color":{"r":4.0,"g":3.5,"b":1.2000000476837159,"a":1.0},"time":0.9000076055526733},{"color":{"r":12.0,"g":10.0,"b":2.5,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":0.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
-    m_Space: 2147483647
-  m_Property:
-    name: gradient
-    m_serializedType:
-      m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
   m_LinkedSlots: []
