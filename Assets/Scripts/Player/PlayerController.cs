@@ -53,7 +53,7 @@ public class PlayerController : Entity
 
     public GameObject camaraFinal;
 
-    private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing;
+    private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing, _canChain = false;
 
     [SerializeField] Material _VignetteAmountClamps;
 
@@ -538,12 +538,10 @@ public class PlayerController : Entity
 
         _movement.FixedCast(true);
 
-        float halfCD = _sunCooldown * 0.5f, currentComboTime;
+        float currentComboTime;
         int comboCount = 1;
 
         currentComboTime = _comboBreakTime;
-
-        _sunCurrentCooldown = _sunCooldown * 1.5f;
 
         while (!_stopChannels && currentComboTime > 0)
         {
@@ -553,48 +551,58 @@ public class PlayerController : Entity
 
             if (_inputs.SecondaryAttack && comboCount >= _attacksToFinisher)
             {
-                if (_sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
+                if (_canChain)
                 {
-                    comboCount = 0;
-                    currentComboTime = _comboBreakTime * 0.75f;
+                    if (CheckAndReduceStamina(_sunBaseCost))
+                    {
+                        comboCount = 0;
+                        currentComboTime = _comboBreakTime * 0.75f;
 
-                    anim.SetTrigger("comboFinisher");
+                        anim.SetTrigger("comboFinisher");
 
-                    _sunCurrentCooldown = _sunCooldown * 1.25f;
-                }
-                else if (_sunCurrentCooldown > halfCD)
-                {
-                    _inputs.PrimaryAttack = false;
-                    _inputs.SecondaryAttack = false;
+                        _inputs.SecondaryAttack = false;
+                        _canChain = false;
 
-                    yield return null;
+                        yield return null;
+                    }
+                    else
+                    {
+                        yield return null;
+                    }
                 }
                 else
                 {
+                    _inputs.SecondaryAttack = false;
+
                     yield return null;
                 }
             }
             else if (_inputs.PrimaryAttack)
             {
-                if (_sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
+                if (_canChain)
                 {
-                    comboCount++;
-                    currentComboTime = _comboBreakTime;
+                    if (CheckAndReduceStamina(_sunBaseCost))
+                    {
+                        comboCount++;
+                        currentComboTime = _comboBreakTime;
 
-                    anim.SetTrigger("progressCombo");
+                        anim.SetTrigger("progressCombo");
 
-                    _sunCurrentCooldown = _sunCooldown;
+                        _inputs.PrimaryAttack = false;
+                        _canChain = false;
+
+                        yield return null;
+                    }
+                    else
+                    {
+                        yield return null;
+                    }
                 }
-                else if (_sunCurrentCooldown > halfCD)
+                else
                 {
                     _inputs.PrimaryAttack = false;
                     _inputs.SecondaryAttack = false;
 
-                    yield return null;
-                }
-                else
-                {
-                    _inputs.SecondaryAttack = false;
                     yield return null;
                 }
             }
@@ -614,6 +622,7 @@ public class PlayerController : Entity
         _inputs.SecondaryAttack = false;
         _stopChannels = false;
         _comboing = false;
+        _canChain = false;
     }
 
     public void ThrowFireball(int handIndex)
@@ -638,6 +647,8 @@ public class PlayerController : Entity
         sun.transform.forward = dir;
 
         sun.Shoot(_sunSpeed);
+
+        _canChain = true;
     }
 
     public void ThrowEnhancedFireball(int handIndex)
@@ -663,6 +674,8 @@ public class PlayerController : Entity
         sun.transform.forward = dir;
 
         sun.Shoot(_sunSpeed * 1.5f);
+
+        _canChain = true;
     }
 
     IEnumerator BasicAimedCombo()

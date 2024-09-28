@@ -151,8 +151,8 @@ public class Movement
 
     Vector3 GetDir(float hInput, float vInput)
     {
-        var cameraForward = Camera.main.transform.forward.MakeHorizontal();
-        var cameraRight = Camera.main.transform.right.MakeHorizontal();
+        var cameraForward = Camera.main.transform.forward.MakeHorizontal().normalized;
+        var cameraRight = Camera.main.transform.right.MakeHorizontal().normalized;
 
         Vector3 direction = cameraForward * vInput + cameraRight * hInput;
 
@@ -166,8 +166,8 @@ public class Movement
 
     Vector3 GetDir(float hInput, float vInput, out Vector3 cameraForward)
     {
-        cameraForward = Camera.main.transform.forward.MakeHorizontal();
-        var cameraRight = Camera.main.transform.right.MakeHorizontal();
+        cameraForward = Camera.main.transform.forward.MakeHorizontal().normalized;
+        var cameraRight = Camera.main.transform.right.MakeHorizontal().normalized;
 
         Vector3 direction = cameraForward * vInput + cameraRight * hInput;
 
