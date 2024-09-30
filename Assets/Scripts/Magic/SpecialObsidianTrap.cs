@@ -12,7 +12,7 @@ public class SpecialObsidianTrap : SpecialMagic
         _player = player;
         _inputs = inputs;
         _trap = trap;
-        staminaCost = cost;
+        _staminaCost = cost;
         _shardDamage = damage;
         _shardSpeed = shardSpeed;
         _preparation = preparation;
@@ -20,11 +20,16 @@ public class SpecialObsidianTrap : SpecialMagic
         _cooldown = cooldown;
     }
 
-    public override float Activate()
+    public override bool Activate(out float cooldown)
     {
         _player.StartCoroutine(PlaceTrap());
+        cooldown = _cooldown;
+        return true;
+    }
 
-        return _cooldown;
+    public override float ReturnCost()
+    {
+        return _staminaCost;
     }
 
     IEnumerator PlaceTrap()

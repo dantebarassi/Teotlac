@@ -30,7 +30,7 @@ public class PlayerController : Entity
     [SerializeField] SunMagic _sunMagic;
     [SerializeField] SunBasic _magicTest;
     [SerializeField] LayerMask _raycastTargets;
-    [SerializeField] Transform[] _sunSpawnPoint;
+    public Transform[] sunSpawnPoint;
     [SerializeField] int _attacksToFinisher;
     [SerializeField] float _comboBreakTime, _sunBaseDamage, _sunDamageGrowRate, _sunSpeed, _sunMaxChargeTime, _sunCastDelay, _sunShootDelay, _sunRecovery, _sunCooldown, _sunAbsorbTime, _sunMeleeDuration, _sunHitboxX, _sunHitboxY, _sunHitboxZ, _sunRange;
     Vector3 _sunHitbox;
@@ -66,6 +66,10 @@ public class PlayerController : Entity
 
     public bool StopChannels
     {
+        get
+        {
+            return _stopChannels;
+        }
         set
         {
             _stopChannels = value;
@@ -198,9 +202,17 @@ public class PlayerController : Entity
 
     public void UseSpecial(int slot)
     {
-        if (Grounded && _specials.IsOffCooldown(slot) && CheckAndReduceStamina(_specials.GetCost(slot)))
+        if (Grounded && _specials.IsOffCooldown(slot))
         {
-            _specials.ActivateSpecial(slot);
+            var cost = _specials.GetCost(slot);
+
+            if (CheckStamina(cost))
+            {
+                if (_specials.ActivateSpecial(slot))
+                {
+                    ReduceStamina(cost);
+                }
+            }
         }
     }
 
@@ -396,7 +408,7 @@ public class PlayerController : Entity
         _movement.Cast(true);
         ChangeAudio(chargingSun);
 
-        var sun = Instantiate(_magicTest, _sunSpawnPoint[0].position, Quaternion.identity);
+        var sun = Instantiate(_magicTest, sunSpawnPoint[0].position, Quaternion.identity);
         sun.SetupStats(_sunBaseDamage, 0, 0.4f);
 
         while (!_stopChannels && _inputs.SecondaryAttack)
@@ -405,7 +417,7 @@ public class PlayerController : Entity
 
             if (sun != null)
             {
-                sun.transform.position = _sunSpawnPoint[0].position;
+                sun.transform.position = sunSpawnPoint[0].position;
 
                 if (_inputs.launchAttack)
                 {
@@ -417,7 +429,7 @@ public class PlayerController : Entity
 
                         while (timer < _sunShootDelay)
                         {
-                            sun.transform.position = _sunSpawnPoint[0].position;
+                            sun.transform.position = sunSpawnPoint[0].position;
                             timer += Time.deltaTime;
                             yield return null;
                         }
@@ -435,7 +447,7 @@ public class PlayerController : Entity
             {
                 if (_sunCurrentCooldown <= 0)
                 {
-                    sun = Instantiate(_magicTest, _sunSpawnPoint[0].position, Quaternion.identity);
+                    sun = Instantiate(_magicTest, sunSpawnPoint[0].position, Quaternion.identity);
                     sun.SetupStats(_sunBaseDamage, 0, 0.4f);
                 }
             }
@@ -628,7 +640,7 @@ public class PlayerController : Entity
 
     public void ThrowFireball(int handIndex)
     {
-        var sun = Instantiate(_sunMagic, _sunSpawnPoint[handIndex].position, Quaternion.identity);
+        var sun = Instantiate(_sunMagic, sunSpawnPoint[handIndex].position, Quaternion.identity);
         sun.SetupStats(_sunBaseDamage);
         sun.ChargeFinished();
 
@@ -654,7 +666,7 @@ public class PlayerController : Entity
 
     public void ThrowEnhancedFireball(int handIndex)
     {
-        var sun = Instantiate(_sunMagic, _sunSpawnPoint[handIndex].position, Quaternion.identity);
+        var sun = Instantiate(_sunMagic, sunSpawnPoint[handIndex].position, Quaternion.identity);
         //sun.transform.localScale *= 4;
         sun.SetupStats(_sunBaseDamage * 1.5f);
         sun.ChargeFinished();
@@ -717,7 +729,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        var sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
+                        var sun = Instantiate(_sunMagic, sunSpawnPoint[0].position, Quaternion.identity);
                         sun.transform.localScale *= 4;
                         sun.SetupStats(_sunBaseDamage * 1.5f);
 
@@ -749,7 +761,7 @@ public class PlayerController : Entity
 
                         _sunCurrentCooldown = _sunCooldown;
 
-                        var sun = Instantiate(_sunMagic, _sunSpawnPoint[0].position, Quaternion.identity);
+                        var sun = Instantiate(_sunMagic, sunSpawnPoint[0].position, Quaternion.identity);
                         sun.SetupStats(_sunBaseDamage);
                         sun.ChargeFinished();
 
@@ -952,6 +964,19 @@ public class PlayerController : Entity
         }
     }
 
+    bool CheckStamina(float cost)
+    {
+        if (_stamina >= cost)
+        {
+            return true;
+        }
+        else
+        {
+            UIManager.instance.NotEnoughStamina();
+            return false;
+        }
+    }
+
     bool CheckAndReduceStamina(float cost)
     {
         if (_stamina >= cost)
@@ -966,6 +991,11 @@ public class PlayerController : Entity
             UIManager.instance.NotEnoughStamina();
             return false;
         }
+    }
+
+    void ReduceStamina(float amount)
+    {
+        _stamina -= amount;
     }
 
     public void Interact()

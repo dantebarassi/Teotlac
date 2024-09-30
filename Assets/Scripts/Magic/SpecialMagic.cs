@@ -6,7 +6,9 @@ public abstract class SpecialMagic
 {
     protected PlayerController _player;
     protected Inputs _inputs;
-    public float staminaCost;
+    protected float _staminaCost;
 
-    public abstract float Activate();
+    public abstract bool Activate(out float cooldown);
+
+    public abstract float ReturnCost();
 }

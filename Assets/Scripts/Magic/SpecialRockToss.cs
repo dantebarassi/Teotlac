@@ -14,7 +14,7 @@ public class SpecialRockToss : SpecialMagic
         _inputs = inputs;
         _rock = rock;
         _spawnPos = spawnPos;
-        staminaCost = cost;
+        _staminaCost = cost;
         _damage = damage;
         _strength = strength;
         _angle = angle;
@@ -23,11 +23,16 @@ public class SpecialRockToss : SpecialMagic
         _cooldown = cooldown;
     }
 
-    public override float Activate()
+    public override bool Activate(out float cooldown)
     {
         _player.StartCoroutine(Toss());
+        cooldown = _cooldown;
+        return true;
+    }
 
-        return _cooldown;
+    public override float ReturnCost()
+    {
+        return _staminaCost;
     }
 
     IEnumerator Toss()
