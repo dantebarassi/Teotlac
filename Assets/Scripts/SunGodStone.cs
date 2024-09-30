@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SunGodStone : MonoBehaviour, IInteractable
 {
-    [SerializeField] Color _emissiveColor;
     [SerializeField] float _emissiveIntensity;
     [SerializeField] Light _light;
     [Range(0, 8)]
@@ -36,7 +35,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
                 lerpT = timer / duration;
 
-                _material.SetColor("_EmissiveCOlor", _emissiveColor * Mathf.Lerp(0.01f, _emissiveIntensity, lerpT));
+                _material.SetFloat("_Emission_Intensity", Mathf.Lerp(0, _emissiveIntensity, lerpT));
                 _light.intensity = Mathf.Lerp(0, _lightIntensity, lerpT);
 
                 yield return null;
@@ -50,7 +49,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
                 lerpT = timer / duration;
 
-                _material.SetColor("_EmissiveCOlor", _emissiveColor * Mathf.Lerp(_emissiveIntensity, 0.01f, lerpT));
+                _material.SetFloat("_Emission_Intensity", Mathf.Lerp(_emissiveIntensity, 0, lerpT));
                 _light.intensity = Mathf.Lerp(_lightIntensity, 0, lerpT);
 
                 yield return null;

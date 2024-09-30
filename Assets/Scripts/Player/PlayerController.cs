@@ -556,7 +556,7 @@ public class PlayerController : Entity
                     if (CheckAndReduceStamina(_sunBaseCost))
                     {
                         comboCount = 0;
-                        currentComboTime = _comboBreakTime * 0.75f;
+                        currentComboTime = _comboBreakTime;
 
                         anim.SetTrigger("comboFinisher");
 
@@ -612,16 +612,16 @@ public class PlayerController : Entity
                 yield return null;
             }
         }
-
+        
         _movement.FixedCast(false);
         anim.SetBool("isComboing", false);
+        _comboing = false;
 
         yield return new WaitForSeconds(0.25f);
 
         _inputs.PrimaryAttack = false;
         _inputs.SecondaryAttack = false;
         _stopChannels = false;
-        _comboing = false;
         _canChain = false;
     }
 
@@ -654,7 +654,7 @@ public class PlayerController : Entity
     public void ThrowEnhancedFireball(int handIndex)
     {
         var sun = Instantiate(_sunMagic, _sunSpawnPoint[handIndex].position, Quaternion.identity);
-        sun.transform.localScale *= 4;
+        //sun.transform.localScale *= 4;
         sun.SetupStats(_sunBaseDamage * 1.5f);
         sun.ChargeFinished();
 
