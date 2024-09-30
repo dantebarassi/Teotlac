@@ -62,6 +62,14 @@ public class PlayerController : Entity
 
     SpecialsManager _specials;
 
+    public SpecialsManager Specials
+    {
+        get
+        {
+            return _specials;
+        }
+    }
+
     [SerializeField] Animation myFireAnim;
 
     public bool StopChannels

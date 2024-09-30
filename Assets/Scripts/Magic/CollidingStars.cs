@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class CollidingStars : MonoBehaviour
 {
-    [SerializeField] float _speed, _contactDamage, _explosionDamage, _explosionRadius, _explosionDelay, _explosionDuration, _expirationTime;
-
+    [SerializeField] GameObject _sunPositive, _sunNegative;
+    [SerializeField] Transform _axis;
+    [SerializeField] VisualEffect _explosion;
+    [SerializeField] float _moveSpeed, _rotationSpeed, _contactDamage, _explosionDamage, _explosionRadius, _explosionDelay, _explosionDuration, _expirationTime;
+    [SerializeField] LayerMask _explosionTargets;
     [SerializeField] Rigidbody _rb;
 
     [HideInInspector] public PlayerController player;
@@ -14,11 +18,13 @@ public class CollidingStars : MonoBehaviour
 
     void Update()
     {
+        _axis.rotation = Quaternion.AngleAxis(_rotationSpeed * Time.deltaTime, Vector3.up) * _axis.rotation;
+        
         if (!_dead)
         {
             if (_expirationTime <= 0)
             {
-                StartCoroutine(Death());
+                StartCoroutine(Expire());
             }
             else
             {
@@ -31,17 +37,20 @@ public class CollidingStars : MonoBehaviour
     {
         if (!_dead)
         {
-            _rb.MovePosition(transform.position + transform.forward * _speed * Time.fixedDeltaTime);
+            _rb.MovePosition(transform.position + transform.forward * _moveSpeed * Time.fixedDeltaTime);
         }
     }
 
     public void Collide()
     {
-        StartCoroutine(Collision());
+        StartCoroutine(Explosion());
     }
 
-    IEnumerator Death()
+    IEnumerator Expire()
     {
+        _dead = true;
+
+        player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
         // stop o apagar vfx principal o prender algun otro para cuando expire o choque
 
         yield return new WaitForSeconds(2); // esperar lo que tardaria en desaparecer
@@ -49,21 +58,35 @@ public class CollidingStars : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator Collision()
+    IEnumerator Explosion()
     {
-        // hacer que choquen las estrellas por vfx
+        _dead = true;
 
-        yield return new WaitForSeconds(_explosionDelay); // esperar lo que tardarian en chocar
+        float timer = 0, baseX = _sunPositive.transform.localPosition.x, lerpT;
 
-        // stop o apagar vfx principal y prender explosion
-        float timer = 0;
+        while (timer < _explosionDelay)
+        {
+            timer += Time.deltaTime;
+
+            lerpT = timer / _explosionDelay;
+
+            _sunPositive.transform.localPosition = new Vector3(Mathf.Lerp(baseX, 0, lerpT), 0);
+            _sunNegative.transform.localPosition = new Vector3(Mathf.Lerp(-baseX, 0, lerpT), 0);
+
+            yield return null;
+        }
+
+        _sunPositive.SetActive(false);
+        _sunNegative.SetActive(false);
+        _explosion.gameObject.SetActive(true);
+        
+        timer = 0;
         List<Collider> ignore = new List<Collider>();
-        ignore.Add(player.GetComponent<Collider>());
         bool skip = false;
 
         while (timer < _explosionDuration)
         {
-            var cols = Physics.OverlapSphere(transform.position, _explosionRadius);
+            var cols = Physics.OverlapSphere(transform.position, _explosionRadius, _explosionTargets);
 
             foreach (var item in cols)
             {
@@ -99,7 +122,9 @@ public class CollidingStars : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(2); // esperar lo que tardaria en desaparecer la explosion
+        //_explosion.Stop();
+
+        yield return new WaitForSeconds(5); // esperar lo que tardaria en desaparecer la explosion
 
         Destroy(gameObject);
     }
@@ -127,6 +152,6 @@ public class CollidingStars : MonoBehaviour
             }
         }
 
-        StartCoroutine(Death());
+        StartCoroutine(Expire());
     }
 }

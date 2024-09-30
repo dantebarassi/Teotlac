@@ -25,6 +25,11 @@ public class SpecialNebulaShield : SpecialMagic
         return true;
     }
 
+    public override bool AltActivate(out float cooldown)
+    {
+        return Activate(out cooldown);
+    }
+
     public override float ReturnCost()
     {
         return _staminaCost;

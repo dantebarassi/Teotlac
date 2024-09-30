@@ -6,7 +6,7 @@ public class SpecialStarCollision : SpecialMagic
 {
     CollidingStars _starsPrefab, _spawnedStars;
     float _preparation, _recovery, _cooldown;
-    bool _startedCasting = false, _thrown = false, _interrupted = false;
+    bool _startedCasting = false, _thrown = false;
 
     public SpecialStarCollision(PlayerController player, Inputs inputs, CollidingStars stars, float cost, float preparation, float recovery, float cooldown)
     {
@@ -33,16 +33,20 @@ public class SpecialStarCollision : SpecialMagic
             cooldown = _cooldown;
             return true;
         }
-        else if (_interrupted)
-        {
-            cooldown = _cooldown;
-            return true;
-        }
         else
         {
             cooldown = 0;
             return false;
         }
+    }
+
+    public override bool AltActivate(out float cooldown)
+    {
+        _startedCasting = false;
+        _thrown = false;
+        _spawnedStars = null;
+        cooldown = _cooldown;
+        return false;
     }
 
     public override float ReturnCost()
@@ -62,9 +66,9 @@ public class SpecialStarCollision : SpecialMagic
         {
             if (_player.StopChannels)
             {
-                _interrupted = true;
+                _player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
 
-                Activate(out timer);
+                _startedCasting = false;
 
                 _inputs.inputUpdate = _inputs.Unpaused;
 
@@ -91,6 +95,7 @@ public class SpecialStarCollision : SpecialMagic
     {
         _startedCasting = false;
         _thrown = false;
-        _spawnedStars.Collide();
+        if (_spawnedStars != null) _spawnedStars.Collide();
+        _spawnedStars = null;
     }
 }

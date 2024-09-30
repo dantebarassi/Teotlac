@@ -10,5 +10,8 @@ public abstract class SpecialMagic
 
     public abstract bool Activate(out float cooldown);
 
+    public abstract bool AltActivate(out float cooldown);
+
     public abstract float ReturnCost();
+
 }

@@ -92,13 +92,11 @@ public class SpecialsManager : MonoBehaviour
     {
         if (_slotsCurrentCooldowns[0] > 0)
         {
-            Debug.Log("slot 0 cd updating");
             _slotsCurrentCooldowns[0] -= Time.deltaTime;
             UIManager.instance.UpdateSpecialCooldown(0, Mathf.InverseLerp(0, _slotsCooldowns[0], _slotsCurrentCooldowns[0]));
         }
         if (_slotsCurrentCooldowns[1] > 0)
         {
-            Debug.Log("slot 1 cd updating");
             _slotsCurrentCooldowns[1] -= Time.deltaTime;
             UIManager.instance.UpdateSpecialCooldown(1, Mathf.InverseLerp(0, _slotsCooldowns[1], _slotsCurrentCooldowns[1]));
         }
@@ -114,12 +112,36 @@ public class SpecialsManager : MonoBehaviour
         return _slotsCurrentCooldowns[slot] <= 0;
     }
 
-    public bool ActivateSpecial(int slot)
+    public bool ActivateSpecial(int slot, bool alt = false)
     {
-        bool activated = _equippedSpecials[slot].Activate(out float cooldown) ? true : false;
+        float cooldown;
+        bool activated;
+
+        if (!alt) activated = _equippedSpecials[slot].Activate(out cooldown);
+        else activated = _equippedSpecials[slot].AltActivate(out cooldown);
 
         _slotsCooldowns[slot] = cooldown;
         _slotsCurrentCooldowns[slot] = _slotsCooldowns[slot];
+
+        return activated;
+    }
+
+    public bool ActivateSpecial(Specials special, bool alt = false)
+    {
+        float cooldown;
+        bool activated;
+
+        if (!alt) activated = _allSpecials[special].Item1.Activate(out cooldown);
+        else activated = _allSpecials[special].Item1.AltActivate(out cooldown);
+
+        for (int i = 0; i < _equippedSpecials.Length; i++)
+        {
+            if (_equippedSpecials[i] == _allSpecials[special].Item1)
+            {
+                _slotsCooldowns[i] = cooldown;
+                _slotsCurrentCooldowns[i] = _slotsCooldowns[i];
+            }
+        }
 
         return activated;
     }
