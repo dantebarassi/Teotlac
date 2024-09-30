@@ -57,7 +57,7 @@ public class SpecialStarCollision : SpecialMagic
     IEnumerator Cast()
     {
         _startedCasting = true;
-        //animacion
+        _player.anim.SetBool("IsChargingStar", true);
         _inputs.inputUpdate = _inputs.FixedCast;
 
         float timer = 0;
@@ -70,6 +70,7 @@ public class SpecialStarCollision : SpecialMagic
 
                 _startedCasting = false;
 
+                _player.anim.SetBool("IsChargingStar", false);
                 _inputs.inputUpdate = _inputs.Unpaused;
 
                 yield break;
@@ -88,6 +89,7 @@ public class SpecialStarCollision : SpecialMagic
 
         yield return new WaitForSeconds(_recovery);
 
+        _player.anim.SetBool("IsChargingStar", false);
         _inputs.inputUpdate = _inputs.Unpaused;
     }
 

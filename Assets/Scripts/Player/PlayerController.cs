@@ -61,7 +61,7 @@ public class PlayerController : Entity
     [SerializeField] GameObject ForceFieldPlayer;
 
     SpecialsManager _specials;
-
+    
     public SpecialsManager Specials
     {
         get
