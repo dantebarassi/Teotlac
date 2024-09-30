@@ -10,6 +10,7 @@ public class SpecialsManager : MonoBehaviour
         Supernova,
         Firewall,
         NebulaShield,
+        StarCollision,
         ObsidianTrap,
         RockToss
     }
@@ -40,6 +41,11 @@ public class SpecialsManager : MonoBehaviour
     [SerializeField] NebulaShield _nebulaShield;
     [SerializeField] float _nebulaShieldCost, _nebulaShieldPreparation, _nebulaShieldRecovery, _nebulaShieldCooldown;
 
+    [Header("Star Collision")]
+    [SerializeField] Sprite _starCollisionIcon;
+    [SerializeField] CollidingStars _collidingStars;
+    [SerializeField] float _starCollisionCost, _starCollisionPreparation, _starCollisionRecovery, _starCollisionCooldown;
+
     [Header("Obsidian Trap")]
     [SerializeField] Sprite _obsidianTrapIcon;
     [SerializeField] ObsidianTrap _obsidianTrap;
@@ -66,6 +72,7 @@ public class SpecialsManager : MonoBehaviour
         var supernova = new SpecialSupernova(_player, _inputs, _supernova, _supernovaCost, _supernovaRadius, _supernovaDamage, _supernovaPreparation, _supernovaDuration, _supernovaRecovery, _supernovaCooldown);
         var firewall = new SpecialFirewall(_player, _inputs, _firewall, _firewallCost, _firewallPreparation, _firewallRecovery, _firewallCooldown);
         var nebulaShield = new SpecialNebulaShield(_player, _inputs, _nebulaShield, _nebulaShieldCost, _nebulaShieldPreparation, _nebulaShieldRecovery, _nebulaShieldCooldown);
+        var starCollision = new SpecialStarCollision(_player, _inputs, _collidingStars, _starCollisionCost, _starCollisionPreparation, _starCollisionRecovery, _starCollisionCooldown);
         var obsTrap = new SpecialObsidianTrap(_player, _inputs, _obsidianTrap, _obsidianTrapCost, _obsidianTrapShardDamage, _obsidianTrapShardSpeed, _obsidianTrapPreparation, _obsidianTrapRecovery, _obsidianTrapCooldown);
         var rockToss = new SpecialRockToss(_player, _inputs, _rock, _rockTossPos, _rockTossCost, _rockTossDamage, _rockTossStrength, _rockTossAngle, _rockTossPreparation, _rockTossRecovery, _rockTossCooldown);
 
@@ -73,10 +80,11 @@ public class SpecialsManager : MonoBehaviour
         _allSpecials.Add(Specials.Supernova, (supernova, _supernovaIcon));
         _allSpecials.Add(Specials.Firewall, (firewall, _firewallIcon));
         _allSpecials.Add(Specials.NebulaShield, (nebulaShield, _nebulaShieldIcon));
+        _allSpecials.Add(Specials.StarCollision, (starCollision, _starCollisionIcon));
         _allSpecials.Add(Specials.ObsidianTrap, (obsTrap, _obsidianTrapIcon));
         _allSpecials.Add(Specials.RockToss, (rockToss, _rockTossIcon));
 
-        EquipSpecial(Specials.Sunstrike, 0);
+        EquipSpecial(Specials.StarCollision, 0);
         EquipSpecial(Specials.NebulaShield, 1);
     }
 
@@ -98,7 +106,7 @@ public class SpecialsManager : MonoBehaviour
 
     public float GetCost(int slot)
     {
-        return _equippedSpecials[slot].staminaCost;
+        return _equippedSpecials[slot].ReturnCost();
     }
 
     public bool IsOffCooldown(int slot)
@@ -106,10 +114,14 @@ public class SpecialsManager : MonoBehaviour
         return _slotsCurrentCooldowns[slot] <= 0;
     }
 
-    public void ActivateSpecial(int slot)
+    public bool ActivateSpecial(int slot)
     {
-        _slotsCooldowns[slot] = _equippedSpecials[slot].Activate();
+        bool activated = _equippedSpecials[slot].Activate(out float cooldown) ? true : false;
+
+        _slotsCooldowns[slot] = cooldown;
         _slotsCurrentCooldowns[slot] = _slotsCooldowns[slot];
+
+        return activated;
     }
 
     public void EquipSpecial(Specials special, int slot)

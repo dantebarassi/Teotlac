@@ -12,7 +12,7 @@ public class SpecialSupernova : SpecialMagic
         _player = player;
         _inputs = inputs;
         _supernova = supernova;
-        staminaCost = cost;
+        _staminaCost = cost;
         _radius = radius;
         _damage = damage;
         _preparation = preparation;
@@ -21,11 +21,16 @@ public class SpecialSupernova : SpecialMagic
         _cooldown = cooldown;
     }
 
-    public override float Activate()
+    public override bool Activate(out float cooldown)
     {
         _player.StartCoroutine(Supernova());
+        cooldown = _cooldown;
+        return true;
+    }
 
-        return _cooldown;
+    public override float ReturnCost()
+    {
+        return _staminaCost;
     }
 
     IEnumerator Supernova()

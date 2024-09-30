@@ -17,7 +17,7 @@ public class SpecialSunstrike : SpecialMagic
         _audioClip = clip;
         _player = player;
         _inputs = inputs;
-        staminaCost = cost;
+        _staminaCost = cost;
         _damage = damage;
         _radius = radius;
         _preparation = preparation;
@@ -26,14 +26,24 @@ public class SpecialSunstrike : SpecialMagic
         _cooldown = cooldown;
     }
 
-    public override float Activate()
+    public override bool Activate(out float cooldown)
     {
         if (_player.currentBoss != null)
         {
             _player.StartCoroutine(Sunstriking());
-            return _cooldown;
+            cooldown = _cooldown;
+            return true;
         }
-        else return 0;
+        else
+        {
+            cooldown = 0;
+            return false;
+        }
+    }
+
+    public override float ReturnCost()
+    {
+        return _staminaCost;
     }
 
     IEnumerator Sunstriking()

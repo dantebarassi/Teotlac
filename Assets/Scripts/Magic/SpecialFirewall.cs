@@ -12,17 +12,22 @@ public class SpecialFirewall : SpecialMagic
         _player = player;
         _inputs = inputs;
         _firewall = firewall;
-        staminaCost = cost;
+        _staminaCost = cost;
         _preparation = preparation;
         _recovery = recovery;
         _cooldown = cooldown;
     }
 
-    public override float Activate()
+    public override bool Activate(out float cooldown)
     {
         _player.StartCoroutine(Firewalling());
+        cooldown = _cooldown;
+        return true;
+    }
 
-        return _cooldown;
+    public override float ReturnCost()
+    {
+        return _staminaCost;
     }
 
     IEnumerator Firewalling()
