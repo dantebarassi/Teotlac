@@ -186,6 +186,7 @@ public class PlayerController : Entity
     {
         if (Grounded && _stepCurrentCooldown <= 0 && CheckAndReduceStamina(_stepCost))
         {
+            if (_comboing) _stopChannels = true;
             anim.SetTrigger("step");
             //StartCoroutine(ToggleGameObject(_stepParticles));
             //anim.SetBool("IsStrafeRight", true);
@@ -975,7 +976,7 @@ public class PlayerController : Entity
     public override void TakeDamage(float amount, bool bypassCooldown = false)
     {
         //_inputs.PrimaryAttack = false;
-        if (_aiming) _stopChannels = true;
+        if (_comboing) _stopChannels = true;
 
         if (_damageCurrentCooldown > 0) return;
         ChangeAudio(damage);
