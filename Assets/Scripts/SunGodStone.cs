@@ -6,6 +6,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
 {
     [SerializeField] Dummy _dummyPrefab;
     [SerializeField] Transform _dummySpawnPos;
+    [SerializeField] GameObject _camera;
     [SerializeField] float _emissiveIntensity;
     [SerializeField] Light _light;
     [Range(0, 8)]
@@ -32,6 +33,8 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
         if (_training)
         {
+            _camera.SetActive(true);
+
             _collider.enabled = false;
 
             _player.Inputs.inputUpdate = _player.Inputs.Nothing;
@@ -48,6 +51,8 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
     public void GoBack()
     {
+        _camera.SetActive(false);
+
         _collider.enabled = true;
 
         _player.Inputs.inputUpdate = _player.Inputs.Nothing;
@@ -59,6 +64,8 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
     public void Train()
     {
+        _camera.SetActive(false);
+
         _training = true;
 
         _collider.enabled = true;
