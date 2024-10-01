@@ -11,6 +11,12 @@ public class Dummy : Boss
 
     Vector3 _moveDir;
     float _timer = Mathf.Infinity, _attackCooldown = 0;
+    bool _move = false;
+
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -19,10 +25,11 @@ public class Dummy : Boss
 
         if (_timer < _moveDuration)
         {
-            transform.position += _moveDir * _speed * Time.deltaTime;
+            _move = true;
         }
         else if (_timer < _moveDuration + _attackDuration)
         {
+            _move = false;
             Attack();
         }
         else
@@ -32,13 +39,18 @@ public class Dummy : Boss
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (_move) _rb.MovePosition(transform.position + _moveDir * _speed * Time.fixedDeltaTime);
+    }
+
     public void Attack()
     {
         if (_attackCooldown <= 0)
         {
             var projectile = Instantiate(_projectile, _projectileSpawnPos.position, Quaternion.identity);
-            projectile.transform.forward = _player.transform.position + Vector3.up - transform.position;
-            projectile.speed = 10;
+            projectile.transform.forward = _player.transform.position + Vector3.up - projectile.transform.position;
+            projectile.speed = 20;
             projectile.damage = 0;
             _attackCooldown = _attackInterval;
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SunGodStone : MonoBehaviour, IInteractable
 {
-    [SerializeField] Dummy _dummyPrefab;
+    [SerializeField] Dummy _dummy;
     [SerializeField] Transform _dummySpawnPos;
     [SerializeField] GameObject _camera;
     [SerializeField] float _emissiveIntensity;
@@ -19,7 +19,6 @@ public class SunGodStone : MonoBehaviour, IInteractable
     bool _training = false;
 
     PlayerController _player;
-    Dummy _spawnedDummy;
 
     private void Start()
     {
@@ -31,7 +30,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
     {
         _player = player;
 
-        if (_training)
+        if (!_training)
         {
             _camera.SetActive(true);
 
@@ -42,6 +41,8 @@ public class SunGodStone : MonoBehaviour, IInteractable
             StartCoroutine(ToggleLight(true, _transitionDuration));
 
             UIManager.instance.ToggleSunGodInteraction(true);
+            UIManager.instance.HideUI(true);
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
@@ -55,11 +56,13 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
         _collider.enabled = true;
 
-        _player.Inputs.inputUpdate = _player.Inputs.Nothing;
+        _player.Inputs.inputUpdate = _player.Inputs.Unpaused;
 
         StartCoroutine(ToggleLight(false, _transitionDuration));
 
         UIManager.instance.ToggleSunGodInteraction(false);
+        UIManager.instance.HideUI(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Train()
@@ -70,20 +73,24 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
         _collider.enabled = true;
 
-        _player.Inputs.inputUpdate = _player.Inputs.Nothing;
+        _player.Inputs.inputUpdate = _player.Inputs.Unpaused;
 
         StartCoroutine(ToggleLight(false, _transitionDuration));
 
         UIManager.instance.ToggleSunGodInteraction(false);
+        UIManager.instance.HideUI(false);
+        Cursor.lockState = CursorLockMode.Locked;
 
         SpawnDummy();
     }
 
     void SpawnDummy()
     {
-        _spawnedDummy = Instantiate(_dummyPrefab, _dummySpawnPos.position, _dummySpawnPos.rotation);
+        _dummy.gameObject.SetActive(true);
+        _dummy.transform.position = _dummySpawnPos.position;
+        _dummy.transform.rotation = _dummySpawnPos.rotation;
 
-        _player.FightStarts(_spawnedDummy);
+        _player.FightStarts(_dummy);
     }
 
     public void DespawnDummy()
@@ -92,7 +99,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
         _player.FightEnds();
 
-        if (_spawnedDummy != null) Destroy(_spawnedDummy);
+        _dummy.gameObject.SetActive(false);
     }
 
     IEnumerator ToggleLight(bool on, float duration)
