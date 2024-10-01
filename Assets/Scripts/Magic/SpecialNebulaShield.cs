@@ -41,7 +41,7 @@ public class SpecialNebulaShield : SpecialMagic
 
         _inputs.inputUpdate = _inputs.FixedCast;
         _player.transform.forward = camForward;
-        //_player.anim.SetBool("IsAttacking", true);
+        _player.anim.SetTrigger("castBarrier");
 
         yield return new WaitForSeconds(_preparation);
 
