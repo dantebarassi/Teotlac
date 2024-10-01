@@ -695,7 +695,7 @@ public class PlayerController : Entity
 
         sun.transform.forward = dir;
 
-        sun.Shoot(_sunSpeed * 1.5f);
+        sun.Shoot(_sunSpeed * 1.25f);
 
         _canChain = true;
     }
