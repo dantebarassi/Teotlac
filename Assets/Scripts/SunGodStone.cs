@@ -97,7 +97,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
     {
         _training = false;
 
-        _player.FightEnds();
+        if (_player != null) _player.FightEnds();
 
         _dummy.gameObject.SetActive(false);
     }

@@ -211,18 +211,26 @@ public class PlayerController : Entity
 
     public void UseSpecial(int slot)
     {
-        if (Grounded && _specials.IsOffCooldown(slot))
+        if (Grounded)
         {
-            var cost = _specials.GetCost(slot);
-
-            if (CheckStamina(cost))
+            if(_specials.IsOffCooldown(slot))
             {
-                if (_specials.ActivateSpecial(slot))
+                var cost = _specials.GetCost(slot);
+
+                if (CheckStamina(cost))
                 {
-                    ReduceStamina(cost);
+                    if (_specials.ActivateSpecial(slot))
+                    {
+                        ReduceStamina(cost);
+                    }
                 }
             }
+            else
+            {
+                UIManager.instance.SpecialUnavailable(slot);
+            }
         }
+            
     }
 
     public void ChangeActiveMagic(MagicType type)

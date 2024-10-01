@@ -14,11 +14,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image _paused, _black, _noStamina, _tookDamage;
     [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp, _fButton, _sunGodInteraction;
     [SerializeField] Image[] _specials = new Image[2];
-    [SerializeField] Image[] _specialsCooldowns = new Image[2];
+    [SerializeField] Image[] _specialsCooldown = new Image[2];
+    [SerializeField] Image[] _specialsUnavailable = new Image[2];
+    [SerializeField] Image[] _specialsFramesCooldown = new Image[2];
+    [SerializeField] Image[] _specialsFramesUnavailable = new Image[2];
     [SerializeField] GameObject _crosshair, _options, mainMenu;
     [SerializeField] TextMeshProUGUI _bossName, _tutorialText;
 
     bool _showingNoStamina = false;
+    bool[] _showingSpecialUnavailable = new bool[2];
 
     public enum Bar
     {
@@ -102,12 +106,21 @@ public class UIManager : MonoBehaviour
     public void UpdateSpecialIcon(int number, Sprite icon)
     {
         _specials[number].sprite = icon;
-        _specialsCooldowns[number].sprite = icon;
+        _specialsCooldown[number].sprite = icon;
     }
 
     public void UpdateSpecialCooldown(int number, float value)
     {
-        _specialsCooldowns[number].fillAmount = value;
+        _specialsCooldown[number].fillAmount = value;
+        _specialsFramesCooldown[number].fillAmount = value;
+    }
+
+    public void SpecialUnavailable(int number)
+    {
+        if (_showingSpecialUnavailable[number]) return;
+
+        StartCoroutine(FadeToggleImage(_specialsUnavailable[number], 0.1f, 0.2f, 0.3f, 1, false, number));
+        StartCoroutine(FadeToggleImage(_specialsFramesUnavailable[number], 0.1f, 0.2f, 0.3f, 1, false, number));
     }
 
     public void ToggleSunGodInteraction(bool turnOn)
@@ -156,9 +169,26 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    IEnumerator FadeToggleImage(Image image, float inDuration, float wait, float outDuration, float alphaValue = 1, bool isStamina = false, int isSpecial = -1)
+    {
+        if (isStamina) _showingNoStamina = true;
+        if (isSpecial != -1) _showingSpecialUnavailable[isSpecial] = true;
+
+        StartCoroutine(FadeImage(image, inDuration, true, alphaValue));
+
+        yield return new WaitForSeconds(wait);
+
+        StartCoroutine(FadeImage(image, outDuration, false, alphaValue));
+
+        yield return new WaitForSeconds(outDuration);
+
+        if (isStamina) _showingNoStamina = false;
+        if (isSpecial != -1) _showingSpecialUnavailable[isSpecial] = false;
+    }
+
     public void NotEnoughStamina()
     {
-        if (_showingNoStamina == true) return;
+        if (_showingNoStamina) return;
 
         StartCoroutine(FadeToggleImage(_noStamina, 0.1f, 0.2f, 0.3f, 0.6f, true));
     }
@@ -176,21 +206,6 @@ public class UIManager : MonoBehaviour
     public void ToggleInteractable(bool on)
     {
         _fButton.SetActive(on);
-    }
-
-    IEnumerator FadeToggleImage(Image image, float inDuration, float wait, float outDuration, float alphaValue = 1, bool isStamina = false)
-    {
-        if(isStamina) _showingNoStamina = true;
-
-        StartCoroutine(FadeImage(image, inDuration, true, alphaValue));
-
-        yield return new WaitForSeconds(wait);
-
-        StartCoroutine(FadeImage(image, outDuration, false, alphaValue));
-
-        yield return new WaitForSeconds(outDuration);
-
-        if (isStamina) _showingNoStamina = false;
     }
 
     public void StartPlaceholderDemoEnd()
