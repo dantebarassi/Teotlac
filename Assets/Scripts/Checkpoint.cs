@@ -22,6 +22,7 @@ public class Checkpoint : MonoBehaviour, IInteractable
             //newPos = GameManager.instance.playerWorldPos;
             activatePalace = false;
             newPos = chekJson.JsonExist() ? chekJson.saveData.lastCheckPoingPosition : GameManager.instance.playerWorldPos;
+            GameManager.instance.sunGodStone.DespawnDummy();
         }
         else
         {

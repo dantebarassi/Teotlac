@@ -45,7 +45,7 @@ public class SpecialNebulaShield : SpecialMagic
 
         yield return new WaitForSeconds(_preparation);
 
-        var nebula = Object.Instantiate(_nebulaShield, _player.transform.position + camForward * 1.5f + Vector3.up * 0.5f, Quaternion.Euler(_player.transform.eulerAngles - new Vector3(-90, 0)));
+        var nebula = Object.Instantiate(_nebulaShield, _player.transform.position + camForward * 1.5f + Vector3.up * 0.8f, Quaternion.Euler(_player.transform.eulerAngles - new Vector3(-90, 0)));
         nebula.target = _player.currentBoss;
 
         yield return new WaitForSeconds(_recovery);

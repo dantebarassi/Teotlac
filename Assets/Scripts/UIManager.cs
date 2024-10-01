@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider _hpBar, _staminaBar, _bossHpBar;
     [SerializeField] Button _joystick;
     [SerializeField] Image _paused, _black, _noStamina, _tookDamage;
-    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp, _fButton;
+    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp, _fButton, _sunGodInteraction;
     [SerializeField] Image[] _specials = new Image[2];
     [SerializeField] Image[] _specialsCooldowns = new Image[2];
     [SerializeField] GameObject _crosshair, _options, mainMenu;
@@ -108,6 +108,11 @@ public class UIManager : MonoBehaviour
     public void UpdateSpecialCooldown(int number, float value)
     {
         _specialsCooldowns[number].fillAmount = value;
+    }
+
+    public void ToggleSunGodInteraction(bool turnOn)
+    {
+        _sunGodInteraction.SetActive(turnOn);
     }
 
     public void ToggleCrosshair(bool turnOn)

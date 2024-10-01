@@ -4,23 +4,88 @@ using UnityEngine;
 
 public class SunGodStone : MonoBehaviour, IInteractable
 {
+    [SerializeField] Dummy _dummyPrefab;
+    [SerializeField] Transform _dummySpawnPos;
     [SerializeField] float _emissiveIntensity;
     [SerializeField] Light _light;
     [Range(0, 8)]
     [SerializeField] float _lightIntensity;
     [SerializeField] float _transitionDuration;
 
+    Collider _collider;
     Material _material;
-    //bool _toggledOn = false;
+    
+    bool _training = false;
+
+    PlayerController _player;
+    Dummy _spawnedDummy;
 
     private void Start()
     {
         _material = GetComponent<Renderer>().material;
+        _collider = GetComponent<Collider>();
     }
 
     public void Interact(PlayerController player)
     {
-        StartCoroutine(ToggleLight(true, _transitionDuration));
+        _player = player;
+
+        if (_training)
+        {
+            _collider.enabled = false;
+
+            _player.Inputs.inputUpdate = _player.Inputs.Nothing;
+
+            StartCoroutine(ToggleLight(true, _transitionDuration));
+
+            UIManager.instance.ToggleSunGodInteraction(true);
+        }
+        else
+        {
+            DespawnDummy();
+        }
+    }
+
+    public void GoBack()
+    {
+        _collider.enabled = true;
+
+        _player.Inputs.inputUpdate = _player.Inputs.Nothing;
+
+        StartCoroutine(ToggleLight(false, _transitionDuration));
+
+        UIManager.instance.ToggleSunGodInteraction(false);
+    }
+
+    public void Train()
+    {
+        _training = true;
+
+        _collider.enabled = true;
+
+        _player.Inputs.inputUpdate = _player.Inputs.Nothing;
+
+        StartCoroutine(ToggleLight(false, _transitionDuration));
+
+        UIManager.instance.ToggleSunGodInteraction(false);
+
+        SpawnDummy();
+    }
+
+    void SpawnDummy()
+    {
+        _spawnedDummy = Instantiate(_dummyPrefab, _dummySpawnPos.position, _dummySpawnPos.rotation);
+
+        _player.FightStarts(_spawnedDummy);
+    }
+
+    public void DespawnDummy()
+    {
+        _training = false;
+
+        _player.FightEnds();
+
+        if (_spawnedDummy != null) Destroy(_spawnedDummy);
     }
 
     IEnumerator ToggleLight(bool on, float duration)

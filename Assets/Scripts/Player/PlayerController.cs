@@ -28,6 +28,7 @@ public class PlayerController : Entity
 
     [Header("Sun Magic")]
     [SerializeField] SunMagic _sunMagic;
+    [SerializeField] SunMagic _finisher;
     [SerializeField] SunBasic _magicTest;
     [SerializeField] LayerMask _raycastTargets;
     public Transform[] sunSpawnPoint;
@@ -674,7 +675,7 @@ public class PlayerController : Entity
 
     public void ThrowEnhancedFireball(int handIndex)
     {
-        var sun = Instantiate(_sunMagic, sunSpawnPoint[handIndex].position, Quaternion.identity);
+        var sun = Instantiate(_finisher, sunSpawnPoint[handIndex].position, Quaternion.identity);
         //sun.transform.localScale *= 4;
         sun.SetupStats(_sunBaseDamage * 1.5f);
         sun.ChargeFinished();

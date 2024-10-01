@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public bool playIntro;
     [SerializeField] GameObject _introCamera;
     [SerializeField] PlayableDirector _introCinematic;
-    
+    public SunGodStone sunGodStone;
+
     //--Json--//
     public CustomJsonSaveSystem Json;
     public int actualBoss;
