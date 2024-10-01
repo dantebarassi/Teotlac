@@ -8,7 +8,7 @@ public class CollidingStars : MonoBehaviour
     [SerializeField] GameObject _sunPositive, _sunNegative;
     [SerializeField] Transform _axis;
     [SerializeField] VisualEffect _explosion;
-    [SerializeField] float _moveSpeed, _rotationSpeed, _contactDamage, _explosionDamage, _explosionRadius, _explosionDelay, _explosionDuration, _expirationTime;
+    [SerializeField] float _moveSpeed, _rotationSpeed, _explosionRotationSpeed, _contactDamage, _explosionDamage, _explosionRadius, _explosionDelay, _explosionDuration, _expirationTime;
     [SerializeField] LayerMask _explosionTargets;
     [SerializeField] Rigidbody _rb;
 
@@ -62,7 +62,7 @@ public class CollidingStars : MonoBehaviour
     {
         _dead = true;
 
-        float timer = 0, baseX = _sunPositive.transform.localPosition.x, lerpT;
+        float timer = 0, baseX = _sunPositive.transform.localPosition.x, baseRotationSpeed = _rotationSpeed, lerpT;
 
         while (timer < _explosionDelay)
         {
@@ -72,6 +72,7 @@ public class CollidingStars : MonoBehaviour
 
             _sunPositive.transform.localPosition = new Vector3(Mathf.Lerp(baseX, 0, lerpT), 0);
             _sunNegative.transform.localPosition = new Vector3(Mathf.Lerp(-baseX, 0, lerpT), 0);
+            _rotationSpeed = Mathf.Lerp(baseRotationSpeed, _explosionRotationSpeed, lerpT);
 
             yield return null;
         }
