@@ -12,7 +12,7 @@ public class CollidingStars : MonoBehaviour
     [SerializeField] LayerMask _explosionTargets;
     [SerializeField] Rigidbody _rb;
 
-    [HideInInspector] public PlayerController player;
+    PlayerController _player;
 
     bool _dead;
 
@@ -41,6 +41,12 @@ public class CollidingStars : MonoBehaviour
         }
     }
 
+    public void SetUp(PlayerController player, Vector3 dir)
+    {
+        _player = player;
+        transform.forward = dir;
+    }
+
     public void Collide()
     {
         StartCoroutine(Explosion());
@@ -50,7 +56,7 @@ public class CollidingStars : MonoBehaviour
     {
         _dead = true;
 
-        player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
+        _player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
         // stop o apagar vfx principal o prender algun otro para cuando expire o choque
 
         yield return new WaitForSeconds(2); // esperar lo que tardaria en desaparecer
@@ -104,6 +110,13 @@ public class CollidingStars : MonoBehaviour
 
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
+                    if (item.TryGetComponent(out NebulaShield nebula))
+                    {
+                        nebula.Overcharge();
+
+                        continue;
+                    }
+
                     damageable.TakeDamage(_explosionDamage);
 
                     if (item != null) ignore.Add(item);
@@ -141,7 +154,14 @@ public class CollidingStars : MonoBehaviour
 
         if (other.TryGetComponent(out IDamageable target))
         {
-            target.TakeDamage(_contactDamage);
+            if (other.TryGetComponent(out NebulaShield nebula))
+            {
+                nebula.Supercharge();
+            }
+            else
+            {
+                target.TakeDamage(_contactDamage);
+            }
         }
         else
         {

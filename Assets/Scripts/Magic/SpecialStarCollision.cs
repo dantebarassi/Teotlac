@@ -82,8 +82,7 @@ public class SpecialStarCollision : SpecialMagic
         }
 
         _spawnedStars = Object.Instantiate(_starsPrefab, _player.sunSpawnPoint[0].position, Quaternion.identity);
-        _spawnedStars.player = _player;
-        _spawnedStars.transform.forward = Camera.main.transform.forward.MakeHorizontal();
+        _spawnedStars.SetUp(_player, Camera.main.transform.forward.MakeHorizontal());
 
         _thrown = true;
 

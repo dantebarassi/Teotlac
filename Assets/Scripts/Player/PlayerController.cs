@@ -267,7 +267,7 @@ public class PlayerController : Entity
 
     void ActivateSunMagic()
     {
-        if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckAndReduceStamina(_sunBaseCost))
+        if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckStamina(_sunBaseCost))
         {
             StartCoroutine(RootMotionCombo());
         }
@@ -583,7 +583,7 @@ public class PlayerController : Entity
             {
                 if (_canChain)
                 {
-                    if (CheckAndReduceStamina(_sunBaseCost))
+                    if (CheckStamina(_sunBaseCost))
                     {
                         comboCount = 0;
                         currentComboTime = _comboBreakTime;
@@ -611,7 +611,7 @@ public class PlayerController : Entity
             {
                 if (_canChain)
                 {
-                    if (CheckAndReduceStamina(_sunBaseCost))
+                    if (CheckStamina(_sunBaseCost))
                     {
                         comboCount++;
                         currentComboTime = _comboBreakTime;
@@ -657,6 +657,8 @@ public class PlayerController : Entity
 
     public void ThrowFireball(int handIndex)
     {
+        ReduceStamina(_sunBaseCost);
+
         var sun = Instantiate(_sunMagic, sunSpawnPoint[handIndex].position, Quaternion.identity);
         sun.SetupStats(_sunBaseDamage);
         sun.ChargeFinished();
@@ -683,6 +685,8 @@ public class PlayerController : Entity
 
     public void ThrowEnhancedFireball(int handIndex)
     {
+        ReduceStamina(_sunBaseCost);
+
         var sun = Instantiate(_finisher, sunSpawnPoint[handIndex].position, Quaternion.identity);
         //sun.transform.localScale *= 4;
         sun.SetupStats(_sunBaseDamage * 1.5f);
@@ -1010,9 +1014,11 @@ public class PlayerController : Entity
         }
     }
 
-    void ReduceStamina(float amount)
+    void ReduceStamina(float cost)
     {
-        _stamina -= amount;
+        _stamina -= cost;
+        UIManager.instance.UpdateBar(UIManager.Bar.PlayerStamina, _stamina);
+        _currentStaminaDelay = _staminaRegenDelay;
     }
 
     public void Interact()

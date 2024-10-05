@@ -250,10 +250,12 @@ MonoBehaviour:
   _duration: 7
   _durationPerBlock: 1.25
   _contactDmg: 5
-  _overchargeDmg: 15
+  _overchargeMinDmg: 5
+  _overchargeMaxDmg: 15
   _overchargeSpeed: 20
+  _growRate: 0.2
+  _growDuration: 0.5
   _overchargeThreshold: 10
-  target: {fileID: 0}
 --- !u!54 &6711523272112177205
 Rigidbody:
   m_ObjectHideFlags: 0
