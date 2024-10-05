@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SpecialNebulaShield : SpecialMagic
 {
-    NebulaShield _nebulaShield;
+    NebulaShield _nebulaShieldPrefab, _spawnedNebulaShield = null;
     float _preparation, _recovery, _cooldown;
     
     public SpecialNebulaShield(PlayerController player, Inputs inputs, NebulaShield nebulaShield, float cost, float preparation, float recovery, float cooldown)
     {
         _player = player;
         _inputs = inputs;
-        _nebulaShield = nebulaShield;
+        _nebulaShieldPrefab = nebulaShield;
         _staminaCost = cost;
         _preparation = preparation;
         _recovery = recovery;
@@ -20,14 +20,25 @@ public class SpecialNebulaShield : SpecialMagic
 
     public override bool Activate(out float cooldown)
     {
-        _player.StartCoroutine(Shielding());
-        cooldown = _cooldown;
-        return true;
+        if (_spawnedNebulaShield == null)
+        {
+            _player.StartCoroutine(Cast());
+            cooldown = 0;
+            return true;
+        }
+        else
+        {
+            Recast();
+            cooldown = _cooldown;
+            return true;
+        }
     }
 
     public override bool AltActivate(out float cooldown)
     {
-        return Activate(out cooldown);
+        _spawnedNebulaShield = null;
+        cooldown = _cooldown;
+        return true;
     }
 
     public override float ReturnCost()
@@ -35,7 +46,7 @@ public class SpecialNebulaShield : SpecialMagic
         return _staminaCost;
     }
 
-    IEnumerator Shielding()
+    IEnumerator Cast()
     {
         var camForward = Camera.main.transform.forward.MakeHorizontal();
 
@@ -45,11 +56,17 @@ public class SpecialNebulaShield : SpecialMagic
 
         yield return new WaitForSeconds(_preparation);
 
-        var nebula = Object.Instantiate(_nebulaShield, _player.transform.position + camForward * 1.5f + Vector3.up * 0.8f, Quaternion.Euler(_player.transform.eulerAngles - new Vector3(-90, 0)));
-        nebula.target = _player.currentBoss;
+        _spawnedNebulaShield = Object.Instantiate(_nebulaShieldPrefab, _player.transform.position + camForward * 1.5f + Vector3.up * 1.5f, Quaternion.Euler(_player.transform.eulerAngles - new Vector3(-90, 0)));
+        _spawnedNebulaShield.SetUp(_player);
 
         yield return new WaitForSeconds(_recovery);
 
         _inputs.inputUpdate = _inputs.Unpaused;
+    }
+
+    void Recast()
+    {
+        _spawnedNebulaShield.Overcharge();
+        _spawnedNebulaShield = null;
     }
 }
