@@ -48,19 +48,19 @@ public class GameManager : MonoBehaviour
             Debug.Log("saveData no es null. Es:  " + JsonUtility.ToJson(Json.saveData));
             //Json.LoadGame();
             actualBoss = Json.saveData.actualBoss;
-            if (Json.saveData.lastCheckPoingPosition != Vector3.zero)
-            {
-                _introCamera.SetActive(false);
-                player.transform.position = Json.saveData.lastCheckPoingPosition;
-                return;
-            }
+            //if (Json.saveData.lastCheckPoingPosition != Vector3.zero)
+            //{
+            //    _introCamera.SetActive(false);
+            //    player.transform.position = Json.saveData.lastCheckPoingPosition;
+            //    return;
+            //}
         }
 
-        _introCinematic.Play();
-
-        UIManager.instance.HideUI(true);
-
-        StartCoroutine(FirstSection());
+        //_introCinematic.Play();
+        //
+        //UIManager.instance.HideUI(true);
+        //
+        //StartCoroutine(FirstSection());
     }
     public void Save()
     {
