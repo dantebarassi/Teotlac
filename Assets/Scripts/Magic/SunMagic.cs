@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SunMagic : PlayerProjectile
 {
+    ObjectPool<SunMagic> _objectPool;
+
     [SerializeField] ParticleSystem _chargingParticles, _readyParticles, _destroyedParticles, _baseParticle, _fireParticle, _trailParticle, _destroyedSparksParticles;
 
     [HideInInspector] public PlayerController player;
@@ -14,6 +16,13 @@ public class SunMagic : PlayerProjectile
 
     [SerializeField] Rigidbody _rb;
     bool _charging = true, _shot = false, _dead = false;
+
+    public void Initialize(ObjectPool<SunMagic> op, float dmg, float speed)
+    {
+        _objectPool = op;
+        SetupStats(dmg);
+        Shoot(speed);
+    }
 
     public void UpdateDamage(float add)
     {
@@ -127,7 +136,7 @@ public class SunMagic : PlayerProjectile
 
         yield return new WaitForSeconds(1);
 
-        Die();
+        _objectPool.RefillStock(this);
     }
 
     public IEnumerator Cancel()
@@ -139,5 +148,17 @@ public class SunMagic : PlayerProjectile
         yield return new WaitForSeconds(1);
 
         Die();
+    }
+
+    public static void TurnOff(SunMagic x)
+    {
+        x.gameObject.SetActive(false);
+    }
+
+    public static void TurnOn(SunMagic x)
+    {
+        x.gameObject.SetActive(true);
+
+        x._dead = false;
     }
 }
