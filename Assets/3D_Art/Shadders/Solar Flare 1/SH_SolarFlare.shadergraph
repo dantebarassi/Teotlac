@@ -882,6 +882,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "54c615f7e0ed4d34bfea92f0ec665b3a"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "c1a907c4b583477a93ffe3088eb004bf"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "5acde6eabb0e4beabd659978d64cd647"
                 },
                 "m_SlotId": 0
@@ -1911,6 +1925,9 @@
     "m_ActiveTargets": [
         {
             "m_Id": "f6bd9fa6e8e4439e8ec1982073785392"
+        },
+        {
+            "m_Id": "37a09fa2df674db5bed11fb40b699243"
         }
     ]
 }
@@ -4833,6 +4850,14 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.VFXTarget",
+    "m_ObjectId": "37a09fa2df674db5bed11fb40b699243",
+    "m_Lit": false,
+    "m_AlphaTest": false
 }
 
 {
