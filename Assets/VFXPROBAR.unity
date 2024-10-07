@@ -2521,7 +2521,7 @@ VFXRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
 --- !u!2083052967 &522651768
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -4677,7 +4677,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: Explotion
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -4697,7 +4700,10 @@ VisualEffect:
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: IsExploting
+        m_Overridden: 1
 --- !u!4 &993373881
 Transform:
   m_ObjectHideFlags: 0
@@ -4818,7 +4824,7 @@ Transform:
   m_GameObject: {fileID: 998273250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.700745, y: 0.0000038146973, z: -94.924904}
+  m_LocalPosition: {x: 37.700745, y: 3.18, z: -94.924904}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -267,7 +267,7 @@ public class PlayerController : Entity
 
     void ActivateSunMagic()
     {
-        if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckStamina(_sunBaseCost))
+        if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckStamina(_sunBaseCost) && _damageCurrentCooldown <= 0)
         {
             StartCoroutine(RootMotionCombo());
         }
