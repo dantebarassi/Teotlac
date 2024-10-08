@@ -8,9 +8,14 @@ public class Checkpoint : MonoBehaviour, IInteractable
     private CustomJsonSaveSystem chekJson;
     [SerializeField] int myBoss;
     [SerializeField] GameObject myFireAnim;
+    [SerializeField] Transform _firstCheckpoint;
+    Vector3 _firstCheckpointPos;
+
     private void Start()
     {
         chekJson = GameManager.instance.Json;
+
+        _firstCheckpointPos = _firstCheckpoint.position + new Vector3(0, 0, 3);
     }
     public void Interact(PlayerController player)
     {
@@ -21,7 +26,8 @@ public class Checkpoint : MonoBehaviour, IInteractable
         {
             //newPos = GameManager.instance.playerWorldPos;
             activatePalace = false;
-            newPos = chekJson.JsonExist() ? chekJson.saveData.lastCheckPoingPosition : GameManager.instance.playerWorldPos;
+            if (chekJson.JsonExist()) newPos = chekJson.saveData.lastCheckPoingPosition != Vector3.zero ? chekJson.saveData.lastCheckPoingPosition : _firstCheckpointPos;
+            else newPos = _firstCheckpointPos;
             GameManager.instance.sunGodStone.DespawnDummy();
         }
         else
