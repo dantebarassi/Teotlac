@@ -169,7 +169,7 @@ MonoBehaviour:
   _overchargeSpeed: 20
   _growRate: 0.02
   _growDuration: 0.5
-  _invertDuration: 1
+  _invertDuration: 2
   _lingerDuration: 2.5
   _overchargeThreshold: 10
   _explotion: {fileID: 3189462514300993957}
@@ -275,7 +275,13 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.63
+        m_Name: Atraction
+        m_Overridden: 1
+      - m_Value: 3
+        m_Name: RotationVelocity
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

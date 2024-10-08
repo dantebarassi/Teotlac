@@ -136,7 +136,8 @@ public class SunMagic : PlayerProjectile
 
         yield return new WaitForSeconds(1);
 
-        _objectPool.RefillStock(this);
+        if (_objectPool != null) _objectPool.RefillStock(this);
+        else Destroy(gameObject);
     }
 
     public IEnumerator Cancel()

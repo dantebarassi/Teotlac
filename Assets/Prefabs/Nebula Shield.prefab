@@ -256,7 +256,12 @@ MonoBehaviour:
   _overchargeSpeed: 20
   _growRate: 0.2
   _growDuration: 0.5
+  _invertDuration: 0
+  _lingerDuration: 0
   _overchargeThreshold: 10
+  _explotion: {fileID: 0}
+  _nebulosa: {fileID: 0}
+  _galaxy: {fileID: 0}
 --- !u!54 &6711523272112177205
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -292,10 +297,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3927340931732890243}
     m_Modifications:
+    - target: {fileID: 327660699288873314, guid: ab9e53720e5c30e4b9832c59b045ef24,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708081602880028234, guid: ab9e53720e5c30e4b9832c59b045ef24,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6146057016584891184, guid: ab9e53720e5c30e4b9832c59b045ef24,
         type: 3}
       propertyPath: m_Name
       value: SuperNebulosa
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146057016584891184, guid: ab9e53720e5c30e4b9832c59b045ef24,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6990022527719605424, guid: ab9e53720e5c30e4b9832c59b045ef24,
         type: 3}

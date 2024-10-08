@@ -11,16 +11,18 @@ public class NebulaShield : MonoBehaviour, IDamageable
     Boss _target;
     PlayerController _player;
     int _blockCounter = 0, _growQueue = 0;
-    bool _growing = false;
+    bool _growing = false, _dead = false;
     [SerializeField] VisualEffect _explotion,_nebulosa,_galaxy;
 
     private void Update()
     {
+        if (_dead) return;
+            
         _duration -= Time.deltaTime;
         
         if (_duration <= 0)
         {
-            Expire();
+            StartCoroutine(Expire());
         }
     }
 
@@ -30,9 +32,16 @@ public class NebulaShield : MonoBehaviour, IDamageable
         _target = player.currentBoss;
     }
 
-    void Expire()
+    IEnumerator Expire()
     {
-        _player.Specials.ActivateSpecial(SpecialsManager.Specials.NebulaShield, true);
+        _dead = true;
+
+        if (_player != null) _player.Specials.ActivateSpecial(SpecialsManager.Specials.NebulaShield, true);
+
+        _nebulosa.Stop();
+        _galaxy.Stop();
+
+        yield return new WaitForSeconds(10);
 
         Destroy(gameObject);
     }
@@ -50,14 +59,37 @@ public class NebulaShield : MonoBehaviour, IDamageable
 
     IEnumerator Overcharging()
     {
+        _dead = true;
         // la locura que se invierte y concentra <3
-        _nebulosa.SetFloat("Explotion", 1);
-        _galaxy.SetFloat("RotationVelocity", -13);
-        _galaxy.SetFloat("Explotion", 3);
-        yield return new WaitForSeconds(_invertDuration);
+
+        float timer = 0;
+        
+        float lerpT, startRotation = _galaxy.GetFloat("RotationVelocity"), startAttraction = _galaxy.GetFloat("Atraction");
+        float endRotation = startRotation * -2, endAttraction = startAttraction *-2;
+
+        while (timer < _invertDuration)
+        {
+            timer += Time.deltaTime;
+        
+            lerpT = timer / (_invertDuration * 0.5f);
+        
+            _nebulosa.SetFloat("Explotion", Mathf.Lerp(0, 1, lerpT));
+            _galaxy.SetFloat("RotationVelocity", Mathf.Lerp(startRotation, endRotation, lerpT));
+            _galaxy.SetFloat("Atraction", Mathf.Lerp(startAttraction, endAttraction, lerpT));
+        
+            yield return null;
+        }
+
+        //_nebulosa.SetFloat("Explotion", Mathf.Lerp(0, 1, lerpT));
+        //_galaxy.SetFloat("RotationVelocity", _galaxy.SetFloat("RotationVelocity");
+        //_galaxy.SetFloat("RotationVelocity", Mathf.Lerp(startAttraction, -startAttraction, lerpT));
+
+        //yield return new WaitForSeconds(_invertDuration);
+
         _nebulosa.enabled = false;
         _galaxy.enabled = false;
         ShootProjectile();
+
         yield return new WaitForSeconds(_lingerDuration);
 
         Destroy(gameObject);
@@ -80,12 +112,12 @@ public class NebulaShield : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_target == null) return;
+        if (_dead || _target == null) return;
 
         if (collision.gameObject == _target.gameObject)
         {
             _target.TakeDamage(_contactDmg);
-            Destroy(gameObject);
+            StartCoroutine(Expire());
         }
     }
 
