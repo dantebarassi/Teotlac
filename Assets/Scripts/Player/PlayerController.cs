@@ -36,8 +36,8 @@ public class PlayerController : Entity
     [SerializeField] float _comboBreakTime, _sunBaseDamage, _sunDamageGrowRate, _sunSpeed, _sunMaxChargeTime, _sunCastDelay, _sunShootDelay, _sunRecovery, _sunCooldown, _sunAbsorbTime, _sunMeleeDuration, _sunHitboxX, _sunHitboxY, _sunHitboxZ, _sunRange;
     Vector3 _sunHitbox;
 
-    ObjectPool<SunMagic> _sunPool;
-    Factory<SunMagic> _sunFactory;
+    ObjectPool<SunMagic> _sunPool, _finisherPool;
+    Factory<SunMagic> _sunFactory, _finisherFactory;
 
     [Header("Obsidian Magic")]
     [SerializeField] PlayerProjectile _obsidianShard;
@@ -141,6 +141,9 @@ public class PlayerController : Entity
     {
         _sunFactory = new Factory<SunMagic>(_sunMagic);
         _sunPool = new ObjectPool<SunMagic>(_sunFactory.GetObject, SunMagic.TurnOff, SunMagic.TurnOn, 10);
+
+        _finisherFactory = new Factory<SunMagic>(_finisher);
+        _finisherPool = new ObjectPool<SunMagic>(_finisherFactory.GetObject, SunMagic.TurnOff, SunMagic.TurnOn, 2);
 
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerHp, _hp, _maxHp);
 
@@ -692,10 +695,8 @@ public class PlayerController : Entity
     {
         ReduceStamina(_sunBaseCost);
 
-        var sun = Instantiate(_finisher, sunSpawnPoint[handIndex].position, Quaternion.identity);
-        //sun.transform.localScale *= 4;
-        sun.SetupStats(_sunBaseDamage * 1.5f);
-        sun.ChargeFinished();
+        var sun = _finisherPool.Get();
+        sun.transform.position = sunSpawnPoint[handIndex].position;
 
         Vector3 dir;
         var cameraTransform = Camera.main.transform;
@@ -712,7 +713,7 @@ public class PlayerController : Entity
 
         sun.transform.forward = dir;
 
-        sun.Shoot(_sunSpeed * 1.25f);
+        sun.Initialize(_sunPool, _sunBaseDamage * 1.5f, _sunSpeed * 1.25f);
 
         _canChain = true;
     }

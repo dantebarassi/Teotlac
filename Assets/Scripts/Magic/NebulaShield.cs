@@ -6,7 +6,7 @@ using UnityEngine.VFX;
 public class NebulaShield : MonoBehaviour, IDamageable
 {
     [SerializeField] SunMagic _overchargeProjectile;
-    [SerializeField] float _duration, _durationPerBlock, _contactDmg, _overchargeMinDmg, _overchargeMaxDmg, _overchargeSpeed, _growRate, _growDuration;
+    [SerializeField] float _duration, _durationPerBlock, _contactDmg, _overchargeMinDmg, _overchargeMaxDmg, _overchargeSpeed, _growRate, _growDuration, _invertDuration, _lingerDuration;
     [SerializeField] int _overchargeThreshold;
     Boss _target;
     PlayerController _player;
@@ -45,6 +45,22 @@ public class NebulaShield : MonoBehaviour, IDamageable
 
     public void Overcharge()
     {
+        StartCoroutine(Overcharging());
+    }
+
+    IEnumerator Overcharging()
+    {
+        // la locura que se invierte y concentra
+
+        yield return new WaitForSeconds(_invertDuration);
+
+        ShootProjectile();
+
+        Destroy(gameObject);
+    }
+
+    public void ShootProjectile()
+    {
         GetComponent<Collider>().enabled = false;
         _explotion.gameObject.SetActive(true);
         var projectile = Instantiate(_overchargeProjectile, transform.position, transform.rotation);
@@ -56,8 +72,6 @@ public class NebulaShield : MonoBehaviour, IDamageable
         projectile.Shoot(_overchargeSpeed);
 
         _player.Specials.ActivateSpecial(SpecialsManager.Specials.NebulaShield, true);
-
-        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
