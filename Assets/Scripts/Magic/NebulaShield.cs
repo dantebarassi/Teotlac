@@ -12,7 +12,7 @@ public class NebulaShield : MonoBehaviour, IDamageable
     PlayerController _player;
     int _blockCounter = 0, _growQueue = 0;
     bool _growing = false;
-    [SerializeField] VisualEffect _explotion,_nebulosa;
+    [SerializeField] VisualEffect _explotion,_nebulosa,_galaxy;
 
     private void Update()
     {
@@ -52,8 +52,10 @@ public class NebulaShield : MonoBehaviour, IDamageable
     {
         // la locura que se invierte y concentra <3
         _nebulosa.SetFloat("Explotion", 1);
+        _galaxy.SetFloat("RotationVelocity", -13);
+        _galaxy.SetFloat("Explotion", 3);
         yield return new WaitForSeconds(_invertDuration);
-
+        _nebulosa.gameObject.SetActive(false);
         ShootProjectile();
         yield return new WaitForSeconds(_lingerDuration);
 
