@@ -63,6 +63,7 @@ public class CollidingStars : MonoBehaviour
         _rotationSpeed = 0;
         _expiration.gameObject.SetActive(true);
         _distortion.gameObject.SetActive(false);
+        _distortion.Stop();
         yield return new WaitForSeconds(2); // esperar lo que tardaria en desaparecer
 
         Destroy(gameObject);
