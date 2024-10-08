@@ -89,9 +89,9 @@ public class CollidingStars : MonoBehaviour
 
         if (Physics.Raycast(transform.position, Vector3.down, out var hit, _explosionRadius, _floor))
         {
-            _smoke.gameObject.SetActive(true);
-
             _smoke.transform.position = hit.point;
+
+            _smoke.gameObject.SetActive(true);
         }
         
         timer = 0;
