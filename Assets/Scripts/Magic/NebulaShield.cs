@@ -55,7 +55,8 @@ public class NebulaShield : MonoBehaviour, IDamageable
         _galaxy.SetFloat("RotationVelocity", -13);
         _galaxy.SetFloat("Explotion", 3);
         yield return new WaitForSeconds(_invertDuration);
-        _nebulosa.gameObject.SetActive(false);
+        _nebulosa.Stop();
+        _galaxy.Stop();
         ShootProjectile();
         yield return new WaitForSeconds(_lingerDuration);
 
