@@ -146,6 +146,8 @@ public class Itztlacoliuhqui : Boss
         yield return new WaitForSeconds(1);
 
         Setup();
+
+        GetComponent<Animator>().enabled = false;
     }
 
     public void Setup()
