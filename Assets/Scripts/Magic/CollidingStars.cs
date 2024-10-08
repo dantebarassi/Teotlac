@@ -9,7 +9,7 @@ public class CollidingStars : MonoBehaviour
     [SerializeField] Transform _axis;
     [SerializeField] VisualEffect _explosion,_smoke;
     [SerializeField] float _moveSpeed, _rotationSpeed, _explosionRotationSpeed, _contactDamage, _explosionDamage, _explosionRadius, _explosionDelay, _explosionDuration, _expirationTime;
-    [SerializeField] LayerMask _explosionTargets;
+    [SerializeField] LayerMask _explosionTargets, _floor;
     [SerializeField] Rigidbody _rb;
 
     PlayerController _player;
@@ -86,7 +86,13 @@ public class CollidingStars : MonoBehaviour
         _sunPositive.SetActive(false);
         _sunNegative.SetActive(false);
         _explosion.gameObject.SetActive(true);
-        _smoke.gameObject.SetActive(true);
+
+        if (Physics.Raycast(transform.position, Vector3.down, out var hit, _explosionRadius, _floor))
+        {
+            _smoke.gameObject.SetActive(true);
+
+            _smoke.transform.position = hit.point;
+        }
         
         timer = 0;
         List<Collider> ignore = new List<Collider>();
