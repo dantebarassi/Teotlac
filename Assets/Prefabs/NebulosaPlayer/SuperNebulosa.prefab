@@ -169,8 +169,11 @@ MonoBehaviour:
   _overchargeSpeed: 20
   _growRate: 0.02
   _growDuration: 0.5
+  _invertDuration: 1
+  _lingerDuration: 1.5
   _overchargeThreshold: 10
   _explotion: {fileID: 3189462514300993957}
+  _nebulosa: {fileID: 2598664215902102880}
 --- !u!54 &6366317665285564896
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -344,6 +347,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847941700653021409, guid: 94fc2dff519be07498b0aa71563dadc6,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2121
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847941700653021409, guid: 94fc2dff519be07498b0aa71563dadc6,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2121
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847941700653021409, guid: 94fc2dff519be07498b0aa71563dadc6,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2121
       objectReference: {fileID: 0}
     - target: {fileID: 4847941700653021409, guid: 94fc2dff519be07498b0aa71563dadc6,
         type: 3}

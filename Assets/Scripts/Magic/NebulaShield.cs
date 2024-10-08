@@ -12,7 +12,7 @@ public class NebulaShield : MonoBehaviour, IDamageable
     PlayerController _player;
     int _blockCounter = 0, _growQueue = 0;
     bool _growing = false;
-    [SerializeField] VisualEffect _explotion;
+    [SerializeField] VisualEffect _explotion,_nebulosa;
 
     private void Update()
     {
@@ -50,11 +50,12 @@ public class NebulaShield : MonoBehaviour, IDamageable
 
     IEnumerator Overcharging()
     {
-        // la locura que se invierte y concentra
-
+        // la locura que se invierte y concentra <3
+        _nebulosa.SetFloat("Explotion", 1);
         yield return new WaitForSeconds(_invertDuration);
 
         ShootProjectile();
+        yield return new WaitForSeconds(_lingerDuration);
 
         Destroy(gameObject);
     }
@@ -131,7 +132,7 @@ public class NebulaShield : MonoBehaviour, IDamageable
     
     public void Die()
     {
-        _explotion.gameObject.SetActive(false);
+        //_explotion.gameObject.SetActive(false);
         Destroy(gameObject);
     }
 }
