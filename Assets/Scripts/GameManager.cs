@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _introCamera;
     [SerializeField] PlayableDirector _introCinematic, _bossIntroCutscene;
     public SunGodStone sunGodStone;
-
+    
     //--Json--//
     public CustomJsonSaveSystem Json;
     public int actualBoss;
@@ -76,6 +76,22 @@ public class GameManager : MonoBehaviour
     {
         Json.saveData.actualBoss = newBoss;
         Save();
+    }
+
+    public void PlayBossIntro()
+    {
+        _bossIntroCutscene.Play();
+        UIManager.instance.HideUI(true);
+        player.Inputs.inputUpdate = player.Inputs.Nothing;
+        StartCoroutine(PlayingBossIntro());
+    }
+
+    IEnumerator PlayingBossIntro()
+    {
+        yield return new WaitWhile(() => _bossIntroCutscene.state == PlayState.Playing);
+
+        UIManager.instance.HideUI(false);
+        player.Inputs.inputUpdate = player.Inputs.Unpaused;
     }
 
     IEnumerator FirstSection()
