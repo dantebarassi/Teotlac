@@ -24,7 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Stone_Wall_Triplanar
-  m_Shader: {fileID: -6465566751694194690, guid: 74baa928265a7f6428dec9d96d0560fc,
+  m_Shader: {fileID: -6465566751694194690, guid: 32e090b04bfe72642940556bc48b7e27,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -51,7 +51,23 @@ Material:
         m_Texture: {fileID: 2800000, guid: a3693a730c54e9c49a04ec4e1439c317, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Albedo_XZ:
+        m_Texture: {fileID: 2800000, guid: 8e2154597e3df5d47a1e27977ca84baa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Albedo_Y:
+        m_Texture: {fileID: 2800000, guid: a3693a730c54e9c49a04ec4e1439c317, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Height:
+        m_Texture: {fileID: 2800000, guid: 0093faf9dde1ae84a91f78a1de5e6892, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Height_XZ:
+        m_Texture: {fileID: 2800000, guid: 8e2154597e3df5d47a1e27977ca84baa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Height_Y:
         m_Texture: {fileID: 2800000, guid: 0093faf9dde1ae84a91f78a1de5e6892, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -59,8 +75,40 @@ Material:
         m_Texture: {fileID: 2800000, guid: 22891aa35509527419b06e80b8f6ec80, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal_Map_XZ:
+        m_Texture: {fileID: 2800000, guid: 38ca1dcb0e88a744a84235b0ee5342d8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Roughness:
         m_Texture: {fileID: 2800000, guid: 5637b07e8e19c3041befae7c33c1074d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Roughness_XZ:
+        m_Texture: {fileID: 2800000, guid: 8e2154597e3df5d47a1e27977ca84baa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_AlbedoXZ_1363381662_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6b0ccd0ee23ad4e418b1713ced2d5531, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_AlbedoY_3498344385_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 6b0ccd0ee23ad4e418b1713ced2d5531, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_NormalMapXZ_2556684262_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e0cdaebc0c2ad5e49a53a999223a139b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_NormalMapY_165913550_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e0cdaebc0c2ad5e49a53a999223a139b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_RoughnessXZ_3754741413_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 5d3bfbcaf8fa13f43ab70dd67acd0316, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_RoughnessY_592757677_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 5d3bfbcaf8fa13f43ab70dd67acd0316, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SGTesselatedTriplanar_856d857798fb4a70b846936dcafafdbb_Height_3886303070_Texture2D:
@@ -94,7 +142,7 @@ Material:
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
     - _BlendMode: 0
-    - _Blend_Sharpness: 8
+    - _Blend_Sharpness: 2
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
     - _CullModeForward: 2
@@ -115,7 +163,7 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
-    - _Roughness_Contrast: 8
+    - _Roughness_Contrast: 2.69
     - _Roughness_Intensity: 0.28
     - _SrcBlend: 1
     - _StencilRef: 0
@@ -138,8 +186,9 @@ Material:
     - _TessellationMode: 0
     - _TessellationShapeFactor: 0.75
     - _Tessellation_Factor: 32
-    - _Tessellation_Strength: 0.1
-    - _Tile: 0.35
+    - _Tessellation_Strength: 0.075
+    - _Tile: 0.5
+    - _Tile_XZ: 5
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
