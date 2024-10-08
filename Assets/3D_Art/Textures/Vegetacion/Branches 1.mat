@@ -21,12 +21,14 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2475
   stringTagMap:
+    MotionVector: User
     RenderType: TransparentCutout
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
   - TransparentBackface
   - RayTracingPrepass
+  - MOTIONVECTORS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -73,7 +75,7 @@ Material:
     - _AlphaCutoffEnable: 1
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
-    - _Bend_Intensity: 0.2
+    - _Bend_Intensity: 0.05
     - _BlendMode: 0
     - _Brightness: 1
     - _Clip_Threshold: 0.663
