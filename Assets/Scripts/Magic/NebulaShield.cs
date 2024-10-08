@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class NebulaShield : MonoBehaviour, IDamageable
 {
@@ -11,6 +12,7 @@ public class NebulaShield : MonoBehaviour, IDamageable
     PlayerController _player;
     int _blockCounter = 0, _growQueue = 0;
     bool _growing = false;
+    [SerializeField] VisualEffect _explotion;
 
     private void Update()
     {
@@ -44,12 +46,12 @@ public class NebulaShield : MonoBehaviour, IDamageable
     public void Overcharge()
     {
         GetComponent<Collider>().enabled = false;
-
+        _explotion.gameObject.SetActive(true);
         var projectile = Instantiate(_overchargeProjectile, transform.position, transform.rotation);
         projectile.SetupStats(Mathf.Lerp(_overchargeMinDmg, _overchargeMaxDmg, _blockCounter / _overchargeThreshold));
 
-        if (_target != null) projectile.transform.forward = (_target.transform.position + Vector3.up * 1.5f) - transform.position;
-        else projectile.transform.forward = transform.up;
+        if (_target != null) projectile.transform.forward = (_target.transform.position + transform.forward * 1.5f) - transform.position;
+        else projectile.transform.forward = transform.forward;
 
         projectile.Shoot(_overchargeSpeed);
 
@@ -115,6 +117,7 @@ public class NebulaShield : MonoBehaviour, IDamageable
     
     public void Die()
     {
+        _explotion.gameObject.SetActive(false);
         Destroy(gameObject);
     }
 }
