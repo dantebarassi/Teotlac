@@ -80,7 +80,6 @@ public class GameManager : MonoBehaviour
 
     public void PlayBossIntro()
     {
-        _bossIntroCutscene.Play();
         UIManager.instance.HideUI(true);
         player.Inputs.inputUpdate = player.Inputs.Nothing;
         StartCoroutine(PlayingBossIntro());
@@ -88,6 +87,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayingBossIntro()
     {
+        yield return new WaitForSeconds(1);
+
+        _bossIntroCutscene.Play();
+
         yield return new WaitWhile(() => _bossIntroCutscene.state == PlayState.Playing);
 
         UIManager.instance.HideUI(false);
