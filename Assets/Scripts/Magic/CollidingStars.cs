@@ -7,7 +7,7 @@ public class CollidingStars : MonoBehaviour
 {
     [SerializeField] GameObject _sunPositive, _sunNegative;
     [SerializeField] Transform _axis;
-    [SerializeField] VisualEffect _explosion,_smoke,_expiration,_roquitas;
+    [SerializeField] VisualEffect _explosion,_smoke,_expiration,_distortion;
     [SerializeField] float _moveSpeed, _rotationSpeed, _explosionRotationSpeed, _contactDamage, _explosionDamage, _explosionRadius, _explosionDelay, _explosionDuration, _expirationTime;
     [SerializeField] LayerMask _explosionTargets, _floor;
     [SerializeField] Rigidbody _rb;
@@ -62,6 +62,7 @@ public class CollidingStars : MonoBehaviour
         _sunNegative.gameObject.SetActive(false);
         _rotationSpeed = 0;
         _expiration.gameObject.SetActive(true);
+        _distortion.gameObject.SetActive(false);
         yield return new WaitForSeconds(2); // esperar lo que tardaria en desaparecer
 
         Destroy(gameObject);
