@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ObsidianBud : MonoBehaviour, IDamageable
 {
-    ObjectPool<ObsidianBud> _objectPool;
+    ObjectPool<ObsidianBud> _budPool;
+    ObjectPool<ObsidianShard> _shardPool;
+    Action<ObsidianBud> _onDestroy;
     [SerializeField] GameObject _bud, _preBloom;
-    [SerializeField] Projectile _projectile;
-    [SerializeField] float _bloomHorizontalSpawnVariation, _bloomVerticalSpawnVariation, _bloomHorizontalDirVariation, _bloomVerticalDirVariation;
-    float _projectileSpeed, _projectileDamage;
+    [SerializeField] float _bloomHorSpawnVariation, _bloomVerSpawnVariation, _bloomHorDirVariation, _bloomVerDirVariation;
+    float _shardSpeed, _shardDamage;
 
-    public void Initialize(ObjectPool<ObsidianBud> op, float projectileSpeed, float projectileDamage)
+    public void Initialize(ObjectPool<ObsidianBud> budPool, ObjectPool<ObsidianShard> shardPool, Action<ObsidianBud> onDestroy, float projectileSpeed, float projectileDamage)
     {
-        _objectPool = op;
-        _projectileSpeed = projectileSpeed;
-        _projectileDamage = projectileDamage;
+        _budPool = budPool;
+        _shardPool = shardPool;
+        _onDestroy = onDestroy;
+        _shardSpeed = projectileSpeed;
+        _shardDamage = projectileDamage;
     }
 
     public void Prebloom()
@@ -31,10 +35,10 @@ public class ObsidianBud : MonoBehaviour, IDamageable
 
         for (int i = 0; i < projectileCount; i++)
         {
-            var shard = Instantiate(_projectile, transform.position.VectorVariation(1, _bloomHorizontalSpawnVariation, _bloomVerticalSpawnVariation, _bloomHorizontalSpawnVariation), Quaternion.identity);
-            shard.transform.forward = dir.VectorVariation(i * 0.5f, _bloomHorizontalDirVariation, _bloomVerticalDirVariation);
-            shard.speed = _projectileSpeed;
-            shard.damage = _projectileDamage;
+            var shard = _shardPool.Get();
+            shard.Initialize(_shardPool, _shardSpeed, _shardDamage);
+            shard.transform.position = transform.position.VectorVariation(1, _bloomHorSpawnVariation, _bloomVerSpawnVariation, _bloomHorSpawnVariation);
+            shard.transform.forward = dir.VectorVariation(i * 0.5f, _bloomHorDirVariation, _bloomVerDirVariation);
         }
 
         Die();
@@ -59,6 +63,8 @@ public class ObsidianBud : MonoBehaviour, IDamageable
     {
         // particulas y bla
 
-        _objectPool.RefillStock(this);
+        _onDestroy(this);
+
+        _budPool.RefillStock(this);
     }
 }

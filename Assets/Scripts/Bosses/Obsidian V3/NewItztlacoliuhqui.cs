@@ -28,6 +28,10 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] PlayerController _player;
     [SerializeField] LayerMask _playerLayer;
 
+    [Header("Shards")]
+    [SerializeField] ObsidianShard _shardPrefab;
+    [SerializeField] float _shardSpeed, _shardDamage;
+
     [Header("Buds")]
     [SerializeField] ObsidianBud _budPrefab;
     [SerializeField] int _projectileAmount;
@@ -35,6 +39,8 @@ public class NewItztlacoliuhqui : Boss
 
     ObjectPool<ObsidianBud> _budPool;
     Factory<ObsidianBud> _budFactory;
+    ObjectPool<ObsidianShard> _shardPool;
+    Factory<ObsidianShard> _shardFactory;
 
     List<ObsidianBud> _spawnedBuds = new();
     List<ObsidianBud> _bloomingBuds = new();
@@ -49,6 +55,9 @@ public class NewItztlacoliuhqui : Boss
 
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
+
+        _shardFactory = new Factory<ObsidianShard>(_shardPrefab);
+        _shardPool = new ObjectPool<ObsidianShard>(_shardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 20);
 
         if (_playOnStart) StartCoroutine(SetupWait());
     }
@@ -226,12 +235,45 @@ public class NewItztlacoliuhqui : Boss
 
     void Start()
     {
-        
+        StartCoroutine(BudStrikeTest());
     }
 
     void Update()
     {
         
+    }
+
+    IEnumerator BudStrikeTest()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        BudStrike();
+
+        yield return new WaitForSeconds(1.5f);
+
+        BudStrike();
+
+        yield return new WaitForSeconds(1.5f);
+
+        BudStrike();
+
+        yield return new WaitForSeconds(1.5f);
+
+        _bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
+
+        if (_bloomingBuds.Any()) StartCoroutine(BloomTest());
+        else StartCoroutine(BudStrikeTest());
+    }
+
+    IEnumerator BloomTest()
+    {
+        Prebloom();
+
+        yield return new WaitForSeconds(1);
+
+        Bloom();
+
+        StartCoroutine(BudStrikeTest());
     }
 
     public void BudStrike()
@@ -240,6 +282,9 @@ public class NewItztlacoliuhqui : Boss
 
         var bud = _budPool.Get();
         bud.transform.position = spawnPos;
+        bud.Initialize(_budPool, _shardPool, BudDestroyed, _shardSpeed, _shardDamage);
+
+        _spawnedBuds.Add(bud);
 
         if (Physics.CheckCapsule(spawnPos, spawnPos + Vector3.up, 0.1f, _playerLayer))
         {
@@ -250,7 +295,7 @@ public class NewItztlacoliuhqui : Boss
 
     public void Prebloom()
     {
-        _bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
+        //_bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
 
         foreach (var item in _bloomingBuds)
         {
@@ -265,5 +310,11 @@ public class NewItztlacoliuhqui : Boss
         {
             item.Bloom(_player.transform.position, _projectileAmount);
         }
+    }
+
+    public void BudDestroyed(ObsidianBud bud)
+    {
+        if (_spawnedBuds.Contains(bud)) _spawnedBuds.Remove(bud);
+        else if (_bloomingBuds.Contains(bud)) _bloomingBuds.Remove(bud);
     }
 }

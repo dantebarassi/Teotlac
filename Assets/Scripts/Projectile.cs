@@ -6,15 +6,15 @@ public class Projectile : MonoBehaviour, IDamageable
 {
     [HideInInspector] public float damage, speed;
 
-    [SerializeField] float _deathTimer;
+    [SerializeField] protected float _deathTimer;
 
-    void Update()
+    protected virtual void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
 
         if (_deathTimer <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
         else
         {
@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour, IDamageable
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 3 || other.gameObject.layer == 11)
         {
@@ -37,12 +37,12 @@ public class Projectile : MonoBehaviour, IDamageable
         Die();
     }
 
-    public void TakeDamage(float amount, bool bypassCooldown = false)
+    public virtual void TakeDamage(float amount, bool bypassCooldown = false)
     {
         Die();
     }
 
-    public void Die()
+    public virtual void Die()
     {
         Destroy(gameObject);
     }

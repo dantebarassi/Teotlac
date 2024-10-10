@@ -209,6 +209,7 @@ public class PlayerController : Entity
         if (Grounded && _stepCurrentCooldown <= 0 && CheckAndReduceStamina(_stepCost))
         {
             if (_comboing) _stopChannels = true;
+            _damageCurrentCooldown += 0.1f;
             anim.SetTrigger("step");
             //StartCoroutine(ToggleGameObject(_stepParticles));
             //anim.SetBool("IsStrafeRight", true);
