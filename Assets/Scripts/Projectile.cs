@@ -6,28 +6,31 @@ public class Projectile : MonoBehaviour, IDamageable
 {
     [HideInInspector] public float damage, speed;
 
-    [SerializeField] protected float _deathTimer;
+    [SerializeField] protected float _duration;
+    protected float _timer;
+
+    protected void Start()
+    {
+        _timer = _duration;
+    }
 
     protected virtual void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
 
-        if (_deathTimer <= 0)
+        if (_timer <= 0)
         {
             Die();
         }
         else
         {
-            _deathTimer -= Time.deltaTime;
+            _timer -= Time.deltaTime;
         }
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3 || other.gameObject.layer == 11)
-        {
-            return;
-        }
+        if (other.gameObject.layer == 3 || other.gameObject.layer == 11) return;
 
         if (other.TryGetComponent(out IDamageable damageable))
         {

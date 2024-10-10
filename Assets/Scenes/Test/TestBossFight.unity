@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2096.1243, g: 2596.9158, b: 3436.2576, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7883,7 +7883,7 @@ PrefabInstance:
     - target: {fileID: 4008560476649095682, guid: 7db1fd4cdf93b7e4fbe30f74eb2056d5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.04
+      value: 0.013
       objectReference: {fileID: 0}
     - target: {fileID: 4008560476649095682, guid: 7db1fd4cdf93b7e4fbe30f74eb2056d5,
         type: 3}
@@ -10619,7 +10619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &965988926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11076,7 +11076,7 @@ Transform:
   m_GameObject: {fileID: 1073142594}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.74592465, y: 1.52, z: 38.282978}
+  m_LocalPosition: {x: -0.74592465, y: 1.493, z: 38.282978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17250,6 +17250,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+--- !u!1 &1433472766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433472768}
+  - component: {fileID: 1433472767}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1433472767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433472766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4213d963144142449b2e1478f171272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystick: 0
+  playerInPalace: 1
+  hasCheckpoint: 0
+  _vignettePostProcess: {fileID: 0}
+  _vignetteAmountName: 
+  aaaaa: 0
+  playerWorldPos: {x: 0, y: 0, z: 0}
+  sunLight: {fileID: 0}
+  playIntro: 1
+  _introCamera: {fileID: 0}
+  _introCinematic: {fileID: 0}
+  _bossIntroCutscene: {fileID: 0}
+  sunGodStone: {fileID: 0}
+  Json: {fileID: 0}
+  actualBoss: 0
+  player: {fileID: 1878757878}
+--- !u!4 &1433472768
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433472766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1442240780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17884,14 +17944,17 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   _shardPrefab: {fileID: 1604070734971629142, guid: 8ecd20588dfa4fb47a74a591989a6eb9,
     type: 3}
-  _shardSpeed: 10
+  _shardSpeed: 15
   _shardDamage: 10
   _budPrefab: {fileID: 5627445806308899075, guid: 844c92332713ad840be9dbadfb901e9b,
     type: 3}
   _projectileAmount: 6
-  _budActivationRange: 10
+  _budActivationRange: 15
   _budStrikeDamage: 10
 --- !u!1 &1488233628
 GameObject:
@@ -18144,7 +18207,7 @@ Transform:
   m_GameObject: {fileID: 1488233628}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000047442023, y: 0.99971664, z: -0.0019994273, w: 0.023721086}
-  m_LocalPosition: {x: -0.74592465, y: 1.52, z: 38.282978}
+  m_LocalPosition: {x: -0.74592465, y: 1.493, z: 38.282978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21403,6 +21466,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1433472768}
   - {fileID: 946601438}
   - {fileID: 965988927}
   - {fileID: 1478627710}

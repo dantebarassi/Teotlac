@@ -26,7 +26,7 @@ public class NewItztlacoliuhqui : Boss
 
     [SerializeField] bool _playOnStart;
     [SerializeField] PlayerController _player;
-    [SerializeField] LayerMask _playerLayer;
+    [SerializeField] LayerMask _playerLayer, _groundLayer;
 
     [Header("Shards")]
     [SerializeField] ObsidianShard _shardPrefab;
@@ -278,19 +278,25 @@ public class NewItztlacoliuhqui : Boss
 
     public void BudStrike()
     {
-        Vector3 spawnPos = _player.transform.position;
+        Vector3 spawnPos;
+
+        if (_player.Grounded) spawnPos = _player.transform.position;
+        else
+        {
+            if (Physics.Raycast(_player.transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point;
+            else return;
+        }
 
         var bud = _budPool.Get();
-        bud.transform.position = spawnPos;
-        bud.Initialize(_budPool, _shardPool, BudDestroyed, _shardSpeed, _shardDamage);
+        bud.Initialize(_budPool, _shardPool, BudDestroyed, spawnPos, _budStrikeDamage, _shardSpeed, _shardDamage);
 
         _spawnedBuds.Add(bud);
 
-        if (Physics.CheckCapsule(spawnPos, spawnPos + Vector3.up, 0.1f, _playerLayer))
-        {
-            //_player.KnockBack(_player.transform.position - nextSpawnPos, _wallSpikeKnockback);
-            _player.TakeDamage(_budStrikeDamage);
-        }
+        //if (Physics.CheckCapsule(spawnPos, spawnPos + Vector3.up, 0.1f, _playerLayer))
+        //{
+        //    //_player.KnockBack(_player.transform.position - nextSpawnPos, _wallSpikeKnockback);
+        //    _player.TakeDamage(_budStrikeDamage);
+        //}
     }
 
     public void Prebloom()

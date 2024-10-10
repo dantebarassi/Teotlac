@@ -20,6 +20,8 @@ public class ObsidianShard : Projectile
 
     public static void TurnOn(ObsidianShard x)
     {
+        x._timer = x._duration; 
+
         x.gameObject.SetActive(true);
     }
 
