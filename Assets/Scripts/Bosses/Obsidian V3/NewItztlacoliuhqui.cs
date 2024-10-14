@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.Playables;
+using UnityEngine.VFX;
 
 public class NewItztlacoliuhqui : Boss
 {
@@ -36,6 +37,16 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] ObsidianBud _budPrefab;
     [SerializeField] int _projectileAmount;
     [SerializeField] float _budActivationRange, _budStrikeDamage;
+
+    [Header("Quick Shot")]
+    [SerializeField] Transform _quickShotSpawnPos; // crear un empty hijo del hueso de la muñeca de la mano que no lleva la daga, moverlo cerca de la palma y cargarlo aca
+    [SerializeField] int _quickShotProjectileAmount;
+    [SerializeField] float _quickShotHorDirVariation, _quickShotVerDirVariation;
+
+    [Header("Ground Spikes")]
+    [SerializeField]
+    VisualEffect _spikes;
+    [SerializeField] float _spikesBaseOffset, _spikesBaseSize, _spikesSizeMultiplier, _spikesDelay, _spikesDamage, _spikesHitCheckDuration;
 
     ObjectPool<ObsidianBud> _budPool;
     Factory<ObsidianBud> _budFactory;
@@ -240,7 +251,7 @@ public class NewItztlacoliuhqui : Boss
 
     void Update()
     {
-        
+
     }
 
     IEnumerator BudStrikeTest()
@@ -261,8 +272,30 @@ public class NewItztlacoliuhqui : Boss
 
         _bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
 
-        if (_bloomingBuds.Any()) StartCoroutine(BloomTest());
-        else StartCoroutine(BudStrikeTest());
+        if (_bloomingBuds.Any())
+        {
+            StartCoroutine(BloomTest());
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        QuickShot(_quickShotProjectileAmount);
+
+        yield return new WaitForSeconds(1.5f);
+
+        QuickShot(_quickShotProjectileAmount);
+
+        yield return new WaitForSeconds(1.5f);
+
+        if (_bloomingBuds.Any())
+        {
+            StartCoroutine(BloomTest());
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        StartCoroutine(GroundSpiking());
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(BudStrikeTest());
     }
 
     IEnumerator BloomTest()
@@ -272,8 +305,6 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(1);
 
         Bloom();
-
-        StartCoroutine(BudStrikeTest());
     }
 
     public void BudStrike()
@@ -322,5 +353,84 @@ public class NewItztlacoliuhqui : Boss
     {
         if (_spawnedBuds.Contains(bud)) _spawnedBuds.Remove(bud);
         else if (_bloomingBuds.Contains(bud)) _bloomingBuds.Remove(bud);
+    }
+
+    public void QuickShot(int projectileCount)
+    {
+        var dir = _player.transform.position - _quickShotSpawnPos.position;
+
+        for (int i = 0; i < projectileCount; i++)
+        {
+            var shard = _shardPool.Get();
+            shard.Initialize(_shardPool, _shardSpeed, _shardDamage);
+            shard.transform.position = _quickShotSpawnPos.position;
+            shard.transform.forward = dir.VectorVariation(i, _quickShotHorDirVariation, _quickShotVerDirVariation);
+        }
+    }
+
+    IEnumerator GroundSpiking()
+    {
+        Vector3 targetPos, nextPos, dir;
+        Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
+        if (_player.Grounded) targetPos = _player.transform.position;
+        else
+        {
+            if (Physics.Raycast(_player.transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) targetPos = hit.point;
+            else yield break;
+        }
+
+        dir = (targetPos - transform.position).normalized;
+
+        nextPos = transform.position + dir * _spikesBaseOffset;
+        float nextSize = _spikesBaseSize, halfSize = _spikesBaseSize * 0.5f;
+        List<GameObject> allSpikes = new();
+
+        while (Vector3.Distance(nextPos, targetPos) > nextSize)
+        {
+            var currentsSpikes = Instantiate(_spikes, nextPos, rotation);
+            currentsSpikes.SetFloat("Radiu 2", nextSize);
+            currentsSpikes.Play();
+            allSpikes.Add(currentsSpikes.gameObject);
+
+            StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
+
+            nextPos += dir * halfSize;
+            nextSize *= _spikesSizeMultiplier;
+            halfSize = nextSize * 0.5f;
+            nextPos += dir * halfSize;
+
+            yield return new WaitForSeconds(_spikesDelay);
+        }
+
+        var spikes = Instantiate(_spikes, nextPos, rotation);
+        spikes.SetFloat("Radiu 2", nextSize);
+        spikes.Play();
+        allSpikes.Add(spikes.gameObject);
+
+        StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
+
+        yield return new WaitForSeconds(5);
+
+        foreach (var item in allSpikes) Destroy(item);
+    }
+
+    IEnumerator SpikesHitCheck(Vector3 center, float halfExtents, Quaternion orientation)
+    {
+        float timer = 0;
+
+        while (timer < _spikesHitCheckDuration)
+        {
+            timer += Time.deltaTime;
+
+            if (Physics.CheckBox(center, new Vector3(halfExtents, 0.5f, halfExtents), orientation, _playerLayer))
+            {
+                _player.TakeDamage(_spikesDamage);
+
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 }

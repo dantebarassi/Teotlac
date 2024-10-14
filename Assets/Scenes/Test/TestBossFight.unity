@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 2096.7444, g: 2597.5608, b: 3437.0396, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -971,7 +971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140879421}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047442023, y: 0.99971664, z: -0.0019994273, w: 0.023721086}
+  m_LocalRotation: {x: 0.00008245065, y: 0.9991479, z: -0.0019983102, w: 0.041225024}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10732,6 +10732,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974777045}
   m_CullTransparentMesh: 1
+--- !u!1 &977378231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977378232}
+  m_Layer: 0
+  m_Name: ShotsPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977378232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977378231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.187, y: 0.037, z: -0.029}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1128436361}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &980592108
 GameObject:
   m_ObjectHideFlags: 0
@@ -10899,7 +10930,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997635914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047442023, y: 0.99971664, z: -0.0019994273, w: 0.023721086}
+  m_LocalRotation: {x: 0.00008245065, y: 0.9991479, z: -0.0019983102, w: 0.041225024}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11160,6 +11191,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1128436361 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1315312563766266678, guid: 0dc52a1f850169848abb4cab153e1e05,
+    type: 3}
+  m_PrefabInstance: {fileID: 1939649342}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1139638229
 GameObject:
   m_ObjectHideFlags: 0
@@ -16731,7 +16768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337891766}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047442023, y: 0.99971664, z: -0.0019994273, w: 0.023721086}
+  m_LocalRotation: {x: 0.00008245065, y: 0.9991479, z: -0.0019983102, w: 0.041225024}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17956,6 +17993,17 @@ MonoBehaviour:
   _projectileAmount: 6
   _budActivationRange: 15
   _budStrikeDamage: 10
+  _quickShotSpawnPos: {fileID: 977378232}
+  _quickShotProjectileAmount: 10
+  _quickShotHorDirVariation: 0.05
+  _quickShotVerDirVariation: 0.05
+  _spikes: {fileID: 987294604945176423, guid: e19c28846621c764cac355912b7e5e00, type: 3}
+  _spikesBaseOffset: 1
+  _spikesBaseSize: 2
+  _spikesSizeMultiplier: 1.25
+  _spikesDelay: 0.2
+  _spikesDamage: 20
+  _spikesHitCheckDuration: 1.5
 --- !u!1 &1488233628
 GameObject:
   m_ObjectHideFlags: 0
@@ -18206,7 +18254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488233628}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047442023, y: 0.99971664, z: -0.0019994273, w: 0.023721086}
+  m_LocalRotation: {x: 0.00008245065, y: 0.9991479, z: -0.0019983102, w: 0.041225024}
   m_LocalPosition: {x: -0.74592465, y: 1.493, z: 38.282978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20417,7 +20465,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1315312563766266678, guid: 0dc52a1f850169848abb4cab153e1e05,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 977378232}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dc52a1f850169848abb4cab153e1e05, type: 3}
 --- !u!4 &1939649344 stripped

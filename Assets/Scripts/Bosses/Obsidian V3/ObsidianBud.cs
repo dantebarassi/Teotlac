@@ -10,9 +10,9 @@ public class ObsidianBud : MonoBehaviour, IDamageable
     Action<ObsidianBud> _onDestroy;
     [SerializeField] GameObject _bud, _preBloom;
     [SerializeField] Rigidbody _rb;
-    [SerializeField] float _height, _riseDuration, _bloomHorSpawnVariation, _bloomVerSpawnVariation, _bloomHorDirVariation, _bloomVerDirVariation;
-    float _timer = 0, _strikeDamage, _shardSpeed, _shardDamage;
-    Vector3 _startpos, _endPos;
+    [SerializeField] LayerMask _playerLayer;
+    [SerializeField] float _height, _radius, _riseDuration, _riseDamageDelay, _bloomHorSpawnVariation, _bloomVerSpawnVariation, _bloomHorDirVariation, _bloomVerDirVariation;
+    float _strikeDamage, _shardSpeed, _shardDamage;
     bool _rising = false;
 
     public void Initialize(ObjectPool<ObsidianBud> budPool, ObjectPool<ObsidianShard> shardPool, Action<ObsidianBud> onDestroy, Vector3 spawnPos, float strikeDmg, float projectileSpeed, float projectileDamage)
@@ -24,15 +24,42 @@ public class ObsidianBud : MonoBehaviour, IDamageable
         _shardSpeed = projectileSpeed;
         _shardDamage = projectileDamage;
 
-        _endPos = spawnPos;
-        _startpos = spawnPos - new Vector3(0, _height);
-
-        _timer = 0;
-        _rb.constraints = RigidbodyConstraints.FreezeRotation;
-        _rising = true;
+        StartCoroutine(Rising(spawnPos));
     }
 
-    private void FixedUpdate()
+    IEnumerator Rising(Vector3 endPos)
+    {
+        _rising = true;
+        _rb.isKinematic = true;
+
+        float timer = 0;
+        bool hit = false;
+        Vector3 startPos = endPos - new Vector3(0, _height);
+
+        while (timer < _riseDuration)
+        {
+            timer += Time.deltaTime;
+
+            transform.position = Vector3.Lerp(startPos, endPos, timer / _riseDuration);
+
+            if (!hit && timer >= _riseDamageDelay)
+            {
+                if (Physics.CheckCapsule(transform.position, transform.position + Vector3.up * _height, _radius, _playerLayer))
+                {
+                    hit = true;
+
+                    GameManager.instance.player.TakeDamage(_strikeDamage);
+                }
+            }
+
+            yield return null;
+        }
+
+        _rising = false;
+        _rb.isKinematic = false;
+    }
+
+    /*private void FixedUpdate()
     {
         if (!_rising) return;
 
@@ -49,7 +76,7 @@ public class ObsidianBud : MonoBehaviour, IDamageable
             _rising = false;
             _rb.constraints = RigidbodyConstraints.FreezeAll;
         }
-    }
+    }*/
 
     public void Prebloom()
     {
@@ -101,7 +128,7 @@ public class ObsidianBud : MonoBehaviour, IDamageable
         _budPool.RefillStock(this);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (!_rising) return;
 
@@ -109,5 +136,5 @@ public class ObsidianBud : MonoBehaviour, IDamageable
         {
             player.TakeDamage(_strikeDamage);
         }
-    }
+    }*/
 }
