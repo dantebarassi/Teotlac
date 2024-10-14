@@ -5095,8 +5095,17 @@ VisualEffect:
       - m_Value: 1.16
         m_Name: Period
         m_Overridden: 1
+      - m_Value: 200
+        m_Name: Spawn Rate
+        m_Overridden: 1
+      - m_Value: 30.82
+        m_Name: Turbulence Frequency
+        m_Overridden: 1
     m_Vector2f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: -8, y: 16.06}
+        m_Name: Turbulence Intensity Range
+        m_Overridden: 1
     m_Vector3f:
       m_Array:
       - m_Value: {x: 3, y: 3, z: 0}
@@ -13664,7 +13673,7 @@ Transform:
   m_GameObject: {fileID: 1765096632}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.87, y: -1.35, z: -110.94}
+  m_LocalPosition: {x: -55.97, y: -1.35, z: -113.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14459,7 +14468,7 @@ Transform:
   m_GameObject: {fileID: 2039977590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.75, y: 0, z: -91.19}
+  m_LocalPosition: {x: -43.95, y: 0, z: -85.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
