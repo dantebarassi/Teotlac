@@ -44,9 +44,13 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] float _quickShotHorDirVariation, _quickShotVerDirVariation;
 
     [Header("Ground Spikes")]
-    [SerializeField]
-    VisualEffect _spikes;
+    [SerializeField] VisualEffect _spikes;
     [SerializeField] float _spikesBaseOffset, _spikesBaseSize, _spikesSizeMultiplier, _spikesDelay, _spikesDamage, _spikesHitCheckDuration;
+
+    [Header("Placeholder Wall Spike")]
+    [SerializeField] ObsidianWall _wallPrefab;
+    [SerializeField] VisualEffect _movingSpikes;
+    [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelTime, _wallSpikeKnockback, _wallSpikeDamage;
 
     ObjectPool<ObsidianBud> _budPool;
     Factory<ObsidianBud> _budFactory;
@@ -286,6 +290,10 @@ public class NewItztlacoliuhqui : Boss
 
         yield return new WaitForSeconds(1.5f);
 
+        StartCoroutine(PlaceholderWallSpiking());
+
+        yield return new WaitForSeconds(3);
+
         if (_bloomingBuds.Any())
         {
             StartCoroutine(BloomTest());
@@ -368,6 +376,45 @@ public class NewItztlacoliuhqui : Boss
         }
     }
 
+    IEnumerator PlaceholderWallSpiking()
+    {
+        Vector3 target, dir = (target - transform.position).MakeHorizontal().normalized;
+
+        if (_player.Grounded) target = _player.transform.position;
+        else
+        {
+            if (Physics.Raycast(_player.transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) target = hit.point;
+            else yield break;
+        }
+
+        Vector3 startPos = transform.position + dir * _wallSpikeSpawnOffset;
+
+        var vfx = Instantiate(_movingSpikes, startPos, Quaternion.identity);
+        vfx.transform.forward = dir;
+        float timer = 0;
+
+        while (timer < _wallSpikeTravelTime)
+        {
+            timer += Time.deltaTime;
+
+            vfx.transform.position = Vector3.Lerp(startPos, target, timer / _wallSpikeTravelTime);
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        var wall = Instantiate(_wallPrefab, target, Quaternion.identity);
+
+        Destroy(vfx.gameObject);
+
+        if (Physics.CheckCapsule(nextSpawnPos, target + Vector3.up * 5, wall.Radius, _playerLayer))
+        {
+            _player.KnockBack(_player.transform.position - nextSpawnPos, _wallSpikeKnockback);
+            _player.TakeDamage(_wallSpikeDamage);
+        }
+    }
+
     IEnumerator GroundSpiking()
     {
         Vector3 targetPos, nextPos, dir;
@@ -380,7 +427,7 @@ public class NewItztlacoliuhqui : Boss
             else yield break;
         }
 
-        dir = (targetPos - transform.position).normalized;
+        dir = (targetPos - transform.position).MakeHorizontal().normalized;
 
         nextPos = transform.position + dir * _spikesBaseOffset;
         float nextSize = _spikesBaseSize, halfSize = _spikesBaseSize * 0.5f;
