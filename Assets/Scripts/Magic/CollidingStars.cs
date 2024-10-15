@@ -57,13 +57,13 @@ public class CollidingStars : MonoBehaviour
         _dead = true;
 
         _player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
+        _distortion.gameObject.SetActive(false);
+        _distortion.Stop();
         // stop o apagar vfx principal o prender algun otro para cuando expire o choque
         _sunPositive.gameObject.SetActive(false);
         _sunNegative.gameObject.SetActive(false);
         _rotationSpeed = 0;
         _expiration.gameObject.SetActive(true);
-        _distortion.gameObject.SetActive(false);
-        _distortion.Stop();
         yield return new WaitForSeconds(2); // esperar lo que tardaria en desaparecer
 
         Destroy(gameObject);
@@ -91,6 +91,8 @@ public class CollidingStars : MonoBehaviour
         _sunPositive.SetActive(false);
         _sunNegative.SetActive(false);
         _explosion.gameObject.SetActive(true);
+        _distortion.gameObject.SetActive(false);
+        _distortion.Stop();
 
         if (Physics.Raycast(transform.position, Vector3.down, out var hit, _explosionRadius, _floor))
         {
