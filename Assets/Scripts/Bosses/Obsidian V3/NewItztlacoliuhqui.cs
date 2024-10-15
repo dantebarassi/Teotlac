@@ -393,7 +393,7 @@ public class NewItztlacoliuhqui : Boss
         var vfx = Instantiate(_movingSpikes, startPos, Quaternion.identity);
         vfx.transform.forward = dir;
 
-        while (Vector3.Distance(vfx.transform.position, target) > 0.1f)
+        while (Vector3.Distance(vfx.transform.position, target) > 0.5f)
         {
             vfx.transform.position += dir * _wallSpikeTravelSpeed * Time.deltaTime;
 
