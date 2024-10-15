@@ -393,7 +393,7 @@ public class NewItztlacoliuhqui : Boss
         var vfx = Instantiate(_movingSpikes, startPos, Quaternion.identity);
         vfx.transform.forward = dir;
 
-        while (Vector3.Distance(vfx.transform.position, target) > 0.5f)
+        while (Vector3.Distance(vfx.transform.position, target) > 0.75f)
         {
             vfx.transform.position += dir * _wallSpikeTravelSpeed * Time.deltaTime;
 
@@ -410,7 +410,7 @@ public class NewItztlacoliuhqui : Boss
             _player.TakeDamage(_wallSpikeDamage);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(5);
 
         Destroy(vfx.gameObject);
     }
