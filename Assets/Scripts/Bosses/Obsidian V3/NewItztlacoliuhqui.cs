@@ -50,7 +50,7 @@ public class NewItztlacoliuhqui : Boss
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
     [SerializeField] VisualEffect _movingSpikes;
-    [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelTime, _wallSpikeKnockback, _wallSpikeDamage;
+    [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelTime, _wallSpikeDelay, _wallSpikeKnockback, _wallSpikeDamage;
 
     ObjectPool<ObsidianBud> _budPool;
     Factory<ObsidianBud> _budFactory;
@@ -402,17 +402,19 @@ public class NewItztlacoliuhqui : Boss
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(_wallSpawnDelay);
 
         var wall = Instantiate(_wallPrefab, target, Quaternion.identity);
 
-        Destroy(vfx.gameObject);
-
-        if (Physics.CheckCapsule(nextSpawnPos, target + Vector3.up * 5, wall.Radius, _playerLayer))
+        if (Physics.CheckCapsule(target, target + Vector3.up * 5, wall.Radius, _playerLayer))
         {
-            _player.KnockBack(_player.transform.position - nextSpawnPos, _wallSpikeKnockback);
+            _player.KnockBack(_player.transform.position - target, _wallSpikeKnockback);
             _player.TakeDamage(_wallSpikeDamage);
         }
+
+        yield return new WaitForSeconds(0.5f);
+
+        Destroy(vfx.gameObject);
     }
 
     IEnumerator GroundSpiking()
