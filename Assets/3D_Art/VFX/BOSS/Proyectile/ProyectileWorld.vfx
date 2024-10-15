@@ -150,10 +150,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 289
-    y: 480
-    width: 4355
-    height: 6351
+    x: 0
+    y: 0
+    width: 4619
+    height: 6806
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11939,7 +11939,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614991}
   - {fileID: 8926484042661615001}
   dataType: 0
-  capacity: 500
+  capacity: 800
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
@@ -19980,7 +19980,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 70
+      m_SerializableObject: 150
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -20078,7 +20078,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":1.0},"arc":6.2831854820251469}'
+      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":-0.481860876083374,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":1.0},"arc":6.2831854820251469}'
     m_Space: 0
   m_Property:
     name: arcSphere
