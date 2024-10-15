@@ -94,7 +94,7 @@ public class ObsidianWall : MonoBehaviour, IDamageable
             item.SetBlock(false);
         }
 
-        boss.WallDestroyed(this);
+        if (boss != null) boss.WallDestroyed(this);
         _myAS.Play();
         piedras.Play();
         piedritas.Play();
