@@ -50,7 +50,7 @@ public class NewItztlacoliuhqui : Boss
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
     [SerializeField] VisualEffect _movingSpikes;
-    [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelTime, _wallSpikeDelay, _wallSpikeKnockback, _wallSpikeDamage;
+    [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelTime, _wallSpawnDelay, _wallSpikeKnockback, _wallSpikeDamage;
 
     ObjectPool<ObsidianBud> _budPool;
     Factory<ObsidianBud> _budFactory;
@@ -378,7 +378,7 @@ public class NewItztlacoliuhqui : Boss
 
     IEnumerator PlaceholderWallSpiking()
     {
-        Vector3 target, dir = (target - transform.position).MakeHorizontal().normalized;
+        Vector3 target;
 
         if (_player.Grounded) target = _player.transform.position;
         else
@@ -387,6 +387,7 @@ public class NewItztlacoliuhqui : Boss
             else yield break;
         }
 
+        Vector3 dir = (target - transform.position).MakeHorizontal().normalized;
         Vector3 startPos = transform.position + dir * _wallSpikeSpawnOffset;
 
         var vfx = Instantiate(_movingSpikes, startPos, Quaternion.identity);
