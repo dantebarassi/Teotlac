@@ -50,7 +50,7 @@ public class NewItztlacoliuhqui : Boss
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
     [SerializeField] VisualEffect _movingSpikes;
-    [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelTime, _wallSpawnDelay, _wallSpikeKnockback, _wallSpikeDamage;
+    [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelSpeed, _wallSpawnDelay, _wallSpikeKnockback, _wallSpikeDamage;
 
     ObjectPool<ObsidianBud> _budPool;
     Factory<ObsidianBud> _budFactory;
@@ -392,13 +392,10 @@ public class NewItztlacoliuhqui : Boss
 
         var vfx = Instantiate(_movingSpikes, startPos, Quaternion.identity);
         vfx.transform.forward = dir;
-        float timer = 0;
 
-        while (timer < _wallSpikeTravelTime)
+        while (Vector3.Distance(vfx.transform.position, target) > 0.05f)
         {
-            timer += Time.deltaTime;
-
-            vfx.transform.position = Vector3.Lerp(startPos, target, timer / _wallSpikeTravelTime);
+            vfx.transform.position += dir * _wallSpikeTravelSpeed * Time.deltaTime;
 
             yield return null;
         }
