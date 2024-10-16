@@ -23,7 +23,7 @@ public class SpecialNebulaShield : SpecialMagic
         if (_spawnedNebulaShield == null)
         {
             _player.StartCoroutine(Cast());
-            cooldown = 0;
+            cooldown = 1;
             return true;
         }
         else
