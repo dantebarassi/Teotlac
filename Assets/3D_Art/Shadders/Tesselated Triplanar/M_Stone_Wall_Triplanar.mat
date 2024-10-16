@@ -52,11 +52,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo_XZ:
-        m_Texture: {fileID: 2800000, guid: 8e2154597e3df5d47a1e27977ca84baa, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9bf2fa3d5392c4847bad79eeb0ba904f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo_Y:
         m_Texture: {fileID: 2800000, guid: a3c0035b3533d1a4db3861dd900b4e03, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Cracks_Height:
+        m_Texture: {fileID: 2800000, guid: 283fe73a672a6704ea503146add2d450, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Height:
@@ -76,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map_XZ:
-        m_Texture: {fileID: 2800000, guid: 38ca1dcb0e88a744a84235b0ee5342d8, type: 3}
+        m_Texture: {fileID: 2800000, guid: ded5c04df8d56b8429f1c4a4572436fb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Roughness:
@@ -93,6 +97,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_AlbedoY_3498344385_Texture2D:
         m_Texture: {fileID: 2800000, guid: 6b0ccd0ee23ad4e418b1713ced2d5531, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_CracksHeight_2967755813_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8c1318ed24d953d4e94763c8c546bb41, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SGTesselatedTriplanar2_3f653e3b0ecf4010b68909b1217569f5_NormalMapXZ_2556684262_Texture2D:
@@ -123,6 +131,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 5d3bfbcaf8fa13f43ab70dd67acd0316, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_8617a752632a40a381758b13d0894c8f_Out_0_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8c1318ed24d953d4e94763c8c546bb41, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -142,8 +154,12 @@ Material:
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
     - _BlendMode: 0
-    - _Blend_Sharpness: 2
+    - _Blend_Sharpness: 4
     - _ConservativeDepthOffsetEnable: 0
+    - _Cracks: 1
+    - _Cracks_Height_Intensity: 0.2
+    - _Cracks_Noise_Intensity: 1
+    - _Cracks_Tile: 0.2
     - _CullMode: 2
     - _CullModeForward: 2
     - _DepthOffsetEnable: 0
@@ -197,7 +213,7 @@ Material:
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
     - _UseShadowThreshold: 0
-    - _XZ_Contrast: 2.62
+    - _XZ_Contrast: 3
     - _Y_Contrast: 1.47
     - _ZTestDepthEqualForOpaque: 3
     - _ZTestGBuffer: 4
