@@ -19,7 +19,7 @@ MonoBehaviour:
       x: 1368
       y: 200
       width: 827
-      height: 2000
+      height: 1981
     contents:
     - model: {fileID: 8926484042661614608}
       id: 0
@@ -48,10 +48,10 @@ MonoBehaviour:
   - title: PrimerasParticulas1
     position:
       serializedVersion: 2
-      x: -1296
+      x: -1319
       y: 992
-      width: 2166
-      height: 5059
+      width: 2189
+      height: 5040
     contents:
     - model: {fileID: 8926484042661615276}
       id: 0
@@ -110,10 +110,10 @@ MonoBehaviour:
   - title: Pinchos1
     position:
       serializedVersion: 2
-      x: 2266
+      x: 2259
       y: -81
-      width: 2477
-      height: 5654
+      width: 2484
+      height: 5635
     contents:
     - model: {fileID: 8926484042661615296}
       id: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
       x: 5640
       y: 3608
       width: 1688
-      height: 5193
+      height: 5474
     contents:
     - model: {fileID: 8926484042661616347}
       id: 0
@@ -329,10 +329,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -2130
-    y: -81
-    width: 10568
-    height: 9182
+    x: -2105
+    y: -22
+    width: 10518
+    height: 9079
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2003,8 +2003,7 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661614687}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661614642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3426,9 +3425,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614687}
       inputSlot: {fileID: 8926484042661614639}
-    - outputSlot: {fileID: 8926484042661614687}
-      inputSlot: {fileID: 8926484042661614641}
-    position: {x: 1616, y: 974}
+    position: {x: 1592, y: 956}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614687
@@ -3466,7 +3463,6 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661614639}
-  - {fileID: 8926484042661614641}
 --- !u!114 &8926484042661614688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23034,7 +23030,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661615170}
     - outputSlot: {fileID: 8926484042661615277}
       inputSlot: {fileID: 8926484042661615172}
-    position: {x: -1271, y: 2157}
+    position: {x: -1294, y: 2154}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661615277
@@ -35062,7 +35058,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":1.0,"y":0.0,"z":1.0}}'
+      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":1.0,"y":0.0,"z":2.0}}'
     m_Space: 0
   m_Property:
     name: Box
@@ -35341,8 +35337,7 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661615867}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661615648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42630,26 +42625,20 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615867}
       inputSlot: {fileID: 8926484042661615645}
-    - outputSlot: {fileID: 8926484042661615867}
-      inputSlot: {fileID: 8926484042661615647}
-    position: {x: 2627, y: 717}
+    position: {x: 2559, y: 692}
     expandedSlots: []
     expanded: 0
   - m_Id: 1
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615867}
       inputSlot: {fileID: 8926484042661616519}
-    - outputSlot: {fileID: 8926484042661615867}
-      inputSlot: {fileID: 8926484042661616521}
-    position: {x: 6750, y: 5069}
+    position: {x: 6724, y: 5067}
     expandedSlots: []
     expanded: 0
   - m_Id: 2
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615867}
       inputSlot: {fileID: 8926484042661615898}
-    - outputSlot: {fileID: 8926484042661615867}
-      inputSlot: {fileID: 8926484042661615900}
     position: {x: -1821, y: 3941}
     expandedSlots: []
     expanded: 0
@@ -42702,11 +42691,8 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 8926484042661615645}
-  - {fileID: 8926484042661615647}
   - {fileID: 8926484042661616519}
-  - {fileID: 8926484042661616521}
   - {fileID: 8926484042661615898}
-  - {fileID: 8926484042661615900}
   - {fileID: 8926484042661616560}
   - {fileID: 8926484042661616568}
 --- !u!114 &8926484042661615868
@@ -43571,7 +43557,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":1.0,"y":0.0,"z":1.0}}'
+      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":1.0,"y":0.0,"z":2.0}}'
     m_Space: 0
   m_Property:
     name: Box
@@ -43850,8 +43836,7 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661615867}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661615901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63970,7 +63955,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":1.0,"y":0.0,"z":1.0}}'
+      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":1.0,"y":0.0,"z":2.0}}'
     m_Space: 0
   m_Property:
     name: Box
@@ -64249,8 +64234,7 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661615867}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661616522
 MonoBehaviour:
   m_ObjectHideFlags: 0

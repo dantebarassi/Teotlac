@@ -250,9 +250,15 @@ public class NewItztlacoliuhqui : Boss
 
     void Start()
     {
-        StartCoroutine(BudStrikeTest());
+        //StartCoroutine(BudStrikeTest());
+        StartCoroutine(yea());
     }
-
+    IEnumerator yea()
+    {
+        StartCoroutine(GroundSpiking());
+        yield return new WaitForSeconds(5);
+        StartCoroutine(yea());
+    }
     void Update()
     {
 
@@ -418,7 +424,6 @@ public class NewItztlacoliuhqui : Boss
     IEnumerator GroundSpiking()
     {
         Vector3 targetPos, nextPos, dir;
-        Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         if (_player.Grounded) targetPos = _player.transform.position;
         else
@@ -427,13 +432,15 @@ public class NewItztlacoliuhqui : Boss
             else yield break;
         }
 
-        dir = (targetPos - transform.position).MakeHorizontal().normalized;
+        dir = (targetPos - transform.position).MakeHorizontal().normalized*2;
+        transform.forward = dir;
+        Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         nextPos = transform.position + dir * _spikesBaseOffset;
         float nextSize = _spikesBaseSize, halfSize = _spikesBaseSize * 0.5f;
         List<GameObject> allSpikes = new();
 
-        while (Vector3.Distance(nextPos, targetPos) > nextSize)
+        while (Vector3.Distance(nextPos, targetPos) > dir.magnitude)
         {
             var currentsSpikes = Instantiate(_spikes, nextPos, rotation);
             currentsSpikes.SetFloat("Radiu 2", nextSize);
@@ -442,10 +449,9 @@ public class NewItztlacoliuhqui : Boss
 
             StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
 
-            nextPos += dir * halfSize;
+            nextPos += dir;
             nextSize *= _spikesSizeMultiplier;
             halfSize = nextSize * 0.5f;
-            nextPos += dir * halfSize;
 
             yield return new WaitForSeconds(_spikesDelay);
         }
