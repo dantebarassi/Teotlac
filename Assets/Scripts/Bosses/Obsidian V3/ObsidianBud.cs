@@ -9,7 +9,7 @@ public class ObsidianBud : MonoBehaviour, IDamageable
     ObjectPool<ObsidianShard> _shardPool;
     Action<ObsidianBud> _onDestroy;
     [SerializeField] GameObject _bud, _preBloom;
-    [SerializeField] Rigidbody _rb;
+    //[SerializeField] Rigidbody _rb;
     [SerializeField] LayerMask _playerLayer;
     [SerializeField] float _height, _radius, _riseDuration, _riseDamageDelay, _bloomHorSpawnVariation, _bloomVerSpawnVariation, _bloomHorDirVariation, _bloomVerDirVariation;
     float _strikeDamage, _shardSpeed, _shardDamage;
@@ -30,7 +30,7 @@ public class ObsidianBud : MonoBehaviour, IDamageable
     IEnumerator Rising(Vector3 endPos)
     {
         _rising = true;
-        _rb.isKinematic = true;
+        //_rb.isKinematic = true;
 
         float timer = 0;
         bool hit = false;
@@ -56,7 +56,7 @@ public class ObsidianBud : MonoBehaviour, IDamageable
         }
 
         _rising = false;
-        _rb.isKinematic = false;
+        //_rb.isKinematic = false;
     }
 
     /*private void FixedUpdate()

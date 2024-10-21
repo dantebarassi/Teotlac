@@ -17,6 +17,8 @@ public class PlayerController : Entity
         }
     }
 
+    public Transform target;
+
     [SerializeField] float _maxStamina, _staminaRegenRate, _staminaRegenDelay, _damageCooldown, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _stepCooldown/*(variable del step viejo)_stepStopVelocity*/;
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] Transform _aimTarget;
