@@ -2194,7 +2194,22 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: -5.56
+        m_Name: A
+        m_Overridden: 1
+      - m_Value: 21.3
+        m_Name: Fire Radius
+        m_Overridden: 1
+      - m_Value: 10
+        m_Name: Fire Size
+        m_Overridden: 1
+      - m_Value: 0.97
+        m_Name: Flames Height
+        m_Overridden: 1
+      - m_Value: 2000
+        m_Name: Particle Rate
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -16065,7 +16080,6 @@ SceneRoots:
   - {fileID: 1797854596}
   - {fileID: 444782059}
   - {fileID: 8075448359237042093}
-  - {fileID: 1497989197950254682}
   - {fileID: 513453804}
   - {fileID: 1835728985}
   - {fileID: 4583785804420884401}
@@ -16107,4 +16121,5 @@ SceneRoots:
   - {fileID: 1057762399}
   - {fileID: 1045813103}
   - {fileID: 59043456}
+  - {fileID: 1497989197950254682}
   - {fileID: 378624928}
