@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6652294642874985268}
   - component: {fileID: 5627445806308899075}
-  - component: {fileID: 103229903098514524}
   - component: {fileID: 2242101306508306824}
   m_Layer: 0
   m_Name: Obsidian Bud
@@ -50,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bud: {fileID: 8755470951952782033}
   _preBloom: {fileID: 6923077444095097637}
-  _rb: {fileID: 103229903098514524}
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -60,35 +58,8 @@ MonoBehaviour:
   _riseDamageDelay: 0.1
   _bloomHorSpawnVariation: 0.15
   _bloomVerSpawnVariation: 0.1
-  _bloomHorDirVariation: 0.15
-  _bloomVerDirVariation: 0.1
---- !u!54 &103229903098514524
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884833916323074755}
-  serializedVersion: 4
-  m_Mass: 0.1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  _bloomHorDirVariation: 0.2
+  _bloomVerDirVariation: 0.2
 --- !u!136 &2242101306508306824
 CapsuleCollider:
   m_ObjectHideFlags: 0

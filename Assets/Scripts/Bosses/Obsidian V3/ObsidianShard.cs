@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ObsidianShard : Projectile
 {
     ObjectPool<ObsidianShard> _objectPool;
+    Action<Vector3> _spawnBud;
 
-    public void Initialize(ObjectPool<ObsidianShard> pool, float spd, float dmg)
+    [SerializeField] LayerMask _groundLayer;
+    [SerializeField] ObsidianBud _bud;
+    [Range(0, 100)]
+    [SerializeField] int _budSpawnChance;
+
+    public void Initialize(ObjectPool<ObsidianShard> pool, float spd, float dmg,Action<Vector3> spawnBud = null)
     {
         _objectPool = pool;
         speed = spd;
         damage = dmg;
+        _spawnBud = spawnBud;
     }
 
     public static void TurnOff(ObsidianShard x)
@@ -28,5 +36,24 @@ public class ObsidianShard : Projectile
     public override void Die()
     {
         _objectPool.RefillStock(this);
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 3 || other.gameObject.layer == 11) return;
+
+        if (other.TryGetComponent(out IDamageable damageable))
+        {
+            damageable.TakeDamage(damage);
+        }
+        else if (other.gameObject.layer == 10)
+        {
+            if (_spawnBud != null && UnityEngine.Random.Range(0, 100) < _budSpawnChance)
+            {
+                if (Physics.Raycast(transform.position, Vector3.down, out var hit, 1, _groundLayer)) _spawnBud(hit.point);
+            }
+        }
+
+        Die();
     }
 }

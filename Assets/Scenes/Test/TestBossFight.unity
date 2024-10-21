@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2096.7444, g: 2597.5608, b: 3437.0396, a: 1}
+  m_IndirectSpecularColor: {r: 2096.1243, g: 2596.9158, b: 3436.2576, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -977,7 +977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140879421}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000017287794, y: 0.99996066, z: -0.0019999028, w: 0.008643976}
+  m_LocalRotation: {x: 0.000047441343, y: 0.99971664, z: -0.0019993975, w: 0.023721097}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6938,17 +6938,17 @@ PrefabInstance:
     - target: {fileID: 9017931947469325623, guid: e77771b6c11133844b8ca8a5d5498533,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9017931947469325623, guid: e77771b6c11133844b8ca8a5d5498533,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9017931947469325623, guid: e77771b6c11133844b8ca8a5d5498533,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9017931947469325623, guid: e77771b6c11133844b8ca8a5d5498533,
         type: 3}
@@ -8364,6 +8364,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -87.99059
       objectReference: {fileID: 0}
+    - target: {fileID: 7727917627308832824, guid: 7db1fd4cdf93b7e4fbe30f74eb2056d5,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7870012376111951497, guid: 7db1fd4cdf93b7e4fbe30f74eb2056d5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8408,6 +8413,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 41.373135
+      objectReference: {fileID: 0}
+    - target: {fileID: 8255924977714504956, guid: 7db1fd4cdf93b7e4fbe30f74eb2056d5,
+        type: 3}
+      propertyPath: _jumpStr
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 8255924977714504956, guid: 7db1fd4cdf93b7e4fbe30f74eb2056d5,
         type: 3}
@@ -11004,7 +11014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997635914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000017287803, y: 0.99996066, z: -0.001999903, w: 0.00864398}
+  m_LocalRotation: {x: 0.000047441838, y: 0.99971664, z: -0.0019994194, w: 0.023721086}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11048,7 +11058,7 @@ MonoBehaviour:
   m_IgnoreTag: 
   m_TransparentLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_MinimumDistanceFromTarget: 0.1
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
@@ -16842,7 +16852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337891766}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000017287803, y: 0.99996066, z: -0.001999903, w: 0.00864398}
+  m_LocalRotation: {x: 0.000047441838, y: 0.99971664, z: -0.0019994194, w: 0.023721086}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17999,9 +18009,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7
-  m_Height: 4.5
+  m_Height: 4.05
   m_Direction: 1
-  m_Center: {x: 0, y: 2.1, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!4 &1478627710
 Transform:
   m_ObjectHideFlags: 0
@@ -18061,7 +18071,7 @@ MonoBehaviour:
     m_Bits: 1024
   _shardPrefab: {fileID: 1604070734971629142, guid: 8ecd20588dfa4fb47a74a591989a6eb9,
     type: 3}
-  _shardSpeed: 15
+  _shardSpeed: 25
   _shardDamage: 10
   _budPrefab: {fileID: 5627445806308899075, guid: 844c92332713ad840be9dbadfb901e9b,
     type: 3}
@@ -18070,15 +18080,18 @@ MonoBehaviour:
   _budStrikeDamage: 10
   _quickShotSpawnPos: {fileID: 977378232}
   _quickShotProjectileAmount: 10
-  _quickShotHorDirVariation: 0.05
-  _quickShotVerDirVariation: 0.05
+  _quickShotHorDirVariation: 0.25
+  _quickShotVerDirVariation: 0.25
   _spikes: {fileID: 987294604945176423, guid: e19c28846621c764cac355912b7e5e00, type: 3}
-  _spikesBaseOffset: 1
-  _spikesBaseSize: 2
-  _spikesSizeMultiplier: 1.1
+  _spikesBaseOffset: 0.5
+  _spikesBaseSizeX: 2
+  _spikesSizeY: 0.3
+  _spikesSizeZ: 1.5
+  _spikesSizeGrowthX: 1
   _spikesDelay: 0.05
   _spikesDamage: 20
-  _spikesHitCheckDuration: 1.5
+  _spikesHitCheckDuration: 0.5
+  _spikesExtraWaves: 5
   _wallPrefab: {fileID: 4512302602141651466, guid: 56e1b05cc773f7940952e0901becccea,
     type: 3}
   _movingSpikes: {fileID: 5088560179641679944, guid: dc8b55a9cc626794aabd376dc8a5b947,
@@ -18338,7 +18351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488233628}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000017287803, y: 0.99996066, z: -0.001999903, w: 0.00864398}
+  m_LocalRotation: {x: 0.000047441838, y: 0.99971664, z: -0.0019994194, w: 0.023721086}
   m_LocalPosition: {x: -0.74592465, y: 1.493, z: 38.282978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

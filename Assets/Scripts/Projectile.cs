@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour, IDamageable
     [HideInInspector] public float damage, speed;
 
     [SerializeField] protected float _duration;
+    [SerializeField] protected Rigidbody _rb;
     protected float _timer;
 
     protected void Start()
@@ -16,8 +17,6 @@ public class Projectile : MonoBehaviour, IDamageable
 
     protected virtual void Update()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
-
         if (_timer <= 0)
         {
             Die();
@@ -26,6 +25,11 @@ public class Projectile : MonoBehaviour, IDamageable
         {
             _timer -= Time.deltaTime;
         }
+    }
+
+    protected void FixedUpdate()
+    {
+        _rb.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
     }
 
     protected virtual void OnTriggerEnter(Collider other)

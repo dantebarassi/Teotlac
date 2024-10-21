@@ -45,7 +45,8 @@ public class NewItztlacoliuhqui : Boss
 
     [Header("Ground Spikes")]
     [SerializeField] VisualEffect _spikes;
-    [SerializeField] float _spikesBaseOffset, _spikesBaseSize, _spikesSizeMultiplier, _spikesDelay, _spikesDamage, _spikesHitCheckDuration;
+    [SerializeField] float _spikesBaseOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesHitCheckDuration;
+    [SerializeField] int _spikesExtraWaves;
 
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
@@ -73,6 +74,8 @@ public class NewItztlacoliuhqui : Boss
 
         _shardFactory = new Factory<ObsidianShard>(_shardPrefab);
         _shardPool = new ObjectPool<ObsidianShard>(_shardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 20);
+
+        _spikes.SetFloat("SizeZ", _spikesSizeZ);
 
         if (_playOnStart) StartCoroutine(SetupWait());
     }
@@ -251,7 +254,8 @@ public class NewItztlacoliuhqui : Boss
     void Start()
     {
         //StartCoroutine(BudStrikeTest());
-        StartCoroutine(yea());
+        //StartCoroutine(yea());
+        StartCoroutine(Test());
     }
     IEnumerator yea()
     {
@@ -262,6 +266,31 @@ public class NewItztlacoliuhqui : Boss
     void Update()
     {
 
+    }
+
+    IEnumerator Test()
+    {
+        QuickShot(_quickShotProjectileAmount);
+
+        yield return new WaitForSeconds(1.5f);
+
+        QuickShot(_quickShotProjectileAmount);
+
+        yield return new WaitForSeconds(1.5f);
+
+        QuickShot(_quickShotProjectileAmount);
+
+        yield return new WaitForSeconds(3);
+
+        _bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
+
+        if (_bloomingBuds.Any())
+        {
+            StartCoroutine(BloomTest());
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        StartCoroutine(Test());
     }
 
     IEnumerator BudStrikeTest()
@@ -344,6 +373,14 @@ public class NewItztlacoliuhqui : Boss
         //}
     }
 
+    public void SpawnBud(Vector3 pos)
+    {
+        var bud = _budPool.Get();
+        bud.Initialize(_budPool, _shardPool, BudDestroyed, pos, _budStrikeDamage, _shardSpeed, _shardDamage);
+
+        _spawnedBuds.Add(bud);
+    }
+
     public void Prebloom()
     {
         //_bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
@@ -359,7 +396,7 @@ public class NewItztlacoliuhqui : Boss
     {
         foreach (var item in _bloomingBuds)
         {
-            item.Bloom(_player.transform.position, _projectileAmount);
+            item.Bloom(_player.target.position, _projectileAmount);
         }
     }
 
@@ -371,12 +408,12 @@ public class NewItztlacoliuhqui : Boss
 
     public void QuickShot(int projectileCount)
     {
-        var dir = _player.transform.position - _quickShotSpawnPos.position;
+        var dir = _player.target.position - _quickShotSpawnPos.position;
 
         for (int i = 0; i < projectileCount; i++)
         {
             var shard = _shardPool.Get();
-            shard.Initialize(_shardPool, _shardSpeed, _shardDamage);
+            shard.Initialize(_shardPool, _shardSpeed, _shardDamage, SpawnBud);
             shard.transform.position = _quickShotSpawnPos.position;
             shard.transform.forward = dir.VectorVariation(i, _quickShotHorDirVariation, _quickShotVerDirVariation);
         }
@@ -432,12 +469,13 @@ public class NewItztlacoliuhqui : Boss
             else yield break;
         }
 
-        dir = (targetPos - transform.position).MakeHorizontal().normalized*2;
+        dir = (targetPos - transform.position).MakeHorizontal().normalized;
         transform.forward = dir;
         Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         nextPos = transform.position + dir * _spikesBaseOffset;
-        float nextSize = _spikesBaseSize, halfSize = _spikesBaseSize * 0.5f;
+        dir *= _spikesSizeZ;
+        float nextSize = _spikesBaseSizeX, halfSize = _spikesBaseSizeX * 0.5f;
         List<GameObject> allSpikes = new();
 
         while (Vector3.Distance(nextPos, targetPos) > dir.magnitude)
@@ -450,18 +488,27 @@ public class NewItztlacoliuhqui : Boss
             StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
 
             nextPos += dir;
-            nextSize *= _spikesSizeMultiplier;
+            nextSize += _spikesSizeGrowthX;
             halfSize = nextSize * 0.5f;
 
             yield return new WaitForSeconds(_spikesDelay);
         }
 
-        var spikes = Instantiate(_spikes, nextPos, rotation);
-        spikes.SetFloat("Radiu 2", nextSize);
-        spikes.Play();
-        allSpikes.Add(spikes.gameObject);
+        for (int i = -1; i < _spikesExtraWaves; i++)
+        {
+            var currentsSpikes = Instantiate(_spikes, nextPos, rotation);
+            currentsSpikes.SetFloat("Radiu 2", nextSize);
+            currentsSpikes.Play();
+            allSpikes.Add(currentsSpikes.gameObject);
 
-        StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
+            StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
+
+            nextPos += dir;
+            nextSize += _spikesSizeGrowthX;
+            halfSize = nextSize * 0.5f;
+
+            yield return new WaitForSeconds(_spikesDelay);
+        }
 
         yield return new WaitForSeconds(5);
 
@@ -476,7 +523,7 @@ public class NewItztlacoliuhqui : Boss
         {
             timer += Time.deltaTime;
 
-            if (Physics.CheckBox(center, new Vector3(halfExtents, 0.5f, halfExtents), orientation, _playerLayer))
+            if (Physics.CheckBox(center, new Vector3(halfExtents, _spikesSizeY, _spikesSizeZ), orientation, _playerLayer))
             {
                 _player.TakeDamage(_spikesDamage);
 
