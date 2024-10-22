@@ -792,7 +792,7 @@ public class Itztlacoliuhqui : Boss
         }
         //recuperacion
         yield return new WaitForSeconds(_spikesRecovery);
-
+        
         //LookAtPlayer = true;
         _takingAction = false;
     }

@@ -977,7 +977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140879421}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
+  m_LocalRotation: {x: 0.00006943844, y: 0.99939513, z: -0.0019988017, w: 0.03471902}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11014,7 +11014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997635914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
+  m_LocalRotation: {x: 0.000069436945, y: 0.99939513, z: -0.0019987589, w: 0.03471902}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16852,7 +16852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337891766}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
+  m_LocalRotation: {x: 0.000069436945, y: 0.99939513, z: -0.0019987589, w: 0.03471902}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17860,7 +17860,7 @@ GameObject:
   - component: {fileID: 1478627707}
   - component: {fileID: 1478627706}
   m_Layer: 3
-  m_Name: Obsidian Boss
+  m_Name: Obsidian Boss 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18073,6 +18073,11 @@ MonoBehaviour:
     type: 3}
   _shardSpeed: 25
   _shardDamage: 10
+  _melee: {fileID: 987294604945176423, guid: a365ec9aae30e9248b5967aafa0fb8c0, type: 3}
+  _meleeSpawnOffset: 3
+  _meleeRadius: 1.5
+  _meleeHeight: 5
+  _meleeDamage: 25
   _budPrefab: {fileID: 5627445806308899075, guid: 844c92332713ad840be9dbadfb901e9b,
     type: 3}
   _projectileAmount: 6
@@ -18092,6 +18097,9 @@ MonoBehaviour:
   _spikesDamage: 20
   _spikesDuration: 0.55
   _spikesExtraWaves: 5
+  _spikeTargets:
+    serializedVersion: 2
+    m_Bits: 0
   _wallPrefab: {fileID: 4512302602141651466, guid: 56e1b05cc773f7940952e0901becccea,
     type: 3}
   _movingSpikes: {fileID: 5088560179641679944, guid: dc8b55a9cc626794aabd376dc8a5b947,
@@ -18351,7 +18359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488233628}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
+  m_LocalRotation: {x: 0.000069436945, y: 0.99939513, z: -0.0019987589, w: 0.03471902}
   m_LocalPosition: {x: -0.74592465, y: 1.493, z: 38.282978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

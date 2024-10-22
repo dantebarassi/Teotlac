@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int actualBoss;
 
     [SerializeField] public PlayerController player;
-
+    
     void Awake()
     {
         if (instance == null)

@@ -15,6 +15,7 @@ public class NewItztlacoliuhqui : Boss
         Melee,
         QuickShot,
         PowerShot,
+        GroundSpike,
         BudStrike,
         Bloom,
         ThornTrap,
@@ -24,14 +25,32 @@ public class NewItztlacoliuhqui : Boss
 
     EventFSM<Actions> _fsm;
     Pathfinding _pf;
-
+    
     [SerializeField] bool _playOnStart;
     [SerializeField] PlayerController _player;
-    [SerializeField] LayerMask _playerLayer, _groundLayer;
+    [SerializeField] Transform _losTransform;
+    [SerializeField] LayerMask _playerLayer, _groundLayer, _obstacleLayer;
+    [SerializeField] float _aggroRange;
+
+    [Header("Chain attacks")]
+    [SerializeField] Actions[] _chainableAttacks;
+    [Range(0, 100)]
+    [SerializeField] int _baseChainChance, _chainChanceReduction;
+    int _chainCounter = 0;
 
     [Header("Shards")]
     [SerializeField] ObsidianShard _shardPrefab;
     [SerializeField] float _shardSpeed, _shardDamage;
+
+    [Header("Walk")]
+    [SerializeField] float _walkSpeed;
+    [SerializeField] float _minWalkDuration, _maxWalkDuration;
+    [Range(0, 100)]
+    [SerializeField] int _walkActionChance, _walkReactionChance;
+
+    [Header("Melee")]
+    [SerializeField] VisualEffect _melee;
+    [SerializeField] float _meleeRange, _meleeSpawnOffset, _meleeRadius, _meleeHeight, _meleeDamage;
 
     [Header("Buds")]
     [SerializeField] ObsidianBud _budPrefab;
@@ -39,7 +58,7 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] float _budActivationRange, _budStrikeDamage;
 
     [Header("Quick Shot")]
-    [SerializeField] Transform _quickShotSpawnPos; // crear un empty hijo del hueso de la muñeca de la mano que no lleva la daga, moverlo cerca de la palma y cargarlo aca
+    [SerializeField] Transform _quickShotSpawnPos;
     [SerializeField] int _quickShotProjectileAmount;
     [SerializeField] float _quickShotHorDirVariation, _quickShotVerDirVariation;
 
@@ -47,6 +66,7 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] VisualEffect _spikes;
     [SerializeField] float _spikesBaseOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration;
     [SerializeField] int _spikesExtraWaves;
+    [SerializeField] LayerMask _spikeTargets;
 
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
@@ -62,6 +82,8 @@ public class NewItztlacoliuhqui : Boss
     List<ObsidianBud> _bloomingBuds = new();
 
     AudioSource _myAS;
+
+    float _timer = 0;
 
     protected override void Awake()
     {
@@ -101,6 +123,7 @@ public class NewItztlacoliuhqui : Boss
         var melee = new State<Actions>("Melee");
         var quickShot = new State<Actions>("QuickShot");
         var powerShot = new State<Actions>("PowerShot");
+        var groundSpike = new State<Actions>("GroundSpike");
         var budStrike = new State<Actions>("BudStrike");
         var bloom = new State<Actions>("Bloom");
         var thornTrap = new State<Actions>("ThornTrap");
@@ -112,6 +135,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -125,6 +149,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -138,6 +163,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -151,6 +177,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -164,11 +191,25 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
+            .Done();
+
+        StateConfigurer.Create(groundSpike)
+            .SetTransition(Actions.Inactive, inactive)
+            .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Melee, melee)
+            .SetTransition(Actions.QuickShot, quickShot)
+            .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
+            .SetTransition(Actions.BudStrike, budStrike)
+            .SetTransition(Actions.Bloom, bloom)
+            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.Limb, limb)
             .Done();
 
         StateConfigurer.Create(budStrike)
@@ -177,6 +218,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -190,6 +232,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -203,6 +246,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -216,6 +260,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -229,6 +274,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
             .SetTransition(Actions.ThornTrap, thornTrap)
@@ -239,24 +285,123 @@ public class NewItztlacoliuhqui : Boss
 
         #region FSM State Setup
 
-        budStrike.OnEnter += x =>
+        inactive.OnUpdate += () =>
         {
-            // empezar animacion
+            if (Vector3.Distance(transform.position, _player.transform.position) <= _aggroRange)
+            {
+                UIManager.instance.UpdateBar(UIManager.Bar.BossHp, _hp, _maxHp);
+                UIManager.instance.ChangeBossName("Itztlacoliuhqui, God of Obsidian");
+                _player.FightStarts(this);
+                UIManager.instance.ToggleBossBar(true);
+                ChangeState(Actions.Approach);
+            }
+        };
+
+        approach.OnEnter += x =>
+        {
+            // animacion caminar
+
+            _timer = 0;
+        };
+
+        approach.OnFixedUpdate += () =>
+        {
+            _timer += Time.fixedDeltaTime;
+
+            transform.forward = (_player.transform.position - transform.position).MakeHorizontal();
+
+            _rb.MovePosition(transform.position + transform.forward * _walkSpeed * Time.fixedDeltaTime);
+
+            if (Physics.Raycast(_losTransform.position, transform.forward, _meleeRange, _obstacleLayer))
+            {
+                ChangeState(Actions.Melee);
+            }
+            else if (_timer % _minWalkDuration < 0.1f)
+            {
+                if (Random.Range(0, 100) < _walkActionChance)
+                {
+                    ChainOpportunity();
+                }
+            }
+            else if (_player.Aiming)
+            {
+                if (Random.Range(0, 100) < _walkReactionChance && CanQuickShot())
+                {
+                    ChangeState(Actions.QuickShot);
+                    // o directamente poner la animacion de quickshot 
+                }
+            }
+            else if (_timer > _maxWalkDuration)
+            {
+                ChainOpportunity();
+            }
+        };
+
+        melee.OnEnter += x =>
+        {
+            StartCoroutine(MeleeTest());
+        };
+
+        groundSpike.OnEnter += x =>
+        {
+            // animacion ground spike
         };
 
         bloom.OnEnter += x =>
         {
-            // empezar animacion
+            StartCoroutine(BloomTest());
         };
 
+        _fsm = new EventFSM<Actions>(inactive);
+
         #endregion
+    }
+
+    void ChangeState(Actions action) => _fsm.SendInput(action);
+
+    bool CanMelee() => Vector3.Distance(transform.position, _player.transform.position) <= _meleeRange;
+    bool CanQuickShot() => _losTransform.position.InLineOfSightOf(_player.target.position, _obstacleLayer);
+    bool CanGroundSpike() => true;
+    bool CanBloom()
+    {
+        _bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
+
+        return _bloomingBuds.Any();
+    }
+
+    bool TryChain(Actions action)
+    {
+        bool succesful = false;
+
+        switch (action)
+        {
+            case Actions.QuickShot:
+                if (CanQuickShot()) /*quick*/;
+                succesful = true;
+                break;
+            case Actions.GroundSpike:
+                if (CanGroundSpike())/*quick*/;
+                succesful = true;
+                break;
+            case Actions.Bloom:
+                if (CanBloom())/*quick*/;
+                succesful = true;
+                break;
+            default:
+                break;
+        }
+
+        if (succesful) ChangeState(action);
+
+        return succesful;
     }
 
     void Start()
     {
         //StartCoroutine(BudStrikeTest());
-        //StartCoroutine(yea());
-        StartCoroutine(Test());
+        StartCoroutine(yea());
+        //StartCoroutine(Test());
+        //StartCoroutine(MeleeTest());
     }
     IEnumerator yea()
     {
@@ -264,9 +409,26 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(5);
         StartCoroutine(yea());
     }
+
     void Update()
     {
+        _fsm.Update();
+    }
 
+    private void FixedUpdate()
+    {
+        _fsm.FixedUpdate();
+    }
+
+    IEnumerator MeleeTest()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Melee();
+
+        yield return new WaitForSeconds(1.75f);
+
+        ChainOpportunity();
     }
 
     IEnumerator Test()
@@ -347,8 +509,51 @@ public class NewItztlacoliuhqui : Boss
         Prebloom();
 
         yield return new WaitForSeconds(1);
-
+        
         Bloom();
+
+        yield return new WaitForSeconds(1);
+
+        ChainOpportunity();
+    }
+
+    public void ChainOpportunity()
+    {
+        if (CanMelee()) ChangeState(Actions.Melee);
+
+        if (Random.Range(0, 100) < _baseChainChance - _chainChanceReduction * _chainCounter)
+        {
+            var attackList = _chainableAttacks.OrderBy(x => Random.value).ToList();
+
+            while (attackList.Any())
+            {
+                if (TryChain(attackList.First()))
+                {
+                    _chainCounter++;
+                    return;
+                }
+
+                attackList.RemoveAt(0);
+            }
+        }
+
+        _chainCounter = 0;
+
+        ChangeState(Actions.Approach);
+    }
+
+    public void Melee()
+    {
+        transform.forward = (_player.transform.position - transform.position).MakeHorizontal();
+
+        Vector3 spawnPos;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point + transform.forward * _meleeSpawnOffset;
+        else return;
+
+        var spike = Instantiate(_melee, spawnPos, transform.rotation);
+
+        StartCoroutine(SpikesHitCheck(1, _meleeDamage, spike.transform.position, _meleeRadius, _meleeHeight, _meleeRadius, spike.transform.rotation));
     }
 
     public void BudStrike()
@@ -463,18 +668,16 @@ public class NewItztlacoliuhqui : Boss
     {
         Vector3 targetPos, nextPos, dir;
 
-        if (_player.Grounded) targetPos = _player.transform.position;
-        else
-        {
-            if (Physics.Raycast(_player.transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) targetPos = hit.point;
-            else yield break;
-        }
+        if (Physics.Raycast(_player.transform.position + Vector3.up, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) targetPos = hit.point;
+        else yield break;
 
         dir = (targetPos - transform.position).MakeHorizontal().normalized;
         transform.forward = dir;
         Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
-        nextPos = transform.position + dir * _spikesBaseOffset;
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, _groundLayer)) nextPos = hit.point + dir * _spikesBaseOffset;
+        else yield break;
+
         dir *= _spikesSizeZ;
         float nextSize = _spikesBaseSizeX, halfSize = _spikesBaseSizeX * 0.5f;
         List<GameObject> allSpikes = new();
@@ -486,7 +689,7 @@ public class NewItztlacoliuhqui : Boss
             currentsSpikes.Play();
             allSpikes.Add(currentsSpikes.gameObject);
 
-            StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
+            StartCoroutine(SpikesHitCheck(_spikesDuration, _spikesDamage, nextPos, halfSize, _spikesSizeY, _spikesSizeZ, rotation));
 
             nextPos += dir;
             nextSize += _spikesSizeGrowthX;
@@ -502,7 +705,7 @@ public class NewItztlacoliuhqui : Boss
             currentsSpikes.Play();
             allSpikes.Add(currentsSpikes.gameObject);
 
-            StartCoroutine(SpikesHitCheck(nextPos, halfSize, rotation));
+            StartCoroutine(SpikesHitCheck(_spikesDuration, _spikesDamage, nextPos, halfSize, _spikesSizeY, _spikesSizeZ, rotation));
 
             nextPos += dir;
             nextSize += _spikesSizeGrowthX;
@@ -516,20 +719,53 @@ public class NewItztlacoliuhqui : Boss
         foreach (var item in allSpikes) Destroy(item);
     }
 
-    IEnumerator SpikesHitCheck(Vector3 center, float halfExtents, Quaternion orientation)
+    IEnumerator SpikesHitCheck(float duration, float damage, Vector3 center, float boxX, float boxY, float boxZ, Quaternion orientation)
     {
         float timer = 0;
+        List<Collider> ignore = new List<Collider>();
+        bool skip = false;
 
-        while (timer < _spikesDuration)
+        while (timer < duration)
         {
-            timer += Time.deltaTime;
+            var cols = Physics.OverlapBox(center, new Vector3(boxX, boxY, boxZ), orientation, _spikeTargets);
 
-            if (Physics.CheckBox(center, new Vector3(halfExtents, _spikesSizeY, _spikesSizeZ), orientation, _playerLayer))
+            foreach (var item in cols)
             {
-                _player.TakeDamage(_spikesDamage);
+                foreach (var item2 in ignore)
+                {
+                    if (item == item2) skip = true;
+                }
 
-                yield break;
+                if (skip)
+                {
+                    skip = false;
+                    continue;
+                }
+
+                if (item.TryGetComponent(out IDamageable damageable))
+                {
+                    if (item.TryGetComponent(out NebulaShield nebula))
+                    {
+                        nebula.Overcharge();
+
+                        continue;
+                    }
+
+                    damageable.TakeDamage(damage);
+
+                    if (item != null) ignore.Add(item);
+                }
+                else
+                {
+                    damageable = item.GetComponentInParent<IDamageable>();
+
+                    if (damageable != null) damageable.TakeDamage(damage);
+
+                    if (item != null) ignore.Add(item);
+                }
             }
+
+            timer += Time.deltaTime;
 
             yield return null;
         }

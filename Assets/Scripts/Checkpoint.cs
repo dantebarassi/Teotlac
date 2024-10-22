@@ -33,13 +33,13 @@ public class Checkpoint : MonoBehaviour, IInteractable
                 else
                 {
                     newPos = _firstCheckpointPos;
-                    GameManager.instance.PlayBossIntro();
+                    //GameManager.instance.PlayBossIntro();
                 }
             }
             else
             {
                 newPos = _firstCheckpointPos;
-                GameManager.instance.PlayBossIntro();
+                //GameManager.instance.PlayBossIntro();
             }
 
             GameManager.instance.sunGodStone.DespawnDummy();
