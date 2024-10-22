@@ -30968,7 +30968,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616117}
   m_ExposedName: Fire Size
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 16
   m_Category: 
   m_Min:
     m_Type:
@@ -31053,7 +31053,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616119}
   m_ExposedName: Flames Height
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 17
   m_Category: 
   m_Min:
     m_Type:
@@ -31141,7 +31141,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616121}
   m_ExposedName: Flames Direction
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 18
   m_Category: 
   m_Min:
     m_Type:
@@ -31325,7 +31325,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616126}
   m_ExposedName: Particle Rate
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 19
   m_Category: 
   m_Min:
     m_Type:
@@ -31405,7 +31405,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616128}
   m_ExposedName: A
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 20
   m_Category: 
   m_Min:
     m_Type:
@@ -31490,7 +31490,7 @@ MonoBehaviour:
   - {fileID: 8926484042661616130}
   m_ExposedName: VelocityCircle
   m_Exposed: 1
-  m_Order: 15
+  m_Order: 21
   m_Category: 
   m_Min:
     m_Type:
@@ -35624,14 +35624,14 @@ MonoBehaviour:
       slotIndex: 0
   m_OutputFlowSlot:
   - link: []
-  blendMode: 0
+  blendMode: 1
   cullMode: 0
   zWriteMode: 0
   zTestMode: 0
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTAA: 0
-  sortingPriority: 0
+  sortingPriority: 1
   m_SubOutputs:
   - {fileID: 8926484042661616279}
   colorMapping: 0
@@ -43114,7 +43114,7 @@ MonoBehaviour:
   useAlphaClipping: 0
   generateMotionVector: 0
   excludeFromTAA: 0
-  sortingPriority: 0
+  sortingPriority: 3
   m_SubOutputs:
   - {fileID: 8926484042661616503}
   colorMapping: 0
@@ -50795,7 +50795,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
   m_Direction: 0
   m_LinkedSlots:
-  - {fileID: 8926484042661616766}
+  - {fileID: 8926484042661616768}
 --- !u!114 &8926484042661616756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50855,7 +50855,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.1
+      m_SerializableObject: 10
     m_Space: 2147483647
   m_Property:
     name: oldRangeMax
@@ -51084,8 +51084,7 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 8926484042661616755}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661616767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51153,7 +51152,8 @@ MonoBehaviour:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
   m_Direction: 1
-  m_LinkedSlots: []
+  m_LinkedSlots:
+  - {fileID: 8926484042661616755}
 --- !u!114 &8926484042661616769
 MonoBehaviour:
   m_ObjectHideFlags: 0
