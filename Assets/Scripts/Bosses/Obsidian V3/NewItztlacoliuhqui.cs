@@ -82,6 +82,7 @@ public class NewItztlacoliuhqui : Boss
     List<ObsidianBud> _bloomingBuds = new();
 
     AudioSource _myAS;
+    [SerializeField] Animator _anim;
 
     float _timer = 0;
 
@@ -299,7 +300,7 @@ public class NewItztlacoliuhqui : Boss
 
         approach.OnEnter += x =>
         {
-            // animacion caminar
+            _anim.SetBool("isWalking", true);
 
             _timer = 0;
         };
@@ -337,6 +338,11 @@ public class NewItztlacoliuhqui : Boss
             }
         };
 
+        approach.OnExit += x =>
+        {
+            _anim.SetBool("isWalking", false);
+        };
+
         melee.OnEnter += x =>
         {
             StartCoroutine(MeleeTest());
@@ -344,7 +350,7 @@ public class NewItztlacoliuhqui : Boss
 
         groundSpike.OnEnter += x =>
         {
-            // animacion ground spike
+            _anim.SetTrigger("Stomp");
         };
 
         bloom.OnEnter += x =>
