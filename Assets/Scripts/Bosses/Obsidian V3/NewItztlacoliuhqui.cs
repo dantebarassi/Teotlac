@@ -45,7 +45,7 @@ public class NewItztlacoliuhqui : Boss
 
     [Header("Ground Spikes")]
     [SerializeField] VisualEffect _spikes;
-    [SerializeField] float _spikesBaseOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesHitCheckDuration;
+    [SerializeField] float _spikesBaseOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration;
     [SerializeField] int _spikesExtraWaves;
 
     [Header("Placeholder Wall Spike")]
@@ -73,9 +73,10 @@ public class NewItztlacoliuhqui : Boss
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
 
         _shardFactory = new Factory<ObsidianShard>(_shardPrefab);
-        _shardPool = new ObjectPool<ObsidianShard>(_shardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 20);
+        _shardPool = new ObjectPool<ObsidianShard>(_shardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 50);
 
         _spikes.SetFloat("SizeZ", _spikesSizeZ);
+        _spikes.SetFloat("Lifetime", _spikesDuration);
 
         if (_playOnStart) StartCoroutine(SetupWait());
     }
@@ -519,7 +520,7 @@ public class NewItztlacoliuhqui : Boss
     {
         float timer = 0;
 
-        while (timer < _spikesHitCheckDuration)
+        while (timer < _spikesDuration)
         {
             timer += Time.deltaTime;
 

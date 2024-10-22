@@ -977,7 +977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140879421}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047441343, y: 0.99971664, z: -0.0019993975, w: 0.023721097}
+  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11014,7 +11014,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997635914}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047441838, y: 0.99971664, z: -0.0019994194, w: 0.023721086}
+  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16852,7 +16852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337891766}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047441838, y: 0.99971664, z: -0.0019994194, w: 0.023721086}
+  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18085,12 +18085,12 @@ MonoBehaviour:
   _spikes: {fileID: 987294604945176423, guid: e19c28846621c764cac355912b7e5e00, type: 3}
   _spikesBaseOffset: 0.5
   _spikesBaseSizeX: 2
-  _spikesSizeY: 0.3
+  _spikesSizeY: 0.25
   _spikesSizeZ: 1.5
   _spikesSizeGrowthX: 1
-  _spikesDelay: 0.05
+  _spikesDelay: 0.035
   _spikesDamage: 20
-  _spikesHitCheckDuration: 0.5
+  _spikesDuration: 0.55
   _spikesExtraWaves: 5
   _wallPrefab: {fileID: 4512302602141651466, guid: 56e1b05cc773f7940952e0901becccea,
     type: 3}
@@ -18351,7 +18351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488233628}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000047441838, y: 0.99971664, z: -0.0019994194, w: 0.023721086}
+  m_LocalRotation: {x: 0.00006476653, y: 0.9994735, z: -0.0019989372, w: 0.032383423}
   m_LocalPosition: {x: -0.74592465, y: 1.493, z: 38.282978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21633,8 +21633,8 @@ SceneRoots:
   - {fileID: 1433472768}
   - {fileID: 946601438}
   - {fileID: 965988927}
-  - {fileID: 1478627710}
   - {fileID: 675989172}
+  - {fileID: 1478627710}
   - {fileID: 1139638233}
   - {fileID: 1407741722}
   - {fileID: 826493439}
