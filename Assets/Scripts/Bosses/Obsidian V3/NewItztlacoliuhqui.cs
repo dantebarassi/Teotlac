@@ -399,7 +399,7 @@ public class NewItztlacoliuhqui : Boss
     void Start()
     {
         //StartCoroutine(BudStrikeTest());
-        StartCoroutine(yea());
+        //StartCoroutine(yea());
         //StartCoroutine(Test());
         //StartCoroutine(MeleeTest());
     }
