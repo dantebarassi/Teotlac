@@ -82,15 +82,16 @@ public class NewItztlacoliuhqui : Boss
     List<ObsidianBud> _bloomingBuds = new();
 
     AudioSource _myAS;
-    [SerializeField] Animator _anim;
+    Animator _anim;
 
     float _timer = 0;
+    bool _start = false;
 
     protected override void Awake()
     {
         base.Awake();
 
-        UIManager.instance.UpdateBar(UIManager.Bar.BossHp, _hp, _maxHp);
+        _anim = GetComponent<Animator>();
 
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
@@ -307,13 +308,15 @@ public class NewItztlacoliuhqui : Boss
 
         approach.OnFixedUpdate += () =>
         {
+            Debug.Log("approaching");
+
             _timer += Time.fixedDeltaTime;
 
             transform.forward = (_player.transform.position - transform.position).MakeHorizontal();
 
             _rb.MovePosition(transform.position + transform.forward * _walkSpeed * Time.fixedDeltaTime);
 
-            if (Physics.Raycast(_losTransform.position, transform.forward, _meleeRange, _obstacleLayer))
+            if (CanMelee() || Physics.Raycast(_losTransform.position, transform.forward, _meleeRange, _obstacleLayer))
             {
                 ChangeState(Actions.Melee);
             }
@@ -348,6 +351,11 @@ public class NewItztlacoliuhqui : Boss
             StartCoroutine(MeleeTest());
         };
 
+        quickShot.OnEnter += x =>
+        {
+            _anim.SetTrigger("Attack");
+        };
+
         groundSpike.OnEnter += x =>
         {
             _anim.SetTrigger("Stomp");
@@ -361,6 +369,8 @@ public class NewItztlacoliuhqui : Boss
         _fsm = new EventFSM<Actions>(inactive);
 
         #endregion
+
+        _start = true;
     }
 
     void ChangeState(Actions action) => _fsm.SendInput(action);
@@ -382,16 +392,13 @@ public class NewItztlacoliuhqui : Boss
         switch (action)
         {
             case Actions.QuickShot:
-                if (CanQuickShot()) /*quick*/;
-                succesful = true;
+                if (CanQuickShot()) succesful = true;
                 break;
             case Actions.GroundSpike:
-                if (CanGroundSpike())/*quick*/;
-                succesful = true;
+                if (CanGroundSpike()) succesful = true;
                 break;
             case Actions.Bloom:
-                if (CanBloom())/*quick*/;
-                succesful = true;
+                if (CanBloom()) succesful = true;
                 break;
             default:
                 break;
@@ -418,11 +425,15 @@ public class NewItztlacoliuhqui : Boss
 
     void Update()
     {
+        if (!_start) return;
+
         _fsm.Update();
     }
 
     private void FixedUpdate()
     {
+        if (!_start) return;
+
         _fsm.FixedUpdate();
     }
 
@@ -435,19 +446,23 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(1.75f);
 
         ChainOpportunity();
+
+        yield return new WaitForSeconds(0.25f);
+
+        ChainFailed();
     }
 
     IEnumerator Test()
     {
-        QuickShot(_quickShotProjectileAmount);
+        QuickShot();
 
         yield return new WaitForSeconds(1.5f);
 
-        QuickShot(_quickShotProjectileAmount);
+        QuickShot();
 
         yield return new WaitForSeconds(1.5f);
 
-        QuickShot(_quickShotProjectileAmount);
+        QuickShot();
 
         yield return new WaitForSeconds(3);
 
@@ -486,11 +501,11 @@ public class NewItztlacoliuhqui : Boss
             yield return new WaitForSeconds(1.5f);
         }
 
-        QuickShot(_quickShotProjectileAmount);
+        QuickShot();
 
         yield return new WaitForSeconds(1.5f);
 
-        QuickShot(_quickShotProjectileAmount);
+        QuickShot();
 
         yield return new WaitForSeconds(1.5f);
 
@@ -521,11 +536,19 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(1);
 
         ChainOpportunity();
+
+        yield return new WaitForSeconds(0.25f);
+
+        ChainFailed();
     }
 
-    public void ChainOpportunity()
+    public void ChainOpportunity(Actions prevAction = Actions.Approach)
     {
-        if (CanMelee()) ChangeState(Actions.Melee);
+        if (CanMelee())
+        {
+            transform.forward = (_player.transform.position - transform.position).MakeHorizontal();
+            ChangeState(Actions.Melee);
+        }
 
         if (Random.Range(0, 100) < _baseChainChance - _chainChanceReduction * _chainCounter)
         {
@@ -533,10 +556,15 @@ public class NewItztlacoliuhqui : Boss
 
             while (attackList.Any())
             {
-                if (TryChain(attackList.First()))
+                var currentAction = attackList.First();
+
+                if (currentAction != prevAction)
                 {
-                    _chainCounter++;
-                    return;
+                    if (TryChain(currentAction))
+                    {
+                        _chainCounter++;
+                        return;
+                    }
                 }
 
                 attackList.RemoveAt(0);
@@ -545,13 +573,16 @@ public class NewItztlacoliuhqui : Boss
 
         _chainCounter = 0;
 
-        ChangeState(Actions.Approach);
+        //ChangeState(Actions.Approach);
+    }
+
+    public void ChainFailed()
+    {
+        if (_chainCounter <= 0) ChangeState(Actions.Approach);
     }
 
     public void Melee()
     {
-        transform.forward = (_player.transform.position - transform.position).MakeHorizontal();
-
         Vector3 spawnPos;
 
         if (Physics.Raycast(transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point + transform.forward * _meleeSpawnOffset;
@@ -618,11 +649,11 @@ public class NewItztlacoliuhqui : Boss
         else if (_bloomingBuds.Contains(bud)) _bloomingBuds.Remove(bud);
     }
 
-    public void QuickShot(int projectileCount)
+    public void QuickShot()
     {
         var dir = _player.target.position - _quickShotSpawnPos.position;
 
-        for (int i = 0; i < projectileCount; i++)
+        for (int i = 0; i < _quickShotProjectileAmount; i++)
         {
             var shard = _shardPool.Get();
             shard.Initialize(_shardPool, _shardSpeed, _shardDamage, SpawnBud);
@@ -668,6 +699,11 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(5);
 
         Destroy(vfx.gameObject);
+    }
+
+    public void TriggerGroundSpike()
+    {
+        StartCoroutine(GroundSpiking());
     }
 
     IEnumerator GroundSpiking()
@@ -775,5 +811,27 @@ public class NewItztlacoliuhqui : Boss
 
             yield return null;
         }
+    }
+
+    public override void TakeDamage(float amount, bool bypassCooldown = false)
+    {
+        base.TakeDamage(amount);
+        Debug.Log(_hp);
+        UIManager.instance.UpdateBar(UIManager.Bar.BossHp, _hp);
+    }
+
+    public override void Die()
+    {
+        StopAllCoroutines();
+        //_anim.SetTrigger("Dead");
+        UIManager.instance.ToggleBossBar(false);
+        //UIManager.instance.HideUI(true);
+        //_player.Inputs.inputUpdate = _player.Inputs.Nothing;
+        //_outroTimeline.Play();
+        Destroy(gameObject);
+
+        //prenderCaidaPiedras(true);
+        //CineManager.instance.PlayAnimation(CineManager.cineEnum.obsidianDead);
+        //Destroy(gameObject);
     }
 }
