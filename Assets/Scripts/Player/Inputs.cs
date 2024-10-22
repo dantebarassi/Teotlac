@@ -10,7 +10,7 @@ public class Inputs
     Movement _movement;
     PlayerController _player;
     CinemachineCameraController _cameraController;
-    bool _jump, _primaryAttack = false, _secondaryAttack = false, _aiming = false, _staminaUncapped = false;
+    bool _jump, _primaryAttack = false, _secondaryAttack = false, _aiming = false, _resourcesUncapped = false;
 
     public bool trigger = false;
 
@@ -307,8 +307,8 @@ public class Inputs
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _staminaUncapped = !_staminaUncapped;
-            _player.UncapStamina(_staminaUncapped);
+            _resourcesUncapped = !_resourcesUncapped;
+            _player.UncapResources(_resourcesUncapped);
         }
     }
 

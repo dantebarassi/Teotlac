@@ -1120,11 +1120,14 @@ public class PlayerController : Entity
         go.SetActive(false);
     }
 
-    public void UncapStamina(bool uncap)
+    public void UncapResources(bool uncap)
     {
         _maxStamina = uncap ? 10000 : 100;
+        _maxHp = uncap ? 10000 : 100;
         _stamina = _maxStamina;
+        _hp = _maxHp;
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerStamina, _stamina, _maxStamina);
+        UIManager.instance.UpdateBar(UIManager.Bar.PlayerHp, _hp, _maxHp);
     }
 
     public void TravelToPalace()
