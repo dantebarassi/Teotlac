@@ -59,6 +59,7 @@ public class PlayerController : Entity
 
     public GameObject camaraFinal;
 
+    [HideInInspector] public bool canAttack = true;
     private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing, _canChain = false;
 
     [SerializeField] Material _VignetteAmountClamps;
@@ -279,7 +280,7 @@ public class PlayerController : Entity
 
     void ActivateSunMagic()
     {
-        if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckStamina(_sunBaseCost) && _damageCurrentCooldown <= 0)
+        if (_movement.IsGrounded() && _sunCurrentCooldown <= 0 && CheckStamina(_sunBaseCost) && _damageCurrentCooldown <= 0 && canAttack)
         {
             StartCoroutine(RootMotionCombo());
         }
@@ -1023,7 +1024,7 @@ public class PlayerController : Entity
         }
     }
 
-    void ReduceStamina(float cost)
+    public void ReduceStamina(float cost)
     {
         _stamina -= cost;
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerStamina, _stamina);

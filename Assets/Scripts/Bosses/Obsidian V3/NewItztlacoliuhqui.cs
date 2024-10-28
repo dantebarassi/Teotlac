@@ -85,7 +85,7 @@ public class NewItztlacoliuhqui : Boss
     Animator _anim;
 
     float _timer = 0;
-    bool _start = false;
+    bool _start = false, _stopGroundSpikes = false;
 
     protected override void Awake()
     {
@@ -724,9 +724,24 @@ public class NewItztlacoliuhqui : Boss
         float nextSize = _spikesBaseSizeX, halfSize = _spikesBaseSizeX * 0.5f;
         List<GameObject> allSpikes = new();
 
+        var currentsSpikes = Instantiate(_spikes, nextPos, rotation);
+        currentsSpikes.SetFloat("Radiu 2", nextSize);
+        currentsSpikes.Play();
+        allSpikes.Add(currentsSpikes.gameObject);
+
+        StartCoroutine(SpikesHitCheck(_spikesDuration, _spikesDamage * 3, nextPos, halfSize, _spikesSizeY, _spikesSizeZ, rotation, false));
+
+        nextPos += dir;
+        nextSize += _spikesSizeGrowthX;
+        halfSize = nextSize * 0.5f;
+
+        yield return new WaitForSeconds(_spikesDelay);
+
         while (Vector3.Distance(nextPos, targetPos) > dir.magnitude)
         {
-            var currentsSpikes = Instantiate(_spikes, nextPos, rotation);
+            if (_stopGroundSpikes) break;
+
+            currentsSpikes = Instantiate(_spikes, nextPos, rotation);
             currentsSpikes.SetFloat("Radiu 2", nextSize);
             currentsSpikes.Play();
             allSpikes.Add(currentsSpikes.gameObject);
@@ -742,7 +757,9 @@ public class NewItztlacoliuhqui : Boss
 
         for (int i = -1; i < _spikesExtraWaves; i++)
         {
-            var currentsSpikes = Instantiate(_spikes, nextPos, rotation);
+            if (_stopGroundSpikes) continue;
+
+            currentsSpikes = Instantiate(_spikes, nextPos, rotation);
             currentsSpikes.SetFloat("Radiu 2", nextSize);
             currentsSpikes.Play();
             allSpikes.Add(currentsSpikes.gameObject);
@@ -756,20 +773,26 @@ public class NewItztlacoliuhqui : Boss
             yield return new WaitForSeconds(_spikesDelay);
         }
 
+        _stopGroundSpikes = false;
+
         yield return new WaitForSeconds(5);
 
         foreach (var item in allSpikes) Destroy(item);
     }
 
-    IEnumerator SpikesHitCheck(float duration, float damage, Vector3 center, float boxX, float boxY, float boxZ, Quaternion orientation)
+    IEnumerator SpikesHitCheck(float duration, float damage, Vector3 center, float boxX, float boxY, float boxZ, Quaternion orientation, bool stoppable = true)
     {
         float timer = 0;
         List<Collider> ignore = new List<Collider>();
         bool skip = false;
 
+        var cols = Physics.OverlapBox(center, new Vector3(boxX, boxY, boxZ), orientation, _obstacleLayer);
+
+        if (stoppable && cols.Any()) _stopGroundSpikes = true;
+
         while (timer < duration)
         {
-            var cols = Physics.OverlapBox(center, new Vector3(boxX, boxY, boxZ), orientation, _spikeTargets);
+            cols = Physics.OverlapBox(center, new Vector3(boxX, boxY, boxZ), orientation, _spikeTargets);
 
             foreach (var item in cols)
             {

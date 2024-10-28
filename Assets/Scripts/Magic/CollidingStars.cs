@@ -13,14 +13,16 @@ public class CollidingStars : MonoBehaviour
     [SerializeField] Rigidbody _rb;
 
     PlayerController _player;
+    Vector3 _moveDir;
 
-    bool _dead;
+    bool _dead = false, _thrown = false;
 
     void Update()
     {
+        transform.up = Vector3.up;
         _axis.rotation = Quaternion.AngleAxis(_rotationSpeed * Time.deltaTime, Vector3.up) * _axis.rotation;
         
-        if (!_dead)
+        if (!_dead && _thrown)
         {
             if (_expirationTime <= 0)
             {
@@ -35,16 +37,24 @@ public class CollidingStars : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_dead)
+        if (!_dead && _thrown)
         {
-            _rb.MovePosition(transform.position + transform.forward * _moveSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(transform.position + _moveDir * _moveSpeed * Time.fixedDeltaTime);
         }
     }
 
-    public void SetUp(PlayerController player, Vector3 dir)
+    public void SetUp(PlayerController player, Transform parent)
     {
         _player = player;
-        transform.forward = dir;
+        transform.SetParent(parent);
+    }
+
+    public void Throw(Vector3 dir)
+    {
+        _rb.isKinematic = false;
+        _moveDir = dir;
+        transform.parent = null;
+        _thrown = true;
     }
 
     public void Collide()
@@ -159,7 +169,7 @@ public class CollidingStars : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (_dead) return;
+        if (_dead || !_thrown) return;
 
         if (other.gameObject.layer == 6 || other.gameObject.layer == 11 || other.gameObject.layer == 13)
         {
