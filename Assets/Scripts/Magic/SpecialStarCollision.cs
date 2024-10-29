@@ -126,6 +126,8 @@ public class SpecialStarCollision : SpecialMagic
             yield return null;
         }
 
+        _player.transform.forward = Camera.main.transform.forward.MakeHorizontal();
+
         _thrown = true;
 
         _inputs.inputUpdate = _inputs.FixedCast;
