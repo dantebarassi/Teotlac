@@ -34,6 +34,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     {
         var vfx = Instantiate(_breakVFX, transform.position, transform.rotation);
         vfx.SetMesh("Mesh", GetComponent<MeshFilter>().mesh);
+        vfx.Play();
+
         _renderer.enabled = false;
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
