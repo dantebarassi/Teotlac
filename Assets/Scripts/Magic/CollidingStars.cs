@@ -51,6 +51,8 @@ public class CollidingStars : MonoBehaviour
 
     public void Throw(Vector3 dir)
     {
+        _distortion.gameObject.SetActive(true);
+        _distortion.transform.forward = dir;
         _rb.isKinematic = false;
         _moveDir = dir;
         transform.parent = null;
