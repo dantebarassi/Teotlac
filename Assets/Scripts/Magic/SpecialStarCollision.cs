@@ -74,7 +74,7 @@ public class SpecialStarCollision : SpecialMagic
 
         while (timer < _chargeDuration)
         {
-            if (_player.StopChannels)
+            if (_player.OnHit.Triggered)
             {
                 _player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
 
@@ -107,8 +107,10 @@ public class SpecialStarCollision : SpecialMagic
 
         while (!_thrown)
         {
-            if (_player.StopChannels)
+            if (_player.OnHit.Triggered)
             {
+                _spawnedStars.Die();
+
                 _player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
 
                 _startedCasting = false;

@@ -79,6 +79,8 @@ public class PlayerController : Entity
 
     [SerializeField] Animation myFireAnim;
 
+    public Trigger OnHit;
+
     public bool StopChannels
     {
         get
@@ -134,6 +136,7 @@ public class PlayerController : Entity
         _movement = new Movement(transform, _rb, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _groundLayer);
         _inputs = new Inputs(_movement, this, _cameraController);
         _specials = GetComponent<SpecialsManager>();
+        OnHit = new Trigger();
 
         _activeMagic = MagicType.Sun;
         _sunHitbox = new Vector3(_sunHitboxX, _sunHitboxY, _sunHitboxZ);
@@ -1039,6 +1042,7 @@ public class PlayerController : Entity
     public override void TakeDamage(float amount, bool bypassCooldown = false)
     {
         //_inputs.PrimaryAttack = false;
+        OnHit.Triggers(this);
         if (_comboing) _stopChannels = true;
 
         if (_damageCurrentCooldown > 0) return;

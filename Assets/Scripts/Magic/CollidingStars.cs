@@ -62,6 +62,13 @@ public class CollidingStars : MonoBehaviour
         StartCoroutine(Explosion());
     }
 
+    public void Die()
+    {
+        transform.parent = null;
+
+        StartCoroutine(Expire());
+    }
+
     IEnumerator Expire()
     {
         _dead = true;
