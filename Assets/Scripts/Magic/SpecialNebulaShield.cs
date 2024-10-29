@@ -51,7 +51,7 @@ public class SpecialNebulaShield : SpecialMagic
         var camForward = Camera.main.transform.forward.MakeHorizontal();
 
         _inputs.inputUpdate = _inputs.FixedCast;
-        _player.transform.forward = camForward;
+        _player.LookDir = camForward;
         _player.anim.SetTrigger("castBarrier");
 
         yield return new WaitForSeconds(_preparation);

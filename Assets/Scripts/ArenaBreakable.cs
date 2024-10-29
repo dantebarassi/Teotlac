@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 public class ArenaBreakable : MonoBehaviour, IDamageable
 {
     [SerializeField] float _hp;
+    float _currentHp;
     [SerializeField] VisualEffect _breakVFX;
 
     Collider _collider;
@@ -16,20 +17,22 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     {
         _collider = GetComponent<Collider>();
         _renderer = GetComponent<MeshRenderer>();
+
+        _currentHp = _hp;
     }
 
     public void TakeDamage(float amount, bool bypassCooldown = false)
     {
-        _hp -= amount;
+        _currentHp -= amount;
 
-        if (!_damaged && _hp <= 0)
+        if (!_damaged && _currentHp <= _hp * 0.5f)
         {
             _damaged = true;
 
-            // hacer que parezca medio roto
+            _renderer.material.SetInt("_Cracks", 1);
         }
 
-        if (! _dead && _hp <= 0)
+        if (! _dead && _currentHp <= 0)
         {
             _dead = true;
             
