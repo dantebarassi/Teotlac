@@ -64,7 +64,7 @@ public class NewItztlacoliuhqui : Boss
 
     [Header("Ground Spikes")]
     [SerializeField] VisualEffect _spikes;
-    [SerializeField] float _spikesBaseOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration;
+    [SerializeField] float _spikesStartOffset, _spikeOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration, spikeDespawnTime;
     [SerializeField] int _spikesExtraWaves;
     [SerializeField] LayerMask _spikeTargets;
 
@@ -99,7 +99,8 @@ public class NewItztlacoliuhqui : Boss
         _shardFactory = new Factory<ObsidianShard>(_shardPrefab);
         _shardPool = new ObjectPool<ObsidianShard>(_shardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 50);
 
-        _spikes.SetFloat("SizeZ", _spikesSizeZ);
+        _spikes.SetFloat("Radiu 2", _spikeOffset);
+        _spikes.SetFloat("SizeZ", _spikeOffset);
         _spikes.SetFloat("Lifetime", _spikesDuration);
 
         if (_playOnStart) StartCoroutine(SetupWait());
@@ -320,7 +321,7 @@ public class NewItztlacoliuhqui : Boss
             {
                 ChangeState(Actions.Melee);
             }
-            else if (_timer % _minWalkDuration < 0.1f)
+            else if (_timer % _minWalkDuration < 0.05f)
             {
                 if (Random.Range(0, 100) < _walkActionChance)
                 {
@@ -717,7 +718,7 @@ public class NewItztlacoliuhqui : Boss
         transform.forward = dir;
         Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
-        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, _groundLayer)) nextPos = hit.point + dir * _spikesBaseOffset;
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, _groundLayer)) nextPos = hit.point + dir * _spikesStartOffset;
         else yield break;
 
         dir *= _spikesSizeZ;
@@ -834,6 +835,95 @@ public class NewItztlacoliuhqui : Boss
 
             yield return null;
         }
+    }
+
+    public void StartGroundSpikes()
+    {
+        Vector3 spawnPos, targetPos, dir;
+
+        if (Physics.Raycast(_player.transform.position + Vector3.up, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) targetPos = hit.point;
+        else return;
+
+        dir = (targetPos - transform.position).MakeHorizontal().normalized;
+        transform.forward = dir;
+        Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point + dir * _spikesStartOffset;
+        else return;
+
+        StartCoroutine(ChainSpikes(spawnPos, rotation, 0, _spikesDamage * 3, true, true, false));
+    }
+
+    IEnumerator ChainSpikes(Vector3 spawnPos, Quaternion orientation, float spawnDelay, float damage, bool chainLeft = false, bool chainRight = false, bool stoppable = true)
+    {
+        yield return new WaitForSeconds(spawnDelay);
+
+        var spikeVFX = Instantiate(_spikes, spawnPos, orientation);
+        spikeVFX.Play();
+
+        var obstacles = Physics.OverlapBox(spawnPos, new Vector3(_spikeOffset, _spikesSizeY, _spikeOffset), orientation, _obstacleLayer);
+
+        if (!stoppable || !obstacles.Any())
+        {
+            StartCoroutine(ChainSpikes(spawnPos + spikeVFX.transform.forward * _spikeOffset, orientation, _spikesDelay, _spikesDamage));
+
+            if (chainLeft) StartCoroutine(ChainSpikes(spawnPos + spikeVFX.transform.forward * _spikeOffset - spikeVFX.transform.right * _spikeOffset, orientation, _spikesDelay, _spikesDamage, true));
+
+            if (chainRight) StartCoroutine(ChainSpikes(spawnPos + spikeVFX.transform.forward * _spikeOffset + spikeVFX.transform.right * _spikeOffset, orientation, _spikesDelay, _spikesDamage, false, true));
+        }
+
+        float timer = 0;
+        List<Collider> ignore = new List<Collider>();
+        bool skip = false;
+
+        while (timer < _spikesDuration)
+        {
+            var cols = Physics.OverlapBox(spawnPos, new Vector3(_spikeOffset, _spikesSizeY, _spikeOffset), orientation, _spikeTargets);
+
+            foreach (var item in cols)
+            {
+                foreach (var item2 in ignore)
+                {
+                    if (item == item2) skip = true;
+                }
+
+                if (skip)
+                {
+                    skip = false;
+                    continue;
+                }
+
+                if (item.TryGetComponent(out IDamageable damageable))
+                {
+                    if (item.TryGetComponent(out NebulaShield nebula))
+                    {
+                        nebula.Overcharge();
+
+                        continue;
+                    }
+
+                    damageable.TakeDamage(damage);
+
+                    if (item != null) ignore.Add(item);
+                }
+                else
+                {
+                    damageable = item.GetComponentInParent<IDamageable>();
+
+                    if (damageable != null) damageable.TakeDamage(damage);
+
+                    if (item != null) ignore.Add(item);
+                }
+            }
+
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(spikeDespawnTime);
+
+        Destroy(spikeVFX);
     }
 
     public override void TakeDamage(float amount, bool bypassCooldown = false)

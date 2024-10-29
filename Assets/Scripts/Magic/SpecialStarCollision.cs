@@ -98,8 +98,9 @@ public class SpecialStarCollision : SpecialMagic
         _charging = false;
 
         _player.anim.SetBool("isChargingStar", false);
+        _player.anim.SetBool("isHoldingStars", true);
 
-        _spawnedStars = Object.Instantiate(_starsPrefab, _player.sunSpawnPoint[0].position, Quaternion.identity);
+        _spawnedStars = Object.Instantiate(_starsPrefab, _player.sunSpawnPoint[0].position + Vector3.up * 0.15f, Quaternion.identity);
         _spawnedStars.SetUp(_player, _player.sunSpawnPoint[0]);
 
         // animacion de sostener soles
@@ -112,6 +113,7 @@ public class SpecialStarCollision : SpecialMagic
 
                 _startedCasting = false;
 
+                _player.anim.SetBool("isHoldingStars", false);
                 //_inputs.inputUpdate = _inputs.Unpaused;
 
                 _player.canAttack = true;
@@ -126,7 +128,8 @@ public class SpecialStarCollision : SpecialMagic
 
         _inputs.inputUpdate = _inputs.FixedCast;
 
-        // animacion de tirar soles
+        _player.anim.SetBool("isHoldingStars", false);
+        _player.anim.SetTrigger("throwStars");
 
         yield return new WaitForSeconds(_preparation);
 
@@ -134,7 +137,6 @@ public class SpecialStarCollision : SpecialMagic
 
         yield return new WaitForSeconds(_recovery);
 
-        //_player.anim.SetBool("isChargingStar", false);
         _inputs.inputUpdate = _inputs.Unpaused;
 
         _player.canAttack = true;

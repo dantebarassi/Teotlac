@@ -40,7 +40,7 @@ public class ObsidianShard : Projectile
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3 || other.gameObject.layer == 11) return;
+        if (other.gameObject.layer == 3 || other.gameObject.layer == 7 || other.gameObject.layer == 11) return;
 
         if (other.TryGetComponent(out IDamageable damageable))
         {
