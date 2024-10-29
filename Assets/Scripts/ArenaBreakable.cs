@@ -19,12 +19,19 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     {
         _hp -= amount;
 
-        if (_hp <= 0) Die();
+        if (_hp <= 0) StartCoroutine(Death());
+    }
+
+    IEnumerator Death()
+    {
+        _breakVFX.enabled=true;
+        yield return new WaitForSeconds(1.5f);
+        Die();
     }
 
     public void Die()
     {
-        _breakVFX.Play();
+        
 
         Destroy(gameObject);
     }
