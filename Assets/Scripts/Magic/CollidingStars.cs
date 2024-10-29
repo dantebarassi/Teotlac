@@ -48,7 +48,7 @@ public class CollidingStars : MonoBehaviour
         _player = player;
         transform.SetParent(parent);
     }
-
+    
     public void Throw(Vector3 dir)
     {
         _distortion.gameObject.SetActive(true);
