@@ -94,6 +94,31 @@ public class Movement
         _rb.MovePosition(_playerTransform.position + _currentSpeed * Time.fixedDeltaTime * dir);
     }
 
+    public bool Rotate(Vector3 dir)
+    {
+        var eulerRotation = _playerTransform.rotation.eulerAngles;
+
+        var yRotation = Vector3.Angle(_playerTransform.right, dir) < Vector3.Angle(-_playerTransform.right, dir) ? _turnRate : -_turnRate;
+
+        var angleToDesired = Vector3.Angle(_playerTransform.forward, dir);
+
+        yRotation *= Time.fixedDeltaTime;
+        var absYRotation = Mathf.Abs(yRotation);
+
+        if (angleToDesired > absYRotation)
+        {
+            _rb.MoveRotation(Quaternion.Euler(eulerRotation.x, eulerRotation.y + yRotation, eulerRotation.z));
+
+            return false;
+        }
+        else
+        {
+            _playerTransform.forward = dir;
+
+            return true;
+        }
+    }
+
     public void Cast(bool starts)
     {
         _currentSpeed = starts ? _speedOnCast : _currentMoveSpeed;

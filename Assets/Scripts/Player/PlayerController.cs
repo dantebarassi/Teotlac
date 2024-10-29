@@ -117,6 +117,8 @@ public class PlayerController : Entity
         }
     }
 
+    public Vector3 LookDir = Vector3.zero;
+
     public Animator anim;
 
     AudioSource _myAS;
@@ -174,6 +176,11 @@ public class PlayerController : Entity
 
     private void FixedUpdate()
     {
+        if (LookDir != Vector3.zero)
+        {
+            if (_movement.Rotate(LookDir)) LookDir = Vector3.zero;
+        }
+
         _inputs.InputsFixedUpdate();
 
         if (_comboing) _rb.transform.forward = Camera.main.transform.forward.MakeHorizontal();
