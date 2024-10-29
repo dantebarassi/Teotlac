@@ -25,6 +25,7 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     IEnumerator Death()
     {
         _breakVFX.enabled=true;
+        GetComponent<MeshRenderer>().enabled = false;
         yield return new WaitForSeconds(1.5f);
         Die();
     }
