@@ -132,6 +132,8 @@ public class SpecialStarCollision : SpecialMagic
 
         _inputs.inputUpdate = _inputs.FixedCast;
 
+        _player.anim.SetLayerWeight(2, 0);
+        _player.anim.SetLayerWeight(3, 0);
         _player.anim.SetBool("isHoldingStars", false);
         _player.anim.SetTrigger("throwStars");
 
@@ -142,6 +144,9 @@ public class SpecialStarCollision : SpecialMagic
         yield return new WaitForSeconds(_recovery);
 
         _inputs.inputUpdate = _inputs.Unpaused;
+
+        _player.anim.SetLayerWeight(2, 1);
+        _player.anim.SetLayerWeight(3, 1);
 
         _player.canAttack = true;
     }
