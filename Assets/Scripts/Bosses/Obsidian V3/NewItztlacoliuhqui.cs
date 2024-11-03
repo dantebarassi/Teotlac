@@ -63,9 +63,9 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] float _quickShotHorDirVariation, _quickShotVerDirVariation;
 
     [Header("Ground Spikes")]
-    [SerializeField] VisualEffect _spikes;
-    [SerializeField] float _spikesStartOffset, _spikeOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration, spikeDespawnTime;
-    [SerializeField] int _spikesExtraWaves;
+    [SerializeField] ObsidianGroundSpikes _spikesPrefab;
+    [SerializeField] float _spikesStartOffset, _spikesOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration, spikeDespawnTime;
+    [SerializeField] int _spikesExtraWaves, _spikesMaxRows;
     [SerializeField] LayerMask _spikeTargets;
 
     [Header("Placeholder Wall Spike")]
@@ -77,6 +77,8 @@ public class NewItztlacoliuhqui : Boss
     Factory<ObsidianBud> _budFactory;
     ObjectPool<ObsidianShard> _shardPool;
     Factory<ObsidianShard> _shardFactory;
+    ObjectPool<ObsidianGroundSpikes> _spikesPool;
+    Factory<ObsidianGroundSpikes> _spikesFactory;
 
     List<ObsidianBud> _spawnedBuds = new();
     List<ObsidianBud> _bloomingBuds = new();
@@ -91,6 +93,8 @@ public class NewItztlacoliuhqui : Boss
     {
         base.Awake();
 
+        _spikesPrefab.SetUpVFX(_spikesOffset, _spikesDuration);
+
         _anim = GetComponent<Animator>();
 
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
@@ -99,9 +103,8 @@ public class NewItztlacoliuhqui : Boss
         _shardFactory = new Factory<ObsidianShard>(_shardPrefab);
         _shardPool = new ObjectPool<ObsidianShard>(_shardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 50);
 
-        _spikes.SetFloat("Radiu 2", _spikeOffset);
-        _spikes.SetFloat("SizeZ", _spikeOffset);
-        _spikes.SetFloat("Lifetime", _spikesDuration);
+        _spikesFactory = new Factory<ObsidianGroundSpikes>(_spikesPrefab);
+        _spikesPool = new ObjectPool<ObsidianGroundSpikes>(_spikesFactory.GetObject, ObsidianGroundSpikes.TurnOff, ObsidianGroundSpikes.TurnOn, 200);
 
         if (_playOnStart) StartCoroutine(SetupWait());
     }
@@ -410,20 +413,6 @@ public class NewItztlacoliuhqui : Boss
         return succesful;
     }
 
-    void Start()
-    {
-        //StartCoroutine(BudStrikeTest());
-        //StartCoroutine(yea());
-        //StartCoroutine(Test());
-        //StartCoroutine(MeleeTest());
-    }
-    IEnumerator yea()
-    {
-        StartCoroutine(GroundSpiking());
-        yield return new WaitForSeconds(5);
-        StartCoroutine(yea());
-    }
-
     void Update()
     {
         if (!_start) return;
@@ -451,79 +440,6 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(0.25f);
 
         ChainFailed();
-    }
-
-    IEnumerator Test()
-    {
-        QuickShot();
-
-        yield return new WaitForSeconds(1.5f);
-
-        QuickShot();
-
-        yield return new WaitForSeconds(1.5f);
-
-        QuickShot();
-
-        yield return new WaitForSeconds(3);
-
-        _bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
-
-        if (_bloomingBuds.Any())
-        {
-            StartCoroutine(BloomTest());
-            yield return new WaitForSeconds(1.5f);
-        }
-
-        StartCoroutine(Test());
-    }
-
-    IEnumerator BudStrikeTest()
-    {
-        yield return new WaitForSeconds(1.5f);
-
-        BudStrike();
-
-        yield return new WaitForSeconds(1.5f);
-
-        BudStrike();
-
-        yield return new WaitForSeconds(1.5f);
-
-        BudStrike();
-
-        yield return new WaitForSeconds(1.5f);
-
-        _bloomingBuds = _spawnedBuds.Where(x => Vector3.Distance(_player.transform.position, x.transform.position) <= _budActivationRange).ToList();
-
-        if (_bloomingBuds.Any())
-        {
-            StartCoroutine(BloomTest());
-            yield return new WaitForSeconds(1.5f);
-        }
-
-        QuickShot();
-
-        yield return new WaitForSeconds(1.5f);
-
-        QuickShot();
-
-        yield return new WaitForSeconds(1.5f);
-
-        StartCoroutine(PlaceholderWallSpiking());
-
-        yield return new WaitForSeconds(3);
-
-        if (_bloomingBuds.Any())
-        {
-            StartCoroutine(BloomTest());
-            yield return new WaitForSeconds(1.5f);
-        }
-
-        StartCoroutine(GroundSpiking());
-        yield return new WaitForSeconds(3f);
-
-        StartCoroutine(BudStrikeTest());
     }
 
     IEnumerator BloomTest()
@@ -590,6 +506,7 @@ public class NewItztlacoliuhqui : Boss
         else return;
 
         var spike = Instantiate(_melee, spawnPos, transform.rotation);
+        spike.Play();
 
         StartCoroutine(SpikesHitCheck(1, _meleeDamage, spike.transform.position, _meleeRadius, _meleeHeight, _meleeRadius, spike.transform.rotation));
     }
@@ -702,85 +619,6 @@ public class NewItztlacoliuhqui : Boss
         Destroy(vfx.gameObject);
     }
 
-    public void TriggerGroundSpike()
-    {
-        StartCoroutine(GroundSpiking());
-    }
-
-    IEnumerator GroundSpiking()
-    {
-        Vector3 targetPos, nextPos, dir;
-
-        if (Physics.Raycast(_player.transform.position + Vector3.up, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) targetPos = hit.point;
-        else yield break;
-
-        dir = (targetPos - transform.position).MakeHorizontal().normalized;
-        transform.forward = dir;
-        Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-
-        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, _groundLayer)) nextPos = hit.point + dir * _spikesStartOffset;
-        else yield break;
-
-        dir *= _spikesSizeZ;
-        float nextSize = _spikesBaseSizeX, halfSize = _spikesBaseSizeX * 0.5f;
-        List<GameObject> allSpikes = new();
-
-        var currentsSpikes = Instantiate(_spikes, nextPos, rotation);
-        currentsSpikes.SetFloat("Radiu 2", nextSize);
-        currentsSpikes.Play();
-        allSpikes.Add(currentsSpikes.gameObject);
-
-        StartCoroutine(SpikesHitCheck(_spikesDuration, _spikesDamage * 3, nextPos, halfSize, _spikesSizeY, _spikesSizeZ, rotation, false));
-
-        nextPos += dir;
-        nextSize += _spikesSizeGrowthX;
-        halfSize = nextSize * 0.5f;
-
-        yield return new WaitForSeconds(_spikesDelay);
-
-        while (Vector3.Distance(nextPos, targetPos) > dir.magnitude)
-        {
-            if (_stopGroundSpikes) break;
-
-            currentsSpikes = Instantiate(_spikes, nextPos, rotation);
-            currentsSpikes.SetFloat("Radiu 2", nextSize);
-            currentsSpikes.Play();
-            allSpikes.Add(currentsSpikes.gameObject);
-
-            StartCoroutine(SpikesHitCheck(_spikesDuration, _spikesDamage, nextPos, halfSize, _spikesSizeY, _spikesSizeZ, rotation));
-
-            nextPos += dir;
-            nextSize += _spikesSizeGrowthX;
-            halfSize = nextSize * 0.5f;
-
-            yield return new WaitForSeconds(_spikesDelay);
-        }
-
-        for (int i = -1; i < _spikesExtraWaves; i++)
-        {
-            if (_stopGroundSpikes) continue;
-
-            currentsSpikes = Instantiate(_spikes, nextPos, rotation);
-            currentsSpikes.SetFloat("Radiu 2", nextSize);
-            currentsSpikes.Play();
-            allSpikes.Add(currentsSpikes.gameObject);
-
-            StartCoroutine(SpikesHitCheck(_spikesDuration, _spikesDamage, nextPos, halfSize, _spikesSizeY, _spikesSizeZ, rotation));
-
-            nextPos += dir;
-            nextSize += _spikesSizeGrowthX;
-            halfSize = nextSize * 0.5f;
-
-            yield return new WaitForSeconds(_spikesDelay);
-        }
-
-        _stopGroundSpikes = false;
-
-        yield return new WaitForSeconds(5);
-
-        foreach (var item in allSpikes) Destroy(item);
-    }
-
     IEnumerator SpikesHitCheck(float duration, float damage, Vector3 center, float boxX, float boxY, float boxZ, Quaternion orientation, bool stoppable = true)
     {
         float timer = 0;
@@ -851,25 +689,26 @@ public class NewItztlacoliuhqui : Boss
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point + dir * _spikesStartOffset;
         else return;
 
-        StartCoroutine(ChainSpikes(spawnPos, rotation, 0, _spikesDamage * 3, true, true, false));
+        StartCoroutine(ChainSpikes(1, spawnPos, rotation, 0, _spikesDamage * 3, true, true, false));
     }
 
-    IEnumerator ChainSpikes(Vector3 spawnPos, Quaternion orientation, float spawnDelay, float damage, bool chainLeft = false, bool chainRight = false, bool stoppable = true)
+    IEnumerator ChainSpikes(int rowNumber, Vector3 spawnPos, Quaternion orientation, float spawnDelay, float damage, bool chainLeft = false, bool chainRight = false, bool stoppable = true)
     {
         yield return new WaitForSeconds(spawnDelay);
 
-        var spikeVFX = Instantiate(_spikes, spawnPos, orientation);
-        spikeVFX.Play();
+        var spikes = _spikesPool.Get();
+        spikes.Initialize(spawnPos, orientation);
 
-        var obstacles = Physics.OverlapBox(spawnPos, new Vector3(_spikeOffset, _spikesSizeY, _spikeOffset), orientation, _obstacleLayer);
 
-        if (!stoppable || !obstacles.Any())
+        var obstacles = Physics.OverlapBox(spawnPos, new Vector3(_spikesOffset, _spikesSizeY, _spikesOffset), orientation, _obstacleLayer);
+
+        if (!stoppable || !obstacles.Any() && rowNumber < _spikesMaxRows)
         {
-            StartCoroutine(ChainSpikes(spawnPos + spikeVFX.transform.forward * _spikeOffset, orientation, _spikesDelay, _spikesDamage));
+            StartCoroutine(ChainSpikes(rowNumber + 1, spawnPos + spikes.transform.forward * _spikesOffset, orientation, _spikesDelay, _spikesDamage));
 
-            if (chainLeft) StartCoroutine(ChainSpikes(spawnPos + spikeVFX.transform.forward * _spikeOffset - spikeVFX.transform.right * _spikeOffset, orientation, _spikesDelay, _spikesDamage, true));
+            if (chainLeft) StartCoroutine(ChainSpikes(rowNumber + 1, spawnPos + spikes.transform.forward * _spikesOffset - spikes.transform.right * _spikesOffset, orientation, _spikesDelay, _spikesDamage, true));
 
-            if (chainRight) StartCoroutine(ChainSpikes(spawnPos + spikeVFX.transform.forward * _spikeOffset + spikeVFX.transform.right * _spikeOffset, orientation, _spikesDelay, _spikesDamage, false, true));
+            if (chainRight) StartCoroutine(ChainSpikes(rowNumber + 1, spawnPos + spikes.transform.forward * _spikesOffset + spikes.transform.right * _spikesOffset, orientation, _spikesDelay, _spikesDamage, false, true));
         }
 
         float timer = 0;
@@ -878,7 +717,7 @@ public class NewItztlacoliuhqui : Boss
 
         while (timer < _spikesDuration)
         {
-            var cols = Physics.OverlapBox(spawnPos, new Vector3(_spikeOffset, _spikesSizeY, _spikeOffset), orientation, _spikeTargets);
+            var cols = Physics.OverlapBox(spawnPos, new Vector3(_spikesOffset, _spikesSizeY, _spikesOffset), orientation, _spikeTargets);
 
             foreach (var item in cols)
             {
@@ -923,7 +762,7 @@ public class NewItztlacoliuhqui : Boss
 
         yield return new WaitForSeconds(spikeDespawnTime);
 
-        Destroy(spikeVFX);
+        _spikesPool.RefillStock(spikes);
     }
 
     public override void TakeDamage(float amount, bool bypassCooldown = false)

@@ -136,7 +136,7 @@ public class PlayerController : Entity
         base.Awake();
         _myAS = GetComponent<AudioSource>();
         _movement = new Movement(transform, _rb, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _groundLayer);
-        _inputs = new Inputs(_movement, this, _cameraController);
+        _inputs = new Inputs(_movement, this/*, _cameraController*/);
         _specials = GetComponent<SpecialsManager>();
         OnHit = new Trigger();
 
@@ -1054,7 +1054,7 @@ public class PlayerController : Entity
 
         if (_damageCurrentCooldown > 0) return;
         ChangeAudio(damage);
-        _cameraController.CameraShake(1, 0.5f);
+        //_cameraController.CameraShake(1, 0.5f);
         UIManager.instance.TookDamage();
         if (!bypassCooldown) _damageCurrentCooldown = _damageCooldown;
 

@@ -9,7 +9,7 @@ public class Inputs
     float _inputMouseX, _inputMouseY;
     Movement _movement;
     PlayerController _player;
-    CinemachineCameraController _cameraController;
+    //CinemachineCameraController _cameraController;
     bool _jump, _primaryAttack = false, _secondaryAttack = false, _aiming = false, _resourcesUncapped = false;
 
     public bool trigger = false;
@@ -70,12 +70,12 @@ public class Inputs
 
     public bool launchAttack = false;
 
-    public Inputs(Movement movement, PlayerController player, CinemachineCameraController camera)
+    public Inputs(Movement movement, PlayerController player/*, CinemachineCameraController camera*/)
     {
         _movement = movement;
         _player = player;
-        _cameraController = camera;
-        FreeLook();
+        //_cameraController = camera;
+        //FreeLook();
         cameraInputs = CameraInputsMouse;
     }
 
@@ -471,7 +471,7 @@ public class Inputs
 
     public void InputsLateUpdate()
     {
-        _cameraController.UpdateCameraRotation(_inputMouseX, _inputMouseY);
+        //_cameraController.UpdateCameraRotation(_inputMouseX, _inputMouseY);
     }
 
     public void ToggleAim(bool aim)
@@ -490,12 +490,12 @@ public class Inputs
 
     void FreeLook()
     {
-        _cameraController.FreeLook();
+        //_cameraController.FreeLook();
     }
 
     void Aim()
     {
-        _cameraController.Aim();
+        //_cameraController.Aim();
     }
 
     void Pause(System.Action prePause)
