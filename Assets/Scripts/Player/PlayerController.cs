@@ -191,6 +191,16 @@ public class PlayerController : Entity
         _inputs.InputsLateUpdate();
     }
 
+    public void RollStarted()
+    {
+        _inputs.inputUpdate = _inputs.FixedCast;
+    }
+
+    public void RollEnded()
+    {
+        _inputs.inputUpdate = _inputs.Unpaused;
+    }
+
     public void Cutscene(bool starts)
     {
         if (starts)
@@ -313,126 +323,6 @@ public class PlayerController : Entity
             _inputs.SecondaryAttack = false;
         }
     }
-
-    /*IEnumerator AimedSunMagic()
-    {
-        _rb.angularVelocity = Vector3.zero;
-        _inputs.ToggleAim(true);
-        _aiming = true;
-        _inputs.inputUpdate = _inputs.Aiming;
-        anim.SetTrigger("chargeSun");
-        anim.SetBool("isChargingSun", true);
-
-        yield return new WaitForSeconds(_sunCastDelay);
-
-        //ControlFullScreen.instance.ChangeDemond(true);
-
-        _movement.Cast(true);
-        ChangeAudio(chargingSun);
-
-        do
-        {
-            var sun = Instantiate(_sunMagic, _sunSpawnPoint.position, Quaternion.identity);
-            sun.player = this;
-            sun.SetupStats(_sunBaseDamage);
-
-            float timer = 0;
-
-            while (!_stopChannels && _inputs.SecondaryAttack && !_inputs.launchAttack && timer < _sunMaxChargeTime && CheckAndReduceStamina(_sunHoldCost * Time.deltaTime))
-            {
-                _rb.angularVelocity = Vector3.zero;
-
-                timer += Time.deltaTime;
-
-                sun.transform.position = _sunSpawnPoint.position;
-
-                sun.UpdateDamage(_sunDamageGrowRate * Time.deltaTime);
-
-                yield return null;
-            }
-
-            if (timer >= _sunMaxChargeTime || !CheckAndReduceStamina(_sunHoldCost * Time.deltaTime))
-            {
-                sun.ChargeFinished();
-            }
-
-            while (!_stopChannels && _inputs.SecondaryAttack && !_inputs.launchAttack)
-            {
-                _rb.angularVelocity = Vector3.zero;
-
-                sun.transform.position = _sunSpawnPoint.position;
-                CheckAndReduceStamina(0);
-                yield return null;
-            }
-
-            if (_stopChannels || !_inputs.SecondaryAttack)
-            {
-                //sun.transform.SetParent(null);
-                sun.StartCoroutine(sun.Cancel());
-                //ControlFullScreen.instance.ChangeDemond(false);
-            }
-            else
-            {
-                _inputs.launchAttack = false;
-
-                anim.SetTrigger("shootSun");
-
-                timer = 0;
-
-                //yield return new WaitForSeconds(_sunShootDelay);
-                while (timer<_sunShootDelay)
-                {
-                    sun.transform.position = _sunSpawnPoint.position;
-                    timer += Time.deltaTime;
-                    yield return null;
-                }
-                //anim.SetBool("IsAttacking", false);
-
-                //sun.transform.SetParent(null);
-
-                Vector3 dir;
-                var cameraTransform = _cameraController.AimCamera.transform;
-
-                Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit);
-                if (hit.collider)
-                {
-                    dir = hit.point - sun.transform.position;
-                }
-                else
-                {
-                    dir = Camera.main.transform.forward;
-                }
-
-                sun.transform.forward = dir;
-                sun.Shoot(_sunSpeed);
-
-                //ControlFullScreen.instance.ChangeDemond(false);
-
-                timer = 0;
-
-                while (timer < _sunRecovery && _inputs.SecondaryAttack)
-                {
-                    timer += Time.deltaTime;
-
-                    yield return null;
-                }
-            }
-
-            _inputs.launchAttack = false;
-        } while (!_stopChannels && _inputs.SecondaryAttack && CheckAndReduceStamina(_sunBaseCost));
-
-        _movement.Cast(false);
-        _inputs.ToggleAim(false);
-        anim.SetBool("isChargingSun", false);
-        //_sunCurrentCooldown = _sunCooldown
-
-        yield return new WaitForSeconds(0.25f);
-
-        _inputs.SecondaryAttack = false;
-        _stopChannels = false;
-        _aiming = false;
-        //_sunCurrentCooldown = _sunCooldown;
-    }*/
 
     IEnumerator NewAimedSunMagic()
     {

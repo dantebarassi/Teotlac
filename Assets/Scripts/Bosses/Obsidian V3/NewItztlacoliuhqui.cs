@@ -30,7 +30,7 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] PlayerController _player;
     [SerializeField] Transform _losTransform;
     [SerializeField] LayerMask _playerLayer, _groundLayer, _obstacleLayer;
-    [SerializeField] float _aggroRange;
+    [SerializeField] float _turnRate, _aggroRange;
 
     [Header("Chain attacks")]
     [SerializeField] Actions[] _chainableAttacks;
@@ -68,6 +68,9 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] int _spikesExtraWaves, _spikesMaxRows;
     [SerializeField] LayerMask _spikeTargets;
 
+    [Header("Obsidian Limb")]
+    [SerializeField] float _limbWindUpDuration, _limbDamage, _limbRange;
+
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
     [SerializeField] VisualEffect _movingSpikes;
@@ -85,6 +88,8 @@ public class NewItztlacoliuhqui : Boss
 
     AudioSource _myAS;
     Animator _anim;
+
+    Vector3 _lookDir = Vector3.zero;
 
     float _timer = 0;
     bool _start = false, _stopGroundSpikes = false;
@@ -316,7 +321,7 @@ public class NewItztlacoliuhqui : Boss
 
             _timer += Time.fixedDeltaTime;
 
-            transform.forward = (_player.transform.position - transform.position).MakeHorizontal();
+            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
 
             _rb.MovePosition(transform.position + transform.forward * _walkSpeed * Time.fixedDeltaTime);
 
@@ -363,11 +368,27 @@ public class NewItztlacoliuhqui : Boss
         groundSpike.OnEnter += x =>
         {
             _anim.SetTrigger("Stomp");
+
+            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
         };
 
         bloom.OnEnter += x =>
         {
             StartCoroutine(BloomTest());
+        };
+
+        limb.OnEnter += x =>
+        {
+            _anim.SetTrigger("AttackLimb");
+
+            _timer = 0;
+        };
+
+        limb.OnUpdate += () =>
+        {
+            _timer += Time.deltaTime;
+
+            if (_timer >= _limbWindUpDuration) _anim.SetTrigger("AttackLimb");
         };
 
         _fsm = new EventFSM<Actions>(inactive);
@@ -388,6 +409,7 @@ public class NewItztlacoliuhqui : Boss
 
         return _bloomingBuds.Any();
     }
+    bool CanLimb() => Vector3.Distance(transform.position, _player.transform.position) <= _limbRange;
 
     bool TryChain(Actions action)
     {
@@ -403,6 +425,9 @@ public class NewItztlacoliuhqui : Boss
                 break;
             case Actions.Bloom:
                 if (CanBloom()) succesful = true;
+                break;
+            case Actions.Limb:
+                if (CanLimb()) succesful = true;
                 break;
             default:
                 break;
@@ -424,7 +449,37 @@ public class NewItztlacoliuhqui : Boss
     {
         if (!_start) return;
 
+        if (_lookDir != Vector3.zero)
+        {
+            if (Rotate(_lookDir)) _lookDir = Vector3.zero;
+        }
+
         _fsm.FixedUpdate();
+    }
+
+    public bool Rotate(Vector3 dir)
+    {
+        var eulerRotation = transform.rotation.eulerAngles;
+
+        var yRotation = Vector3.Angle(transform.right, dir) < Vector3.Angle(-transform.right, dir) ? _turnRate : -_turnRate;
+
+        var angleToDesired = Vector3.Angle(transform.forward, dir);
+
+        yRotation *= Time.fixedDeltaTime;
+        var absYRotation = Mathf.Abs(yRotation);
+
+        if (angleToDesired > absYRotation)
+        {
+            _rb.MoveRotation(Quaternion.Euler(eulerRotation.x, eulerRotation.y + yRotation, eulerRotation.z));
+
+            return false;
+        }
+        else
+        {
+            transform.forward = dir;
+
+            return true;
+        }
     }
 
     IEnumerator MeleeTest()
@@ -463,7 +518,7 @@ public class NewItztlacoliuhqui : Boss
     {
         if (CanMelee())
         {
-            transform.forward = (_player.transform.position - transform.position).MakeHorizontal();
+            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
             ChangeState(Actions.Melee);
         }
 
