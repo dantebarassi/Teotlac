@@ -977,10 +977,10 @@ public class PlayerController : Entity
         
         UIManager.instance.UpdateBar(UIManager.Bar.PlayerHp, _hp);
 
-        if (_hp <= _maxHp * 0.3f)
-        {
-            UIManager.instance.LowHp();
-        }
+        //if (_hp <= _maxHp * 0.3f)
+        //{
+        //    UIManager.instance.LowHp();
+        //}
     }
 
     public override void Die()
