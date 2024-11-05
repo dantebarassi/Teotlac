@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2096.7444, g: 2597.5608, b: 3437.0396, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -359,6 +359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &11715517
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -506,6 +508,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &23787985
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -610,6 +614,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &27648599
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -646,6 +652,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &41942166
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -682,6 +690,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &46823563
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1017,6 +1027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &95857677
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1619,6 +1631,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &144210223
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1655,6 +1669,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &146621944
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1691,6 +1707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &152268190
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1727,6 +1745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &169348607
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1763,6 +1783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &170824141
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8968,6 +8990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &181372072
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9004,6 +9028,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &181372074
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9040,6 +9066,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &181372076
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9319,6 +9347,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &191668173
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9547,6 +9577,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &233826690
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9747,6 +9779,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &249411171
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9864,6 +9898,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &264470256
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10049,6 +10085,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &276356382
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10166,6 +10204,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &283660026
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10429,6 +10469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &301790135
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10652,6 +10694,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &306886409
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10880,6 +10924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &318776750
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11103,6 +11149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &336651865
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11220,6 +11268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &339269436
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11337,6 +11387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &357662180
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11633,6 +11685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &399459089
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11818,6 +11872,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &408482018
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11935,6 +11991,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &413211591
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12919,6 +12977,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &525221810
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13153,6 +13213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &560664910
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13270,6 +13332,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &567975889
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13387,6 +13451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &570243354
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13627,6 +13693,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &586805297
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13880,6 +13948,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &607560865
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14417,6 +14487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &645167377
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14534,6 +14606,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &663061700
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14651,6 +14725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &671827383
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15047,6 +15123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &697537288
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15428,6 +15506,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &728449577
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15545,6 +15625,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &739137329
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15662,6 +15744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &756756540
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15779,6 +15863,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &770065223
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16007,6 +16093,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &781984666
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16192,6 +16280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &786918770
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16309,6 +16399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &798586754
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16426,6 +16518,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &798909801
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16654,6 +16748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &804359479
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16771,6 +16867,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &821810811
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16888,6 +16986,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &822405017
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17154,6 +17254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &834922659
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17538,6 +17640,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &874092487
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17655,6 +17759,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &875678313
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17840,6 +17946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &938537722
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17957,6 +18065,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &951200246
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18302,6 +18412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &972865750
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18530,6 +18642,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &990207342
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18758,6 +18872,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1010006690
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18875,6 +18991,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1012447681
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19143,6 +19261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1024527528
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19260,6 +19380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1043143129
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19377,6 +19499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1043187867
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19605,6 +19729,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1047518566
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19722,6 +19848,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1054421665
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20240,6 +20368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1109512137
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20575,6 +20705,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1114455067
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20803,6 +20935,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1118240284
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21042,6 +21176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1141284470
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21159,6 +21295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1149532793
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21276,6 +21414,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1157135510
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21797,6 +21937,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1199401652
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21987,6 +22129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1218415945
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22441,6 +22585,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1283214462
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22637,6 +22783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1303414697
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22865,6 +23013,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1365774864
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22982,6 +23132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1367164232
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23099,6 +23251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1380051523
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23564,6 +23718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1401798724
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23681,6 +23837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1407052832
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23798,6 +23956,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1423003084
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23983,6 +24143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1436527398
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24292,6 +24454,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1451353446
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24409,6 +24573,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1463117025
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24594,6 +24760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1473938515
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24790,6 +24958,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1483436307
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25210,6 +25380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1516679390
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25327,6 +25499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1523933507
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25444,6 +25618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1530821003
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25629,6 +25805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1575191994
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25746,6 +25924,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1584049995
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26011,6 +26191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1616011195
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26282,6 +26464,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1629413988
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26637,6 +26821,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1652965753
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26754,6 +26940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1664741594
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26871,6 +27059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1668840419
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27021,6 +27211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1676720648
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27175,6 +27367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1678571428
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27559,6 +27753,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1684333163
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32726,6 +32922,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1724131780
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33105,6 +33303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1814943924
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33404,6 +33604,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1852824184
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33521,6 +33723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1854614054
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33638,6 +33842,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1879794253
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33823,6 +34029,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1902593093
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33940,6 +34148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1922639410
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34168,6 +34378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1982076062
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34285,6 +34497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &1985715719
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34531,6 +34745,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &2007716168
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34648,6 +34864,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &2024939830
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34765,6 +34983,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &2044253620
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34882,6 +35102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &2066620314
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35149,6 +35371,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &2086946222
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35266,6 +35490,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &2101532263
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35451,6 +35677,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _breakVFX: {fileID: 0}
+  _brokenPhase: {fileID: 0}
+  _fragments: []
 --- !u!64 &2116394737
 MeshCollider:
   m_ObjectHideFlags: 0
