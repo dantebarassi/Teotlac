@@ -31,6 +31,7 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
 
             _collider.enabled = false;
             _renderer.enabled = false;
+            _brokenPhase.SetActive(true);
         }
 
         if (!_damaged && _currentHp <= _hp * 0.3f)
