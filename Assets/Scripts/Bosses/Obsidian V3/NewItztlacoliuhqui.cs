@@ -352,6 +352,8 @@ public class NewItztlacoliuhqui : Boss
 
         approach.OnExit += x =>
         {
+            _timer = 0;
+
             _anim.SetBool("isWalking", false);
         };
 
@@ -382,18 +384,33 @@ public class NewItztlacoliuhqui : Boss
             _timer = 0;
             _activated = false;
 
+            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
+
             _anim.SetTrigger("AttackLimb");
         };
 
         limb.OnUpdate += () =>
         {
-            _timer += Time.deltaTime;
-
-            if (_timer >= _limbWindUpDuration && !_activated)
+            if (!_activated)
             {
-                _activated = true;
-                _anim.SetTrigger("AttackLimb");
-            } 
+                _timer += Time.deltaTime;
+
+                if (_timer >= _limbWindUpDuration)
+                {
+                    _activated = true;
+                    _anim.SetTrigger("AttackLimb");
+                }
+            }
+            else
+            {
+                _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
+            }
+        };
+
+        limb.OnExit += x =>
+        {
+            _timer = 0;
+            _activated = false;
         };
 
         _fsm = new EventFSM<Actions>(inactive);
