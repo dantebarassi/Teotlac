@@ -9,6 +9,7 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     float _currentHp;
     [SerializeField] VisualEffect _breakVFX;
     [SerializeField] GameObject _brokenPhase;
+    [SerializeField] List<GameObject> _fragments;
     Collider _collider;
     MeshRenderer _renderer;
     bool _broken = false, _damaged = false, _dead = false;
@@ -29,9 +30,7 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
         {
             _broken = true;
 
-            _collider.enabled = false;
-            _renderer.enabled = false;
-            _brokenPhase.SetActive(true);
+            Break();
         }
 
         if (!_damaged && _currentHp <= _hp * 0.3f)
@@ -46,6 +45,23 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
             _dead = true;
             
             Die();
+        }
+    }
+
+    void Break()
+    {
+        _collider.enabled = false;
+        _renderer.enabled = false;
+        _brokenPhase.SetActive(true);
+    }
+
+    IEnumerator DestroyFragments()
+    {
+        yield return new WaitForSeconds(3);
+
+        foreach (var item in _fragments)
+        {
+            Destroy(item);
         }
     }
 
