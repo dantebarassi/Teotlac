@@ -54,6 +54,45 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 6.016667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -91,7 +130,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
@@ -121,7 +160,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -178,47 +217,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
     classID: 2083052967
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.16666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 6.016667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos
-    classID: 1
     script: {fileID: 0}
     flags: 0
   - serializedVersion: 2
@@ -247,7 +247,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (1)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (1)
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -286,7 +287,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos (1)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (1)
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
@@ -316,7 +318,39 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (2)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos/TierraObe
+      (1)
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 3.1666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (2)
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -355,7 +389,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos (2)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (2)
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
@@ -385,7 +420,39 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (3)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (2)/TierraObe (1)
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 4.1666665
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (3)
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -424,128 +491,9 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos (3)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (3)
     classID: 2083052967
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1.1666666
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/TierraObe
-    classID: 1
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 2.1666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos/TierraObe (1)
-    classID: 1
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 3.1666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (1)/TierraObe (1)
-    classID: 1
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 4.1666665
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (2)/TierraObe (1)
-    classID: 1
     script: {fileID: 0}
     flags: 0
   - serializedVersion: 2
@@ -574,7 +522,38 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (3)/TierraObe (1)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (3)/TierraObe (1)
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.1666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/TierraObe
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -596,7 +575,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 355678829
+      path: 360438512
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 360438512
       attribute: 834440405
       script: {fileID: 0}
       typeID: 2083052967
@@ -605,7 +593,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3927650560
+      path: 550939794
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -614,7 +602,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3927650560
+      path: 550939794
       attribute: 834440405
       script: {fileID: 0}
       typeID: 2083052967
@@ -623,7 +611,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 355678829
+      path: 417347550
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -632,16 +620,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4287084543
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 4287084543
+      path: 417347550
       attribute: 834440405
       script: {fileID: 0}
       typeID: 2083052967
@@ -650,7 +629,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3567969340
+      path: 731525531
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -659,7 +638,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3567969340
+      path: 869098525
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 869098525
       attribute: 834440405
       script: {fileID: 0}
       typeID: 2083052967
@@ -668,7 +656,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3450983805
+      path: 4077381222
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -677,7 +665,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3450983805
+      path: 718689628
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 718689628
       attribute: 834440405
       script: {fileID: 0}
       typeID: 2083052967
@@ -686,7 +683,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2455569396
+      path: 1567586295
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -695,34 +692,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4051265537
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 2013977998
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 1371695484
-      attribute: 2086281974
-      script: {fileID: 0}
-      typeID: 1
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 4289394925
+      path: 1715886110
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -789,6 +759,45 @@ AnimationClip:
       - serializedVersion: 3
         time: 0
         value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 6.016667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -826,7 +835,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
@@ -856,7 +865,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -913,47 +922,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
     classID: 2083052967
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.16666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 6.016667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos
-    classID: 1
     script: {fileID: 0}
     flags: 0
   - serializedVersion: 2
@@ -982,7 +952,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (1)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (1)
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -1021,7 +992,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos (1)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (1)
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
@@ -1051,7 +1023,39 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (2)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos/TierraObe
+      (1)
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 3.1666667
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (2)
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -1090,7 +1094,8 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos (2)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (2)
     classID: 2083052967
     script: {fileID: 0}
     flags: 0
@@ -1120,7 +1125,39 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (3)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (2)/TierraObe (1)
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 4.1666665
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (3)
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -1159,128 +1196,9 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: float.Blendeo
-    path: ObeliscMuchos/ObeliscMuchos (3)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (3)
     classID: 2083052967
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1.1666666
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/TierraObe
-    classID: 1
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 2.1666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos/TierraObe (1)
-    classID: 1
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 3.1666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (1)/TierraObe (1)
-    classID: 1
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 4.1666665
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (2)/TierraObe (1)
-    classID: 1
     script: {fileID: 0}
     flags: 0
   - serializedVersion: 2
@@ -1309,7 +1227,38 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: ObeliscMuchos/ObeliscMuchos (3)/TierraObe (1)
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/ObeliscMuchos
+      (3)/TierraObe (1)
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.1666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: pelvis_grp/root/pelvis/spine0/spine1/spine2/spine3/l_clavicle/l_shoulder/l_elbow/l_wrist/ObeliscMuchos/TierraObe
     classID: 1
     script: {fileID: 0}
     flags: 0
