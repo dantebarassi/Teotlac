@@ -495,10 +495,6 @@ public class NewItztlacoliuhqui : Boss
 
         yield return new WaitForSeconds(1.75f);
 
-        ChainOpportunity();
-
-        yield return new WaitForSeconds(0.25f);
-
         ChainFailed();
     }
 
@@ -511,10 +507,6 @@ public class NewItztlacoliuhqui : Boss
         Bloom();
 
         yield return new WaitForSeconds(1);
-
-        ChainOpportunity();
-
-        yield return new WaitForSeconds(0.25f);
 
         ChainFailed();
     }
