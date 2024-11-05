@@ -92,7 +92,7 @@ public class NewItztlacoliuhqui : Boss
     Vector3 _lookDir = Vector3.zero;
 
     float _timer = 0;
-    bool _start = false, _stopGroundSpikes = false;
+    bool _start = false, _stopGroundSpikes = false, _activated = false;
 
     protected override void Awake()
     {
@@ -379,6 +379,7 @@ public class NewItztlacoliuhqui : Boss
 
         limb.OnEnter += x =>
         {
+            _activated = false;
             _anim.SetTrigger("AttackLimb");
 
             _timer = 0;
@@ -388,7 +389,11 @@ public class NewItztlacoliuhqui : Boss
         {
             _timer += Time.deltaTime;
 
-            if (_timer >= _limbWindUpDuration) _anim.SetTrigger("AttackLimb");
+            if (_timer >= _limbWindUpDuration && !_activated)
+            {
+                _anim.SetTrigger("AttackLimb");
+                _activated = true;
+            } 
         };
 
         _fsm = new EventFSM<Actions>(inactive);
