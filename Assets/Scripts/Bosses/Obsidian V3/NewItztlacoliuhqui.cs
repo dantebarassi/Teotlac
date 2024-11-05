@@ -379,10 +379,10 @@ public class NewItztlacoliuhqui : Boss
 
         limb.OnEnter += x =>
         {
-            _activated = false;
-            _anim.SetTrigger("AttackLimb");
-
             _timer = 0;
+            _activated = false;
+
+            _anim.SetTrigger("AttackLimb");
         };
 
         limb.OnUpdate += () =>
@@ -391,8 +391,8 @@ public class NewItztlacoliuhqui : Boss
 
             if (_timer >= _limbWindUpDuration && !_activated)
             {
-                _anim.SetTrigger("AttackLimb");
                 _activated = true;
+                _anim.SetTrigger("AttackLimb");
             } 
         };
 
@@ -548,6 +548,12 @@ public class NewItztlacoliuhqui : Boss
     public void ChainFailed()
     {
         if (_chainCounter <= 0) ChangeState(Actions.Approach);
+    }
+
+    public void EndChain()
+    {
+        _chainCounter = 0;
+        ChangeState(Actions.Approach);
     }
 
     public void Melee()
