@@ -863,7 +863,7 @@ public class NewItztlacoliuhqui : Boss
         _limb.SetActive(false);
         _limbExplosion.ToggleGameObject(this, true, 2);
 
-        var cols = Physics.OverlapBox(transform.position + transform.forward * _limbCheckBoxSize.z * 0.5f, _limbCheckBoxSize, transform.rotation, _spikeTargets);
+        var cols = Physics.OverlapBox(transform.position + transform.forward * _limbCheckBoxSize.z, _limbCheckBoxSize, transform.rotation, _spikeTargets);
 
         foreach (var item in cols)
         {
