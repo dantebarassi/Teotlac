@@ -8,10 +8,10 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     [SerializeField] float _hp;
     float _currentHp;
     [SerializeField] VisualEffect _breakVFX;
-
+    [SerializeField] GameObject _brokenPhase;
     Collider _collider;
     MeshRenderer _renderer;
-    bool _damaged = false, _dead = false;
+    bool _broken = false, _damaged = false, _dead = false;
 
     private void Start()
     {
@@ -25,7 +25,15 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     {
         _currentHp -= amount;
 
-        if (!_damaged && _currentHp <= _hp * 0.5f)
+        if (_brokenPhase != null && !_broken && _currentHp <= _hp * 0.6f)
+        {
+            _broken = true;
+
+            _collider.enabled = false;
+            _renderer.enabled = false;
+        }
+
+        if (!_damaged && _currentHp <= _hp * 0.3f)
         {
             _damaged = true;
 
@@ -43,7 +51,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     IEnumerator Death()
     {
         var vfx = Instantiate(_breakVFX, transform.position, transform.rotation);
-        vfx.SetMesh("Mesh", GetComponent<MeshFilter>().mesh);
+        if (!_broken) vfx.SetMesh("Mesh", GetComponent<MeshFilter>().mesh);
+        else vfx.SetMesh("Mesh", _brokenPhase.GetComponent<MeshFilter>().mesh);
         vfx.Play();
 
         _collider.enabled = false;
