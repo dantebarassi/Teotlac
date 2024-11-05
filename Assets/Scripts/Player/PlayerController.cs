@@ -129,6 +129,8 @@ public class PlayerController : Entity
     [SerializeField] AudioClip sideStep, jump, damage, chargingSun, Walking;
     [SerializeField] GameObject _stepParticles, _jumpParticles;
 
+    Coroutine _postStepCoroutine;
+
     public enum MagicType
     {
         Sun,
@@ -204,7 +206,7 @@ public class PlayerController : Entity
     {
         _inputs.inputUpdate = _inputs.Unpaused;
 
-        StartCoroutine(_movement.OnRollEnd(_postRollTurnRate, _turnRate, 0, _speed, _postRollMoveRecoveryDuration));
+        _postStepCoroutine = StartCoroutine(_movement.OnRollEnd(_postRollTurnRate, _turnRate, 0, _speed, _postRollMoveRecoveryDuration));
     }
 
     public void Cutscene(bool starts)
@@ -485,6 +487,7 @@ public class PlayerController : Entity
         anim.SetBool("isComboing", true);
         _comboing = true;
 
+        if (_postStepCoroutine != null) StopCoroutine(_postStepCoroutine);
         _movement.FixedCast(true);
 
         float currentComboTime;

@@ -7,7 +7,7 @@ public class Movement
     public delegate void FloatsDelegate(float a, float b);
     //public event FloatsDelegate OnRotation;
 
-    float _currentSpeed, _normalSpeed, _explorationSpeed, _currentMoveSpeed, _speedOnCast, _turnRate, _jumpStrength, _currentStepStrength, _stepStrength, _castStepStrength;
+    float _currentSpeed, _normalSpeed, _explorationSpeed, _currentMoveSpeed, _speedOnCast, _baseTurnRate, _turnRate, _jumpStrength, _currentStepStrength, _stepStrength, _castStepStrength;
     Transform _playerTransform;
     Rigidbody _rb;
     LayerMask _groundLayer;
@@ -20,7 +20,8 @@ public class Movement
         _currentSpeed = explorationSpeed;
         _normalSpeed = speed;
         _explorationSpeed = explorationSpeed;
-        _turnRate = turnRate;
+        _baseTurnRate = turnRate;
+        _turnRate = _baseTurnRate;
         _speedOnCast = speedOnCast;
         _jumpStrength = jumpStrength;
         _currentStepStrength = stepStrength;
@@ -128,6 +129,7 @@ public class Movement
     public void FixedCast(bool starts)
     {
         _currentSpeed = starts ? 0 : _currentMoveSpeed;
+        _turnRate = _baseTurnRate;
     }
 
     public void Jump()
