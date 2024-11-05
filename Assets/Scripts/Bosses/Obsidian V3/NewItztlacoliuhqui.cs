@@ -852,6 +852,11 @@ public class NewItztlacoliuhqui : Boss
         _spikesPool.RefillStock(spikes);
     }
 
+    public void StartLimbVFX()
+    {
+        _anim.SetTrigger("StartLimbVFX");
+    }
+
     public void LimbImpact()
     {
         _limbExplosion.transform.parent = null;
