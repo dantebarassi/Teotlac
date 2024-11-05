@@ -28,6 +28,10 @@ public class PlayerController : Entity
     [SerializeField] float _jumpCost;
     [SerializeField] float _stepCost, _sunBaseCost, _sunHoldCost, _obsidianCost;
 
+    [Header("Roll")]
+    [SerializeField] float _postRollTurnRate;
+    [SerializeField] float _postRollMoveRecoveryDuration;
+
     [Header("Sun Magic")]
     [SerializeField] SunMagic _sunMagic;
     [SerializeField] SunMagic _finisher;
@@ -199,6 +203,8 @@ public class PlayerController : Entity
     public void RollEnded()
     {
         _inputs.inputUpdate = _inputs.Unpaused;
+
+        StartCoroutine(_movement.OnRollEnd(_postRollTurnRate, _turnRate, 0, _speed, _postRollMoveRecoveryDuration));
     }
 
     public void Cutscene(bool starts)
