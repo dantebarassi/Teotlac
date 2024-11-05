@@ -197,7 +197,7 @@ public class PlayerController : Entity
 
         _inputs.InputsFixedUpdate();
 
-        if (_comboing) _rb.transform.forward = Camera.main.transform.forward.MakeHorizontal();
+        if (_comboing) LookDir = Camera.main.transform.forward.MakeHorizontal();
     }
 
     private void LateUpdate()

@@ -524,7 +524,7 @@ public class NewItztlacoliuhqui : Boss
 
         yield return new WaitForSeconds(1.75f);
 
-        ChainFailed();
+        EndChain();
     }
 
     IEnumerator BloomTest()
@@ -537,7 +537,7 @@ public class NewItztlacoliuhqui : Boss
 
         yield return new WaitForSeconds(1);
 
-        ChainFailed();
+        EndChain();
     }
 
     public void ChainOpportunity(Actions prevAction = Actions.Approach)

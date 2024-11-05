@@ -10,8 +10,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     [SerializeField] VisualEffect _breakVFX;
     [SerializeField] GameObject _brokenPhase;
     [SerializeField] List<GameObject> _fragments;
-    Collider _collider;
-    MeshRenderer _renderer;
+    Collider _collider, _brokenCollider;
+    MeshRenderer _renderer, _brokenRenderer;
     bool _broken = false, _damaged = false, _dead = false;
 
     private void Start()
@@ -37,7 +37,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
         {
             _damaged = true;
 
-            _renderer.material.SetInt("_Cracks", 1);
+            if (_broken) _brokenRenderer.material.SetInt("_Cracks", 1);
+            else _renderer.material.SetInt("_Cracks", 1);
         }
 
         if (! _dead && _currentHp <= 0)
@@ -53,6 +54,9 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
         _collider.enabled = false;
         _renderer.enabled = false;
         _brokenPhase.SetActive(true);
+
+        _brokenCollider = _brokenPhase.GetComponent<Collider>();
+        _brokenRenderer = _brokenPhase.GetComponent<MeshRenderer>();
 
         StartCoroutine(DestroyFragments());
     }
@@ -81,8 +85,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
         {
             vfx.SetMesh("Mesh", _brokenPhase.GetComponent<MeshFilter>().mesh);
 
-            _brokenPhase.GetComponent<MeshRenderer>().enabled = false;
-            _brokenPhase.GetComponent<Collider>().enabled = false;
+            _brokenRenderer.enabled = false;
+            _brokenCollider.enabled = false;
         }
         
         vfx.Play();
