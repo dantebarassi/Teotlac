@@ -40,4 +40,18 @@ public static class Extensions
     {
         return Mathf.Lerp(minOut, maxOut, Mathf.InverseLerp(minIn, maxIn, value));
     }
+
+    public static void ToggleGameObject(this GameObject obj, MonoBehaviour coroutineRunner, bool on, float wait)
+    {
+        obj.SetActive(on);
+
+        coroutineRunner.StartCoroutine(ToggleObjectCoroutine(obj, !on, wait));
+    }
+
+    static IEnumerator ToggleObjectCoroutine(GameObject obj, bool on, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        obj.SetActive(on);
+    }
 }

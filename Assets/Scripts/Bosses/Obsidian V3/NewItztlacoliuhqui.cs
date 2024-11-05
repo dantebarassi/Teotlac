@@ -69,6 +69,8 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] LayerMask _spikeTargets;
 
     [Header("Obsidian Limb")]
+    [SerializeField] Vector3 _limbCheckBoxSize;
+    [SerializeField] GameObject _limb, _limbExplosion;
     [SerializeField] float _limbWindUpDuration, _limbDamage, _limbRange;
 
     [Header("Placeholder Wall Spike")]
@@ -91,8 +93,14 @@ public class NewItztlacoliuhqui : Boss
 
     Vector3 _lookDir = Vector3.zero;
 
-    float _timer = 0;
-    bool _start = false, _stopGroundSpikes = false, _activated = false;
+    float _timer = 0, _timer2 = 0;
+    bool _start = false, _stopGroundSpikes = false, _activated = false, _trackPlayer = false;
+
+    public void TrackPlayer(int value)
+    {
+        if (value == 0) _trackPlayer = false;
+        else _trackPlayer = true;
+    }
 
     protected override void Awake()
     {
@@ -312,6 +320,8 @@ public class NewItztlacoliuhqui : Boss
         {
             _anim.SetBool("isWalking", true);
 
+            _trackPlayer = true;
+
             _timer = 0;
         };
 
@@ -320,8 +330,6 @@ public class NewItztlacoliuhqui : Boss
             Debug.Log("approaching");
 
             _timer += Time.fixedDeltaTime;
-
-            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
 
             _rb.MovePosition(transform.position + transform.forward * _walkSpeed * Time.fixedDeltaTime);
 
@@ -352,7 +360,7 @@ public class NewItztlacoliuhqui : Boss
 
         approach.OnExit += x =>
         {
-            _timer = 0;
+            _trackPlayer = false;
 
             _anim.SetBool("isWalking", false);
         };
@@ -371,7 +379,7 @@ public class NewItztlacoliuhqui : Boss
         {
             _anim.SetTrigger("Stomp");
 
-            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
+            _trackPlayer = true;
         };
 
         bloom.OnEnter += x =>
@@ -381,10 +389,9 @@ public class NewItztlacoliuhqui : Boss
 
         limb.OnEnter += x =>
         {
-            _timer = 0;
+            _timer2 = 0;
             _activated = false;
-
-            _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
+            _trackPlayer = true;
 
             _anim.SetTrigger("AttackLimb");
         };
@@ -393,9 +400,9 @@ public class NewItztlacoliuhqui : Boss
         {
             if (!_activated)
             {
-                _timer += Time.deltaTime;
+                _timer2 += Time.deltaTime;
 
-                if (_timer >= _limbWindUpDuration)
+                if (_timer2 >= _limbWindUpDuration)
                 {
                     _activated = true;
                     _anim.SetTrigger("AttackLimb");
@@ -403,13 +410,13 @@ public class NewItztlacoliuhqui : Boss
             }
             else
             {
-                _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
+                Debug.Log("releasing");
             }
         };
 
         limb.OnExit += x =>
         {
-            _timer = 0;
+            _timer2 = 0;
             _activated = false;
         };
 
@@ -470,6 +477,8 @@ public class NewItztlacoliuhqui : Boss
     private void FixedUpdate()
     {
         if (!_start) return;
+
+        if (_trackPlayer) _lookDir = (_player.transform.position - transform.position).MakeHorizontal();
 
         if (_lookDir != Vector3.zero)
         {
@@ -752,13 +761,14 @@ public class NewItztlacoliuhqui : Boss
 
     public void StartGroundSpikes()
     {
+        _trackPlayer = false;
+
         Vector3 spawnPos, targetPos, dir;
 
         if (Physics.Raycast(_player.transform.position + Vector3.up, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) targetPos = hit.point;
         else return;
 
         dir = (targetPos - transform.position).MakeHorizontal().normalized;
-        transform.forward = dir;
         Quaternion rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point + dir * _spikesStartOffset;
@@ -773,7 +783,6 @@ public class NewItztlacoliuhqui : Boss
 
         var spikes = _spikesPool.Get();
         spikes.Initialize(spawnPos, orientation);
-
 
         var obstacles = Physics.OverlapBox(spawnPos, new Vector3(_spikesOffset, _spikesSizeY, _spikesOffset), orientation, _obstacleLayer);
 
@@ -838,6 +847,35 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(spikeDespawnTime);
 
         _spikesPool.RefillStock(spikes);
+    }
+
+    public void LimbImpact()
+    {
+        _limb.SetActive(false);
+        _limbExplosion.ToggleGameObject(this, true, 2);
+
+        var cols = Physics.OverlapBox(transform.position + transform.forward * _limbCheckBoxSize.z * 0.5f, _limbCheckBoxSize, transform.rotation, _spikeTargets);
+
+        foreach (var item in cols)
+        {
+            if (item.TryGetComponent(out IDamageable damageable))
+            {
+                if (item.TryGetComponent(out NebulaShield nebula))
+                {
+                    nebula.Overcharge();
+
+                    continue;
+                }
+
+                damageable.TakeDamage(_limbDamage);
+            }
+            else
+            {
+                damageable = item.GetComponentInParent<IDamageable>();
+
+                if (damageable != null) damageable.TakeDamage(_limbDamage);
+            }
+        }
     }
 
     public override void TakeDamage(float amount, bool bypassCooldown = false)

@@ -29,8 +29,8 @@ public class PlayerController : Entity
     [SerializeField] float _stepCost, _sunBaseCost, _sunHoldCost, _obsidianCost;
 
     [Header("Roll")]
-    [SerializeField] float _postRollTurnRate;
-    [SerializeField] float _postRollMoveRecoveryDuration;
+    [SerializeField] float _invincibilityTime;
+    [SerializeField] float _postRollTurnRate, _postRollMoveRecoveryDuration;
 
     [Header("Sun Magic")]
     [SerializeField] SunMagic _sunMagic;
@@ -131,6 +131,10 @@ public class PlayerController : Entity
 
     Coroutine _postStepCoroutine;
 
+    CapsuleCollider _collider;
+
+    float _colliderHeight, _colliderCenterY;
+
     public enum MagicType
     {
         Sun,
@@ -140,6 +144,7 @@ public class PlayerController : Entity
     protected override void Awake()
     {
         base.Awake();
+        _collider = GetComponent<CapsuleCollider>();
         _myAS = GetComponent<AudioSource>();
         _movement = new Movement(transform, _rb, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _groundLayer);
         _inputs = new Inputs(_movement, this/*, _cameraController*/);
@@ -149,6 +154,9 @@ public class PlayerController : Entity
         _activeMagic = MagicType.Sun;
         _sunHitbox = new Vector3(_sunHitboxX, _sunHitboxY, _sunHitboxZ);
         _inputs.inputUpdate = _inputs.Unpaused;
+
+        _colliderHeight = _collider.height;
+        _colliderCenterY = _collider.center.y;
     }
 
     void Start()
@@ -200,6 +208,9 @@ public class PlayerController : Entity
     public void RollStarted()
     {
         _inputs.inputUpdate = _inputs.FixedCast;
+
+        _collider.center = new Vector3(0, _colliderCenterY * 0.6f);
+        _collider.height = _colliderHeight * 0.6f;
     }
 
     public void RollEnded()
@@ -207,6 +218,9 @@ public class PlayerController : Entity
         _inputs.inputUpdate = _inputs.Unpaused;
 
         _postStepCoroutine = StartCoroutine(_movement.OnRollEnd(_postRollTurnRate, _turnRate, 0, _speed, _postRollMoveRecoveryDuration));
+
+        _collider.center = new Vector3(0, _colliderCenterY);
+        _collider.height = _colliderHeight;
     }
 
     public void Cutscene(bool starts)
@@ -240,7 +254,7 @@ public class PlayerController : Entity
         if (Grounded && _stepCurrentCooldown <= 0 && CheckAndReduceStamina(_stepCost))
         {
             if (_comboing) _stopChannels = true;
-            _damageCurrentCooldown += 0.1f;
+            _damageCurrentCooldown += _invincibilityTime;
             anim.SetTrigger("step");
             //StartCoroutine(ToggleGameObject(_stepParticles));
             //anim.SetBool("IsStrafeRight", true);
