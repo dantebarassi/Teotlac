@@ -53,11 +53,13 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
         _collider.enabled = false;
         _renderer.enabled = false;
         _brokenPhase.SetActive(true);
+
+        StartCoroutine(DestroyFragments());
     }
 
     IEnumerator DestroyFragments()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
 
         foreach (var item in _fragments)
         {
