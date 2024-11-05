@@ -393,6 +393,9 @@ public class NewItztlacoliuhqui : Boss
             _activated = false;
             _trackPlayer = true;
 
+            _limbExplosion.transform.position = _limb.transform.position;
+            _limbExplosion.transform.parent = _limb.transform;
+
             _anim.SetTrigger("AttackLimb");
         };
 
@@ -851,6 +854,7 @@ public class NewItztlacoliuhqui : Boss
 
     public void LimbImpact()
     {
+        _limbExplosion.transform.parent = null;
         _limb.SetActive(false);
         _limbExplosion.ToggleGameObject(this, true, 2);
 
