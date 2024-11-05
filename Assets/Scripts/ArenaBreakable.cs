@@ -70,12 +70,22 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     IEnumerator Death()
     {
         var vfx = Instantiate(_breakVFX, transform.position, transform.rotation);
-        if (!_broken) vfx.SetMesh("Mesh", GetComponent<MeshFilter>().mesh);
-        else vfx.SetMesh("Mesh", _brokenPhase.GetComponent<MeshFilter>().mesh);
-        vfx.Play();
+        if (!_broken)
+        {
+            vfx.SetMesh("Mesh", GetComponent<MeshFilter>().mesh);
 
-        _collider.enabled = false;
-        _renderer.enabled = false;
+            _collider.enabled = false;
+            _renderer.enabled = false;
+        }
+        else
+        {
+            vfx.SetMesh("Mesh", _brokenPhase.GetComponent<MeshFilter>().mesh);
+
+            _brokenPhase.GetComponent<MeshRenderer>().enabled = false;
+            _brokenPhase.GetComponent<Collider>().enabled = false;
+        }
+        
+        vfx.Play();
 
         yield return new WaitForSeconds(1.5f);
         
