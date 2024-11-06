@@ -3673,7 +3673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416943274}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0019997982, y: 0.02386096, z: -0.00004773078, w: 0.9997133}
+  m_LocalRotation: {x: 0.0019990257, y: 0.03644447, z: -0.000072902, w: 0.9993337}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3915,6 +3915,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484965050}
   m_CullTransparentMesh: 1
+--- !u!4 &485694254 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4008560476649095682, guid: 7db1fd4cdf93b7e4fbe30f74eb2056d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3789866389756506027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &494950507
 GameObject:
   m_ObjectHideFlags: 0
@@ -4557,7 +4563,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646254735}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0019997982, y: 0.02386096, z: -0.00004773078, w: 0.9997133}
+  m_LocalRotation: {x: 0.0019990602, y: 0.03644447, z: -0.00007290326, w: 0.9993337}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5109,8 +5115,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670835298}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0019997982, y: 0.02386096, z: -0.00004773078, w: 0.9997133}
-  m_LocalPosition: {x: 0.4782435, y: 68.084, z: 1348.2949}
+  m_LocalRotation: {x: 0.0019990257, y: 0.03644447, z: -0.000072902, w: 0.9993337}
+  m_LocalPosition: {x: 1.0337939, y: 68.03587, z: 1354.6877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11791,8 +11797,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 1
-  m_LookAt: {fileID: 142654099272591371}
-  m_Follow: {fileID: 142654099272591371}
+  m_LookAt: {fileID: 485694254}
+  m_Follow: {fileID: 485694254}
   m_CommonLens: 1
   m_Lens:
     FieldOfView: 50
@@ -11894,7 +11900,7 @@ Transform:
   m_GameObject: {fileID: 921734369}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4782435, y: 68.084, z: 1348.2949}
+  m_LocalPosition: {x: 1.0337939, y: 68.03587, z: 1354.6877}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15922,7 +15928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058446628}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0019997982, y: 0.02386096, z: -0.00004773078, w: 0.9997133}
+  m_LocalRotation: {x: 0.0019990257, y: 0.03644447, z: -0.000072902, w: 0.9993337}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17627,6 +17633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 100
+  target: {fileID: 0}
   _maxStamina: 100
   _staminaRegenRate: 15
   _staminaRegenDelay: 1
@@ -17649,6 +17656,9 @@ MonoBehaviour:
   _sunBaseCost: 8
   _sunHoldCost: 2
   _obsidianCost: 25
+  _invincibilityTime: 0
+  _postRollTurnRate: 0
+  _postRollMoveRecoveryDuration: 0
   _sunMagic: {fileID: 1097402135425091426, guid: 9be6616c1c304bb41a01789ea4efb0f6,
     type: 3}
   _finisher: {fileID: 0}
@@ -17690,11 +17700,13 @@ MonoBehaviour:
   currentBoss: {fileID: 0}
   _cameraController: {fileID: 759630203}
   camaraFinal: {fileID: 0}
+  canAttack: 1
   _VignetteAmountClamps: {fileID: 2100000, guid: 0429e343dcc84a6408db5483bb9d1931,
     type: 2}
   dustPlayer: {fileID: 0}
   ForceFieldPlayer: {fileID: 0}
   myFireAnim: {fileID: 0}
+  LookDir: {x: 0, y: 0, z: 0}
   anim: {fileID: 2761131951521304561}
   sideStep: {fileID: 8300000, guid: ab095690fd0e28748b120ba1cfc8e3d8, type: 3}
   jump: {fileID: 8300000, guid: 99c65f497eb45424cb8358229530576a, type: 3}
@@ -26883,6 +26895,7 @@ MonoBehaviour:
   _starCollisionIcon: {fileID: 0}
   _collidingStars: {fileID: 0}
   _starCollisionCost: 0
+  _starCollisionChargeDuration: 0
   _starCollisionPreparation: 0
   _starCollisionRecovery: 0
   _starCollisionCooldown: 0
