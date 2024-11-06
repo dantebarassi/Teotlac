@@ -38,6 +38,7 @@ public class NebulaShield : MonoBehaviour, IDamageable
 
         if (_player != null) _player.Specials.ActivateSpecial(SpecialsManager.Specials.NebulaShield, true);
 
+        GetComponent<Collider>().enabled = false;
         _nebulosa.Stop();
         _galaxy.SetFloat("ParticlesGalaxy", 0);
         _galaxy.Stop();
