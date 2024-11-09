@@ -12,6 +12,14 @@ public class Inputs
     //CinemachineCameraController _cameraController;
     bool _jump, _primaryAttack = false, _secondaryAttack = false, _aiming = false, _resourcesUncapped = false;
 
+    public float HorizontalInput
+    {
+        get
+        {
+            return _inputHorizontal;
+        }
+    }
+
     public bool trigger = false;
 
     KeyCode _kStep, _kJump, _kPrimaryAttack, _kSecondaryAttack, _kSpecial1, _kSpecial2, _kSun, _kObsidian, _kPause, _kInteract;

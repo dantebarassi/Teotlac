@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class PlayerController : Entity
 {
@@ -23,6 +24,7 @@ public class PlayerController : Entity
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] Transform _aimTarget;
     [SerializeField] InteractionManager _interaction;
+    [SerializeField] VisualEffect[] _handFires;
 
     [Header("Stamina costs")]
     [SerializeField] float _jumpCost;
@@ -497,6 +499,11 @@ public class PlayerController : Entity
 
     IEnumerator RootMotionCombo()
     {
+        foreach (var item in _handFires)
+        {
+            item.Play();
+        }
+
         _rb.angularVelocity = Vector3.zero;
         anim.SetBool("isComboing", true);
         _comboing = true;
@@ -552,7 +559,9 @@ public class PlayerController : Entity
                         comboCount++;
                         currentComboTime = _comboBreakTime;
 
-                        anim.SetTrigger("progressCombo");
+                        if (_inputs.HorizontalInput < 0) anim.SetTrigger("progressCombo"); // combo a la izquierda
+                        else if (_inputs.HorizontalInput > 0) anim.SetTrigger("progressCombo"); // combo a la derecha
+                        else anim.SetTrigger("progressCombo");
 
                         _inputs.PrimaryAttack = false;
                         _canChain = false;
@@ -582,6 +591,11 @@ public class PlayerController : Entity
         _movement.FixedCast(false);
         anim.SetBool("isComboing", false);
         _comboing = false;
+
+        foreach (var item in _handFires)
+        {
+            item.Stop();
+        }
 
         yield return new WaitForSeconds(0.25f);
 
@@ -985,7 +999,16 @@ public class PlayerController : Entity
 
     public override void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        StartCoroutine(Death());
+    }
+
+    IEnumerator Death()
+    {
+        // animacion de muerte, prender alguna imagen de te moriste?
+
+        yield return new WaitForSeconds(2);
+
+        SceneLoader.instance.ChangeScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Joistick()
