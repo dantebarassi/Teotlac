@@ -505,8 +505,14 @@ public class PlayerController : Entity
         }
 
         _rb.angularVelocity = Vector3.zero;
-        anim.SetBool("isComboing", true);
+
         _comboing = true;
+        
+        anim.SetBool("isComboing", true);
+
+        if (_inputs.HorizontalInput < 0) anim.SetTrigger("standingCombo"); // combo a la izquierda
+        else if (_inputs.HorizontalInput > 0) anim.SetTrigger("standingCombo"); // combo a la derecha
+        else anim.SetTrigger("standingCombo");
 
         if (_postStepCoroutine != null) StopCoroutine(_postStepCoroutine);
         _movement.FixedCast(true);
