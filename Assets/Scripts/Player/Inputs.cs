@@ -173,7 +173,7 @@ public class Inputs
 
         if (Input.GetKeyDown(_kStep))
         {
-            _player.Step(_inputHorizontal, _inputVertical);
+            _player.Roll(_inputHorizontal, _inputVertical);
 
             PrimaryAttack = false;
         }
@@ -196,7 +196,7 @@ public class Inputs
 
         if (Input.GetKeyDown(_kStep))
         {
-            _player.Step(_inputHorizontal, _inputVertical);
+            _player.Roll(_inputHorizontal, _inputVertical);
 
             PrimaryAttack = false;
         }
@@ -234,7 +234,7 @@ public class Inputs
 
         if (Input.GetKeyDown(_kStep))
         {
-            _player.Step(_inputHorizontal, _inputVertical);
+            _player.Roll(_inputHorizontal, _inputVertical);
 
             PrimaryAttack = false;
         }
@@ -267,7 +267,7 @@ public class Inputs
 
         if (Input.GetKeyDown(_kStep))
         {
-            _player.Step(_inputHorizontal, _inputVertical);
+            _player.Roll(_inputHorizontal, _inputVertical);
 
             PrimaryAttack = false;
         }
@@ -420,7 +420,7 @@ public class Inputs
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            _player.Step(_inputHorizontal, _inputVertical);
+            _player.Roll(_inputHorizontal, _inputVertical);
             _player.StopChannels = true;
             SecondaryAttack = false;
         }

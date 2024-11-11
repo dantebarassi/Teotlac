@@ -27,9 +27,9 @@ public class Projectile : MonoBehaviour, IDamageable
         }
     }
 
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
-        _rb.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
+        _rb.MovePosition(transform.position + speed * Time.fixedDeltaTime * transform.forward);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
