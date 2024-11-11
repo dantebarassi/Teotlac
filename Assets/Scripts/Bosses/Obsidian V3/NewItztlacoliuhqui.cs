@@ -661,7 +661,7 @@ public class NewItztlacoliuhqui : Boss
         for (int i = 0; i < _quickShotProjectileAmount; i++)
         {
             var shard = _shardPool.Get();
-            shard.Initialize(_shardPool, _shardSpeed, _shardDamage, SpawnBud);
+            shard.Initialize(_shardPool, _shardSpeed, _shardDamage, _player.target, SpawnBud);
             shard.transform.position = _quickShotSpawnPos.position;
             shard.transform.forward = dir.VectorVariation(i, _quickShotHorDirVariation, _quickShotVerDirVariation);
         }

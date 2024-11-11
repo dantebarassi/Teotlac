@@ -251,18 +251,18 @@ public class PlayerController : Entity
         }
     }
 
-    public void Step(float horizontalInput, float verticalInput)
+    public void Roll(float horizontalInput, float verticalInput)
     {
         if (Grounded && _stepCurrentCooldown <= 0 && CheckAndReduceStamina(_stepCost))
         {
             if (_comboing) _stopChannels = true;
             _damageCurrentCooldown += _invincibilityTime;
-            anim.SetTrigger("step");
+            anim.SetTrigger("roll");
             //StartCoroutine(ToggleGameObject(_stepParticles));
             //anim.SetBool("IsStrafeRight", true);
             ChangeAudio(sideStep);
             _stepCurrentCooldown = _stepCooldown;
-            _movement.Step(horizontalInput, verticalInput);
+            _movement.Roll(horizontalInput, verticalInput);
         }
     }
 
@@ -559,9 +559,9 @@ public class PlayerController : Entity
                         comboCount++;
                         currentComboTime = _comboBreakTime;
 
-                        if (_inputs.HorizontalInput < 0) anim.SetTrigger("progressCombo"); // combo a la izquierda
-                        else if (_inputs.HorizontalInput > 0) anim.SetTrigger("progressCombo"); // combo a la derecha
-                        else anim.SetTrigger("progressCombo");
+                        if (_inputs.HorizontalInput < 0) anim.SetTrigger("standingCombo"); // combo a la izquierda
+                        else if (_inputs.HorizontalInput > 0) anim.SetTrigger("standingCombo"); // combo a la derecha
+                        else anim.SetTrigger("standingCombo");
 
                         _inputs.PrimaryAttack = false;
                         _canChain = false;
@@ -616,6 +616,7 @@ public class PlayerController : Entity
         var cameraTransform = Camera.main.transform;
 
         Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, Mathf.Infinity, _raycastTargets);
+
         if (hit.collider)
         {
             dir = hit.point - sun.transform.position;
@@ -643,6 +644,7 @@ public class PlayerController : Entity
         var cameraTransform = Camera.main.transform;
 
         Physics.Raycast(cameraTransform.position, cameraTransform.forward, out var hit, Mathf.Infinity, _raycastTargets);
+
         if (hit.collider)
         {
             dir = hit.point - sun.transform.position;
@@ -654,7 +656,7 @@ public class PlayerController : Entity
 
         sun.transform.forward = dir;
 
-        sun.Initialize(_finisherPool, _sunBaseDamage * 1.5f, _sunSpeed * 1.25f);
+        sun.Initialize(_finisherPool, _sunBaseDamage * 1.5f, _sunSpeed);
 
         _canChain = true;
     }
@@ -1004,6 +1006,7 @@ public class PlayerController : Entity
 
     IEnumerator Death()
     {
+        _inputs.inputUpdate = _inputs.Nothing;
         // animacion de muerte, prender alguna imagen de te moriste?
 
         yield return new WaitForSeconds(2);

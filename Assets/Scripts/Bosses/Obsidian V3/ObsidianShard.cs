@@ -12,13 +12,42 @@ public class ObsidianShard : Projectile
     [SerializeField] ObsidianBud _bud;
     [Range(0, 100)]
     [SerializeField] int _budSpawnChance;
+    [SerializeField] float _homingStrength;
 
-    public void Initialize(ObjectPool<ObsidianShard> pool, float spd, float dmg,Action<Vector3> spawnBud = null)
+    Transform _target;
+
+    public void Initialize(ObjectPool<ObsidianShard> pool, float spd, float dmg, Transform target = null, Action<Vector3> spawnBud = null)
     {
         _objectPool = pool;
         speed = spd;
         damage = dmg;
+        _target = target;
         _spawnBud = spawnBud;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    protected override void FixedUpdate()
+    {
+        Vector3 dir;
+        
+        if (_target != null)
+        {
+            Vector3 desiredDir = (_target.position - transform.position).normalized;
+        
+            dir = Vector3.Lerp(transform.forward, desiredDir, _homingStrength * Time.fixedDeltaTime / Vector3.Angle(transform.forward, desiredDir)).normalized;
+
+            _rb.MoveRotation(Quaternion.LookRotation(dir));
+        }
+        else
+        {
+            dir = transform.forward;
+        }
+        
+        _rb.MovePosition(transform.position + speed * Time.fixedDeltaTime * dir);
     }
 
     public static void TurnOff(ObsidianShard x)

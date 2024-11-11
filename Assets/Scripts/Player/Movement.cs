@@ -137,7 +137,7 @@ public class Movement
         _rb.AddForce(Vector3.up * _jumpStrength);
     }
 
-    public void Step(float horizontalInput, float verticalInput)
+    public void Roll(float horizontalInput, float verticalInput)
     {
         Vector3 dir, cameraForward;
 
