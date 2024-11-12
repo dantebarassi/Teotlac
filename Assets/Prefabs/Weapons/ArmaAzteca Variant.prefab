@@ -88,6 +88,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArmaAzteca Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7f351fa75b5740446b31d0719f14563f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2411844224157171643, guid: 7f351fa75b5740446b31d0719f14563f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -172,7 +177,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
