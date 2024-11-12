@@ -62,6 +62,13 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] int _quickShotProjectileAmount;
     [SerializeField] float _quickShotHorDirVariation, _quickShotVerDirVariation;
 
+    [Header("Homing Shards")]
+    [SerializeField] Transform _homingSpawnPos;
+    [SerializeField] int _homingCount;
+    [SerializeField] float _homingOffset;
+
+    List<ObsidianShard> _homingShards = new();
+
     [Header("Ground Spikes")]
     [SerializeField] ObsidianGroundSpikes _spikesPrefab;
     [SerializeField] float _spikesStartOffset, _spikesOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration, spikeDespawnTime;
@@ -666,11 +673,6 @@ public class NewItztlacoliuhqui : Boss
             shard.transform.forward = dir.VectorVariation(i, _quickShotHorDirVariation, _quickShotVerDirVariation);
         }
     }
-
-    List<ObsidianShard> _homingShards = new();
-    Transform _homingSpawnPos;
-    int _homingCount;
-    float _homingOffset;
 
     public void SpawnHomingShards()
     {
