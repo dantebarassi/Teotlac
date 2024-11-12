@@ -510,8 +510,8 @@ public class PlayerController : Entity
         
         anim.SetBool("isComboing", true);
 
-        if (_inputs.HorizontalInput < -0.5f) anim.SetTrigger("standingCombo"); // combo a la izquierda
-        else if (_inputs.HorizontalInput > 0.5f) anim.SetTrigger("rightCombo"); // combo a la derecha
+        if (_inputs.HorizontalInput < -0.25f) anim.SetTrigger("standingCombo"); // combo a la izquierda
+        else if (_inputs.HorizontalInput > 0.25f) anim.SetTrigger("rightCombo"); // combo a la derecha
         else anim.SetTrigger("standingCombo");
 
         if (_postStepCoroutine != null) StopCoroutine(_postStepCoroutine);
@@ -521,6 +521,9 @@ public class PlayerController : Entity
         int comboCount = 1;
 
         currentComboTime = _comboBreakTime;
+
+        _inputs.PrimaryAttack = false;
+        _canChain = false;
 
         while (!_stopChannels && currentComboTime > 0)
         {
@@ -565,8 +568,8 @@ public class PlayerController : Entity
                         comboCount++;
                         currentComboTime = _comboBreakTime;
 
-                        if (_inputs.HorizontalInput < -0.5f) anim.SetTrigger("standingCombo"); // combo a la izquierda
-                        else if (_inputs.HorizontalInput > 0.5f) anim.SetTrigger("rightCombo"); // combo a la derecha
+                        if (_inputs.HorizontalInput < -0.25f) anim.SetTrigger("standingCombo"); // combo a la izquierda
+                        else if (_inputs.HorizontalInput > 0.25f) anim.SetTrigger("rightCombo"); // combo a la derecha
                         else anim.SetTrigger("standingCombo");
 
                         _inputs.PrimaryAttack = false;

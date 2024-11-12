@@ -59,13 +59,13 @@ public class NewItztlacoliuhqui : Boss
 
     [Header("Quick Shot")]
     [SerializeField] Transform _quickShotSpawnPos;
-    [SerializeField] int _quickShotProjectileAmount;
+    [SerializeField] int _quickShotCount;
     [SerializeField] float _quickShotHorDirVariation, _quickShotVerDirVariation;
 
-    [Header("Homing Shards")]
-    [SerializeField] Transform _homingSpawnPos;
-    [SerializeField] int _homingCount;
-    [SerializeField] float _homingOffset;
+    [Header("Power Shot")]
+    [SerializeField] Transform _powerShotSpawnPos;
+    [SerializeField] int _powerShotCount;
+    [SerializeField] float _powerShotSpawnOffset;
 
     List<ObsidianShard> _homingShards = new();
 
@@ -374,12 +374,17 @@ public class NewItztlacoliuhqui : Boss
 
         melee.OnEnter += x =>
         {
-            StartCoroutine(MeleeTest());
+            _anim.SetTrigger("Melee");
         };
 
         quickShot.OnEnter += x =>
         {
             _anim.SetTrigger("Attack");
+        };
+
+        powerShot.OnEnter += x =>
+        {
+            _anim.SetTrigger("PowerShot");
         };
 
         groundSpike.OnEnter += x =>
@@ -449,6 +454,7 @@ public class NewItztlacoliuhqui : Boss
         return _bloomingBuds.Any();
     }
     bool CanLimb() => Vector3.Distance(transform.position, _player.transform.position) <= _limbRange;
+    bool CanHoming() => true;
 
     bool TryChain(Actions action)
     {
@@ -665,7 +671,7 @@ public class NewItztlacoliuhqui : Boss
     {
         var dir = _player.target.position - _quickShotSpawnPos.position;
 
-        for (int i = 0; i < _quickShotProjectileAmount; i++)
+        for (int i = 0; i < _quickShotCount; i++)
         {
             var shard = _shardPool.Get();
             shard.Initialize(_shardPool, _shardSpeed, _shardDamage, _player.target, SpawnBud);
@@ -676,17 +682,18 @@ public class NewItztlacoliuhqui : Boss
 
     public void SpawnHomingShards()
     {
-        var baseAngle = 360 / _homingCount;
+        var baseAngle = 360 / _powerShotCount;
         var halfAngle = baseAngle * 0.5f;
 
-        for (int i = 0; i < _homingCount; i++)
+        for (int i = 0; i < _powerShotCount; i++)
         {
             var shard = _shardPool.Get();
-            shard.transform.position = _homingSpawnPos.position;
+            shard.transform.position = _powerShotSpawnPos.position;
             shard.transform.up = Vector3.up;
             shard.transform.rotation = Quaternion.Euler(new Vector3(0, baseAngle * i + Mathf.Lerp(0, halfAngle, Random.value)));
-            shard.transform.position += shard.transform.forward * _homingOffset;
-            shard.transform.SetParent(_homingSpawnPos);
+            shard.transform.position += shard.transform.forward * _powerShotSpawnOffset;
+            shard.transform.forward = Vector3.up;
+            shard.transform.SetParent(_powerShotSpawnPos);
 
             _homingShards.Add(shard);
         }
