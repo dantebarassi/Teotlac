@@ -384,6 +384,7 @@ public class NewItztlacoliuhqui : Boss
 
         powerShot.OnEnter += x =>
         {
+            Debug.Log("ENTRA POWER");
             _anim.SetTrigger("PowerShot");
         };
 
@@ -473,6 +474,9 @@ public class NewItztlacoliuhqui : Boss
                 break;
             case Actions.Limb:
                 if (CanLimb()) succesful = true;
+                break;
+            case Actions.PowerShot:
+                if (CanHoming()) succesful = true;
                 break;
             default:
                 break;
