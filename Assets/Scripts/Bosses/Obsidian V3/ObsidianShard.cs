@@ -13,6 +13,7 @@ public class ObsidianShard : Projectile
     [Range(0, 100)]
     [SerializeField] int _budSpawnChance;
     [SerializeField] float _homingStrength;
+    bool _shot = false;
 
     Transform _target;
 
@@ -23,15 +24,20 @@ public class ObsidianShard : Projectile
         damage = dmg;
         _target = target;
         _spawnBud = spawnBud;
+        _shot = true;
     }
 
     protected override void Update()
     {
+        if (!_shot) return;
+
         base.Update();
     }
 
     protected override void FixedUpdate()
     {
+        if (!_shot) return;
+
         Vector3 dir;
         
         if (_target != null)
@@ -69,7 +75,7 @@ public class ObsidianShard : Projectile
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 3 || other.gameObject.layer == 7 || other.gameObject.layer == 11) return;
+        if (!_shot || other.gameObject.layer == 3 || other.gameObject.layer == 7 || other.gameObject.layer == 11) return;
 
         if (other.TryGetComponent(out IDamageable damageable))
         {

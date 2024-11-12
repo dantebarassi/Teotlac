@@ -667,6 +667,40 @@ public class NewItztlacoliuhqui : Boss
         }
     }
 
+    List<ObsidianShard> _homingShards = new();
+    Transform _homingSpawnPos;
+    int _homingCount;
+    float _homingOffset;
+
+    public void SpawnHomingShards()
+    {
+        var baseAngle = 360 / _homingCount;
+        var halfAngle = baseAngle * 0.5f;
+
+        for (int i = 0; i < _homingCount; i++)
+        {
+            var shard = _shardPool.Get();
+            shard.transform.position = _homingSpawnPos.position;
+            shard.transform.up = Vector3.up;
+            shard.transform.rotation = Quaternion.Euler(new Vector3(0, baseAngle * i + Mathf.Lerp(0, halfAngle, Random.value)));
+            shard.transform.position += shard.transform.forward * _homingOffset;
+            shard.transform.SetParent(_homingSpawnPos);
+
+            _homingShards.Add(shard);
+        }
+    }
+
+    public void ShootHomingShards()
+    {
+        foreach (var item in _homingShards)
+        {
+            item.transform.parent = null;
+            item.Initialize(_shardPool, _shardSpeed, _shardDamage, _player.target);
+        }
+
+        _homingShards.Clear();
+    }
+
     IEnumerator PlaceholderWallSpiking()
     {
         Vector3 target;
