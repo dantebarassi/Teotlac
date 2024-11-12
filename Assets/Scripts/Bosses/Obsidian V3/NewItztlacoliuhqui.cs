@@ -384,7 +384,6 @@ public class NewItztlacoliuhqui : Boss
 
         powerShot.OnEnter += x =>
         {
-            Debug.Log("ENTRA POWER");
             _anim.SetTrigger("PowerShot");
         };
 
@@ -746,6 +745,8 @@ public class NewItztlacoliuhqui : Boss
 
             _homingShards.Add(shard);
         }
+
+        _trackPlayer = true;
     }
 
     public void ShootHomingShards()
@@ -753,10 +754,13 @@ public class NewItztlacoliuhqui : Boss
         foreach (var item in _homingShards)
         {
             item.transform.parent = null;
+            item.transform.forward = _player.target.position - item.transform.position;
             item.Initialize(_shardPool, _shardSpeed, _shardDamage, _player.target);
         }
 
         _homingShards.Clear();
+
+        _trackPlayer = false;
     }
 
     IEnumerator PlaceholderWallSpiking()
