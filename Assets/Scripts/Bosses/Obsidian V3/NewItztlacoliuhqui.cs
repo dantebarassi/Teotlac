@@ -602,13 +602,58 @@ public class NewItztlacoliuhqui : Boss
     {
         Vector3 spawnPos;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point + transform.forward * _meleeSpawnOffset;
+        if (Physics.Raycast(transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) spawnPos = hit.point;
         else return;
 
-        var spike = Instantiate(_melee, spawnPos, transform.rotation);
-        spike.Play();
+        //var spike = Instantiate(_melee, spawnPos, transform.rotation);
+        //spike.Play();
 
-        StartCoroutine(SpikesHitCheck(1, _meleeDamage, spike.transform.position, _meleeRadius, _meleeHeight, _meleeRadius, spike.transform.rotation));
+        StartCoroutine(MeleeHitCheck(1, _meleeDamage, spawnPos, _meleeRadius));
+    }
+
+    IEnumerator MeleeHitCheck(float duration, float damage, Vector3 center, float radius)
+    {
+        float timer = 0;
+        List<Collider> ignore = new List<Collider>();
+        bool skip = false;
+
+        while (timer < duration)
+        {
+            var cols = Physics.OverlapSphere(center, radius, _spikeTargets);
+
+            foreach (var item in cols)
+            {
+                foreach (var item2 in ignore)
+                {
+                    if (item == item2) skip = true;
+                }
+
+                if (skip)
+                {
+                    skip = false;
+                    continue;
+                }
+
+                if (item.TryGetComponent(out IDamageable damageable))
+                {
+                    damageable.TakeDamage(damage);
+
+                    if (item != null) ignore.Add(item);
+                }
+                else
+                {
+                    damageable = item.GetComponentInParent<IDamageable>();
+
+                    if (damageable != null) damageable.TakeDamage(damage);
+
+                    if (item != null) ignore.Add(item);
+                }
+            }
+
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
     }
 
     public void BudStrike()
@@ -778,13 +823,6 @@ public class NewItztlacoliuhqui : Boss
 
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
-                    if (item.TryGetComponent(out NebulaShield nebula))
-                    {
-                        nebula.Overcharge();
-
-                        continue;
-                    }
-
                     damageable.TakeDamage(damage);
 
                     if (item != null) ignore.Add(item);
@@ -864,13 +902,6 @@ public class NewItztlacoliuhqui : Boss
 
                 if (item.TryGetComponent(out IDamageable damageable))
                 {
-                    if (item.TryGetComponent(out NebulaShield nebula))
-                    {
-                        nebula.Overcharge();
-
-                        continue;
-                    }
-
                     damageable.TakeDamage(damage);
 
                     if (item != null) ignore.Add(item);
