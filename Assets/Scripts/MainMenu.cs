@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        SceneLoader.instance.ChangeScene("TenoParaCine");
+        SceneLoader.instance.LoadLevel("TenoParaCine");
     }
 
     public void QuitGame()

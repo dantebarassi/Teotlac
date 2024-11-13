@@ -66,7 +66,9 @@ public class PlayerController : Entity
     public GameObject camaraFinal;
 
     [HideInInspector] public bool canAttack = true;
-    private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing, _canChain = false;
+    private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing, _canChain = false, _dead = false;
+
+    public bool Dead { get { return _dead; } }
 
     [SerializeField] Material _VignetteAmountClamps;
 
@@ -983,14 +985,15 @@ public class PlayerController : Entity
     {
         _interaction.StartInteraction();
     }
-
+    
     public override void TakeDamage(float amount, bool bypassCooldown = false)
     {
+        if (_damageCurrentCooldown > 0 || _dead) return;
+
         //_inputs.PrimaryAttack = false;
         OnHit.Triggers(this);
         if (_comboing) _stopChannels = true;
 
-        if (_damageCurrentCooldown > 0) return;
         ChangeAudio(damage);
         //_cameraController.CameraShake(1, 0.5f);
         UIManager.instance.TookDamage();
@@ -1010,17 +1013,22 @@ public class PlayerController : Entity
 
     public override void Die()
     {
+        _dead = true;
+
+        anim.SetLayerWeight(4, 0);
+
         StartCoroutine(Death());
     }
 
     IEnumerator Death()
     {
         _inputs.inputUpdate = _inputs.Nothing;
-        // animacion de muerte, prender alguna imagen de te moriste?
 
-        yield return new WaitForSeconds(2);
+        anim.SetTrigger("die");
 
-        SceneLoader.instance.ChangeScene(SceneManager.GetActiveScene().buildIndex);
+        yield return new WaitForSeconds(5);
+
+        SceneLoader.instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Joistick()

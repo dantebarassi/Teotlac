@@ -313,6 +313,8 @@ public class NewItztlacoliuhqui : Boss
 
         inactive.OnUpdate += () =>
         {
+            if (_player.Dead) return;
+
             if (Vector3.Distance(transform.position, _player.transform.position) <= _aggroRange)
             {
                 UIManager.instance.UpdateBar(UIManager.Bar.BossHp, _hp, _maxHp);
@@ -558,6 +560,8 @@ public class NewItztlacoliuhqui : Boss
 
     public void ChainOpportunity(Actions prevAction = Actions.Approach)
     {
+        if (_player.Dead) ChangeState(Actions.Inactive);
+
         if (CanMelee())
         {
             _lookDir = (_player.transform.position - transform.position).MakeHorizontal();

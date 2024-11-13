@@ -17,21 +17,28 @@ public class SceneLoader : MonoBehaviour
         else if (instance != this) Destroy(gameObject);
     }
 
-    public void ChangeScene(string name)
+    public void LoadMenu()
+    {
+        StartCoroutine(LoadingLevel("SceneSelector", false));
+
+        Time.timeScale = 1;
+    }
+
+    public void LoadLevel(string name)
     {
         StartCoroutine(LoadingLevel(name));
 
         Time.timeScale = 1;
     }
 
-    public void ChangeScene(int index)
+    public void LoadLevel(int index)
     {
         StartCoroutine(LoadingLevel(index));
 
         Time.timeScale = 1;
     }
 
-    IEnumerator LoadingLevel(string name)
+    IEnumerator LoadingLevel(string name, bool cursorLocked = true)
     {
         float timer = 0;
 
@@ -56,6 +63,8 @@ public class SceneLoader : MonoBehaviour
         }
 
         _loadScreen.SetActive(false);
+
+        if (!cursorLocked) Cursor.lockState = CursorLockMode.None;
     }
 
     IEnumerator LoadingLevel(int index)
