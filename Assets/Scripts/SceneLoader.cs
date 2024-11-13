@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
 
     [SerializeField] GameObject _loadScreen;
     [SerializeField] Image _black, _loadingBar;
+    [SerializeField] float _minLoadDuration;
 
     private void Awake()
     {
@@ -19,26 +20,26 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadMenu()
     {
-        StartCoroutine(LoadingLevel("SceneSelector", false));
+        StartCoroutine(LoadingLevel("SceneSelector", _minLoadDuration, false));
 
         Time.timeScale = 1;
     }
 
     public void LoadLevel(string name)
     {
-        StartCoroutine(LoadingLevel(name));
+        StartCoroutine(LoadingLevel(name, _minLoadDuration));
 
         Time.timeScale = 1;
     }
 
     public void LoadLevel(int index)
     {
-        StartCoroutine(LoadingLevel(index));
+        StartCoroutine(LoadingLevel(index, _minLoadDuration));
 
         Time.timeScale = 1;
     }
 
-    IEnumerator LoadingLevel(string name, bool cursorLocked = true)
+    IEnumerator LoadingLevel(string name, float minDuration, bool cursorLocked = true)
     {
         float timer = 0;
 
@@ -55,19 +56,27 @@ public class SceneLoader : MonoBehaviour
 
         AsyncOperation load = SceneManager.LoadSceneAsync(name);
 
-        while (!load.isDone)
+        load.allowSceneActivation = false;
+
+        timer = 0;
+
+        while (!load.isDone && timer < minDuration)
         {
-            _loadingBar.fillAmount = Mathf.Clamp01(load.progress / 0.9f);
+            timer += Time.deltaTime;
+
+            _loadingBar.fillAmount = Mathf.Clamp(load.progress / 0.9f, 0, timer / minDuration); ;
 
             yield return null;
         }
+
+        load.allowSceneActivation = true;
 
         _loadScreen.SetActive(false);
 
         if (!cursorLocked) Cursor.lockState = CursorLockMode.None;
     }
 
-    IEnumerator LoadingLevel(int index)
+    IEnumerator LoadingLevel(int index, float minDuration)
     {
         float timer = 0;
 
@@ -84,12 +93,20 @@ public class SceneLoader : MonoBehaviour
 
         AsyncOperation load = SceneManager.LoadSceneAsync(index);
 
-        while (!load.isDone)
+        load.allowSceneActivation = false;
+
+        timer = 0;
+
+        while (!load.isDone && timer < minDuration)
         {
-            _loadingBar.fillAmount = Mathf.Clamp01(load.progress / 0.9f);
+            timer += Time.deltaTime;
+
+            _loadingBar.fillAmount = Mathf.Clamp(load.progress / 0.9f, 0, timer / minDuration); ;
 
             yield return null;
         }
+
+        load.allowSceneActivation = true;
 
         _loadScreen.SetActive(false);
     }
