@@ -2156,7 +2156,7 @@ GameObject:
   - component: {fileID: 1568793126039511157}
   - component: {fileID: 9142114231625486431}
   - component: {fileID: 7829409673297605048}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BaseWallDooorRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2626,6 +2626,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7222319681082023270}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b91ccf755b825ac41a7f1be53b6b2540,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8452429223003390530}
   m_SourcePrefab: {fileID: 100100000, guid: b91ccf755b825ac41a7f1be53b6b2540, type: 3}
 --- !u!1 &69484270543284757 stripped
 GameObject:
@@ -2668,6 +2672,28 @@ MonoBehaviour:
   - {fileID: 3329987775005683839}
   - {fileID: 1140739922668266979}
   - {fileID: 9125316552363125893}
+--- !u!64 &8452429223003390530
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69484270543284757}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4732937762076777578, guid: b91ccf755b825ac41a7f1be53b6b2540, type: 3}
 --- !u!4 &845844674345562287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b91ccf755b825ac41a7f1be53b6b2540,
