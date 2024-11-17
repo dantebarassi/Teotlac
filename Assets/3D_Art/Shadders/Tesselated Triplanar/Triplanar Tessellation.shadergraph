@@ -31,6 +31,9 @@
             "m_Id": "10f6894b4b684d52b8df6792d2367378"
         },
         {
+            "m_Id": "fa629f452e7e4d779a3402bd84d9f7b4"
+        },
+        {
             "m_Id": "229340780735496384a155629c26eb6e"
         },
         {
@@ -119,6 +122,9 @@
         },
         {
             "m_Id": "853123107b4d42d982b628fd6600d42e"
+        },
+        {
+            "m_Id": "57a65df5ffbc4bc6ada5ca8cf5a912fe"
         }
     ],
     "m_GroupDatas": [],
@@ -192,6 +198,20 @@
                     "m_Id": "856d857798fb4a70b846936dcafafdbb"
                 },
                 "m_SlotId": 2103227387
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "57a65df5ffbc4bc6ada5ca8cf5a912fe"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "856d857798fb4a70b846936dcafafdbb"
+                },
+                "m_SlotId": 267988396
             }
         },
         {
@@ -623,9 +643,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -345.0000305175781,
-            "y": 351.0,
-            "width": 186.00003051757813,
+            "x": -343.9999694824219,
+            "y": 380.0,
+            "width": 186.00001525878907,
             "height": 34.0
         }
     },
@@ -925,10 +945,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -277.0,
-            "y": 385.0,
-            "width": 118.99996948242188,
-            "height": 34.0
+            "x": -276.0,
+            "y": 414.0,
+            "width": 118.99998474121094,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [
@@ -995,9 +1015,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -339.0000305175781,
-            "y": 487.0,
-            "width": 181.0,
+            "x": -337.9999694824219,
+            "y": 516.0,
+            "width": 180.9999542236328,
             "height": 34.0
         }
     },
@@ -1084,10 +1104,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -300.0000305175781,
-            "y": 453.0,
-            "width": 142.0,
-            "height": 34.0
+            "x": -299.0,
+            "y": 481.9999694824219,
+            "width": 141.99998474121095,
+            "height": 34.000030517578128
         }
     },
     "m_Slots": [
@@ -1273,9 +1293,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -321.0000305175781,
-            "y": 623.0000610351563,
-            "width": 163.0,
+            "x": -319.9999694824219,
+            "y": 652.0,
+            "width": 162.9999542236328,
             "height": 33.99993896484375
         }
     },
@@ -1348,6 +1368,57 @@
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Tessellation_Factor",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "57a65df5ffbc4bc6ada5ca8cf5a912fe",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -333.0,
+            "y": 351.0,
+            "width": 175.0000457763672,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "581d6e9bea1e4215ba4bfd60b41be48a"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "fa629f452e7e4d779a3402bd84d9f7b4"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "581d6e9bea1e4215ba4bfd60b41be48a",
+    "m_Id": 0,
+    "m_DisplayName": "Tessellation Factor",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
@@ -1446,10 +1517,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -305.0000305175781,
-            "y": 555.0,
-            "width": 147.0,
-            "height": 34.0
+            "x": -303.9999694824219,
+            "y": 584.0,
+            "width": 146.9999542236328,
+            "height": 33.99993896484375
         }
     },
     "m_Slots": [
@@ -1820,9 +1891,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -339.0000305175781,
-            "y": 521.0,
-            "width": 181.0,
+            "x": -337.9999694824219,
+            "y": 550.0,
+            "width": 180.9999542236328,
             "height": 34.0
         }
     },
@@ -2012,6 +2083,9 @@
             "m_Id": "4a56be1dd1af45fcba29dfbc4385b74e"
         },
         {
+            "m_Id": "fa629f452e7e4d779a3402bd84d9f7b4"
+        },
+        {
             "m_Id": "229340780735496384a155629c26eb6e"
         }
     ]
@@ -2029,9 +2103,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -279.0000305175781,
-            "y": 419.0,
-            "width": 121.0,
+            "x": -277.9999694824219,
+            "y": 447.9999694824219,
+            "width": 120.99995422363281,
             "height": 34.0
         }
     },
@@ -2129,10 +2203,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -252.00001525878907,
-            "y": 657.0,
-            "width": 93.99998474121094,
-            "height": 34.0
+            "x": -250.99998474121095,
+            "y": 685.9999389648438,
+            "width": 93.99996948242188,
+            "height": 34.00006103515625
         }
     },
     "m_Slots": [
@@ -2293,9 +2367,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -319.0000305175781,
-            "y": 589.0,
-            "width": 161.0,
+            "x": -317.9999694824219,
+            "y": 617.9999389648438,
+            "width": 160.9999542236328,
             "height": 34.00006103515625
         }
     },
@@ -2551,6 +2625,34 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.TessellationFactor"
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "fa629f452e7e4d779a3402bd84d9f7b4",
+    "m_Guid": {
+        "m_GuidSerialized": "30026f98-0b45-4d62-9cf3-8c20899ef6fc"
+    },
+    "m_Name": "Tessellation Factor",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Tessellation Factor",
+    "m_DefaultReferenceName": "_Tessellation_Factor",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 32.0,
+    "m_FloatType": 0,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
 }
 
 {
