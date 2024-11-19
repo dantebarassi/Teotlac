@@ -81,6 +81,7 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] float _limbWindUpDuration, _limbDamage, _limbRange;
 
     [Header("Giant Knife")]
+    [SerializeField] GiantObsidianKnife _gKnife;
     [SerializeField] float _gKnifeThrustDamage, _gKnifeSliceDamage, _gKnifeRange;
 
     [Header("Placeholder Wall Spike")]
@@ -128,6 +129,8 @@ public class NewItztlacoliuhqui : Boss
 
         _spikesFactory = new Factory<ObsidianGroundSpikes>(_spikesPrefab);
         _spikesPool = new ObjectPool<ObsidianGroundSpikes>(_spikesFactory.GetObject, ObsidianGroundSpikes.TurnOff, ObsidianGroundSpikes.TurnOn, 200);
+
+        _gKnife.SetUp(_gKnifeThrustDamage, _gKnifeSliceDamage);
 
         if (_playOnStart) StartCoroutine(SetupWait());
     }
@@ -779,6 +782,21 @@ public class NewItztlacoliuhqui : Boss
         _homingShards.Clear();
 
         _trackPlayer = false;
+    }
+
+    public void KnifeThrustEvent()
+    {
+        _gKnife.Thrust();
+    }
+
+    public void KnifeSliceEvent()
+    {
+        _gKnife.Slice();
+    }
+
+    public void KnifeStopEvent()
+    {
+        _gKnife.StopHitting();
     }
 
     IEnumerator PlaceholderWallSpiking()

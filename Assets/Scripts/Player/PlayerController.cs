@@ -219,6 +219,8 @@ public class PlayerController : Entity
 
     public void RollEnded()
     {
+        if (_dead) return;
+
         _inputs.inputUpdate = _inputs.Unpaused;
 
         _postStepCoroutine = StartCoroutine(_movement.OnRollEnd(_postRollTurnRate, _turnRate, 0, _speed, _postRollMoveRecoveryDuration));
