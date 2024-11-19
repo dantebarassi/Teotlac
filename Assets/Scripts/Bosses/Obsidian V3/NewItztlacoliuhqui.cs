@@ -408,7 +408,7 @@ public class NewItztlacoliuhqui : Boss
         {
             _trackPlayer = true;
 
-            -_anim.SetTrigger("");
+            _anim.SetTrigger("Thrust");
         };
 
         limb.OnEnter += x =>
