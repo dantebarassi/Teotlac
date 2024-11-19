@@ -766,13 +766,13 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.1
   fullResolutionSS:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   m_MaxRaySteps:
     m_OverrideState: 1
-    m_Value: 64
+    m_Value: 32
   m_DenoiseSS:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   m_HalfResolutionDenoiserSS:
     m_OverrideState: 1
@@ -1242,7 +1242,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 300
   mipFogMaxMip:
     m_OverrideState: 1
     m_Value: 0.5
