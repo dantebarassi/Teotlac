@@ -18,7 +18,7 @@ public class NewItztlacoliuhqui : Boss
         GroundSpike,
         BudStrike,
         Bloom,
-        ThornTrap,
+        GiantKnife,
         Limb,
         Garden
     }
@@ -79,6 +79,9 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] Vector3 _limbCheckBoxSize;
     [SerializeField] GameObject _limb, _limbExplosion;
     [SerializeField] float _limbWindUpDuration, _limbDamage, _limbRange;
+
+    [Header("Giant Knife")]
+    [SerializeField] float _gKnifeThrustDamage, _gKnifeSliceDamage, _gKnifeRange;
 
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
@@ -152,7 +155,7 @@ public class NewItztlacoliuhqui : Boss
         var groundSpike = new State<Actions>("GroundSpike");
         var budStrike = new State<Actions>("BudStrike");
         var bloom = new State<Actions>("Bloom");
-        var thornTrap = new State<Actions>("ThornTrap");
+        var giantKnife = new State<Actions>("GiantKnife");
         var limb = new State<Actions>("Limb");
         var garden = new State<Actions>("Garden");
 
@@ -164,7 +167,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -178,7 +181,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -192,7 +195,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -206,7 +209,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -220,7 +223,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -234,7 +237,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .Done();
 
@@ -247,7 +250,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -261,12 +264,12 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
 
-        StateConfigurer.Create(thornTrap)
+        StateConfigurer.Create(giantKnife)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
             .SetTransition(Actions.Melee, melee)
@@ -275,7 +278,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -289,7 +292,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .SetTransition(Actions.Garden, garden)
             .Done();
@@ -303,7 +306,7 @@ public class NewItztlacoliuhqui : Boss
             .SetTransition(Actions.GroundSpike, groundSpike)
             .SetTransition(Actions.BudStrike, budStrike)
             .SetTransition(Actions.Bloom, bloom)
-            .SetTransition(Actions.ThornTrap, thornTrap)
+            .SetTransition(Actions.GiantKnife, giantKnife)
             .SetTransition(Actions.Limb, limb)
             .Done();
 
@@ -401,6 +404,13 @@ public class NewItztlacoliuhqui : Boss
             StartCoroutine(BloomTest());
         };
 
+        giantKnife.OnEnter += x =>
+        {
+            _trackPlayer = true;
+
+            -_anim.SetTrigger("");
+        };
+
         limb.OnEnter += x =>
         {
             _timer2 = 0;
@@ -457,6 +467,7 @@ public class NewItztlacoliuhqui : Boss
     }
     bool CanLimb() => Vector3.Distance(transform.position, _player.transform.position) <= _limbRange;
     bool CanHoming() => true;
+    bool CanGiantKnife() => Vector3.Distance(transform.position, _player.transform.position) <= _gKnifeRange;
 
     bool TryChain(Actions action)
     {
@@ -478,6 +489,9 @@ public class NewItztlacoliuhqui : Boss
                 break;
             case Actions.PowerShot:
                 if (CanHoming()) succesful = true;
+                break;
+            case Actions.GiantKnife:
+                if (CanGiantKnife()) succesful = true;
                 break;
             default:
                 break;
