@@ -47,6 +47,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: d6812f1f94c458c4caed854c98799c36, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_1d4e445a371e4328a0629832f90998cd_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: c949cd382cd4c1d44b1b62636b8ce4b9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8805c54f2a2349b380e6468b66b7982b_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 0067522a5f924c345857c1c12677d223, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_c9b96cf27f0f4639a6d1cfb7fa1c29e1_Texture_1_Texture2D:
         m_Texture: {fileID: 2800000, guid: 41627e0f01264b84fbacc01d5352fb4e, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -81,6 +89,7 @@ Material:
     - _DstBlend: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
+    - _Normal_Detail_Strength: 1
     - _Normal_Map_Strength: 1
     - _OpaqueCullMode: 2
     - _QueueControl: 0
@@ -97,6 +106,7 @@ Material:
     - _SSS_Edge_1: 0
     - _SSS_Edge_2: 1
     - _SSS_Subtract: -0.8
+    - _Saturation: 1
     - _SrcBlend: 1
     - _StencilRef: 4
     - _StencilRefDepth: 8
@@ -123,6 +133,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - _Detail_Tiling: {r: 20, g: 20, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: -102976420, g: 1.8931543e-26, b: 9.167071e-13, a: -15600.572}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
