@@ -20,7 +20,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadMenu()
     {
-        StartCoroutine(LoadingLevel("SceneSelector", _minLoadDuration, false));
+        StartCoroutine(LoadingLevel("SceneSelectorNew", _minLoadDuration, false));
 
         Time.timeScale = 1;
     }
