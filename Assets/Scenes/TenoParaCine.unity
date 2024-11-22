@@ -13964,7 +13964,7 @@ PrefabInstance:
     - target: {fileID: 5729858916348287935, guid: e77771b6c11133844b8ca8a5d5498533,
         type: 3}
       propertyPath: _spikeCount
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5729858916348287935, guid: e77771b6c11133844b8ca8a5d5498533,
         type: 3}
@@ -13982,6 +13982,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4476902349003208396, guid: 2968f08429d350943a0e258231fe6238,
         type: 3}
+    - target: {fileID: 5729858916348287935, guid: e77771b6c11133844b8ca8a5d5498533,
+        type: 3}
+      propertyPath: _maxWalkDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5804103894596047235, guid: e77771b6c11133844b8ca8a5d5498533,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
