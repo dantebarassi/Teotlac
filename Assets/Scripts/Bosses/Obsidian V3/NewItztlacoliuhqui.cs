@@ -28,7 +28,7 @@ public class NewItztlacoliuhqui : Boss
     
     [SerializeField] bool _playOnStart;
     [SerializeField] PlayerController _player;
-    [SerializeField] Transform _losTransform;
+    [SerializeField] Transform _losTransform, _footPos;
     [SerializeField] LayerMask _playerLayer, _groundLayer, _obstacleLayer;
     [SerializeField] float _turnRate, _aggroRange;
 
@@ -71,8 +71,8 @@ public class NewItztlacoliuhqui : Boss
 
     [Header("Ground Spikes")]
     [SerializeField] ObsidianGroundSpikes _spikesPrefab;
-    [SerializeField] float _spikesStartOffset, _spikesOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration, spikeDespawnTime;
-    [SerializeField] int _spikesExtraWaves, _spikesMaxRows;
+    [SerializeField] float _spikesStartOffset, _spikesOffset, _spikesBaseSizeX, _spikesSizeY, _spikesSizeZ, _spikesSizeGrowthX, _spikesDelay, _spikesDamage, _spikesDuration, spikeDespawnTime, _spikesSpeed;
+    [SerializeField] int _spikesExtraWaves, _spikesMaxRows, _spikeCount, _totalAngle;
     [SerializeField] LayerMask _spikeTargets;
 
     [Header("Obsidian Limb")]
@@ -117,7 +117,7 @@ public class NewItztlacoliuhqui : Boss
     {
         base.Awake();
 
-        _spikesPrefab.SetUpVFX(_spikesOffset, _spikesDuration);
+        //_spikesPrefab.SetUpVFX(_spikesOffset, _spikesDuration);
 
         _anim = GetComponent<Animator>();
 
@@ -910,7 +910,7 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(spawnDelay);
 
         var spikes = _spikesPool.Get();
-        spikes.Initialize(spawnPos, orientation);
+        //spikes.Initialize(spawnPos, orientation);
 
         var obstacles = Physics.OverlapBox(spawnPos, new Vector3(_spikesOffset, _spikesSizeY, _spikesOffset), orientation, _obstacleLayer);
 
@@ -968,6 +968,21 @@ public class NewItztlacoliuhqui : Boss
         yield return new WaitForSeconds(spikeDespawnTime);
 
         _spikesPool.RefillStock(spikes);
+    }
+
+    
+
+    public void NewGroundSpikes()
+    {
+        float dirOffset = _totalAngle / (_spikeCount - 1);
+
+        Vector3 baseDir = transform.eulerAngles - new Vector3(0, _totalAngle * 0.5f);
+
+        for (int i = 0; i < _spikeCount; i++)
+        {
+            var spike = _spikesPool.Get();
+            spike.Initialize(_spikesPool, new Vector3(_footPos.transform.position.x, transform.position.y, _footPos.transform.position.z), Quaternion.Euler(baseDir + new Vector3(0, dirOffset * i)), _spikesSpeed, _spikesDamage);
+        }
     }
 
     public void StartLimbVFX()
