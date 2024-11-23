@@ -66,7 +66,7 @@ public class PlayerController : Entity
     public GameObject camaraFinal;
 
     [HideInInspector] public bool canAttack = true;
-    private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing, _canChain = false, _dead = false;
+    private bool _joystickActive = true, _aiming = false, _stopChannels = false, _comboing, _canChain = false, _dead = false, _invincible = false;
 
     public bool Dead { get { return _dead; } }
 
@@ -209,6 +209,12 @@ public class PlayerController : Entity
         _inputs.InputsLateUpdate();
     }
 
+    public void Invincibility(int value)
+    {
+        if (value == 1) _invincible = true;
+        else _invincible = false;
+    }
+
     public void RollStarted()
     {
         _inputs.inputUpdate = _inputs.FixedCast;
@@ -260,7 +266,6 @@ public class PlayerController : Entity
         if (Grounded && _stepCurrentCooldown <= 0 && CheckAndReduceStamina(_stepCost))
         {
             if (_comboing) _stopChannels = true;
-            _damageCurrentCooldown += _invincibilityTime;
             anim.SetTrigger("roll");
             //StartCoroutine(ToggleGameObject(_stepParticles));
             //anim.SetBool("IsStrafeRight", true);
@@ -990,7 +995,7 @@ public class PlayerController : Entity
     
     public override void TakeDamage(float amount, bool bypassCooldown = false)
     {
-        if (_damageCurrentCooldown > 0 || _dead) return;
+        if (_invincible || _damageCurrentCooldown > 0 || _dead) return;
 
         //_inputs.PrimaryAttack = false;
         OnHit.Triggers(this);

@@ -104,6 +104,8 @@ public class NewItztlacoliuhqui : Boss
 
     Vector3 _lookDir = Vector3.zero;
 
+    Queue<Actions> _actionHistory = new();
+
     float _timer = 0, _timer2 = 0;
     bool _start = false, _stopGroundSpikes = false, _activated = false, _trackPlayer = false;
 
@@ -131,6 +133,10 @@ public class NewItztlacoliuhqui : Boss
         _spikesPool = new ObjectPool<ObsidianGroundSpikes>(_spikesFactory.GetObject, ObsidianGroundSpikes.TurnOff, ObsidianGroundSpikes.TurnOn, 200);
 
         _gKnife.SetUp(_gKnifeThrustDamage, _gKnifeSliceDamage);
+
+        _actionHistory.Enqueue(Actions.Inactive);
+        _actionHistory.Enqueue(Actions.Inactive);
+        _actionHistory.Enqueue(Actions.Inactive);
 
         if (_playOnStart) StartCoroutine(SetupWait());
     }
@@ -575,7 +581,7 @@ public class NewItztlacoliuhqui : Boss
         EndChain();
     }
 
-    public void ChainOpportunity(Actions prevAction = Actions.Approach)
+    public void ChainOpportunity()
     {
         if (_player.Dead) ChangeState(Actions.Inactive);
 
@@ -593,10 +599,12 @@ public class NewItztlacoliuhqui : Boss
             {
                 var currentAction = attackList.First();
 
-                if (currentAction != prevAction)
+                if (!_actionHistory.Contains(currentAction))
                 {
                     if (TryChain(currentAction))
                     {
+                        _actionHistory.Dequeue();
+                        _actionHistory.Enqueue(currentAction);
                         _chainCounter++;
                         return;
                     }
@@ -607,8 +615,6 @@ public class NewItztlacoliuhqui : Boss
         }
 
         _chainCounter = 0;
-
-        //ChangeState(Actions.Approach);
     }
 
     public void ChainFailed()
