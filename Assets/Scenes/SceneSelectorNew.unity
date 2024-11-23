@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.015373262, g: 0.01152587, b: 0.010749594, a: 1}
+  m_IndirectSpecularColor: {r: 0.015373291, g: 0.0115259, b: 0.010749624, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -287,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 1574084268816760252, guid: 9495ab20fdadefd468ffb60d52f5503b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.3
+      value: -3.79
       objectReference: {fileID: 0}
     - target: {fileID: 1574084268816760252, guid: 9495ab20fdadefd468ffb60d52f5503b,
         type: 3}
@@ -389,7 +389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -130}
+  m_AnchoredPosition: {x: 0, y: -304}
   m_SizeDelta: {x: 1000, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &29015822
@@ -2503,12 +2503,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9d8b17264759d8e4590767af34efdd63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d8b17264759d8e4590767af34efdd63,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9407
+      value: 5.62
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9d8b17264759d8e4590767af34efdd63,
         type: 3}
@@ -3295,14 +3295,14 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 20.78461
+  m_FocalLength: 30
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -3317,7 +3317,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 43.60282
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3343,13 +3343,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909001068}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0021199111, y: 0.99012655, z: -0.13933899, w: 0.015151594}
-  m_LocalPosition: {x: -0.28416297, y: 6.642122, z: 4.811895}
+  m_LocalRotation: {x: 0.0014554018, y: 0.99898493, z: -0.044980366, w: 0.0019554438}
+  m_LocalPosition: {x: 0.34, y: 5.19, z: 10.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.156, y: 179.783, z: 0.157}
 --- !u!114 &909001072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,7 +3369,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -5226,7 +5226,7 @@ PrefabInstance:
     - target: {fileID: -6331769281150938595, guid: 403f2a1ac18b26942b75b473ee22ce38,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -212
+      value: -203.17683
       objectReference: {fileID: 0}
     - target: {fileID: -3434134478389117214, guid: 403f2a1ac18b26942b75b473ee22ce38,
         type: 3}
@@ -5267,6 +5267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: InsideOfAztecTemple
+      objectReference: {fileID: 0}
+    - target: {fileID: 3232861045622384608, guid: 403f2a1ac18b26942b75b473ee22ce38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -271.1
       objectReference: {fileID: 0}
     - target: {fileID: 5123279029321990505, guid: 403f2a1ac18b26942b75b473ee22ce38,
         type: 3}
@@ -5699,7 +5704,7 @@ PrefabInstance:
     - target: {fileID: 5565471657404605983, guid: 415cf1d088e28ed498c2455af64efda8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.47
+      value: -5.745
       objectReference: {fileID: 0}
     - target: {fileID: 5565471657404605983, guid: 415cf1d088e28ed498c2455af64efda8,
         type: 3}
