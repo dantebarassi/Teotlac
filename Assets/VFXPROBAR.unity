@@ -11515,9 +11515,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9017931947469325623, guid: e77771b6c11133844b8ca8a5d5498533,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1410896400}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e77771b6c11133844b8ca8a5d5498533, type: 3}
+--- !u!4 &306553892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9017931947469325623, guid: e77771b6c11133844b8ca8a5d5498533,
+    type: 3}
+  m_PrefabInstance: {fileID: 306553891}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &306886408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25442,7 +25452,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 1
+      - m_Value: 0.54
         m_Name: Blendeo
         m_Overridden: 1
       - m_Value: 0
@@ -25454,7 +25464,7 @@ VisualEffect:
       m_Array:
       - m_Value: {x: 0, y: 0, z: 0}
         m_Name: New Transform_position
-        m_Overridden: 0
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -25479,12 +25489,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410896397}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.93, y: 0.65, z: 20.57}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: -2.293023, y: 0.3023256, z: -9.567442}
+  m_LocalScale: {x: 0.4651163, y: 0.4651163, z: 0.4651163}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 306553892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1423003083
 MonoBehaviour:
@@ -40492,4 +40502,3 @@ SceneRoots:
   - {fileID: 465476147}
   - {fileID: 306553891}
   - {fileID: 1362845290}
-  - {fileID: 1410896400}
