@@ -519,8 +519,8 @@ public class PlayerController : Entity
         
         anim.SetBool("isComboing", true);
 
-        if (_inputs.HorizontalInput < -0.25f) anim.SetTrigger("leftCombo"); // combo a la izquierda
-        else if (_inputs.HorizontalInput > 0.25f) anim.SetTrigger("rightCombo"); // combo a la derecha
+        if (_inputs.HorizontalInput < -0.25f) anim.SetTrigger("leftCombo");
+        else if (_inputs.HorizontalInput > 0.25f) anim.SetTrigger("rightCombo");
         else anim.SetTrigger("standingCombo");
 
         if (_postStepCoroutine != null) StopCoroutine(_postStepCoroutine);

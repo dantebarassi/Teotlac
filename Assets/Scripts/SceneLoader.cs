@@ -69,11 +69,9 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
 
-        load.allowSceneActivation = true;
-
-        _loadScreen.SetActive(false);
-
         if (!cursorLocked) Cursor.lockState = CursorLockMode.None;
+
+        load.allowSceneActivation = true;
     }
 
     IEnumerator LoadingLevel(int index, float minDuration)
@@ -107,7 +105,5 @@ public class SceneLoader : MonoBehaviour
         }
 
         load.allowSceneActivation = true;
-
-        _loadScreen.SetActive(false);
     }
 }
