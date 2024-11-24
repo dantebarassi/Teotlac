@@ -73,6 +73,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
 
     IEnumerator Death()
     {
+        yield return new WaitForSeconds(0.02f);
+
         var vfx = Instantiate(_breakVFX, transform.position, transform.rotation);
         if (!_broken)
         {
