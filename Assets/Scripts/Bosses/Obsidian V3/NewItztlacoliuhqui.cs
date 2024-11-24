@@ -12,6 +12,7 @@ public class NewItztlacoliuhqui : Boss
     {
         Inactive,
         Approach,
+        Sidestep,
         Melee,
         QuickShot,
         PowerShot,
@@ -25,12 +26,13 @@ public class NewItztlacoliuhqui : Boss
 
     EventFSM<Actions> _fsm;
     Pathfinding _pf;
-    
+
     [SerializeField] bool _playOnStart;
     [SerializeField] PlayerController _player;
     [SerializeField] Transform _losTransform, _footPos;
     [SerializeField] LayerMask _playerLayer, _groundLayer, _obstacleLayer;
     [SerializeField] float _turnRate, _aggroRange;
+    [SerializeField] GameObject _deathCam;
 
     [Header("Chain attacks")]
     [SerializeField] Actions[] _chainableAttacks;
@@ -38,13 +40,17 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] int _baseChainChance, _chainChanceReduction;
     int _chainCounter = 0;
 
-    [Header("Shards")]
-    [SerializeField] ObsidianShard _shardPrefab;
-    [SerializeField] float _shardSpeed, _shardDamage;
+    [Header("Basic Shards")]
+    [SerializeField] ObsidianShard _basicShardPrefab;
+    [SerializeField] float _basicShardSpeed, _basicShardDamage;
+
+    [Header("Homing Shards")]
+    [SerializeField] ObsidianShard _homingShardPrefab;
+    [SerializeField] float _homingShardSpeed, _homingShardDamage;
 
     [Header("Walk")]
     [SerializeField] float _walkSpeed;
-    [SerializeField] float _minWalkDuration, _maxWalkDuration;
+    [SerializeField] float _minWalkDuration, _maxWalkDuration, _walkReactionCheckCD;
     [Range(0, 100)]
     [SerializeField] int _walkActionChance, _walkReactionChance;
 
@@ -59,12 +65,12 @@ public class NewItztlacoliuhqui : Boss
 
     [Header("Quick Shot")]
     [SerializeField] Transform _quickShotSpawnPos;
-    [SerializeField] int _quickShotCount;
+    [SerializeField] int _quickShotCount, _enhancedQuickShotCount;
     [SerializeField] float _quickShotHorDirVariation, _quickShotVerDirVariation;
 
     [Header("Power Shot")]
     [SerializeField] Transform _powerShotSpawnPos;
-    [SerializeField] int _powerShotCount;
+    [SerializeField] int _powerShotCount, _enhancedPowerShotCount;
     [SerializeField] float _powerShotSpawnOffset;
 
     List<ObsidianShard> _homingShards = new();
@@ -78,7 +84,8 @@ public class NewItztlacoliuhqui : Boss
     [Header("Obsidian Limb")]
     [SerializeField] Vector3 _limbCheckBoxSize;
     [SerializeField] GameObject _limb, _limbExplosion;
-    [SerializeField] float _limbWindUpDuration, _limbDamage, _limbRange;
+    [SerializeField] float _limbWindUpDuration, _enhancedLimbWindUpDuration, _limbDamage, _limbRange;
+    float _currentLimbWindUp;
 
     [Header("Giant Knife")]
     [SerializeField] GiantObsidianKnife _gKnife;
@@ -91,8 +98,10 @@ public class NewItztlacoliuhqui : Boss
 
     ObjectPool<ObsidianBud> _budPool;
     Factory<ObsidianBud> _budFactory;
-    ObjectPool<ObsidianShard> _shardPool;
-    Factory<ObsidianShard> _shardFactory;
+    ObjectPool<ObsidianShard> _basicShardPool;
+    Factory<ObsidianShard> _basicShardFactory;
+    ObjectPool<ObsidianShard> _homingShardPool;
+    Factory<ObsidianShard> _homingShardFactory;
     ObjectPool<ObsidianGroundSpikes> _spikesPool;
     Factory<ObsidianGroundSpikes> _spikesFactory;
 
@@ -107,7 +116,7 @@ public class NewItztlacoliuhqui : Boss
     Queue<Actions> _actionHistory = new();
 
     float _timer = 0, _timer2 = 0;
-    bool _start = false, _stopGroundSpikes = false, _activated = false, _trackPlayer = false;
+    bool _start = false, _stopGroundSpikes = false, _activated = false, _trackPlayer = false, _secondPhase = false;
 
     public void TrackPlayer(int value)
     {
@@ -126,8 +135,11 @@ public class NewItztlacoliuhqui : Boss
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
 
-        _shardFactory = new Factory<ObsidianShard>(_shardPrefab);
-        _shardPool = new ObjectPool<ObsidianShard>(_shardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 50);
+        _basicShardFactory = new Factory<ObsidianShard>(_basicShardPrefab);
+        _basicShardPool = new ObjectPool<ObsidianShard>(_basicShardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 15);
+
+        _homingShardFactory = new Factory<ObsidianShard>(_homingShardPrefab);
+        _homingShardPool = new ObjectPool<ObsidianShard>(_homingShardFactory.GetObject, ObsidianShard.TurnOff, ObsidianShard.TurnOn, 15);
 
         _spikesFactory = new Factory<ObsidianGroundSpikes>(_spikesPrefab);
         _spikesPool = new ObjectPool<ObsidianGroundSpikes>(_spikesFactory.GetObject, ObsidianGroundSpikes.TurnOff, ObsidianGroundSpikes.TurnOn, 200);
@@ -136,7 +148,9 @@ public class NewItztlacoliuhqui : Boss
 
         _actionHistory.Enqueue(Actions.Inactive);
         _actionHistory.Enqueue(Actions.Inactive);
-        _actionHistory.Enqueue(Actions.Inactive);
+        //_actionHistory.Enqueue(Actions.Inactive);
+
+        _currentLimbWindUp = _limbWindUpDuration;
 
         if (_playOnStart) StartCoroutine(SetupWait());
     }
@@ -158,6 +172,7 @@ public class NewItztlacoliuhqui : Boss
 
         var inactive = new State<Actions>("Inactive");
         var approach = new State<Actions>("Approach");
+        var sidestep = new State<Actions>("Sidestep");
         var melee = new State<Actions>("Melee");
         var quickShot = new State<Actions>("QuickShot");
         var powerShot = new State<Actions>("PowerShot");
@@ -170,6 +185,7 @@ public class NewItztlacoliuhqui : Boss
 
         StateConfigurer.Create(inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -184,6 +200,22 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(approach)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
+            .SetTransition(Actions.Melee, melee)
+            .SetTransition(Actions.QuickShot, quickShot)
+            .SetTransition(Actions.PowerShot, powerShot)
+            .SetTransition(Actions.GroundSpike, groundSpike)
+            .SetTransition(Actions.BudStrike, budStrike)
+            .SetTransition(Actions.Bloom, bloom)
+            .SetTransition(Actions.GiantKnife, giantKnife)
+            .SetTransition(Actions.Limb, limb)
+            .SetTransition(Actions.Garden, garden)
+            .Done();
+
+        StateConfigurer.Create(sidestep)
+            .SetTransition(Actions.Inactive, inactive)
+            .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -198,6 +230,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(melee)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -212,6 +245,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(quickShot)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -226,6 +260,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(powerShot)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -240,6 +275,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(groundSpike)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -253,6 +289,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(budStrike)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -267,6 +304,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(bloom)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -281,6 +319,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(giantKnife)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -295,6 +334,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(limb)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -309,6 +349,7 @@ public class NewItztlacoliuhqui : Boss
         StateConfigurer.Create(garden)
             .SetTransition(Actions.Inactive, inactive)
             .SetTransition(Actions.Approach, approach)
+            .SetTransition(Actions.Sidestep, sidestep)
             .SetTransition(Actions.Melee, melee)
             .SetTransition(Actions.QuickShot, quickShot)
             .SetTransition(Actions.PowerShot, powerShot)
@@ -344,6 +385,12 @@ public class NewItztlacoliuhqui : Boss
             _trackPlayer = true;
 
             _timer = 0;
+            _timer2 = 0;
+        };
+
+        approach.OnUpdate += () =>
+        {
+            if (_timer2 > 0) _timer2 -= Time.deltaTime;
         };
 
         approach.OnFixedUpdate += () =>
@@ -365,12 +412,16 @@ public class NewItztlacoliuhqui : Boss
                     ChainOpportunity();
                 }
             }
-            else if (_player.Aiming)
+            else if (_player.Aiming && _timer2 <= 0)
             {
-                if (Random.Range(0, 100) < _walkReactionChance && CanQuickShot())
+                if (Random.Range(0, 100) < _walkReactionChance)
                 {
-                    ChangeState(Actions.QuickShot);
+                    ChangeState(Actions.Sidestep);
                     // o directamente poner la animacion de quickshot 
+                }
+                else
+                {
+                    _timer2 = _walkReactionCheckCD;
                 }
             }
             else if (_timer > _maxWalkDuration)
@@ -384,6 +435,13 @@ public class NewItztlacoliuhqui : Boss
             _trackPlayer = false;
 
             _anim.SetBool("isWalking", false);
+        };
+
+        sidestep.OnEnter += x =>
+        {
+            _anim.SetTrigger("sidestep");
+
+            _trackPlayer = true;
         };
 
         melee.OnEnter += x =>
@@ -403,7 +461,7 @@ public class NewItztlacoliuhqui : Boss
 
         groundSpike.OnEnter += x =>
         {
-            _anim.SetTrigger("Stomp");
+            _anim.SetTrigger(_secondPhase ? "Stomp" : "Stomp");
 
             _trackPlayer = true;
         };
@@ -424,7 +482,6 @@ public class NewItztlacoliuhqui : Boss
         {
             _timer2 = 0;
             _activated = false;
-            _trackPlayer = true;
 
             _limbExplosion.transform.position = _limb.transform.position;
             _limbExplosion.transform.parent = _limb.transform;
@@ -438,15 +495,11 @@ public class NewItztlacoliuhqui : Boss
             {
                 _timer2 += Time.deltaTime;
 
-                if (_timer2 >= _limbWindUpDuration)
+                if (_timer2 >= _currentLimbWindUp)
                 {
                     _activated = true;
                     _anim.SetTrigger("AttackLimb");
                 }
-            }
-            else
-            {
-                Debug.Log("releasing");
             }
         };
 
@@ -489,9 +542,6 @@ public class NewItztlacoliuhqui : Boss
                 break;
             case Actions.GroundSpike:
                 if (CanGroundSpike()) succesful = true;
-                break;
-            case Actions.Bloom:
-                if (CanBloom()) succesful = true;
                 break;
             case Actions.Limb:
                 if (CanLimb()) succesful = true;
@@ -573,7 +623,7 @@ public class NewItztlacoliuhqui : Boss
         Prebloom();
 
         yield return new WaitForSeconds(1);
-        
+
         Bloom();
 
         yield return new WaitForSeconds(1);
@@ -698,7 +748,7 @@ public class NewItztlacoliuhqui : Boss
         }
 
         var bud = _budPool.Get();
-        bud.Initialize(_budPool, _shardPool, BudDestroyed, spawnPos, _budStrikeDamage, _shardSpeed, _shardDamage);
+        bud.Initialize(_budPool, _homingShardPool, BudDestroyed, spawnPos, _budStrikeDamage, _basicShardSpeed, _basicShardDamage);
 
         _spawnedBuds.Add(bud);
 
@@ -712,7 +762,7 @@ public class NewItztlacoliuhqui : Boss
     public void SpawnBud(Vector3 pos)
     {
         var bud = _budPool.Get();
-        bud.Initialize(_budPool, _shardPool, BudDestroyed, pos, _budStrikeDamage, _shardSpeed, _shardDamage);
+        bud.Initialize(_budPool, _homingShardPool, BudDestroyed, pos, _budStrikeDamage, _basicShardSpeed, _basicShardDamage);
 
         _spawnedBuds.Add(bud);
     }
@@ -745,11 +795,12 @@ public class NewItztlacoliuhqui : Boss
     public void QuickShot()
     {
         var dir = _player.target.position - _quickShotSpawnPos.position;
+        int count = _secondPhase ? _enhancedQuickShotCount : _quickShotCount;
 
-        for (int i = 0; i < _quickShotCount; i++)
+        for (int i = 0; i < count; i++)
         {
-            var shard = _shardPool.Get();
-            shard.Initialize(_shardPool, _shardSpeed, _shardDamage, _player.target, SpawnBud);
+            var shard = _basicShardPool.Get();
+            shard.Initialize(_basicShardPool, _basicShardSpeed, _basicShardDamage, _player.target, SpawnBud);
             shard.transform.position = _quickShotSpawnPos.position;
             shard.transform.forward = dir.VectorVariation(i, _quickShotHorDirVariation, _quickShotVerDirVariation);
         }
@@ -757,12 +808,14 @@ public class NewItztlacoliuhqui : Boss
 
     public void SpawnHomingShards()
     {
-        var baseAngle = 360 / _powerShotCount;
+        int count = _secondPhase ? _enhancedPowerShotCount : _powerShotCount;
+
+        var baseAngle = 360 / count;
         var halfAngle = baseAngle * 0.5f;
 
-        for (int i = 0; i < _powerShotCount; i++)
+        for (int i = 0; i < count; i++)
         {
-            var shard = _shardPool.Get();
+            var shard = _homingShardPool.Get();
             shard.transform.position = _powerShotSpawnPos.position;
             shard.transform.up = Vector3.up;
             shard.transform.rotation = Quaternion.Euler(new Vector3(0, baseAngle * i + Mathf.Lerp(0, halfAngle, Random.value)));
@@ -772,22 +825,39 @@ public class NewItztlacoliuhqui : Boss
 
             _homingShards.Add(shard);
         }
-
-        _trackPlayer = true;
     }
 
+    //public void ShootHomingShards()
+    //{
+    //    foreach (var item in _homingShards)
+    //    {
+    //        item.transform.parent = null;
+    //        item.transform.forward = _player.target.position - item.transform.position;
+    //        item.Initialize(_homingShardPool, _shardSpeed, _shardDamage, _player.target);
+    //    }
+    //
+    //    _homingShards.Clear();
+    //
+    //    _trackPlayer = false;
+    //}
+
     public void ShootHomingShards()
+    {
+        StartCoroutine(ShootingHomingShards());
+    }
+
+    IEnumerator ShootingHomingShards()
     {
         foreach (var item in _homingShards)
         {
             item.transform.parent = null;
             item.transform.forward = _player.target.position - item.transform.position;
-            item.Initialize(_shardPool, _shardSpeed, _shardDamage, _player.target);
+            item.Initialize(_homingShardPool, _homingShardSpeed, _homingShardDamage, _player.target);
+
+            yield return new WaitForSeconds(0.1f);
         }
 
         _homingShards.Clear();
-
-        _trackPlayer = false;
     }
 
     public void KnifeThrustEvent()
@@ -976,8 +1046,6 @@ public class NewItztlacoliuhqui : Boss
         _spikesPool.RefillStock(spikes);
     }
 
-    
-
     public void NewGroundSpikes()
     {
         float dirOffset = _totalAngle / (_spikeCount - 1);
@@ -1031,20 +1099,38 @@ public class NewItztlacoliuhqui : Boss
         base.TakeDamage(amount);
         Debug.Log(_hp);
         UIManager.instance.UpdateBar(UIManager.Bar.BossHp, _hp);
+
+        if (!_secondPhase && _hp <= _maxHp * 0.5f)
+        {
+            _secondPhase = true;
+
+            _currentLimbWindUp = _enhancedLimbWindUpDuration;
+            _anim.SetFloat("speedMultiplier", 2);
+        }
     }
 
     public override void Die()
     {
         StopAllCoroutines();
-        //_anim.SetTrigger("Dead");
+        _anim.SetTrigger("");
+
+        _player.Inputs.inputUpdate = _player.Inputs.Nothing;
+
         UIManager.instance.ToggleBossBar(false);
-        //UIManager.instance.HideUI(true);
+        UIManager.instance.HideUI(true);
+
+        _deathCam.SetActive(true);
+
         //_player.Inputs.inputUpdate = _player.Inputs.Nothing;
         //_outroTimeline.Play();
-        Destroy(gameObject);
 
         //prenderCaidaPiedras(true);
         //CineManager.instance.PlayAnimation(CineManager.cineEnum.obsidianDead);
         //Destroy(gameObject);
+    }
+
+    public void OnDeathAnimEnd()
+    {
+        UIManager.instance.StartPlaceholderDemoEnd();
     }
 }

@@ -224,7 +224,8 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(4);
 
         Cursor.lockState = CursorLockMode.None;
-        SceneManager.LoadScene(0);
+
+        SceneLoader.instance.LoadMenu();
     }
 
     public void Paused()
