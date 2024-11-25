@@ -104,6 +104,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 8963638217763694293}
     m_Position: {x: -409.67102, y: -99.782104, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 3367510360290149655}
+    m_Position: {x: 600, y: -120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -7476702669816833437}
@@ -986,6 +989,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 4ba15965273804f40979f1d746f9bd02, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &3367510360290149655
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Itz Death
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 36027cd001a91fe43a957b07618903b9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
