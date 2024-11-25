@@ -1148,6 +1148,6 @@ public class NewItztlacoliuhqui : Boss
     }
     public void MoveObelisc()
     {
-        _obelisc.SetVector3("Position1",new Vector3(transform.position.x, 74.93f, transform.position.z));
+        _obelisc.SetVector3("Position1",new Vector3(transform.position.x, 91.8f, transform.position.z));
     }
 }
