@@ -94,7 +94,7 @@ public class NewItztlacoliuhqui : Boss
 
     [Header("Placeholder Wall Spike")]
     [SerializeField] ObsidianWall _wallPrefab;
-    [SerializeField] VisualEffect _movingSpikes,_obelisc;
+    [SerializeField] VisualEffect _movingSpikes,_obelisc,circles1, circles2, circles3, circles4;
     [SerializeField] float _wallSpikeSpawnOffset, _wallSpikeTravelSpeed, _wallSpawnDelay, _wallSpikeKnockback, _wallSpikeDamage;
 
     ObjectPool<ObsidianBud> _budPool;
@@ -1140,6 +1140,6 @@ public class NewItztlacoliuhqui : Boss
     }
     public void MoveObelisc()
     {
-        _obelisc.SetVector3("Position1",new Vector3(transform.position.x, 9.64f, transform.position.z));
+        _obelisc.SetVector3("Position1",new Vector3(transform.position.x, 74.93f, transform.position.z));
     }
 }
