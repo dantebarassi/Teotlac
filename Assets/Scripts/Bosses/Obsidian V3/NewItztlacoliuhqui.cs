@@ -29,7 +29,8 @@ public class NewItztlacoliuhqui : Boss
 
     [SerializeField] bool _playOnStart;
     [SerializeField] PlayerController _player;
-    [SerializeField] Transform _losTransform, _footPos;
+    [SerializeField] Transform _losTransform;
+    [SerializeField] Transform[] _footPos;
     [SerializeField] LayerMask _playerLayer, _groundLayer, _obstacleLayer;
     [SerializeField] float _turnRate, _aggroRange;
     [SerializeField] GameObject _deathCam;
@@ -461,7 +462,7 @@ public class NewItztlacoliuhqui : Boss
 
         groundSpike.OnEnter += x =>
         {
-            _anim.SetTrigger(_secondPhase ? "Stomp" : "Stomp");
+            _anim.SetTrigger(_secondPhase ? "DoubleStomp" : "Stomp");
 
             _trackPlayer = true;
         };
@@ -498,6 +499,7 @@ public class NewItztlacoliuhqui : Boss
                 if (_timer2 >= _currentLimbWindUp)
                 {
                     _activated = true;
+                    _anim.SetBool("ChargingLimb", true);
                     _anim.SetTrigger("AttackLimb");
                 }
             }
@@ -507,6 +509,7 @@ public class NewItztlacoliuhqui : Boss
         {
             _timer2 = 0;
             _activated = false;
+            _anim.SetBool("ChargingLimb", false);
         };
 
         _fsm = new EventFSM<Actions>(inactive);
@@ -1046,8 +1049,10 @@ public class NewItztlacoliuhqui : Boss
         _spikesPool.RefillStock(spikes);
     }
 
-    public void NewGroundSpikes()
+    public void NewGroundSpikes(int footIndex)
     {
+        if (!Physics.Raycast(transform.position, Vector3.down, out var hit, Mathf.Infinity, _groundLayer)) return;
+
         float dirOffset = _totalAngle / (_spikeCount - 1);
 
         Vector3 baseDir = transform.eulerAngles - new Vector3(0, _totalAngle * 0.5f);
@@ -1055,7 +1060,7 @@ public class NewItztlacoliuhqui : Boss
         for (int i = 0; i < _spikeCount; i++)
         {
             var spike = _spikesPool.Get();
-            spike.Initialize(_spikesPool, new Vector3(_footPos.transform.position.x, transform.position.y, _footPos.transform.position.z), Quaternion.Euler(baseDir + new Vector3(0, dirOffset * i)), _spikesSpeed, _spikesDamage);
+            spike.Initialize(_spikesPool, new Vector3(_footPos[footIndex].transform.position.x, hit.point.y, _footPos[footIndex].transform.position.z), Quaternion.Euler(baseDir + new Vector3(0, dirOffset * i)), _spikesSpeed, _spikesDamage);
         }
     }
 
@@ -1105,7 +1110,7 @@ public class NewItztlacoliuhqui : Boss
             _secondPhase = true;
 
             _currentLimbWindUp = _enhancedLimbWindUpDuration;
-            _anim.SetFloat("speedMultiplier", 2);
+            _anim.SetFloat("speedMultiplier", 1.6f);
         }
     }
 
