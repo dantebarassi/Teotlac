@@ -525,7 +525,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: DoubleStomp
+    m_ConditionEvent: StartLimbVFX
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7584845144537894375}
@@ -1189,7 +1189,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bb9f5b22cd3df5345959d20e9e941140, type: 2}
+  m_Motion: {fileID: 7400000, guid: 63b8e6a8a23966545981b8480b35ad7b, type: 2}
   m_Tag: 
   m_SpeedParameter: speedMultiplier
   m_MirrorParameter: 
