@@ -1115,8 +1115,8 @@ public class NewItztlacoliuhqui : Boss
 
             _currentLimbWindUp = _enhancedLimbWindUpDuration;
             _bodyMaterial.SetFloat("_Emission_Intensity", 0.09f);
-            _bodyMaterial.SetVector("_AMP", new Vector3(-1.13f, 0.05f, 1));
-            _bodyMaterial.SetVector("_AMP_2", new Vector3(0.25f, 0.05f, 1));
+            _bodyMaterial.SetVector("_AMP", new Vector4(-1.13f, 0.05f, 1));
+            _bodyMaterial.SetVector("_AMP_2", new Vector4(0.25f, 0.05f, 1));
             _bodyMaterial.SetColor("_Emission", Color.red);
             _anim.SetFloat("speedMultiplier", 1.6f);
         }
