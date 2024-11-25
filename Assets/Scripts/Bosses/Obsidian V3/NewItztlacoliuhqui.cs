@@ -1114,7 +1114,7 @@ public class NewItztlacoliuhqui : Boss
             _secondPhase = true;
 
             _currentLimbWindUp = _enhancedLimbWindUpDuration;
-            _bodyMaterial.SetFloat("_Emission_Intensity", 0.09f);
+            _bodyMaterial.SetFloat("_Emission_Intensity_Min", 15f);
             _bodyMaterial.SetVector("_AMP", new Vector4(-1.13f, 0.05f, 1));
             _bodyMaterial.SetVector("_AMP_2", new Vector4(0.25f, 0.05f, 1));
             _bodyMaterial.SetColor("_Emission", Color.red);
@@ -1125,7 +1125,7 @@ public class NewItztlacoliuhqui : Boss
     public override void Die()
     {
         StopAllCoroutines();
-        _anim.SetTrigger("");
+        _anim.SetBool("Dead", true);
 
         _player.Inputs.inputUpdate = _player.Inputs.Nothing;
 

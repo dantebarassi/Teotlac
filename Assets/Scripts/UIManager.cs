@@ -215,6 +215,8 @@ public class UIManager : MonoBehaviour
 
     IEnumerator PlaceholderDemoEnd()
     {
+        yield return new WaitForSeconds(3);
+
         StartCoroutine(FadeImage(_black, 1, true));
 
         yield return new WaitForSeconds(2);
