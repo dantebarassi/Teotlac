@@ -225,4 +225,22 @@ public class Movement
         _turnRate = endTurnRate;
         _currentSpeed = endSpeed;
     }
+
+    public IEnumerator OnRollEnd(float startTurnRate, float endTurnRate, float duration)
+    {
+        float timer = 0, lerpT;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            lerpT = timer / duration;
+
+            _turnRate = Mathf.Lerp(startTurnRate, endTurnRate, lerpT);
+
+            yield return null;
+        }
+
+        _turnRate = endTurnRate;
+    }
 }

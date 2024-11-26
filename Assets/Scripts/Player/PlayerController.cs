@@ -229,7 +229,7 @@ public class PlayerController : Entity
 
         _inputs.inputUpdate = _inputs.Unpaused;
 
-        _postStepCoroutine = StartCoroutine(_movement.OnRollEnd(_postRollTurnRate, _turnRate, 0, _speed, _postRollMoveRecoveryDuration));
+        _postStepCoroutine = StartCoroutine(_comboing ? _movement.OnRollEnd(_postRollTurnRate, _turnRate, _postRollMoveRecoveryDuration) : _movement.OnRollEnd(_postRollTurnRate, _turnRate, 0, _speed, _postRollMoveRecoveryDuration));
 
         _collider.center = new Vector3(0, _colliderCenterY);
         _collider.height = _colliderHeight;

@@ -367,13 +367,12 @@ public class Inputs
             inputUpdate = Unpaused;
         }
 
-        if (Input.GetKeyUp(_KprimaryAttack))
-        {
-            PrimaryAttack = false;
-            inputUpdate = Unpaused;
-        }
-
         AimUnaim();*/
+
+        if (Input.GetKeyDown(_kPrimaryAttack))
+        {
+            PrimaryAttack = true;
+        }
     }
 
     //public void MovingCast()
