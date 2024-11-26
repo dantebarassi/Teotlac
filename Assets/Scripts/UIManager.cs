@@ -217,10 +217,6 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
 
-        StartCoroutine(FadeImage(_black, 1, true));
-
-        yield return new WaitForSeconds(2);
-
         ChangeText(true, "Final de la demo, gracias por jugar");
 
         yield return new WaitForSeconds(4);
@@ -232,11 +228,17 @@ public class UIManager : MonoBehaviour
 
     public void Paused()
     {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         _paused.gameObject.SetActive(true);
         _joystick.gameObject.SetActive(true);
     }
     public void UnPaused()
     {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         _paused.gameObject.SetActive(false);
         _joystick.gameObject.SetActive(false);
     }

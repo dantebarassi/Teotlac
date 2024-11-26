@@ -5,14 +5,16 @@ using UnityEngine;
 public class SpecialStarCollision : SpecialMagic
 {
     CollidingStars _starsPrefab, _spawnedStars;
+    Transform _spawnPos;
     float _chargeDuration, _preparation, _recovery, _cooldown;
     bool _startedCasting = false, _charging = false, _thrown = false;
 
-    public SpecialStarCollision(PlayerController player, Inputs inputs, CollidingStars stars, float cost, float chargeDuration, float preparation, float recovery, float cooldown)
+    public SpecialStarCollision(PlayerController player, Inputs inputs, CollidingStars stars, Transform spawnPos, float cost, float chargeDuration, float preparation, float recovery, float cooldown)
     {
         _player = player;
         _inputs = inputs;
         _starsPrefab = stars;
+        _spawnPos = spawnPos;
         _staminaCost = cost;
         _chargeDuration = chargeDuration;
         _preparation = preparation;
@@ -70,12 +72,18 @@ public class SpecialStarCollision : SpecialMagic
         _player.anim.SetBool("isChargingStar", true);
         //_inputs.inputUpdate = _inputs.FixedCast;
 
+        _spawnedStars = Object.Instantiate(_starsPrefab, _spawnPos.position, Quaternion.identity);
+        _spawnedStars.SetUp(_player, _player.sunSpawnPoint[0]);
+        _spawnedStars.StartCharge(_chargeDuration);
+
         float timer = 0;
 
         while (timer < _chargeDuration)
         {
             if (_player.OnHit.Triggered)
             {
+                _spawnedStars.Die();
+
                 _player.Specials.ActivateSpecial(SpecialsManager.Specials.StarCollision, true);
 
                 _startedCasting = false;
@@ -99,9 +107,6 @@ public class SpecialStarCollision : SpecialMagic
 
         _player.anim.SetBool("isChargingStar", false);
         _player.anim.SetBool("isHoldingStars", true);
-
-        _spawnedStars = Object.Instantiate(_starsPrefab, _player.sunSpawnPoint[0].position + Vector3.up * 0.15f, Quaternion.identity);
-        _spawnedStars.SetUp(_player, _player.sunSpawnPoint[0]);
 
         // animacion de sostener soles
 

@@ -48,6 +48,25 @@ public class CollidingStars : MonoBehaviour
         _player = player;
         transform.SetParent(parent);
     }
+
+    public void StartCharge(float duration)
+    {
+        StartCoroutine(Charge(duration));
+    }
+
+    IEnumerator Charge(float duration)
+    {
+        float timer = 0;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one * 100, timer / duration);
+
+            yield return null;
+        }
+    }
     
     public void Throw(Vector3 dir)
     {

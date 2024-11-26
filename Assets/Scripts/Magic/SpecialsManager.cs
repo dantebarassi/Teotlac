@@ -44,6 +44,7 @@ public class SpecialsManager : MonoBehaviour
     [Header("Star Collision")]
     [SerializeField] Sprite _starCollisionIcon;
     [SerializeField] CollidingStars _collidingStars;
+    [SerializeField] Transform _starCollisionSpawnPos;
     [SerializeField] float _starCollisionCost, _starCollisionChargeDuration, _starCollisionPreparation, _starCollisionRecovery, _starCollisionCooldown;
 
     [Header("Obsidian Trap")]
@@ -72,7 +73,7 @@ public class SpecialsManager : MonoBehaviour
         var supernova = new SpecialSupernova(_player, _inputs, _supernova, _supernovaCost, _supernovaRadius, _supernovaDamage, _supernovaPreparation, _supernovaDuration, _supernovaRecovery, _supernovaCooldown);
         var firewall = new SpecialFirewall(_player, _inputs, _firewall, _firewallCost, _firewallPreparation, _firewallRecovery, _firewallCooldown);
         var nebulaShield = new SpecialNebulaShield(_player, _inputs, _nebulaShield, _nebulaShieldCost, _nebulaShieldPreparation, _nebulaShieldRecovery, _nebulaShieldCooldown);
-        var starCollision = new SpecialStarCollision(_player, _inputs, _collidingStars, _starCollisionCost, _starCollisionChargeDuration, _starCollisionPreparation, _starCollisionRecovery, _starCollisionCooldown);
+        var starCollision = new SpecialStarCollision(_player, _inputs, _collidingStars, _starCollisionSpawnPos, _starCollisionCost, _starCollisionChargeDuration, _starCollisionPreparation, _starCollisionRecovery, _starCollisionCooldown);
         var obsTrap = new SpecialObsidianTrap(_player, _inputs, _obsidianTrap, _obsidianTrapCost, _obsidianTrapShardDamage, _obsidianTrapShardSpeed, _obsidianTrapPreparation, _obsidianTrapRecovery, _obsidianTrapCooldown);
         var rockToss = new SpecialRockToss(_player, _inputs, _rock, _rockTossPos, _rockTossCost, _rockTossDamage, _rockTossStrength, _rockTossAngle, _rockTossPreparation, _rockTossRecovery, _rockTossCooldown);
 

@@ -674,7 +674,7 @@ public class PlayerController : Entity
 
         sun.transform.forward = dir;
 
-        sun.Initialize(_finisherPool, _sunBaseDamage * 1.5f, _sunSpeed);
+        sun.Initialize(_finisherPool, _sunBaseDamage * 2f, _sunSpeed);
 
         _canChain = true;
     }

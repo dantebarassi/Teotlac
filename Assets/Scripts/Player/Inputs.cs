@@ -457,10 +457,7 @@ public class Inputs
     {
         if (Input.GetKeyDown(_kPause))
         {
-            Time.timeScale = 1;
             UIManager.instance.UnPaused();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             //UIManager.instance.SetPauseMenu(false);
             inputUpdate = previousUpdate;
         }
@@ -511,9 +508,6 @@ public class Inputs
         if (Input.GetKeyDown(_kPause))
         {
             previousUpdate = prePause;
-            Time.timeScale = 0;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             //UIManager.instance.SetPauseMenu(true);
             UIManager.instance.Paused();
             inputUpdate = Paused;
