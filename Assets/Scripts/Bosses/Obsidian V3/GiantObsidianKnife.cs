@@ -4,32 +4,16 @@ using UnityEngine;
 
 public class GiantObsidianKnife : MonoBehaviour
 {
-    float _thrustDamage, _sliceDamage, _currentDamage;
+    float _damage;
+    [SerializeField] Collider _col;
 
-    Collider _col;
-
-    void Awake()
+    public void SetUp(float damage)
     {
-        _col = GetComponent<Collider>();
+        _damage = damage;
     }
 
-    public void SetUp(float thrustDmg, float sliceDmg)
+    public void StartHitting()
     {
-        _thrustDamage = thrustDmg;
-        _sliceDamage = sliceDmg;
-    }
-
-    public void Slice()
-    {
-        _currentDamage = _sliceDamage;
-
-        _col.enabled = true;
-    }
-
-    public void Thrust()
-    {
-        _currentDamage = _thrustDamage;
-
         _col.enabled = true;
     }
 
@@ -42,7 +26,7 @@ public class GiantObsidianKnife : MonoBehaviour
     {
         if (other.TryGetComponent(out IDamageable damageable))
         {
-            damageable.TakeDamage(_currentDamage);
+            damageable.TakeDamage(_damage);
         }
     }
 }

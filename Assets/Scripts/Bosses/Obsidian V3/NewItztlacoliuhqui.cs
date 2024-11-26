@@ -89,7 +89,8 @@ public class NewItztlacoliuhqui : Boss
     float _currentLimbWindUp;
 
     [Header("Giant Knife")]
-    [SerializeField] GiantObsidianKnife _gKnife;
+    [SerializeField] GiantObsidianKnife _gKnifeThrust;
+    [SerializeField] GiantObsidianKnife _gKnifeSlice;
     [SerializeField] float _gKnifeThrustDamage, _gKnifeSliceDamage, _gKnifeRange;
 
     [Header("Placeholder Wall Spike")]
@@ -120,7 +121,8 @@ public class NewItztlacoliuhqui : Boss
     bool _start = false, _stopGroundSpikes = false, _activated = false, _trackPlayer = false, _secondPhase = false;
 
     Material _bodyMaterial;
-    [SerializeField] GameObject _bodyObj;
+    [SerializeField] GameObject _bodyObj, _deathVFX;
+    [SerializeField] GameObject[] _meshObjects;
 
     public void TrackPlayer(int value)
     {
@@ -148,7 +150,8 @@ public class NewItztlacoliuhqui : Boss
         _spikesFactory = new Factory<ObsidianGroundSpikes>(_spikesPrefab);
         _spikesPool = new ObjectPool<ObsidianGroundSpikes>(_spikesFactory.GetObject, ObsidianGroundSpikes.TurnOff, ObsidianGroundSpikes.TurnOn, 200);
 
-        _gKnife.SetUp(_gKnifeThrustDamage, _gKnifeSliceDamage);
+        _gKnifeThrust.SetUp(_gKnifeThrustDamage);
+        _gKnifeSlice.SetUp(_gKnifeSliceDamage);
 
         _actionHistory.Enqueue(Actions.Inactive);
         _actionHistory.Enqueue(Actions.Inactive);
@@ -869,17 +872,18 @@ public class NewItztlacoliuhqui : Boss
 
     public void KnifeThrustEvent()
     {
-        _gKnife.Thrust();
+        _gKnifeThrust.StartHitting();
     }
 
     public void KnifeSliceEvent()
     {
-        _gKnife.Slice();
+        _gKnifeSlice.StartHitting();
     }
 
     public void KnifeStopEvent()
     {
-        _gKnife.StopHitting();
+        _gKnifeThrust.StopHitting();
+        _gKnifeSlice.StopHitting();
     }
 
     IEnumerator PlaceholderWallSpiking()
@@ -1115,8 +1119,6 @@ public class NewItztlacoliuhqui : Boss
 
             _currentLimbWindUp = _enhancedLimbWindUpDuration;
             _bodyMaterial.SetFloat("_Emission_Intensity_Min", 15f);
-            _bodyMaterial.SetVector("_AMP", new Vector4(-1.13f, 0.05f, 1));
-            _bodyMaterial.SetVector("_AMP_2", new Vector4(0.25f, 0.05f, 1));
             _bodyMaterial.SetColor("_Emission", Color.red);
             _anim.SetFloat("speedMultiplier", 1.6f);
         }
@@ -1144,6 +1146,13 @@ public class NewItztlacoliuhqui : Boss
 
     public void OnDeathAnimEnd()
     {
+        _deathVFX.SetActive(true);
+
+        foreach (var item in _meshObjects)
+        {
+            item.SetActive(false);
+        }
+
         UIManager.instance.StartPlaceholderDemoEnd();
     }
     public void MoveObelisc()
