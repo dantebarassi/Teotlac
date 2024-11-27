@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour
 
         do
         {
-            index = UnityEngine.Random.Range(0, _playerStoneFootsteps.Length);
+            index = UnityEngine.Random.Range(0, _comboAttacks.Length);
         } while (index == _lastComboIndex);
 
         _lastComboIndex = index;

@@ -259,7 +259,7 @@ public class PlayerController : Entity
             //StartCoroutine(ToggleGameObject(_jumpParticles));
             anim.SetTrigger("jump");
             _movement.Jump();
-            ChangeAudio(jump);
+            //ChangeAudio(jump);
             //anim.SetBool("IsJumping", false);
         }
     }
@@ -1010,7 +1010,7 @@ public class PlayerController : Entity
         OnHit.Triggers(this);
         if (_comboing) _stopChannels = true;
 
-        ChangeAudio(damage);
+        //ChangeAudio(damage);
         //_cameraController.CameraShake(1, 0.5f);
         UIManager.instance.TookDamage();
         if (!bypassCooldown) _damageCurrentCooldown = _damageCooldown;
