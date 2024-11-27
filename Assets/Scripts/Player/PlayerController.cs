@@ -4,12 +4,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.VFX;
+using UnityEngine.Audio;
 
 public class PlayerController : Entity
 {
     Movement _movement;
     Inputs _inputs;
-
+    
     public Inputs Inputs
     {
         get
@@ -21,10 +22,12 @@ public class PlayerController : Entity
     public Transform target;
 
     [SerializeField] float _maxStamina, _staminaRegenRate, _staminaRegenDelay, _damageCooldown, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _stepCooldown/*(variable del step viejo)_stepStopVelocity*/;
-    [SerializeField] LayerMask _groundLayer;
+    [SerializeField] LayerMask _floorLayer;
     [SerializeField] Transform _aimTarget;
+    [SerializeField] Transform[] _feet;
     [SerializeField] InteractionManager _interaction;
     [SerializeField] VisualEffect[] _handFires;
+    [SerializeField] AudioMixer _audioMixer;
 
     [Header("Stamina costs")]
     [SerializeField] float _jumpCost;
@@ -150,7 +153,7 @@ public class PlayerController : Entity
         base.Awake();
         _collider = GetComponent<CapsuleCollider>();
         _myAS = GetComponent<AudioSource>();
-        _movement = new Movement(transform, _rb, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _groundLayer);
+        _movement = new Movement(transform, _rb, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _floorLayer);
         _inputs = new Inputs(_movement, this/*, _cameraController*/);
         _specials = GetComponent<SpecialsManager>();
         OnHit = new Trigger();
@@ -1110,4 +1113,17 @@ public class PlayerController : Entity
         myFireAnim.Play();
         anim.SetTrigger("pray");
     }
+
+    #region
+
+    public void Footstep(int footIndex)
+    {
+        Physics.Raycast(_feet[footIndex].transform.position, Vector3.down, out var hit, _floorLayer);
+
+        _audioMixer.SetFloat("Pitch", Random.Range(0.9f, 1.2f));
+        
+        ChangeAudio(AudioManager.instance.PlayerFootsteps(hit.collider.gameObject.tag));
+    }
+
+    #endregion
 }

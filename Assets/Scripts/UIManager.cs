@@ -34,8 +34,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         if (instance != null) Destroy(gameObject);
-
-        instance = this;
+        else instance = this;
     }
 
     public void ChangeBossName(string name)
