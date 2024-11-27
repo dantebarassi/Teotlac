@@ -3214,6 +3214,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isComboing
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: standingCombo
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 976974942767036407}
   m_Solo: 0
