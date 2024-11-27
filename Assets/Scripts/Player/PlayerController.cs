@@ -652,6 +652,9 @@ public class PlayerController : Entity
         sun.Initialize(_sunPool, _sunBaseDamage, _sunSpeed);
 
         _canChain = true;
+
+        _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.05f));
+        ChangeAudio(AudioManager.instance.PlayerCombo());
     }
 
     public void ThrowEnhancedFireball(int handIndex)
@@ -680,6 +683,9 @@ public class PlayerController : Entity
         sun.Initialize(_finisherPool, _sunBaseDamage * 2f, _sunSpeed);
 
         _canChain = true;
+
+        _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.05f));
+        ChangeAudio(AudioManager.instance.PlayerCombo());
     }
 
     IEnumerator BasicAimedCombo()
@@ -1120,7 +1126,7 @@ public class PlayerController : Entity
     {
         Physics.Raycast(_feet[footIndex].transform.position, Vector3.down, out var hit, _floorLayer);
 
-        _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.1f));
+        _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.05f));
         
         ChangeAudio(AudioManager.instance.PlayerFootsteps(hit.collider != null ? hit.collider.gameObject.tag : ""));
     }
