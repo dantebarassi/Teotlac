@@ -1122,7 +1122,7 @@ public class PlayerController : Entity
 
         _audioMixer.SetFloat("Pitch", Random.Range(0.9f, 1.2f));
         
-        ChangeAudio(AudioManager.instance.PlayerFootsteps(hit.collider.gameObject.tag));
+        ChangeAudio(AudioManager.instance.PlayerFootsteps(hit.collider != null ? hit.collider.gameObject.tag : ""));
     }
 
     #endregion
