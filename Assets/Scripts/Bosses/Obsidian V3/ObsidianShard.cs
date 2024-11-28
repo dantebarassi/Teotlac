@@ -13,6 +13,9 @@ public class ObsidianShard : Projectile
     [Range(0, 100)]
     [SerializeField] int _budSpawnChance;
     [SerializeField] float _homingStrength;
+
+    [SerializeField] AudioSource _audioSource;
+
     bool _shot = false;
 
     Transform _target;
@@ -70,7 +73,7 @@ public class ObsidianShard : Projectile
 
     public override void Die()
     {
-        _objectPool.RefillStock(this);
+        StartCoroutine(Death());
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -90,5 +93,14 @@ public class ObsidianShard : Projectile
         }
 
         Die();
+    }
+
+    IEnumerator Death()
+    {
+        _audioSource.PlayOneShot(AudioManager.instance.shardHit);
+
+        yield return new WaitForSeconds(2);
+
+        _objectPool.RefillStock(this);
     }
 }

@@ -12,12 +12,14 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
     [SerializeField] List<GameObject> _fragments;
     Collider _collider, _brokenCollider;
     MeshRenderer _renderer, _brokenRenderer;
+    AudioSource _audioSource;
     bool _broken = false, _damaged = false, _dead = false;
 
     private void Start()
     {
         _collider = GetComponent<Collider>();
         _renderer = GetComponent<MeshRenderer>();
+        _audioSource = GetComponent<AudioSource>();
 
         _currentHp = _hp;
     }
@@ -58,6 +60,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
         _brokenCollider = _brokenPhase.GetComponent<Collider>();
         _brokenRenderer = _brokenPhase.GetComponent<MeshRenderer>();
 
+        _audioSource.PlayOneShot(AudioManager.instance.StructureBreak());
+
         StartCoroutine(DestroyFragments());
     }
 
@@ -92,6 +96,8 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
         }
         
         vfx.Play();
+
+        _audioSource.PlayOneShot(AudioManager.instance.StructureBreak());
 
         yield return new WaitForSeconds(1.5f);
         

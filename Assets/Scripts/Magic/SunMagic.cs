@@ -15,6 +15,8 @@ public class SunMagic : PlayerProjectile
     [SerializeField] float _lightRangeMultiplier, _growRate;
 
     [SerializeField] Rigidbody _rb;
+    [SerializeField] AudioSource _audioSource;
+
     bool _charging = true, _shot = false, _dead = false;
 
     public void Initialize(ObjectPool<SunMagic> op, float dmg, float speed)
@@ -133,6 +135,8 @@ public class SunMagic : PlayerProjectile
         _destroyedParticles.Play();
         _destroyedSparksParticles.Play();
         GetComponentInChildren<Renderer>().enabled = false;
+
+        _audioSource.PlayOneShot(AudioManager.instance.comboHit);
 
         yield return new WaitForSeconds(1);
 

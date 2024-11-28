@@ -110,7 +110,7 @@ public class NewItztlacoliuhqui : Boss
     List<ObsidianBud> _spawnedBuds = new();
     List<ObsidianBud> _bloomingBuds = new();
 
-    AudioSource _myAS;
+    AudioSource _audioSource;
     Animator _anim;
 
     Vector3 _lookDir = Vector3.zero;
@@ -137,6 +137,7 @@ public class NewItztlacoliuhqui : Boss
         //_spikesPrefab.SetUpVFX(_spikesOffset, _spikesDuration);
 
         _anim = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
@@ -173,7 +174,7 @@ public class NewItztlacoliuhqui : Boss
     public void Setup()
     {
         _rb = GetComponent<Rigidbody>();
-        _myAS = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _pf = new Pathfinding();
 
         #region FSM State Creation
@@ -835,6 +836,8 @@ public class NewItztlacoliuhqui : Boss
 
             _homingShards.Add(shard);
         }
+
+        _audioSource.PlayOneShot(AudioManager.instance.basicAttackShardSpawn);
     }
 
     //public void ShootHomingShards()
@@ -1070,6 +1073,8 @@ public class NewItztlacoliuhqui : Boss
             var spike = _spikesPool.Get();
             spike.Initialize(_spikesPool, new Vector3(_footPos[footIndex].transform.position.x, hit.point.y, _footPos[footIndex].transform.position.z), Quaternion.Euler(baseDir + new Vector3(0, dirOffset * i)), _spikesSpeed, _spikesDamage);
         }
+
+        _audioSource.PlayOneShot(AudioManager.instance.stomp);
     }
 
     public void StartLimbVFX()

@@ -132,9 +132,7 @@ public class PlayerController : Entity
 
     public Animator anim;
 
-    AudioSource _myAS;
-    [SerializeField] AudioClip sideStep, jump, damage, chargingSun, Walking;
-    [SerializeField] GameObject _stepParticles, _jumpParticles;
+    AudioSource _audioSource;
 
     Coroutine _postStepCoroutine;
 
@@ -152,7 +150,7 @@ public class PlayerController : Entity
     {
         base.Awake();
         _collider = GetComponent<CapsuleCollider>();
-        _myAS = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _movement = new Movement(transform, _rb, _speed, _explorationSpeed, _speedOnCast, _turnRate, _jumpStr, _stepStr, _castStepStr, _floorLayer);
         _inputs = new Inputs(_movement, this/*, _cameraController*/);
         _specials = GetComponent<SpecialsManager>();
@@ -259,7 +257,7 @@ public class PlayerController : Entity
             //StartCoroutine(ToggleGameObject(_jumpParticles));
             anim.SetTrigger("jump");
             _movement.Jump();
-            //ChangeAudio(jump);
+            _audioSource.PlayOneShot(AudioManager.instance.jump);
             //anim.SetBool("IsJumping", false);
         }
     }
@@ -272,7 +270,7 @@ public class PlayerController : Entity
             anim.SetTrigger("roll");
             //StartCoroutine(ToggleGameObject(_stepParticles));
             //anim.SetBool("IsStrafeRight", true);
-            ChangeAudio(sideStep);
+            _audioSource.PlayOneShot(AudioManager.instance.roll);
             _stepCurrentCooldown = _stepCooldown;
             _movement.Roll(horizontalInput, verticalInput);
         }
@@ -372,7 +370,7 @@ public class PlayerController : Entity
         yield return new WaitForSeconds(_sunCastDelay);
 
         _movement.Cast(true);
-        ChangeAudio(chargingSun);
+        //ChangeAudio(chargingSun);
 
         var sun = Instantiate(_magicTest, sunSpawnPoint[0].position, Quaternion.identity);
         sun.SetupStats(_sunBaseDamage, 0, 0.4f);
@@ -654,7 +652,7 @@ public class PlayerController : Entity
         _canChain = true;
 
         _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.05f));
-        ChangeAudio(AudioManager.instance.PlayerCombo());
+        _audioSource.PlayOneShot(AudioManager.instance.PlayerCombo());
     }
 
     public void ThrowEnhancedFireball(int handIndex)
@@ -685,7 +683,7 @@ public class PlayerController : Entity
         _canChain = true;
 
         _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.05f));
-        ChangeAudio(AudioManager.instance.PlayerCombo());
+        _audioSource.PlayOneShot(AudioManager.instance.PlayerCombo());
     }
 
     IEnumerator BasicAimedCombo()
@@ -1080,11 +1078,7 @@ public class PlayerController : Entity
         anim.SetBool("isRunning", play);
         //ChangeAudio(Walking);
     }
-    public void ChangeAudio(AudioClip clip)
-    {
-        _myAS.clip = clip;
-        _myAS.PlayOneShot(_myAS.clip);
-    }
+
     public IEnumerator PrendoPlayerDust(bool prendo)
     {
         //ForceFieldPlayer.SetActive(prendo);
@@ -1120,16 +1114,12 @@ public class PlayerController : Entity
         anim.SetTrigger("pray");
     }
 
-    #region
-
     public void Footstep(int footIndex)
     {
         Physics.Raycast(_feet[footIndex].transform.position, Vector3.down, out var hit, _floorLayer);
 
         _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.05f));
         
-        ChangeAudio(AudioManager.instance.PlayerFootsteps(hit.collider != null ? hit.collider.gameObject.tag : ""));
+        _audioSource.PlayOneShot(AudioManager.instance.PlayerFootsteps(hit.collider != null ? hit.collider.gameObject.tag : ""));
     }
-
-    #endregion
 }

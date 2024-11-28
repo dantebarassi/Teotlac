@@ -14,11 +14,22 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [Header("Player")]
-    [SerializeField] AudioClip _xd;
-    [SerializeField] AudioClip _xd2;
-    [SerializeField] AudioClip[] _playerGrassFootsteps, _playerStoneFootsteps, _comboAttacks;
+    public AudioClip roll;
+    public AudioClip jump;
+    [SerializeField] AudioClip[] _playerGrassFootsteps, _playerStoneFootsteps;
 
-    int _lastFootstepIndex = -1, _lastComboIndex = -1;
+    [Header("Magic")]
+    [SerializeField] AudioClip[] _comboAttacks;
+    public AudioClip comboHit;
+
+    [Header("Itztlacoliuhqui")]
+    public AudioClip basicAttackShardSpawn;
+    public AudioClip stomp, shardHit;
+
+    [Header("Environment")]
+    [SerializeField] AudioClip[] _structureBreak;
+
+    int _lastFootstepIndex = -1, _lastComboIndex = -1, _lastStructureIndex = -1;
 
     private void Awake()
     {
@@ -30,49 +41,37 @@ public class AudioManager : MonoBehaviour
     {
         Enum.TryParse<FloorMaterials>(material, out var result);
 
-        int index;
-
         switch (result)
         {
             case FloorMaterials.Stone:
-                do
-                {
-                    index = UnityEngine.Random.Range(0, _playerStoneFootsteps.Length);
-                } while (index == _lastFootstepIndex);
-
-                _lastFootstepIndex = index;
-
-                return _playerStoneFootsteps[index];
+                return GetRandomFromArray(_playerStoneFootsteps, ref _lastFootstepIndex);
             case FloorMaterials.Grass:
-                do
-                {
-                    index = UnityEngine.Random.Range(0, _playerStoneFootsteps.Length);
-                } while (index == _lastFootstepIndex);
-
-                _lastFootstepIndex = index;
-                return _playerGrassFootsteps[index];
+                return GetRandomFromArray(_playerGrassFootsteps, ref _lastFootstepIndex);
             default:
-                do
-                {
-                    index = UnityEngine.Random.Range(0, _playerStoneFootsteps.Length);
-                } while (index == _lastFootstepIndex);
-
-                _lastFootstepIndex = index;
-                return _playerStoneFootsteps[index];
+                return GetRandomFromArray(_playerStoneFootsteps, ref _lastFootstepIndex);
         }
     }
 
     public AudioClip PlayerCombo()
     {
-        int index;
+        return GetRandomFromArray(_comboAttacks, ref _lastComboIndex);
+    }
 
+    public AudioClip StructureBreak()
+    {
+        return GetRandomFromArray(_structureBreak, ref _lastStructureIndex);
+    }
+
+    AudioClip GetRandomFromArray(AudioClip[] array, ref int lastPicked)
+    {
+        int index;
         do
         {
-            index = UnityEngine.Random.Range(0, _comboAttacks.Length);
-        } while (index == _lastComboIndex);
+            index = UnityEngine.Random.Range(0, array.Length);
+        } while (index == lastPicked);
 
-        _lastComboIndex = index;
+        lastPicked = index;
 
-        return _comboAttacks[index];
+        return array[lastPicked];
     }
 }
