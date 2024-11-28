@@ -74,17 +74,17 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
             fragmentMats.Add(item.GetComponent<Renderer>().material);
         }
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
 
         float timer = 0;
 
-        while (timer < 1.25f)
+        while (timer < 1.75f)
         {
             timer += Time.deltaTime;
 
             foreach (var item in fragmentMats)
             {
-                item.SetFloat("_Alpha", Mathf.Lerp(1, 0, timer));
+                item.SetFloat("_Alpha", Mathf.Lerp(1, 0, timer / 1.5f));
             }
 
             yield return null;
