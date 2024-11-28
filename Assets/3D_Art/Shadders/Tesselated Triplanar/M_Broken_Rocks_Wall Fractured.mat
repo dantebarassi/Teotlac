@@ -25,11 +25,10 @@ Material:
     MotionVector: User
     RenderType: Transparent
   disabledShaderPasses:
-  - TransparentDepthPrepass
+  - MOTIONVECTORS
   - TransparentDepthPostpass
   - TransparentBackface
   - RayTracingPrepass
-  - MOTIONVECTORS
   m_LockedProperties: _Tessellation_Strength
   m_SavedProperties:
     serializedVersion: 3
@@ -45,6 +44,7 @@ Material:
     - _StencilRefGBuffer: 2
     - _StencilRefMV: 32
     - _SurfaceType: 1
+    - _TransparentDepthPrepassEnable: 1
     - _ZTestDepthEqualForOpaque: 4
     - _ZWrite: 0
     m_Colors: []
