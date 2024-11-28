@@ -67,7 +67,28 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
 
     IEnumerator DestroyFragments()
     {
+        List<Material> fragmentMats = new();
+
+        foreach (var item in _fragments)
+        {
+            fragmentMats.Add(item.GetComponent<Renderer>().material);
+        }
+
         yield return new WaitForSeconds(5);
+
+        float timer = 0;
+
+        while (timer < 1.25f)
+        {
+            timer += Time.deltaTime;
+
+            foreach (var item in fragmentMats)
+            {
+                item.SetFloat("_Alpha", Mathf.Lerp(1, 0, timer));
+            }
+
+            yield return null;
+        }
 
         foreach (var item in _fragments)
         {
@@ -99,7 +120,7 @@ public class ArenaBreakable : MonoBehaviour, IDamageable
 
         _audioSource.PlayOneShot(AudioManager.instance.StructureBreak());
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(6);
         
         Destroy(gameObject);
     }
