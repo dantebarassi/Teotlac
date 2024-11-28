@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Itztlacoliuhqui")]
     public AudioClip basicAttackShardSpawn;
-    public AudioClip stomp, shardHit;
+    public AudioClip stomp, shardHit, limbHit;
 
     [Header("Environment")]
     [SerializeField] AudioClip[] _structureBreak;
