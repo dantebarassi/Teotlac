@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Magic")]
     [SerializeField] AudioClip[] _comboAttacks;
-    public AudioClip comboHit;
+    [SerializeField] AudioClip[] _comboHits;
 
     [Header("Itztlacoliuhqui")]
     public AudioClip basicAttackShardSpawn;
@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
     [Header("Environment")]
     [SerializeField] AudioClip[] _structureBreak;
 
-    int _lastFootstepIndex = -1, _lastLandingIndex = -1, _lastComboIndex = -1, _lastStructureIndex = -1;
+    int _lastFootstepIndex = -1, _lastLandingIndex = -1, _lastComboIndex = -1, _lastComboHitIndex = -1, _lastStructureIndex = -1;
 
     private void Awake()
     {
@@ -70,6 +70,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip PlayerCombo()
     {
         return GetRandomFromArray(_comboAttacks, ref _lastComboIndex);
+    }
+
+    public AudioClip ComboHit()
+    {
+        return GetRandomFromArray(_comboHits, ref _lastComboHitIndex);
     }
 
     public AudioClip StructureBreak()

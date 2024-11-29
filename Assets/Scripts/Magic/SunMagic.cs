@@ -136,7 +136,7 @@ public class SunMagic : PlayerProjectile
         _destroyedSparksParticles.Play();
         GetComponentInChildren<Renderer>().enabled = false;
 
-        _audioSource.PlayOneShot(AudioManager.instance.comboHit);
+        _audioSource.PlayOneShot(AudioManager.instance.ComboHit());
 
         yield return new WaitForSeconds(1);
 
