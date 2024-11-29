@@ -180,7 +180,7 @@ public class NewItztlacoliuhqui : Boss
         _rb = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
         _pf = new Pathfinding();
-        _limbExplosionAudioSource.clip = AudioManager.instance.limbRockSpawn;
+        _limbAudioSource.clip = AudioManager.instance.limbRockSpawn;
 
         #region FSM State Creation
 
