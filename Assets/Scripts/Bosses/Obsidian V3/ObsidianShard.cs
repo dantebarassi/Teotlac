@@ -97,7 +97,7 @@ public class ObsidianShard : Projectile
 
     IEnumerator Death()
     {
-        _audioSource.PlayOneShot(AudioManager.instance.shardHit);
+        //_audioSource.PlayOneShot(AudioManager.instance.shardHit);
 
         yield return new WaitForSeconds(2);
 
