@@ -275,7 +275,7 @@ public class PlayerController : Entity
 
     public void Land()
     {
-        Debug.Log("oooooopaaaaaaaaa");
+        _audioSource.PlayOneShot(AudioManager.instance.land);
     }
 
     public void Roll(float horizontalInput, float verticalInput)

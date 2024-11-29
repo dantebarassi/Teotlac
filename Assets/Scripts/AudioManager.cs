@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Player")]
     public AudioClip roll;
-    public AudioClip jump;
+    public AudioClip jump, land;
     [SerializeField] AudioClip[] _playerGrassFootsteps, _playerStoneFootsteps;
 
     [Header("Magic")]
