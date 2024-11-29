@@ -112,7 +112,7 @@ public class NewItztlacoliuhqui : Boss
     List<ObsidianBud> _spawnedBuds = new();
     List<ObsidianBud> _bloomingBuds = new();
 
-    AudioSource _audioSource, _limbAudioSource;
+    AudioSource _audioSource, _limbAudioSource, _limbExplosionAudioSource;
     Animator _anim;
 
     Vector3 _lookDir = Vector3.zero;
@@ -140,7 +140,8 @@ public class NewItztlacoliuhqui : Boss
 
         _anim = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        _limbAudioSource = _limbExplosion.GetComponent<AudioSource>();
+        _limbAudioSource = _limb.GetComponent<AudioSource>();
+        _limbExplosionAudioSource = _limbExplosion.GetComponent<AudioSource>();
 
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
@@ -179,7 +180,7 @@ public class NewItztlacoliuhqui : Boss
         _rb = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
         _pf = new Pathfinding();
-        _limbAudioSource.clip = AudioManager.instance.limbRockSpawn;
+        _limbExplosionAudioSource.clip = AudioManager.instance.limbRockSpawn;
 
         #region FSM State Creation
 
@@ -1104,7 +1105,7 @@ public class NewItztlacoliuhqui : Boss
         _limb.SetActive(false);
         _limbExplosion.ToggleGameObject(this, true, 5);
 
-        _limbAudioSource.PlayOneShot(AudioManager.instance.limbHit);
+        _limbExplosionAudioSource.PlayOneShot(AudioManager.instance.limbHit);
 
         var cols = Physics.OverlapBox(transform.position + transform.forward * _limbCheckBoxSize.z, _limbCheckBoxSize, transform.rotation, _spikeTargets);
 
