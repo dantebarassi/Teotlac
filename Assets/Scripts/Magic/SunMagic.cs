@@ -138,7 +138,7 @@ public class SunMagic : PlayerProjectile
 
         _audioSource.PlayOneShot(AudioManager.instance.ComboHit());
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2.5f);
 
         if (_objectPool != null) _objectPool.RefillStock(this);
         else Destroy(gameObject);
