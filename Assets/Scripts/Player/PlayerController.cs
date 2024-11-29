@@ -58,7 +58,7 @@ public class PlayerController : Entity
 
     float _stepCurrentCooldown = 0, _obsidianCurrentCooldown = 0, _sunCurrentCooldown = 0, _damageCurrentCooldown = 0;
 
-    float _stamina, _currentStaminaDelay = 0;
+    float _stamina, _currentStaminaDelay = 0, _airTime = 0;
 
     [HideInInspector] public Boss currentBoss;
 
@@ -112,11 +112,17 @@ public class PlayerController : Entity
         }
     }
 
+    bool _grounded = true;
+
     public bool Grounded
     {
-        get
+        get { return _grounded; }
+
+        set
         {
-            return _movement.IsGrounded();
+            if (value == true && _grounded == false && _airTime >= 0.1f) Land();
+
+            _grounded = value;
         }
     }
 
@@ -195,6 +201,11 @@ public class PlayerController : Entity
 
     private void FixedUpdate()
     {
+        Grounded = _movement.IsGrounded();
+
+        if (!Grounded) _airTime += Time.fixedDeltaTime;
+        else _airTime = 0;
+
         if (LookDir != Vector3.zero)
         {
             if (_movement.Rotate(LookDir)) LookDir = Vector3.zero;
@@ -260,6 +271,11 @@ public class PlayerController : Entity
             _audioSource.PlayOneShot(AudioManager.instance.jump);
             //anim.SetBool("IsJumping", false);
         }
+    }
+
+    public void Land()
+    {
+        Debug.Log("oooooopaaaaaaaaa");
     }
 
     public void Roll(float horizontalInput, float verticalInput)
