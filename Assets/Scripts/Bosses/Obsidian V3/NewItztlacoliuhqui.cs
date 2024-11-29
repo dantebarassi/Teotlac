@@ -181,6 +181,7 @@ public class NewItztlacoliuhqui : Boss
         _audioSource = GetComponent<AudioSource>();
         _pf = new Pathfinding();
         _limbAudioSource.clip = AudioManager.instance.limbRockSpawn;
+        _audioSource.clip = AudioManager.instance.limbBackground;
 
         #region FSM State Creation
 
@@ -1085,6 +1086,8 @@ public class NewItztlacoliuhqui : Boss
     public void StartLimbVFX()
     {
         _anim.SetTrigger("StartLimbVFX");
+
+        _audioSource.Play();
     }
 
     public void LimbRocksSpawn()
@@ -1105,6 +1108,7 @@ public class NewItztlacoliuhqui : Boss
         _limb.SetActive(false);
         _limbExplosion.ToggleGameObject(this, true, 5);
 
+        _audioSource.Stop();
         _limbExplosionAudioSource.PlayOneShot(AudioManager.instance.limbHit);
 
         var cols = Physics.OverlapBox(transform.position + transform.forward * _limbCheckBoxSize.z, _limbCheckBoxSize, transform.rotation, _spikeTargets);
