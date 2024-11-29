@@ -141,7 +141,6 @@ public class NewItztlacoliuhqui : Boss
         _anim = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _limbAudioSource = _limbExplosion.GetComponent<AudioSource>();
-        _limbAudioSource.clip = AudioManager.instance.limbRockSpawn;
 
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
@@ -180,6 +179,7 @@ public class NewItztlacoliuhqui : Boss
         _rb = GetComponent<Rigidbody>();
         _audioSource = GetComponent<AudioSource>();
         _pf = new Pathfinding();
+        _limbAudioSource.clip = AudioManager.instance.limbRockSpawn;
 
         #region FSM State Creation
 
@@ -1180,6 +1180,6 @@ public class NewItztlacoliuhqui : Boss
     }
     public void MoveObelisc()
     {
-        _obelisc.SetVector3("Position1",new Vector3(transform.position.x, 91.8f, transform.position.z));
+        //_obelisc.SetVector3("Position1",new Vector3(transform.position.x, 91.8f, transform.position.z));
     }
 }
