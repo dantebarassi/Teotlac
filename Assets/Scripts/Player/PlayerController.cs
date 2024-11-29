@@ -223,7 +223,12 @@ public class PlayerController : Entity
 
     public void Invincibility(int value)
     {
-        if (value == 1) _invincible = true;
+        if (value == 1)
+        {
+            _audioSource.PlayOneShot(AudioManager.instance.roll);
+
+            _invincible = true;
+        }
         else _invincible = false;
     }
 
@@ -275,7 +280,9 @@ public class PlayerController : Entity
 
     public void Land()
     {
-        _audioSource.PlayOneShot(AudioManager.instance.land);
+        Physics.Raycast(transform.position, Vector3.down, out var hit, _floorLayer);
+
+        _audioSource.PlayOneShot(AudioManager.instance.PlayerLanding(hit.collider != null ? hit.collider.gameObject.tag : ""));
     }
 
     public void Roll(float horizontalInput, float verticalInput)
@@ -286,7 +293,6 @@ public class PlayerController : Entity
             anim.SetTrigger("roll");
             //StartCoroutine(ToggleGameObject(_stepParticles));
             //anim.SetBool("IsStrafeRight", true);
-            _audioSource.PlayOneShot(AudioManager.instance.roll);
             _stepCurrentCooldown = _stepCooldown;
             _movement.Roll(horizontalInput, verticalInput);
         }
@@ -1136,6 +1142,6 @@ public class PlayerController : Entity
 
         _audioMixer.SetFloat("Pitch", Random.Range(0.95f, 1.05f));
         
-        _audioSource.PlayOneShot(AudioManager.instance.PlayerFootsteps(hit.collider != null ? hit.collider.gameObject.tag : ""));
+        _audioSource.PlayOneShot(AudioManager.instance.PlayerFootstep(hit.collider != null ? hit.collider.gameObject.tag : ""));
     }
 }

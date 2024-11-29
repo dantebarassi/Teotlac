@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.Playables;
 using UnityEngine.VFX;
+using UnityEngine.Audio;
 
 public class NewItztlacoliuhqui : Boss
 {
@@ -34,6 +35,7 @@ public class NewItztlacoliuhqui : Boss
     [SerializeField] LayerMask _playerLayer, _groundLayer, _obstacleLayer;
     [SerializeField] float _turnRate, _aggroRange;
     [SerializeField] GameObject _deathCam;
+    [SerializeField] AudioMixer _audioMixer;
 
     [Header("Chain attacks")]
     [SerializeField] Actions[] _chainableAttacks;
@@ -139,6 +141,7 @@ public class NewItztlacoliuhqui : Boss
         _anim = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _limbAudioSource = _limbExplosion.GetComponent<AudioSource>();
+        _limbAudioSource.clip = AudioManager.instance.limbRockSpawn;
 
         _budFactory = new Factory<ObsidianBud>(_budPrefab);
         _budPool = new ObjectPool<ObsidianBud>(_budFactory.GetObject, ObsidianBud.TurnOff, ObsidianBud.TurnOn, 10);
@@ -1081,6 +1084,18 @@ public class NewItztlacoliuhqui : Boss
     public void StartLimbVFX()
     {
         _anim.SetTrigger("StartLimbVFX");
+    }
+
+    public void LimbRocksSpawn()
+    {
+        _audioMixer.SetFloat("ItzPitch", Random.Range(0.95f, 1.05f));
+        _limbAudioSource.Play();
+    }
+
+    public void LimbRocksCollision()
+    {
+        _limbAudioSource.Stop();
+        _limbAudioSource.PlayOneShot(AudioManager.instance.limbRockCollision);
     }
 
     public void LimbImpact()

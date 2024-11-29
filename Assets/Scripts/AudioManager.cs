@@ -15,8 +15,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Player")]
     public AudioClip roll;
-    public AudioClip jump, land;
-    [SerializeField] AudioClip[] _playerGrassFootsteps, _playerStoneFootsteps;
+    public AudioClip jump;
+    [SerializeField] AudioClip[] _playerGrassFootsteps, _playerStoneFootsteps, _grassLandings, _stoneLandings;
 
     [Header("Magic")]
     [SerializeField] AudioClip[] _comboAttacks;
@@ -24,12 +24,12 @@ public class AudioManager : MonoBehaviour
 
     [Header("Itztlacoliuhqui")]
     public AudioClip basicAttackShardSpawn;
-    public AudioClip stomp, shardHit, limbHit;
+    public AudioClip stomp, shardHit, limbRockSpawn, limbRockCollision, limbHit;
 
     [Header("Environment")]
     [SerializeField] AudioClip[] _structureBreak;
 
-    int _lastFootstepIndex = -1, _lastComboIndex = -1, _lastStructureIndex = -1;
+    int _lastFootstepIndex = -1, _lastLandingIndex = -1, _lastComboIndex = -1, _lastStructureIndex = -1;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
         else instance = this;
     }
 
-    public AudioClip PlayerFootsteps(string material)
+    public AudioClip PlayerFootstep(string material)
     {
         Enum.TryParse<FloorMaterials>(material, out var result);
 
@@ -49,6 +49,21 @@ public class AudioManager : MonoBehaviour
                 return GetRandomFromArray(_playerGrassFootsteps, ref _lastFootstepIndex);
             default:
                 return GetRandomFromArray(_playerStoneFootsteps, ref _lastFootstepIndex);
+        }
+    }
+
+    public AudioClip PlayerLanding(string material)
+    {
+        Enum.TryParse<FloorMaterials>(material, out var result);
+
+        switch (result)
+        {
+            case FloorMaterials.Stone:
+                return GetRandomFromArray(_stoneLandings, ref _lastLandingIndex);
+            case FloorMaterials.Grass:
+                return GetRandomFromArray(_grassLandings, ref _lastLandingIndex);
+            default:
+                return GetRandomFromArray(_stoneLandings, ref _lastLandingIndex);
         }
     }
 

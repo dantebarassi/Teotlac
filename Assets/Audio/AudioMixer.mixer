@@ -59,6 +59,7 @@ AudioMixerGroupController:
   m_GroupID: 1c636cbcb688eae49b039ee8ee69a8fa
   m_Children:
   - {fileID: -8688138898534809250}
+  - {fileID: 2195959546132272721}
   m_Volume: 49ec5f12587b32a41bbec23858dbdeef
   m_Pitch: cd7b8b1b49951134cad620b971326c8e
   m_Send: 00000000000000000000000000000000
@@ -157,6 +158,7 @@ AudioMixerController:
     - 4e66f81c93b91ed45972491bb53a6f0a
     - 5d9f88e8db6db4a4bb1e52b60f9e5b09
     - 3f05418c15123e14a85941b4888e358c
+    - 1ce504e971620b748a410f93b944f93e
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -270,6 +272,39 @@ AudioMixerEffectController:
   m_EffectID: c0f2e907e7aa3384285547863b0de75e
   m_EffectName: Attenuation
   m_MixLevel: 9fdb76b0f3eadd34eb7f5be8a75241dd
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &2195959546132272721
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Itztlacoliuhqui
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1ce504e971620b748a410f93b944f93e
+  m_Children: []
+  m_Volume: 47ad186d3fe80cd4c81be62aece12a41
+  m_Pitch: 942533c15ded27649be582fe4a47c869
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 2590342992620087893}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &2590342992620087893
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 452c7353a1b51ce4686ae3a78ef8af4c
+  m_EffectName: Attenuation
+  m_MixLevel: 1bf85b2d53c258e45b0431ffb82ecf45
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
