@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2707790468811418637}
   - component: {fileID: 1324479972349650448}
   - component: {fileID: 6708213296961474540}
+  - component: {fileID: 6384453799999439482}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -132,7 +133,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -1789723242424599462, guid: e20e9e50d2098a942ac977a1a86ff7f7,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1837d5af6199f9f4c9265e0e77a7065f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dbd9839e07d53c8418f77a472c712932, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -142,8 +143,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 2
-  MaxDistance: 10
+  MinDistance: 3
+  MaxDistance: 12
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -218,6 +219,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6384453799999439482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482643605068448488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fc9ed4a0fa61642897d858fe8a5ad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 6708213296961474540}
 --- !u!1 &6646136413386772540
 GameObject:
   m_ObjectHideFlags: 0
