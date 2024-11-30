@@ -164,7 +164,7 @@ public class PlayerController : Entity
 
         _activeMagic = MagicType.Sun;
         _sunHitbox = new Vector3(_sunHitboxX, _sunHitboxY, _sunHitboxZ);
-        _inputs.inputUpdate = _inputs.Unpaused;
+        _inputs.inputUpdate = _inputs.Nothing;
 
         _colliderHeight = _collider.height;
         _colliderCenterY = _collider.center.y;
@@ -219,6 +219,19 @@ public class PlayerController : Entity
     private void LateUpdate()
     {
         _inputs.InputsLateUpdate();
+    }
+
+    public void GetUp()
+    {
+        _inputs.inputUpdate = _inputs.JustCamera;
+
+        //animacion de levantarse
+    }
+
+    public void GotUp()
+    {
+        if (GameManager.instance.Json.saveData.finishedTutorial) _inputs.inputUpdate = _inputs.Unpaused;
+        else _inputs.inputUpdate = _inputs.NoAttacks;
     }
 
     public void Invincibility(int value)

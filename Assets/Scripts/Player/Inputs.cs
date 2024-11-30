@@ -161,7 +161,24 @@ public class Inputs
         }
     }
 
-    public void NoAttackInputs()
+    public void JustCamera()
+    {
+        cameraInputs();
+
+        Pause(JustCamera);
+    }
+
+    public void MoveToGetUp()
+    {
+        cameraInputs();
+
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            _player.GetUp();
+        }
+    }
+
+    public void NoAttacks()
     {
         cameraInputs();
 
@@ -169,7 +186,7 @@ public class Inputs
 
         _inputVertical = Input.GetAxis("Vertical");
 
-        Pause(NoAttackInputs);
+        Pause(NoAttacks);
 
         if (Input.GetKeyDown(_kStep))
         {
@@ -181,6 +198,11 @@ public class Inputs
         if (Input.GetKeyDown(_kJump))
         {
             _jump = true;
+        }
+
+        if (Input.GetKeyDown(_kInteract))
+        {
+            _player.Interact();
         }
     }
 

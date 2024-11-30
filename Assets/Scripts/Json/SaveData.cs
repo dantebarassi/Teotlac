@@ -9,4 +9,5 @@ public class SaveData
 {
     public int actualBoss = 0;
     public Vector3 lastCheckPoingPosition;
+    public bool finishedTutorial = false;
 }

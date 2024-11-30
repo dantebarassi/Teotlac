@@ -12,6 +12,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
     [Range(0, 8)]
     [SerializeField] float _lightIntensity;
     [SerializeField] float _transitionDuration;
+    [SerializeField] TutorialManager _tutorial;
 
     Collider _collider;
     Material _material;
@@ -29,6 +30,13 @@ public class SunGodStone : MonoBehaviour, IInteractable
     public void Interact(PlayerController player)
     {
         _player = player;
+
+        if (_tutorial.inProgress)
+        {
+            // que cuente un poco de la historia, hacer dialogos clickeando para pasar al siguiente
+
+            return;
+        }
 
         if (!_training)
         {
