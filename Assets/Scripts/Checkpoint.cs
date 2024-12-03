@@ -20,6 +20,8 @@ public class Checkpoint : MonoBehaviour, IInteractable
     }
     public void Interact(PlayerController player)
     {
+        if (!GameManager.instance.Json.saveData.finishedTutorial) return;
+
         Vector3 newPos;
         bool activatePalace;
         

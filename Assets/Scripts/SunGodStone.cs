@@ -13,11 +13,12 @@ public class SunGodStone : MonoBehaviour, IInteractable
     [SerializeField] float _lightIntensity;
     [SerializeField] float _transitionDuration;
     [SerializeField] TutorialManager _tutorial;
+    [SerializeField] TutorialDummy _tutorialDummy;
 
     Collider _collider;
     Material _material;
     
-    bool _training = false;
+    bool _training = false, _startedTutorial;
 
     PlayerController _player;
 
@@ -33,6 +34,18 @@ public class SunGodStone : MonoBehaviour, IInteractable
 
         if (_tutorial.inProgress)
         {
+            if (!_startedTutorial)
+            {
+                _startedTutorial = true;
+
+                _tutorialDummy.gameObject.SetActive(true);
+                _tutorialDummy.transform.position = _dummySpawnPos.position;
+                _tutorialDummy.transform.rotation = _dummySpawnPos.rotation;
+                _tutorial.TeachBasic();
+
+                _player.FightStarts(_tutorialDummy);
+            }
+
             // que cuente un poco de la historia, hacer dialogos clickeando para pasar al siguiente
 
             return;
@@ -108,6 +121,7 @@ public class SunGodStone : MonoBehaviour, IInteractable
         if (_player != null) _player.FightEnds();
 
         _dummy.gameObject.SetActive(false);
+        _tutorialDummy.gameObject.SetActive(false);
     }
 
     IEnumerator ToggleLight(bool on, float duration)

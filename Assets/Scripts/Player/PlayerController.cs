@@ -225,13 +225,18 @@ public class PlayerController : Entity
     {
         _inputs.inputUpdate = _inputs.JustCamera;
 
-        //animacion de levantarse
+        anim.SetTrigger("WakeUp");
     }
 
     public void GotUp()
     {
         if (GameManager.instance.Json.saveData.finishedTutorial) _inputs.inputUpdate = _inputs.Unpaused;
-        else _inputs.inputUpdate = _inputs.NoAttacks;
+        else
+        {
+            _inputs.inputUpdate = _inputs.NoAttacks;
+
+            GameManager.instance.tutorial.GotUp();
+        }
     }
 
     public void Invincibility(int value)

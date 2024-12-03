@@ -172,7 +172,7 @@ public class Inputs
     {
         cameraInputs();
 
-        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetKeyDown(_kJump))
         {
             _player.GetUp();
         }
@@ -187,13 +187,6 @@ public class Inputs
         _inputVertical = Input.GetAxis("Vertical");
 
         Pause(NoAttacks);
-
-        if (Input.GetKeyDown(_kStep))
-        {
-            _player.Roll(_inputHorizontal, _inputVertical);
-
-            PrimaryAttack = false;
-        }
 
         if (Input.GetKeyDown(_kJump))
         {
@@ -216,6 +209,53 @@ public class Inputs
 
         Pause(JustBasicAttack);
 
+        if (Input.GetKeyDown(_kJump))
+        {
+            _jump = true;
+        }
+
+        if (Input.GetKeyDown(_kPrimaryAttack))
+        {
+            PrimaryAttack = true;
+        }
+    }
+
+    public void BasicAndFinisher()
+    {
+        cameraInputs();
+
+        _inputHorizontal = Input.GetAxis("Horizontal");
+
+        _inputVertical = Input.GetAxis("Vertical");
+
+        Pause(JustBasicAttack);
+
+        if (Input.GetKeyDown(_kJump))
+        {
+            _jump = true;
+        }
+
+        if (Input.GetKeyDown(_kPrimaryAttack))
+        {
+            PrimaryAttack = true;
+        }
+
+        if (Input.GetKeyDown(_kSecondaryAttack))
+        {
+            SecondaryAttack = true;
+        }
+    }
+
+    public void NoSpecials()
+    {
+        cameraInputs();
+
+        _inputHorizontal = Input.GetAxis("Horizontal");
+
+        _inputVertical = Input.GetAxis("Vertical");
+
+        Pause(StarCollision);
+
         if (Input.GetKeyDown(_kStep))
         {
             _player.Roll(_inputHorizontal, _inputVertical);
@@ -233,14 +273,47 @@ public class Inputs
             PrimaryAttack = true;
         }
 
-        if (Input.GetKeyUp(_kPrimaryAttack))
+        if (Input.GetKeyDown(_kSecondaryAttack))
         {
+            SecondaryAttack = true;
+        }
+    }
+
+    public void StarCollision()
+    {
+        cameraInputs();
+
+        _inputHorizontal = Input.GetAxis("Horizontal");
+
+        _inputVertical = Input.GetAxis("Vertical");
+
+        Pause(StarCollision);
+
+        if (Input.GetKeyDown(_kStep))
+        {
+            _player.Roll(_inputHorizontal, _inputVertical);
+
             PrimaryAttack = false;
+        }
+
+        if (Input.GetKeyDown(_kJump))
+        {
+            _jump = true;
+        }
+
+        if (Input.GetKeyDown(_kPrimaryAttack))
+        {
+            PrimaryAttack = true;
         }
 
         if (Input.GetKeyDown(_kSecondaryAttack))
         {
             SecondaryAttack = true;
+        }
+
+        if (Input.GetKeyDown(_kSpecial1))
+        {
+            _player.UseSpecial(0);
         }
     }
 

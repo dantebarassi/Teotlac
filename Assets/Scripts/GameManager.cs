@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayableDirector _introCinematic, _bossIntroCutscene;
     public SunGodStone sunGodStone;
 
-    [SerializeField] TutorialManager _tutorial;
+    public TutorialManager tutorial;
     
     //--Json--//
     public CustomJsonSaveSystem Json;
@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
             //}
         }
 
-        if (!Json.saveData.finishedTutorial) _tutorial.StartTutorial();
+        if (!Json.saveData.finishedTutorial) tutorial.StartTutorial();
+        else player.GetUp();
 
         //_introCinematic.Play();
         //
