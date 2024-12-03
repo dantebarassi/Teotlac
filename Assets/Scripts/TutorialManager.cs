@@ -122,7 +122,7 @@ public class TutorialManager : MonoBehaviour
         UIManager.instance.ChangeText(true, "Interact with the statue to return to the world and viceversa. Leave whenever you are ready");
         _dummy.currentAction = _dummy.MovingAndShooting;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(7);
 
         UIManager.instance.ChangeText(false);
         inProgress = false;
