@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider _hpBar, _staminaBar, _bossHpBar;
     [SerializeField] Button _joystick;
     [SerializeField] Image _paused, _black, _noStamina, _tookDamage;
-    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp, _fButton, _sunGodInteraction;
+    [SerializeField] GameObject _uiParent, _sunActive, _obsidianActive, _lowHp, _fButton, _sunGodInteraction, _textGradient;
     [SerializeField] Image[] _specials = new Image[2];
     [SerializeField] Image[] _specialsCooldown = new Image[2];
     [SerializeField] Image[] _specialsUnavailable = new Image[2];
@@ -139,12 +139,12 @@ public class UIManager : MonoBehaviour
 
     public void ChangeText(bool show)
     {
-        _tutorialText.gameObject.SetActive(show);
+        _textGradient.SetActive(show);
     }
 
     public void ChangeText(bool show, string newText)
     {
-        _tutorialText.gameObject.SetActive(show);
+        _textGradient.SetActive(show);
         _tutorialText.text = newText;
     }
 

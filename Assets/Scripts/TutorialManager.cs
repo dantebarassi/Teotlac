@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour
 
     public void GotUp()
     {
-        UIManager.instance.ChangeText(true, "F to Interact");
+        UIManager.instance.ChangeText(true, "Approach the stone disk to interact with it");
     }
 
     public void TeachBasic()
