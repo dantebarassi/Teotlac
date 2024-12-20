@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.007897946, g: 0.006976403, b: 0.008653596, a: 1}
+  m_IndirectSpecularColor: {r: 0.009864806, g: 0.008699142, b: 0.01121682, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1126,6 +1126,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebfee694749965748857ad5176f7a877, type: 3}
+--- !u!1 &1897087146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1897087148}
+  - component: {fileID: 1897087147}
+  m_Layer: 0
+  m_Name: Ground Smoke Prefab Sample(Clone)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1897087147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897087146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fbb15bf92b84f40a1eb030765b5afe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parameters:
+    albedo: {r: 1, g: 1, b: 1, a: 1}
+    meanFreePath: 1.5
+    blendingMode: 1
+    priority: 0
+    anisotropy: 0
+    volumeMask: {fileID: 11700000, guid: bc05f2e39084d7849a52034d2d41f1ef, type: 3}
+    textureScrollingSpeed: {x: 1, y: 1, z: 1}
+    textureTiling: {x: 2, y: 1, z: 2}
+    positiveFade: {x: 0.009114109, y: 0.25, z: 0.008071025}
+    negativeFade: {x: 0.009114109, y: 0.25, z: 0.008071025}
+    m_EditorUniformFade: 0.5
+    m_EditorPositiveFade: {x: 0.018228192, y: 0.25, z: 0.01614205}
+    m_EditorNegativeFade: {x: 0.018228192, y: 0, z: 0.01614205}
+    m_EditorAdvancedFade: 0
+    size: {x: 54.86, y: 2, z: 61.95}
+    invertFade: 0
+    distanceFadeStart: 10000
+    distanceFadeEnd: 10000
+    textureOffset: {x: -128.29361, y: -128.29361, z: -128.29361}
+    falloffMode: 0
+    maskMode: 1
+    materialMask: {fileID: 2100000, guid: ea08c89eb603b6f4b9fc07633d54a76b, type: 2}
+  m_Version: 2
+--- !u!4 &1897087148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897087146}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1.0000001}
+  m_LocalPosition: {x: 33.7, y: 65.06, z: 1170.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1138,3 +1206,4 @@ SceneRoots:
   - {fileID: 1633013638}
   - {fileID: 92031567}
   - {fileID: 1498058637}
+  - {fileID: 1897087148}
