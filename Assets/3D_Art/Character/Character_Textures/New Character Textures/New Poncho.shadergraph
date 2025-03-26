@@ -212,6 +212,9 @@
         },
         {
             "m_Id": "c96ecf8587694a459042f065991cd150"
+        },
+        {
+            "m_Id": "1dd85292beb8438cbd8a4ab1d891101f"
         }
     ],
     "m_GroupDatas": [],
@@ -897,6 +900,9 @@
             },
             {
                 "m_Id": "e22fc54c57ed49998f702f7aae156af3"
+            },
+            {
+                "m_Id": "1dd85292beb8438cbd8a4ab1d891101f"
             }
         ]
     },
@@ -1862,6 +1868,40 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "1dd85292beb8438cbd8a4ab1d891101f",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.DiffusionProfileHash",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "2070bcd5db474b19b875533b1dd7f111"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.DiffusionProfileHash"
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "1e35d6408c804042b5660cb3a5f7a5ab",
     "m_Id": 1,
@@ -1992,6 +2032,27 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.HighDefinition.DiffusionProfileInputMaterialSlot",
+    "m_ObjectId": "2070bcd5db474b19b875533b1dd7f111",
+    "m_Id": 0,
+    "m_DisplayName": "Diffusion Profile",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "DiffusionProfileHash",
+    "m_StageCapability": 2,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_DiffusionProfile": {
+        "selectedEntry": 0,
+        "popupEntries": []
+    },
+    "m_SerializedDiffusionProfile": "{\n    \"diffusionProfileAsset\": {\n        \"fileID\": 11400000,\n        \"guid\": \"92119388ece825647ba5039062efc187\",\n        \"type\": 2\n    }\n}",
+    "m_Version": 1
 }
 
 {

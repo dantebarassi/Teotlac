@@ -14,6 +14,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
+  - _TESSELLATION_PHONG
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -36,11 +37,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo_Y:
-        m_Texture: {fileID: 2800000, guid: 01becac0bc1b9ea4993c770808cbf5ec, type: 3}
+        m_Texture: {fileID: 2800000, guid: f0f9f896fa67f9740881709d7532efb2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Cracks_Height:
-        m_Texture: {fileID: 2800000, guid: b36b0b2cb457731428dd455f5e2ed87f, type: 3}
+        m_Texture: {fileID: 2800000, guid: b0b4d9560673bc54c9d3fe4aeb36d495, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Height_XZ:
@@ -48,11 +49,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Height_Y:
-        m_Texture: {fileID: 2800000, guid: 4907a96ef9d3100478d80e52d9dae790, type: 3}
+        m_Texture: {fileID: 2800000, guid: 11c8d17924abeeb4a9dfe2b3221bab9c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 2800000, guid: dd0abc1eef8f87b4ca66436cbd51f090, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4719355b89746b64e8af7117c328a369, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map_XZ:
@@ -60,7 +61,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Roughness:
-        m_Texture: {fileID: 2800000, guid: 5637b07e8e19c3041befae7c33c1074d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 46a8ad5055bf275428847c272d910db2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Roughness_XZ:
@@ -82,11 +83,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
+    - _Alpha: 1
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
     - _BlendMode: 0
-    - _Blend_Sharpness: 4
+    - _Blend_Sharpness: 8
     - _ConservativeDepthOffsetEnable: 0
     - _Cracks: 0
     - _Cracks_Height_Intensity: 0.2
@@ -101,7 +103,7 @@ Material:
     - _DstBlend: 0
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
-    - _Normal_Strength: 1.5
+    - _Normal_Strength: 1
     - _Object_Position: 1
     - _OpaqueCullMode: 2
     - _RayTracing: 0
@@ -110,8 +112,8 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
-    - _Roughness_Contrast: 2.69
-    - _Roughness_Intensity: 0.28
+    - _Roughness_Contrast: 4.99
+    - _Roughness_Intensity: 0.37
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 8
@@ -126,12 +128,12 @@ Material:
     - _SupportDecals: 1
     - _SurfaceType: 0
     - _TessellationBackFaceCullEpsilon: -0.25
-    - _TessellationFactorMaxDistance: 50
-    - _TessellationFactorMinDistance: 20
+    - _TessellationFactorMaxDistance: 30
+    - _TessellationFactorMinDistance: 15
     - _TessellationFactorTriangleSize: 100
     - _TessellationMaxDisplacement: 0.01
-    - _TessellationMode: 0
-    - _TessellationShapeFactor: 0.75
+    - _TessellationMode: 1
+    - _TessellationShapeFactor: 1
     - _Tessellation_Factor: 32
     - _Tessellation_Strength: 0.15
     - _Tile: 0.6

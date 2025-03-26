@@ -128,4 +128,15 @@ public class TutorialManager : MonoBehaviour
         inProgress = false;
         GameManager.instance.Json.saveData.finishedTutorial = true;
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            //GameManager.instance.player.Inputs.inputUpdate = GameManager.instance.player.Inputs.StarCollision;
+            UIManager.instance.ChangeText(false);
+            inProgress = false;
+            GameManager.instance.player.Inputs.inputUpdate = GameManager.instance.player.Inputs.Unpaused;
+            GameManager.instance.Json.saveData.finishedTutorial = true;
+        }
+    }
 }
